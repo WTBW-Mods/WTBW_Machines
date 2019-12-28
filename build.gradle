@@ -56,6 +56,17 @@ minecraft {
 
 dependencies {
     minecraft "net.minecraftforge:forge:${minecraft_version}-${forge_version}"
+    if (findProject(':Mod_WTBW_Lib') != null) {
+        compile project(':Mod_WTBW_Lib')
+    }
+    else if (findProject(':wtbw_lib') != null){
+        compile project(":wtbw_lib")
+    }
+    else {
+        compile fg.deobf (project.dependencies.create("com.github.wtbw-mods:wtbw_lib:${wtbwlib_version}") {
+            transitive = false
+        })
+    }
 }
 
 jar {
