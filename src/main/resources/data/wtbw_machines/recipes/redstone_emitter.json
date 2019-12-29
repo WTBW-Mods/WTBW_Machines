@@ -1,0 +1,25 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "TRG",
+    "TCG",
+    "GRG"
+  ],
+  "key": {
+    "G": {
+      "item": "wtbw_core:groundium"
+    },
+    "R": {
+      "item": "minecraft:redstone"
+    },
+    "C": {
+      "item": "minecraft:comparator"
+    },
+    "T": {
+      "item": "minecraft:redstone_torch"
+    }
+  },
+  "result": {
+    "item": "wtbw_machines:redstone_emitter"
+  }
+}

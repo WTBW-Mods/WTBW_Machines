@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "facing=north": { "model": "wtbw_machines:block/block_breaker" },
+    "facing=south": { "model": "wtbw_machines:block/block_breaker", "y": 180 },
+    "facing=west": { "model": "wtbw_machines:block/block_breaker", "y":  270},
+    "facing=east": { "model": "wtbw_machines:block/block_breaker", "y": 90},
+    "facing=up": { "model": "wtbw_machines:block/block_breaker", "x": 270 },
+    "facing=down": { "model": "wtbw_machines:block/block_breaker", "x": 90 }
+  }
+}

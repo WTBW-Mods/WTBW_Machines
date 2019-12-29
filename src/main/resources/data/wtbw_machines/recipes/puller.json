@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "GMG",
+    "GGG"
+  ],
+  "key": {
+    "G": {
+      "item": "wtbw_core:groundium"
+    },
+    "M": {
+      "item": "minecraft:ender_pearl"
+    }
+  },
+  "result": {
+    "item": "wtbw_machines:puller",
+    "count": 2
+  }
+}

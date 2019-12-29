@@ -1,40 +1,51 @@
 package com.wtbw.machines;
 
+import com.wtbw.lib.network.Networking;
+import com.wtbw.machines.config.CommonConfig;
+import com.wtbw.machines.network.UpdateDetectorPacket;
+import net.minecraft.item.ItemGroup;
+import net.minecraft.item.ItemStack;
+import net.minecraft.item.Items;
 import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.DistExecutor;
 import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
-import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 /*
   @author: Sunekaer
 */
+@SuppressWarnings("Convert2MethodRef")
 @Mod(WTBWMachines.MODID)
 public class WTBWMachines
 {
-    public static final String MODID = "wtbw_machines";
-
-    public static final Logger LOGGER = LogManager.getLogger(MODID);
-
-    public WTBWMachines() {
-        IEventBus eventBus = FMLJavaModLoadingContext.get().getModEventBus();
-
-        //eventBus.addListener();
-
-        IEventBus forgeEventBus = MinecraftForge.EVENT_BUS;
-
-        DistExecutor.runWhenOn(Dist.CLIENT, () -> () ->
-        {
-            LOGGER.log(Level.INFO, "Client side loaded");
-        });
-
-        DistExecutor.runWhenOn(Dist.DEDICATED_SERVER, () -> () ->
-        {
-            LOGGER.log(Level.INFO, "Server side loaded");
-        });
+  public static final String MODID = "wtbw_machines";
+  
+  public static final Logger LOGGER = LogManager.getLogger(MODID);
+  
+  public static final ItemGroup GROUP = new ItemGroup(MODID)
+  {
+    @Override
+    public ItemStack createIcon()
+    {
+      return new ItemStack(Items.BEDROCK);
     }
+  };
+  
+  public WTBWMachines()
+  {
+    CommonConfig.init();
+    new MachinesRegistrator(GROUP, MODID);
+    
+    FMLJavaModLoadingContext.get().getModEventBus().addListener(this::setup);
+  }
+  
+  private void setup(final FMLCommonSetupEvent event)
+  {
+    Networking.registerMessage(UpdateDetectorPacket.class, UpdateDetectorPacket::toBytes, UpdateDetectorPacket::new, UpdateDetectorPacket::handle);
+  
+    DistExecutor.runWhenOn(Dist.CLIENT, () -> () -> ClientRegistration.registerScreens());
+  }
 }

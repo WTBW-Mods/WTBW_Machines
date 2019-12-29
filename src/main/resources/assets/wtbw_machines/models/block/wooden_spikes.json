@@ -1,0 +1,9 @@
+{
+  "parent": "wtbw_machines:block/diamond_spikes",
+  "textures": {
+    "0": "block/smooth_stone",
+    "1": "block/oak_log",
+    "particle": "block/smooth_stone"
+  }
+}
+

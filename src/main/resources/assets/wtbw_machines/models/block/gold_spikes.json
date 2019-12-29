@@ -1,0 +1,7 @@
+{
+  "parent": "wtbw_machines:block/diamond_spikes",
+  "textures": {
+    "1": "block/gold_block"
+  }
+}
+

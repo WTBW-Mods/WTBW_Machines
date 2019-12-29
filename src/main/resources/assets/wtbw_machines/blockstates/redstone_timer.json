@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "active=true": {
+      "model": "wtbw_machines:block/redstone_timer_active"
+    },
+    "active=false": {
+      "model": "wtbw_machines:block/redstone_timer"
+    }
+  }
+}

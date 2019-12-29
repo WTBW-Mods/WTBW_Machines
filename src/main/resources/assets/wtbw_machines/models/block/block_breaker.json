@@ -1,0 +1,8 @@
+{
+  "parent": "block/orientable",
+  "textures": {
+    "top": "wtbw_core:block/base_side",
+    "front": "wtbw_machines:block/block_breaker_front",
+    "side": "wtbw_core:block/base_side"
+  }
+}

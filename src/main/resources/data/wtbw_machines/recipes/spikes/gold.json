@@ -1,0 +1,25 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "III",
+    "BSB",
+    "GGG"
+  ],
+  "key": {
+    "I": {
+      "tag": "forge:ingots/gold"
+    },
+    "B": {
+      "tag": "forge:storage_blocks/gold"
+    },
+    "G": {
+      "item": "wtbw_core:groundium"
+    },
+    "S": {
+      "item": "wtbw_machines:iron_spikes"
+    }
+  },
+  "result": {
+    "item": "wtbw_machines:gold_spikes"
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "BBB",
+    "BWB",
+    "SSS"
+  ],
+  "key": {
+    "B": {
+      "item": "minecraft:bamboo"
+    },
+    "W": {
+      "item": "wtbw_machines:wooden_spikes"
+    },
+    "S": {
+      "item": "minecraft:smooth_stone"
+    }
+  },
+  "result": {
+    "item": "wtbw_machines:bamboo_spikes"
+  }
+}

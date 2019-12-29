@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "facing=north": { "model": "wtbw_machines:block/block_placer" },
+    "facing=south": { "model": "wtbw_machines:block/block_placer", "y": 180 },
+    "facing=west": { "model": "wtbw_machines:block/block_placer", "y":  270},
+    "facing=east": { "model": "wtbw_machines:block/block_placer", "y": 90},
+    "facing=up": { "model": "wtbw_machines:block/block_placer", "x": 270 },
+    "facing=down": { "model": "wtbw_machines:block/block_placer", "x": 90 }
+  }
+}
