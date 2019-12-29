@@ -1,6 +1,7 @@
 package com.wtbw.machines;
 
 import com.wtbw.lib.network.Networking;
+import com.wtbw.machines.block.ModBlocks;
 import com.wtbw.machines.config.CommonConfig;
 import com.wtbw.machines.network.UpdateDetectorPacket;
 import net.minecraft.item.ItemGroup;
@@ -30,7 +31,7 @@ public class WTBWMachines
     @Override
     public ItemStack createIcon()
     {
-      return new ItemStack(Items.BEDROCK);
+      return new ItemStack(ModBlocks.REDSTONE_TIMER);
     }
   };
   
