@@ -1,35 +1,35 @@
 {
-  "itemGroup.wtbw_machines": "WTBW Machines",
+  "itemGroup.wtbw_machines": "WTBW - Machines",
 
-  "block.wtbw.redstone_timer": "Redstone Timer",
-  "block.wtbw.redstone_emitter": "Redstone Emitter",
+  "block.wtbw_machines.redstone_timer": "Redstone Timer",
+  "block.wtbw_machines.redstone_emitter": "Redstone Emitter",
 
-  "block.wtbw.iron_furnace": "Iron Furnace",
-  "block.wtbw.gold_furnace": "Gold Furnace",
-  "block.wtbw.diamond_furnace": "Diamond Furnace",
-  "block.wtbw.end_furnace": "End Furnace",
+  "block.wtbw_machines.iron_furnace": "Iron Furnace",
+  "block.wtbw_machines.gold_furnace": "Gold Furnace",
+  "block.wtbw_machines.diamond_furnace": "Diamond Furnace",
+  "block.wtbw_machines.end_furnace": "End Furnace",
 
-  "block.wtbw.puller": "Puller",
-  "block.wtbw.pusher": "Pusher",
-  "block.wtbw.vacuum_chest": "Vacuum Chest",
+  "block.wtbw_machines.puller": "Puller",
+  "block.wtbw_machines.pusher": "Pusher",
+  "block.wtbw_machines.vacuum_chest": "Vacuum Chest",
 
-  "block.wtbw.wooden_spikes": "Wooden spikes",
-  "block.wtbw.bamboo_spikes": "Bamboo spikes",
-  "block.wtbw.iron_spikes": "Iron spikes",
-  "block.wtbw.gold_spikes": "Gold spikes",
-  "block.wtbw.diamond_spikes": "Diamond spikes",
+  "block.wtbw_machines.wooden_spikes": "Wooden spikes",
+  "block.wtbw_machines.bamboo_spikes": "Bamboo spikes",
+  "block.wtbw_machines.iron_spikes": "Iron spikes",
+  "block.wtbw_machines.gold_spikes": "Gold spikes",
+  "block.wtbw_machines.diamond_spikes": "Diamond spikes",
 
-  "block.wtbw.block_breaker": "Block Breaker",
-  "block.wtbw.block_placer": "Block Placer",
-  "block.wtbw.block_detector": "Block Detector",
+  "block.wtbw_machines.block_breaker": "Block Breaker",
+  "block.wtbw_machines.block_placer": "Block Placer",
+  "block.wtbw_machines.block_detector": "Block Detector",
 
-  "wtbw.tooltip.emitter": "Emits redstone signal based on the number displaying.\n(Sneak)Right click to cycle the number",
-  "wtbw.tooltip.timer": "Gives a redstone pulse every %s ticks",
-  "wtbw.tooltip.spikes": "Damages entities standing on top",
-  "wtbw.tooltip.spikes_lethal": "This spike kills entities",
-  "wtbw.tooltip.spikes_non_lethal": "This spike leaves entities at 1 health",
-  "wtbw.tooltip.pusher_range": "This block pushes entities in a %s block radius",
-  "wtbw.tooltip.puller_range": "This block pulls entities in a %s block radius",
+  "wtbw_machines.tooltip.emitter": "Emits redstone signal based on the number displaying.\n(Sneak)Right click to cycle the number",
+  "wtbw_machines.tooltip.timer": "Gives a redstone pulse every %s ticks",
+  "wtbw_machines.tooltip.spikes": "Damages entities standing on top",
+  "wtbw_machines.tooltip.spikes_lethal": "This spike kills entities",
+  "wtbw_machines.tooltip.spikes_non_lethal": "This spike leaves entities at 1 health",
+  "wtbw_machines.tooltip.pusher_range": "This block pushes entities in a %s block radius",
+  "wtbw_machines.tooltip.puller_range": "This block pulls entities in a %s block radius",
 
   "death.attack.spikes.wooden": "Wood spikes pierced %s",
   "death.attack.spikes.bamboo": "Bamboo spikes pierced %s",
@@ -37,6 +37,6 @@
   "death.attack.spikes.gold": "Gold spikes pierced %s",
   "death.attack.spikes.diamond": "Diamond spikes pierced %s",
 
-  "wtbw.gui.current": "Current",
-  "wtbw.gui.exact": "Exact"
+  "wtbw_machines.gui.current": "Current",
+  "wtbw_machines.gui.exact": "Exact"
 }
