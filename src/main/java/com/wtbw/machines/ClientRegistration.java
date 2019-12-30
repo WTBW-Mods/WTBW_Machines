@@ -1,6 +1,7 @@
 package com.wtbw.machines;
 
 import com.wtbw.machines.gui.container.ModContainers;
+import com.wtbw.machines.gui.container.QuarryContainer;
 import com.wtbw.machines.gui.screen.*;
 import net.minecraft.client.gui.ScreenManager;
 
@@ -17,5 +18,7 @@ public class ClientRegistration
     ScreenManager.registerFactory(ModContainers.BLOCK_BREAKER, BlockBreakerScreen::new);
     ScreenManager.registerFactory(ModContainers.BLOCK_PLACER, BlockPlacerScreen::new);
     ScreenManager.registerFactory(ModContainers.BLOCK_DETECTOR, BlockDetectorScreen::new);
+
+    ScreenManager.registerFactory(ModContainers.QUARRY, QuarryScreen::new);
   }
 }

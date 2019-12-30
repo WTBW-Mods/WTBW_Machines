@@ -12,10 +12,7 @@ import com.wtbw.machines.block.redstone.RedstoneTimerBlock;
 import com.wtbw.machines.block.spikes.SpikesBlock;
 import com.wtbw.machines.block.spikes.SpikesType;
 import com.wtbw.machines.gui.container.*;
-import com.wtbw.machines.tile.BlockBreakerTileEntity;
-import com.wtbw.machines.tile.BlockPlacerTileEntity;
-import com.wtbw.machines.tile.EntityPusherTileEntity;
-import com.wtbw.machines.tile.VacuumChestTileEntity;
+import com.wtbw.machines.tile.*;
 import com.wtbw.machines.tile.furnace.FurnaceTier;
 import net.minecraft.block.material.Material;
 import net.minecraft.item.ItemGroup;
@@ -47,6 +44,11 @@ public class MachinesRegistrator extends Registrator
     register(new BlockDetectorBlock(getBlockProperties(Material.IRON, 4)), "block_detector");
   
     register(new BaseTileBlock<>(getBlockProperties(Material.IRON, 4), (world, state) -> new VacuumChestTileEntity()), "vacuum_chest");
+
+    //TODO Make Textures
+    //TODO Make Model
+    //TODO Make Recipe
+    register(new BaseTileBlock<>(getBlockProperties(Material.IRON, 4), (world, state) -> new QuarryTileEntity()), "quarry");
   
     register(new PushBlock(getBlockProperties(Material.IRON, 1), EntityPusherTileEntity.PushMode.PUSH), "pusher");
     register(new PushBlock(getBlockProperties(Material.IRON, 1), EntityPusherTileEntity.PushMode.PULL), "puller");
@@ -79,6 +81,8 @@ public class MachinesRegistrator extends Registrator
     register(ModBlocks.PULLER);
     
     register(ModBlocks.VACUUM_CHEST);
+
+    register(ModBlocks.QUARRY);
   }
   
   @Override
@@ -89,5 +93,6 @@ public class MachinesRegistrator extends Registrator
     registerContainer(BlockBreakerContainer::new, "block_breaker");
     registerContainer(BlockPlacerContainer::new, "block_placer");
     registerContainer(BlockDetectorContainer::new, "block_detector");
+    registerContainer(QuarryContainer::new, "quarry");
   }
 }

@@ -6,6 +6,7 @@ import com.wtbw.lib.block.BaseTileBlock;
 import com.wtbw.lib.block.SixWayTileBlock;
 import com.wtbw.machines.tile.BlockBreakerTileEntity;
 import com.wtbw.machines.tile.BlockPlacerTileEntity;
+import com.wtbw.machines.tile.QuarryTileEntity;
 import com.wtbw.machines.tile.VacuumChestTileEntity;
 import com.wtbw.machines.tile.redstone.RedstoneTimerTileEntity;
 import net.minecraft.block.Block;
@@ -33,4 +34,6 @@ public class ModBlocks
   
   public static final PushBlock PUSHER = null;
   public static final PushBlock PULLER = null;
+
+  public static final BaseTileBlock<QuarryTileEntity> QUARRY = null;
 }
