@@ -5,6 +5,7 @@ import com.wtbw.lib.block.BaseTileBlock;
 import com.wtbw.lib.block.SixWayTileBlock;
 import com.wtbw.machines.block.ModBlocks;
 import com.wtbw.machines.block.PushBlock;
+import com.wtbw.machines.block.SolarPanelBlock;
 import com.wtbw.machines.block.TieredFurnaceBlock;
 import com.wtbw.machines.block.redstone.BlockDetectorBlock;
 import com.wtbw.machines.block.redstone.RedstoneEmitterBlock;
@@ -59,8 +60,7 @@ public class MachinesRegistrator extends Registrator
     register(new SpikesBlock(getBlockProperties(Material.IRON, 5), SpikesType.GOLD), "gold_spikes");
     register(new SpikesBlock(getBlockProperties(Material.IRON, 6), SpikesType.DIAMOND), "diamond_spikes");
     
-    
-    register(new BaseTileBlock<>(getBlockProperties(Material.IRON, 3), (world, state) -> new SolarPanelTileEntity(150000, 80, 20)).comparator(), "solar_panel");
+    register(new SolarPanelBlock(getBlockProperties(Material.IRON, 3), 150000, 80, 20).comparator(), "solar_panel");
     
     register(new BaseTileBlock<>(getBlockProperties(Material.IRON, 3), (world, state) -> new SimpleBatteryTileEntity()).comparator(), "simple_battery");
   }
