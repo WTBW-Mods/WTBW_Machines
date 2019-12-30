@@ -48,7 +48,7 @@ public class MachinesRegistrator extends Registrator
     //TODO Make Textures
     //TODO Make Model
     //TODO Make Recipe
-    register(new BaseTileBlock<>(getBlockProperties(Material.IRON, 4), (world, state) -> new QuarryTileEntity()), "quarry");
+    register(new BaseTileBlock<>(getBlockProperties(Material.IRON, 4).func_226896_b_(), (world, state) -> new QuarryTileEntity()), "quarry");
   
     register(new PushBlock(getBlockProperties(Material.IRON, 1), EntityPusherTileEntity.PushMode.PUSH), "pusher");
     register(new PushBlock(getBlockProperties(Material.IRON, 1), EntityPusherTileEntity.PushMode.PULL), "puller");

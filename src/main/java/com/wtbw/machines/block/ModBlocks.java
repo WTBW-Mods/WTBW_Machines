@@ -38,5 +38,5 @@ public class ModBlocks
   
   public static final BaseTileBlock<SolarPanelTileEntity> SOLAR_PANEL = null;
 
-  public static final BaseTileBlock<QuarryTileEntity> QUARRY = null;
+  public static final QuarryBlock QUARRY = null;
 }

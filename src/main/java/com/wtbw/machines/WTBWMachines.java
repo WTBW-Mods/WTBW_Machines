@@ -47,6 +47,6 @@ public class WTBWMachines
   {
     Networking.registerMessage(UpdateDetectorPacket.class, UpdateDetectorPacket::toBytes, UpdateDetectorPacket::new, UpdateDetectorPacket::handle);
   
-    DistExecutor.runWhenOn(Dist.CLIENT, () -> () -> ClientRegistration.registerScreens());
+    DistExecutor.runWhenOn(Dist.CLIENT, () -> () -> ClientRegistration.init());
   }
 }
