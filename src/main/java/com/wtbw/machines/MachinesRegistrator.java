@@ -58,6 +58,11 @@ public class MachinesRegistrator extends Registrator
     register(new SpikesBlock(getBlockProperties(Material.IRON, 4), SpikesType.IRON), "iron_spikes");
     register(new SpikesBlock(getBlockProperties(Material.IRON, 5), SpikesType.GOLD), "gold_spikes");
     register(new SpikesBlock(getBlockProperties(Material.IRON, 6), SpikesType.DIAMOND), "diamond_spikes");
+    
+    
+    register(new BaseTileBlock<>(getBlockProperties(Material.IRON, 3), (world, state) -> new SolarPanelTileEntity(150000, 80, 20)).comparator(), "solar_panel");
+    
+    register(new BaseTileBlock<>(getBlockProperties(Material.IRON, 3), (world, state) -> new SimpleBatteryTileEntity()).comparator(), "simple_battery");
   }
   
   @Override
@@ -81,6 +86,8 @@ public class MachinesRegistrator extends Registrator
     register(ModBlocks.PULLER);
     
     register(ModBlocks.VACUUM_CHEST);
+    
+    register(ModBlocks.SOLAR_PANEL);
 
     register(ModBlocks.QUARRY);
   }

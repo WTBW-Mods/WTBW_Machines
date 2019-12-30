@@ -27,6 +27,9 @@ public class ModTiles
   public static final TileEntityType<BlockBreakerTileEntity> BLOCK_BREAKER = null;
   public static final TileEntityType<BlockPlacerTileEntity> BLOCK_PLACER = null;
   public static final TileEntityType<BlockDetectorTileEntity> BLOCK_DETECTOR = null;
+  
+  public static final TileEntityType<SolarPanelTileEntity> SOLAR_PANEL = null;
+  public static final TileEntityType<SimpleBatteryTileEntity> SIMPLE_BATTERY = null;
 
   public static final TileEntityType<QuarryTileEntity> QUARRY = null;
 }
