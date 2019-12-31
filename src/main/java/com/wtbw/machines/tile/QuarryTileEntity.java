@@ -43,7 +43,6 @@ import java.util.List;
 public class QuarryTileEntity extends TileEntity implements ITickableTileEntity, INamedContainerProvider, IRedstoneControlled, IContentHolder
 {
   //TODO Make Bounding border
-  //TODO Add is done state
 
   private RedstoneControl control;
   private BlockPos currentPos;
@@ -268,8 +267,7 @@ public class QuarryTileEntity extends TileEntity implements ITickableTileEntity,
   private boolean breakBlock()
   {
     BlockState blockState = world.getBlockState(currentPos);
-    
-    // todo: config for breaking tiles, blacklist
+
     CommonConfig config = CommonConfig.instance();
     boolean breakTiles = config.quarryBreakTileEntities.get();
     Block block = blockState.getBlock();
