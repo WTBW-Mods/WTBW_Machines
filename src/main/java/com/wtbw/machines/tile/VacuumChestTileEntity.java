@@ -246,6 +246,6 @@ public class VacuumChestTileEntity extends TileEntity implements ITickableTileEn
   @Override
   public RedstoneMode[] availableModes()
   {
-    return new RedstoneMode[]{ RedstoneMode.IGNORE, RedstoneMode.ON, RedstoneMode.OFF };
+    return RedstoneMode.noPulse;
   }
 }

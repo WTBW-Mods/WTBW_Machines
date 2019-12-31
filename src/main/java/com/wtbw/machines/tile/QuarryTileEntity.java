@@ -367,7 +367,7 @@ public class QuarryTileEntity extends TileEntity implements ITickableTileEntity,
   @Override
   public RedstoneMode[] availableModes()
   {
-    return new RedstoneMode[]{RedstoneMode.IGNORE, RedstoneMode.ON, RedstoneMode.OFF};
+    return RedstoneMode.noPulse;
   }
   
 }
