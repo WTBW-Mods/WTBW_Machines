@@ -14,37 +14,53 @@ import net.minecraft.world.World;
 /*
   @author: Sunekaer
 */
-public class QuarryContainer extends BaseTileContainer<QuarryTileEntity> {
-    public QuarryContainer(int id, World world, BlockPos pos, PlayerInventory playerInventory)
+public class QuarryContainer extends BaseTileContainer<QuarryTileEntity>
+{
+  public QuarryContainer(int id, World world, BlockPos pos, PlayerInventory playerInventory)
+  {
+    super(ModContainers.QUARRY, id, world, pos, playerInventory);
+    
+    trackInt(new IntReferenceHolder()
     {
-        super(ModContainers.QUARRY, id, world, pos, playerInventory);
-
-        trackInt(new IntReferenceHolder()
-        {
-            @Override
-            public int get()
-            {
-                return tileEntity.getRedstoneMode().ordinal();
-            }
-
-            @Override
-            public void set(int value)
-            {
-                tileEntity.getControl().setMode(RedstoneMode.values()[value % RedstoneMode.values().length]);
-            }
-        });
-
-        tileEntity.getInventory().ifPresent(handler ->
-        {
-            addSlotBox(handler, 0, 84 - 21, 17, 3, 3, 18, 18);
-        });
-
-        layoutPlayerInventorySlots(30 - 21, 84);
-    }
-
-    @Override
-    public boolean canInteractWith(PlayerEntity playerIn)
+      @Override
+      public int get()
+      {
+        return tileEntity.getRedstoneMode().ordinal();
+      }
+      
+      @Override
+      public void set(int value)
+      {
+        tileEntity.getControl().setMode(RedstoneMode.values()[value % RedstoneMode.values().length]);
+      }
+    });
+    
+    trackInt(new IntReferenceHolder()
     {
-        return true;
-    }
+      @Override
+      public int get()
+      {
+        return tileEntity.getStorage().getEnergyStored();
+      }
+  
+      @Override
+      public void set(int value)
+      {
+        tileEntity.getStorage().setEnergy(value);
+      }
+    });
+    
+    tileEntity.getInventory().ifPresent(handler ->
+    {
+      addSlotBox(handler, 0, 84 - 21, 17, 3, 3, 18, 18);
+    });
+    
+    layoutPlayerInventorySlots(30 - 21, 84);
+  }
+  
+  @Override
+  public boolean canInteractWith(PlayerEntity playerIn)
+  {
+    return true;
+  }
 }

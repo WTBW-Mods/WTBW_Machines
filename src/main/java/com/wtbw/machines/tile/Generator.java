@@ -87,7 +87,7 @@ public abstract class Generator extends TileEntity implements ITickableTileEntit
   
   public float getPercentageFilled()
   {
-    return getEnergy() / (float) getCapacity();
+    return storage.getPercentageFilled();
   }
   
   public BaseEnergyStorage getStorage()
@@ -98,19 +98,7 @@ public abstract class Generator extends TileEntity implements ITickableTileEntit
   @Override
   public int getComparatorStrength()
   {
-    float p = getPercentageFilled();
-    int c = (int) (p * 15);
-    if (c == 0)
-    {
-      return (getEnergy() > 0) ? 1 : 0;
-    }
-    
-    if (c == 15)
-    {
-      return (getEnergy() == getCapacity()) ? 15 : 14;
-    }
-    
-    return c;
+    return storage.getComparatorStrength();
   }
   
   protected Direction[] providingSides()

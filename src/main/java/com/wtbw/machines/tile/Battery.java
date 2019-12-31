@@ -68,7 +68,7 @@ public class Battery extends TileEntity implements ITickableTileEntity, ICompara
   
   public float getPercentageFilled()
   {
-    return getEnergy() / (float) getCapacity();
+    return storage.getPercentageFilled();
   }
   
   public BaseEnergyStorage getStorage()
@@ -79,19 +79,7 @@ public class Battery extends TileEntity implements ITickableTileEntity, ICompara
   @Override
   public int getComparatorStrength()
   {
-    float p = getPercentageFilled();
-    int c = (int) (p * 15);
-    if (c == 0)
-    {
-      return (getEnergy() > 0) ? 1 : 0;
-    }
-    
-    if (c == 15)
-    {
-      return (getEnergy() == getCapacity()) ? 15 : 14;
-    }
-    
-    return c;
+    return storage.getComparatorStrength();
   }
   
   protected Direction[] providingSides()
