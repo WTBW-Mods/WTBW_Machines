@@ -7,7 +7,6 @@ import com.wtbw.lib.tile.util.RedstoneControl;
 import com.wtbw.lib.tile.util.RedstoneMode;
 import com.wtbw.lib.tile.util.energy.BaseEnergyStorage;
 import com.wtbw.lib.util.*;
-import com.wtbw.machines.WTBWMachines;
 import com.wtbw.machines.block.QuarryBlock;
 import com.wtbw.machines.config.CommonConfig;
 import com.wtbw.machines.gui.container.QuarryContainer;
@@ -49,6 +48,7 @@ public class QuarryTileEntity extends TileEntity implements ITickableTileEntity,
   private RedstoneControl control;
   private BlockPos currentPos;
   private Area area;
+  private Boolean isDone;
 
   private int tick;
   //TODO Config for quarrySize
@@ -62,14 +62,14 @@ public class QuarryTileEntity extends TileEntity implements ITickableTileEntity,
   private Direction facing = null;
   
   private NBTManager nbtManager;
-  
+
   public QuarryTileEntity()
   {
     super(ModTiles.QUARRY);
     
-    control = new RedstoneControl(this, RedstoneMode.IGNORE);
+    control = new RedstoneControl(this, RedstoneMode.ON);
     getStorage();
-    
+
     nbtManager = new NBTManager();
     nbtManager.register("energy", new NBTManager.Manager()
     {
@@ -81,7 +81,7 @@ public class QuarryTileEntity extends TileEntity implements ITickableTileEntity,
           storage.deserializeNBT(nbt.getCompound(name));
         }
       }
-  
+
       @Override
       public void write(String name, CompoundNBT nbt)
       {
@@ -91,7 +91,7 @@ public class QuarryTileEntity extends TileEntity implements ITickableTileEntity,
         }
       }
     });
-    
+
     nbtManager.register("area", new NBTManager.Manager()
     {
       @Override
@@ -103,7 +103,7 @@ public class QuarryTileEntity extends TileEntity implements ITickableTileEntity,
           area.deserializeNBT(nbt.getCompound(name));
         }
       }
-  
+
       @Override
       public void write(String name, CompoundNBT nbt)
       {
@@ -113,7 +113,7 @@ public class QuarryTileEntity extends TileEntity implements ITickableTileEntity,
         }
       }
     });
-    
+
     nbtManager.register("current", new NBTManager.Manager()
     {
       @Override
@@ -121,7 +121,7 @@ public class QuarryTileEntity extends TileEntity implements ITickableTileEntity,
       {
         currentPos = NBTHelper.getBlockPos(nbt, name);
       }
-  
+
       @Override
       public void write(String name, CompoundNBT nbt)
       {
@@ -131,6 +131,24 @@ public class QuarryTileEntity extends TileEntity implements ITickableTileEntity,
         }
       }
     });
+
+      nbtManager.register("finished", new NBTManager.Manager()
+      {
+          @Override
+          public void read(String name, CompoundNBT nbt)
+          {
+              isDone = nbt.getBoolean(name);
+          }
+
+          @Override
+          public void write(String name, CompoundNBT nbt)
+          {
+              if (isDone != null)
+              {
+                  nbt.putBoolean("finished", isDone);
+              }
+          }
+      });
   }
   
   public BaseEnergyStorage getStorage()
@@ -181,6 +199,16 @@ public class QuarryTileEntity extends TileEntity implements ITickableTileEntity,
   {
     if (!world.isRemote)
     {
+      if (isDone == null)
+      {
+        isDone = false;
+        markDirty();
+      }
+
+      if (isDone) {
+        return;
+      }
+
       tick++;
       if (area == null)
       {
@@ -188,7 +216,8 @@ public class QuarryTileEntity extends TileEntity implements ITickableTileEntity,
         currentPos = new BlockPos(area.start.getX(), area.getSide(Direction.UP), area.start.getZ());
         markDirty();
       }
-      
+
+
       if (control.update())
       {
         CommonConfig config = CommonConfig.instance();
@@ -203,6 +232,11 @@ public class QuarryTileEntity extends TileEntity implements ITickableTileEntity,
               {
                 storage.extractInternal(config.quarryPowerUsage.get(), false);
                 BlockPos startPos = new BlockPos(area.start.getX(), area.getSide(Direction.UP), area.start.getZ());
+
+                if (currentPos.getX() == area.end.getX() && currentPos.getZ() == area.end.getZ() && currentPos.getY() == area.start.getY()){
+                    isDone = true;
+                    markDirty();
+                }
 
                 BlockPos nextX = new BlockPos(currentPos.getX() + 1, currentPos.getY(), currentPos.getZ());
                 BlockPos nextZ = new BlockPos(startPos.getX(), currentPos.getY(), currentPos.getZ() + 1);
@@ -268,10 +302,6 @@ public class QuarryTileEntity extends TileEntity implements ITickableTileEntity,
           }
         });
       }
-      else
-      {
-        return false;
-      }
     }
     return true;
   }
@@ -281,40 +311,16 @@ public class QuarryTileEntity extends TileEntity implements ITickableTileEntity,
   @Override
   public void read(CompoundNBT compound)
   {
-//    if (compound.contains("area"))
-//    {
-//      if (area == null)
-//      {
-//        area = new Area(0, -1, 0, 0, 0, 0);
-//      }
-//
-//      area.deserializeNBT(compound.getCompound("area"));
-//    }
-//
-//    if (compound.contains("current"))
-//    {
-//      currentPos = NBTHelper.getBlockPos(compound, "current");
-//    }
-//
-//    if (compound.contains("energy"))
-//    {
-//      storage.deserializeNBT(compound.getCompound("energy"));
-//    }
-
     nbtManager.read(compound);
-    
+
     super.read(compound);
   }
   
   @Override
   public CompoundNBT write(CompoundNBT compound)
   {
-//    compound.put("area", area.serializeNBT());
-//    NBTHelper.putBlockPos(compound, "current", currentPos);
-//    compound.put("energy", storage.serializeNBT());
-    
     nbtManager.write(compound);
-    
+
     return super.write(compound);
   }
   
