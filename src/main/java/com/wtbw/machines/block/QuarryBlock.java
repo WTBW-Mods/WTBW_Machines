@@ -45,7 +45,8 @@ public class QuarryBlock extends BaseTileBlock<QuarryTileEntity>
   @Override
   public BlockState getStateForPlacement(BlockItemUseContext context)
   {
-    return this.getDefaultState().with(FACING, context.getPlacementHorizontalFacing().getOpposite());
+    // use opposite to face towards placer
+    return this.getDefaultState().with(FACING, context.getPlacementHorizontalFacing());
   }
 
   public BlockState rotate(BlockState state, Rotation rot)

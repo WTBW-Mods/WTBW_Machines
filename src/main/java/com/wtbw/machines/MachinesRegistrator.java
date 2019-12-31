@@ -3,10 +3,7 @@ package com.wtbw.machines;
 import com.wtbw.lib.Registrator;
 import com.wtbw.lib.block.BaseTileBlock;
 import com.wtbw.lib.block.SixWayTileBlock;
-import com.wtbw.machines.block.ModBlocks;
-import com.wtbw.machines.block.PushBlock;
-import com.wtbw.machines.block.SolarPanelBlock;
-import com.wtbw.machines.block.TieredFurnaceBlock;
+import com.wtbw.machines.block.*;
 import com.wtbw.machines.block.redstone.BlockDetectorBlock;
 import com.wtbw.machines.block.redstone.RedstoneEmitterBlock;
 import com.wtbw.machines.block.redstone.RedstoneTimerBlock;
@@ -49,7 +46,8 @@ public class MachinesRegistrator extends Registrator
     //TODO Make Textures
     //TODO Make Model
     //TODO Make Recipe
-    register(new BaseTileBlock<>(getBlockProperties(Material.IRON, 4).func_226896_b_(), (world, state) -> new QuarryTileEntity()), "quarry");
+    register(new QuarryBlock(getBlockProperties(Material.IRON, 4).func_226896_b_()), "quarry");
+//    register(new BaseTileBlock<>(getBlockProperties(Material.IRON, 4).func_226896_b_(), (world, state) -> new QuarryTileEntity()), "quarry");
   
     register(new PushBlock(getBlockProperties(Material.IRON, 1), EntityPusherTileEntity.PushMode.PUSH), "pusher");
     register(new PushBlock(getBlockProperties(Material.IRON, 1), EntityPusherTileEntity.PushMode.PULL), "puller");
