@@ -32,4 +32,5 @@ public class ModTiles
   public static final TileEntityType<SimpleBatteryTileEntity> SIMPLE_BATTERY = null;
 
   public static final TileEntityType<QuarryTileEntity> QUARRY = null;
+  public static final TileEntityType<DryerTileEntity> DRYER = null;
 }

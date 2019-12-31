@@ -1,7 +1,7 @@
 package com.wtbw.machines.tile;
 
 import com.wtbw.machines.config.CommonConfig;
-import com.wtbw.lib.util.NBTHelper;
+import com.wtbw.lib.util.nbt.NBTHelper;
 import com.wtbw.lib.util.Utilities;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.PlayerEntity;

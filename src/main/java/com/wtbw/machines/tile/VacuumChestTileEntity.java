@@ -6,7 +6,7 @@ import com.wtbw.lib.tile.util.IContentHolder;
 import com.wtbw.lib.tile.util.IRedstoneControlled;
 import com.wtbw.lib.tile.util.RedstoneControl;
 import com.wtbw.lib.tile.util.RedstoneMode;
-import com.wtbw.lib.util.NBTHelper;
+import com.wtbw.lib.util.nbt.NBTHelper;
 import com.wtbw.lib.util.PlayEvent;
 import com.wtbw.lib.util.StackUtil;
 import com.wtbw.lib.util.Utilities;

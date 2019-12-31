@@ -1,0 +1,9 @@
+{
+  "type": "wtbw_machines:drying",
+  "ingredient": {
+    "item": "minecraft:birch_sapling"
+  },
+  "result": "minecraft:dead_bush",
+  "count": 1,
+  "duration": 50
+}

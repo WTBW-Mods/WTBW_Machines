@@ -7,6 +7,9 @@ import com.wtbw.lib.tile.util.RedstoneControl;
 import com.wtbw.lib.tile.util.RedstoneMode;
 import com.wtbw.lib.tile.util.energy.BaseEnergyStorage;
 import com.wtbw.lib.util.*;
+import com.wtbw.lib.util.nbt.Manager;
+import com.wtbw.lib.util.nbt.NBTHelper;
+import com.wtbw.lib.util.nbt.NBTManager;
 import com.wtbw.machines.block.QuarryBlock;
 import com.wtbw.machines.config.CommonConfig;
 import com.wtbw.machines.gui.container.QuarryContainer;
@@ -48,7 +51,7 @@ public class QuarryTileEntity extends TileEntity implements ITickableTileEntity,
   private RedstoneControl control;
   private BlockPos currentPos;
   private Area area;
-  private Boolean isDone;
+  private boolean isDone;
 
   private int tick;
   //TODO Config for quarrySize
@@ -71,28 +74,8 @@ public class QuarryTileEntity extends TileEntity implements ITickableTileEntity,
     getStorage();
 
     nbtManager = new NBTManager();
-    nbtManager.register("energy", new NBTManager.Manager()
-    {
-      @Override
-      public void read(String name, CompoundNBT nbt)
-      {
-        if (storage != null)
-        {
-          storage.deserializeNBT(nbt.getCompound(name));
-        }
-      }
-
-      @Override
-      public void write(String name, CompoundNBT nbt)
-      {
-        if (storage != null)
-        {
-          nbt.put(name, storage.serializeNBT());
-        }
-      }
-    });
-
-    nbtManager.register("area", new NBTManager.Manager()
+    nbtManager.register("energy", new Manager.Serializable(getStorage()));
+    nbtManager.register("area", new Manager()
     {
       @Override
       public void read(String name, CompoundNBT nbt)
@@ -114,40 +97,51 @@ public class QuarryTileEntity extends TileEntity implements ITickableTileEntity,
       }
     });
 
-    nbtManager.register("current", new NBTManager.Manager()
+    nbtManager.register("current", new Manager.BlockPos()
     {
       @Override
-      public void read(String name, CompoundNBT nbt)
+      public net.minecraft.util.math.BlockPos get()
       {
-        currentPos = NBTHelper.getBlockPos(nbt, name);
+        return currentPos;
       }
-
+  
       @Override
-      public void write(String name, CompoundNBT nbt)
+      public void set(net.minecraft.util.math.BlockPos value)
       {
-        if (currentPos != null)
-        {
-          NBTHelper.putBlockPos(nbt, name, pos);
-        }
+        currentPos = value;
       }
     });
+    
+//    {
+//      @Override
+//      public void read(String name, CompoundNBT nbt)
+//      {
+//        currentPos = NBTHelper.getBlockPos(nbt, name);
+//      }
+//
+//      @Override
+//      public void write(String name, CompoundNBT nbt)
+//      {
+//        if (currentPos != null)
+//        {
+//          NBTHelper.putBlockPos(nbt, name, pos);
+//        }
+//      }
+//    });
 
-      nbtManager.register("finished", new NBTManager.Manager()
+      nbtManager.register("finished", new Manager.Bool()
       {
-          @Override
-          public void read(String name, CompoundNBT nbt)
-          {
-              isDone = nbt.getBoolean(name);
-          }
-
-          @Override
-          public void write(String name, CompoundNBT nbt)
-          {
-              if (isDone != null)
-              {
-                  nbt.putBoolean("finished", isDone);
-              }
-          }
+        @Override
+        public Boolean get()
+        {
+          return isDone;
+        }
+  
+        @Override
+        public void set(Boolean value)
+        {
+          isDone = value;
+        }
       });
   }
   
@@ -199,13 +193,8 @@ public class QuarryTileEntity extends TileEntity implements ITickableTileEntity,
   {
     if (!world.isRemote)
     {
-      if (isDone == null)
+      if (isDone)
       {
-        isDone = false;
-        markDirty();
-      }
-
-      if (isDone) {
         return;
       }
 

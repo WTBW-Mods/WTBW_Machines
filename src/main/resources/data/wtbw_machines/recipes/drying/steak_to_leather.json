@@ -1,0 +1,9 @@
+{
+  "type": "wtbw_machines:drying",
+  "ingredient": {
+    "item": "minecraft:cooked_beef"
+  },
+  "result": "minecraft:leather",
+  "count": 1,
+  "duration": 200
+}

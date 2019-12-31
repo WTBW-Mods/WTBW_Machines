@@ -1,7 +1,7 @@
 package com.wtbw.machines.tile.furnace;
 
 import com.wtbw.lib.tile.util.IContentHolder;
-import com.wtbw.lib.util.NBTHelper;
+import com.wtbw.lib.util.nbt.NBTHelper;
 import com.wtbw.lib.util.Utilities;
 import com.wtbw.machines.block.BaseFurnaceBlock;
 import com.wtbw.machines.gui.container.TieredFurnaceContainer;

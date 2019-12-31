@@ -10,10 +10,16 @@ import com.wtbw.machines.block.redstone.RedstoneTimerBlock;
 import com.wtbw.machines.block.spikes.SpikesBlock;
 import com.wtbw.machines.block.spikes.SpikesType;
 import com.wtbw.machines.gui.container.*;
+import com.wtbw.machines.recipe.DryerRecipe;
+import com.wtbw.machines.recipe.ModRecipes;
 import com.wtbw.machines.tile.*;
 import com.wtbw.machines.tile.furnace.FurnaceTier;
 import net.minecraft.block.material.Material;
 import net.minecraft.item.ItemGroup;
+import net.minecraft.item.crafting.IRecipeSerializer;
+import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.registry.Registry;
+import net.minecraftforge.event.RegistryEvent;
 
 /*
   @author: Naxanria
@@ -61,34 +67,36 @@ public class MachinesRegistrator extends Registrator
     register(new SolarPanelBlock(getBlockProperties(Material.IRON, 3), 150000, 80, 20).comparator(), "solar_panel");
     
     register(new BaseTileBlock<>(getBlockProperties(Material.IRON, 3), (world, state) -> new SimpleBatteryTileEntity()).comparator(), "simple_battery");
+    
+    register(new BaseTileBlock<>(getBlockProperties(Material.IRON, 5), (world, state) -> new DryerTileEntity()), "dryer");
   }
   
   @Override
   protected void registerAllItems()
   { }
   
-  @Override
-  protected void registerAllTiles()
-  {
-    register(ModBlocks.IRON_FURNACE);
-    register(ModBlocks.GOLD_FURNACE);
-    register(ModBlocks.DIAMOND_FURNACE);
-    register(ModBlocks.END_FURNACE);
-    
-    register(ModBlocks.REDSTONE_TIMER);
-    register(ModBlocks.BLOCK_BREAKER);
-    register(ModBlocks.BLOCK_PLACER);
-    register(ModBlocks.BLOCK_DETECTOR);
-    
-    register(ModBlocks.PUSHER);
-    register(ModBlocks.PULLER);
-    
-    register(ModBlocks.VACUUM_CHEST);
-    
-    register(ModBlocks.SOLAR_PANEL);
-
-    register(ModBlocks.QUARRY);
-  }
+//  @Override
+//  protected void registerAllTiles()
+//  {
+//    register(ModBlocks.IRON_FURNACE);
+//    register(ModBlocks.GOLD_FURNACE);
+//    register(ModBlocks.DIAMOND_FURNACE);
+//    register(ModBlocks.END_FURNACE);
+//
+//    register(ModBlocks.REDSTONE_TIMER);
+//    register(ModBlocks.BLOCK_BREAKER);
+//    register(ModBlocks.BLOCK_PLACER);
+//    register(ModBlocks.BLOCK_DETECTOR);
+//
+//    register(ModBlocks.PUSHER);
+//    register(ModBlocks.PULLER);
+//
+//    register(ModBlocks.VACUUM_CHEST);
+//
+//    register(ModBlocks.SOLAR_PANEL);
+//
+//    register(ModBlocks.QUARRY);
+//  }
   
   @Override
   protected void registerAllContainers()
@@ -99,5 +107,18 @@ public class MachinesRegistrator extends Registrator
     registerContainer(BlockPlacerContainer::new, "block_placer");
     registerContainer(BlockDetectorContainer::new, "block_detector");
     registerContainer(QuarryContainer::new, "quarry");
+  }
+  
+  public void registerRecipes(final RegistryEvent.Register<IRecipeSerializer<?>> event)
+  {
+    ModRecipes.init();
+    
+    event.getRegistry().register(DryerRecipe.SERIALIZER);
+  
+    WTBWMachines.LOGGER.info("registered types: ");
+    for (ResourceLocation id : Registry.RECIPE_TYPE.keySet())
+    {
+      WTBWMachines.LOGGER.info("\t{}", id.toString());
+    }
   }
 }
