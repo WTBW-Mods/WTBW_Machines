@@ -1,6 +1,6 @@
 package com.wtbw.machines.tile;
 
-import com.wtbw.machines.WTBWMachines;
+import com.wtbw.machines.tile.base.Generator;
 import net.minecraft.util.Direction;
 
 /*

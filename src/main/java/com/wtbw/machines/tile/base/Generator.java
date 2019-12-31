@@ -1,4 +1,4 @@
-package com.wtbw.machines.tile;
+package com.wtbw.machines.tile.base;
 
 import com.wtbw.lib.tile.util.IComparatorProvider;
 import com.wtbw.lib.tile.util.energy.BaseEnergyStorage;

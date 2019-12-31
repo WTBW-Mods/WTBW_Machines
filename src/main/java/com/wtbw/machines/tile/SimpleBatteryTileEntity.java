@@ -1,7 +1,6 @@
 package com.wtbw.machines.tile;
 
-import com.wtbw.machines.WTBWMachines;
-import net.minecraft.tileentity.TileEntityType;
+import com.wtbw.machines.tile.base.Battery;
 
 /*
   @author: Naxanria
