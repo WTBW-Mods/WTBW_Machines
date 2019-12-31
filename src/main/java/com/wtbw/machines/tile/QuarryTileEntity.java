@@ -12,6 +12,7 @@ import com.wtbw.lib.util.StackUtil;
 import com.wtbw.lib.util.Utilities;
 import com.wtbw.machines.WTBWMachines;
 import com.wtbw.machines.block.QuarryBlock;
+import com.wtbw.machines.config.CommonConfig;
 import com.wtbw.machines.gui.container.QuarryContainer;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
@@ -57,7 +58,7 @@ public class QuarryTileEntity extends TileEntity implements ITickableTileEntity,
   private int quarrySize = 15;
 
   private BaseEnergyStorage storage;
-  private int energyForWork = 1000;
+
   private LazyOptional<ItemStackHandler> inventory = LazyOptional.of(this::createInventory);
   private LazyOptional<BaseEnergyStorage> storageCap = LazyOptional.of(this::getStorage);
 
@@ -68,13 +69,14 @@ public class QuarryTileEntity extends TileEntity implements ITickableTileEntity,
     super(ModTiles.QUARRY);
     
     control = new RedstoneControl(this, RedstoneMode.IGNORE);
+    getStorage();
   }
   
   public BaseEnergyStorage getStorage()
   {
     if (storage == null)
     {
-      return storage = new BaseEnergyStorage(1000000, 5000, 0);
+      return storage = new BaseEnergyStorage(CommonConfig.instance().quarryCapacity.get(), Integer.MAX_VALUE, 0);
     }
     return storage;
   }
@@ -127,16 +129,18 @@ public class QuarryTileEntity extends TileEntity implements ITickableTileEntity,
       }
       
       if (control.update())
-      {   //TODO Change 15 to config.
-        if (tick % 1 == 0)
+      {
+        CommonConfig config = CommonConfig.instance();
+        
+        if (tick % config.quarrySpeed.get() == 0)
         {
           if (area.isInside(currentPos))
           {
-            if (getStorage().getEnergyStored() >= energyForWork)
+            if (getStorage().getEnergyStored() >= config.quarryPowerUsage.get())
             {
               if (breakBlock())
               {
-                storage.extractInternal(energyForWork, false);
+                storage.extractInternal(config.quarryPowerUsage.get(), false);
                 BlockPos startPos = new BlockPos(area.start.getX(), area.getSide(Direction.UP), area.start.getZ());
 
                 BlockPos nextX = new BlockPos(currentPos.getX() + 1, currentPos.getY(), currentPos.getZ());
@@ -171,12 +175,13 @@ public class QuarryTileEntity extends TileEntity implements ITickableTileEntity,
     BlockState blockState = world.getBlockState(currentPos);
     
     // todo: config for breaking tiles, blacklist
-    boolean breakTiles = false;
+    CommonConfig config = CommonConfig.instance();
+    boolean breakTiles = config.quarryBreakTileEntities.get();
     Block block = blockState.getBlock();
     
     if (breakTiles || world.getTileEntity(currentPos) == null)
     {
-      if (!block.equals(Blocks.AIR) && !block.equals(Blocks.BEDROCK))
+      if (!block.equals(Blocks.AIR) && !CommonConfig.isInBlacklist(block))
       {
         List<ItemStack> drops = Block.getDrops(blockState, (ServerWorld) world, currentPos, blockState.hasTileEntity() ? world.getTileEntity(currentPos) : null);
         for (ItemStack drop : drops)
@@ -210,16 +215,30 @@ public class QuarryTileEntity extends TileEntity implements ITickableTileEntity,
     return true;
   }
   
+
+  
   @Override
   public void read(CompoundNBT compound)
   {
-    if (area == null)
+    if (compound.contains("area"))
     {
-      area = new Area(0, -1, 0, 0, 0, 0);
+      if (area == null)
+      {
+        area = new Area(0, -1, 0, 0, 0, 0);
+      }
+  
+      area.deserializeNBT(compound.getCompound("area"));
     }
-    area.deserializeNBT(compound.getCompound("area"));
-    currentPos = NBTHelper.getBlockPos(compound, "current");
-    storage.deserializeNBT(compound.getCompound("energy"));
+    
+    if (compound.contains("current"))
+    {
+      currentPos = NBTHelper.getBlockPos(compound, "current");
+    }
+    
+    if (compound.contains("energy"))
+    {
+      storage.deserializeNBT(compound.getCompound("energy"));
+    }
 
     super.read(compound);
   }

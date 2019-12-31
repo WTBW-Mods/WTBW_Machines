@@ -2,12 +2,17 @@ package com.wtbw.machines.config;
 
 import com.wtbw.lib.config.BaseConfig;
 import com.wtbw.lib.config.SubConfig;
+import com.wtbw.lib.util.Utilities;
 import com.wtbw.machines.WTBWMachines;
 import com.wtbw.machines.tile.furnace.FurnaceTier;
+import net.minecraft.block.Block;
 import net.minecraftforge.common.ForgeConfigSpec;
 import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.config.ModConfig;
 import org.apache.commons.lang3.tuple.Pair;
+
+import javax.annotation.Nonnull;
+import java.util.List;
 
 /*
   @author: Naxanria
@@ -45,6 +50,16 @@ public class CommonConfig extends BaseConfig
   public ForgeConfigSpec.IntValue redstoneClockRepeat;
   public ForgeConfigSpec.IntValue redstoneClockDuration;
   
+  // quarry //
+  public ForgeConfigSpec.IntValue quarryMaxSize;
+  public ForgeConfigSpec.IntValue quarrySpeed;
+  public ForgeConfigSpec.IntValue quarryPowerUsage;
+  public ForgeConfigSpec.IntValue quarryCapacity;
+  public ForgeConfigSpec.BooleanValue quarryBreakTileEntities;
+  
+  // general blacklist for breaking blocks //
+  public ForgeConfigSpec.ConfigValue<List<String>> blockBreakBlacklist;
+  
   private CommonConfig(ForgeConfigSpec.Builder builder)
   {
     super(WTBWMachines.MODID, builder);
@@ -66,10 +81,50 @@ public class CommonConfig extends BaseConfig
   {
     push("blocks");
     
+    blockBreakBlacklist = builder
+      .comment("The black list of blocks that can not be broken by machines (e.g. BlockBreaker, Quarry)")
+      .translation(key("blocks.block_break_blacklist"))
+      .define("blockBreakBlacklist",
+        Utilities.listOf("minecraft:bedrock", "minecraft:end_portal_frame", "minecraft:end_portal", "minecraft:nether_portal", "minecraft:barrier_block")
+      );
+    
     furnaces();
     redstone();
     vacuumChest();
     puller();
+    quarry();
+    
+    pop();
+  }
+  
+  private void quarry()
+  {
+    push("quarry");
+    
+    quarryMaxSize = builder
+      .comment("The maximum size of the quarry", "default:  128")
+      .translation(key("blocks.quarry.max_size"))
+      .defineInRange("max_size", 128, 16, 1024);
+    
+    quarryPowerUsage = builder
+      .comment("The power it uses to break a block", "default: 1000")
+      .translation(key("blocks.quarry.power_usage"))
+      .defineInRange("power_usage", 1000, 1, Integer.MAX_VALUE);
+    
+    quarryCapacity = builder
+      .comment("The capacity of the quarry's battery", "always at least as big as the power usage", "default: 1000000")
+      .translation(key("blocks.quarry.capacity"))
+      .defineInRange("capacity", 1000000, 1, Integer.MAX_VALUE);
+    
+    quarrySpeed = builder
+      .comment("The time in ticks between breaking a block", "default: 15")
+      .translation(key("blocks.quarry.speed"))
+      .defineInRange("speed", 15, 1, 1000);
+    
+    quarryBreakTileEntities = builder
+      .comment("If the quarry can break tile entities (like chests and spawners)", "default: false")
+      .translation(key("blocks.quarry.break_tiles"))
+      .define("break_tiles", false);
     
     pop();
   }
@@ -145,6 +200,12 @@ public class CommonConfig extends BaseConfig
     endFurnace = new FurnaceConfig(FurnaceTier.END, builder);
     
     pop();
+  }
+  
+  public static boolean isInBlacklist(@Nonnull Block block)
+  {
+    String id = block.getRegistryName().toString();
+    return instance.blockBreakBlacklist.get().contains(id);
   }
   
   public static class FurnaceConfig extends SubConfig

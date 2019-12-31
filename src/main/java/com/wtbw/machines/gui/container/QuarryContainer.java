@@ -2,11 +2,9 @@ package com.wtbw.machines.gui.container;
 
 import com.wtbw.lib.gui.container.BaseTileContainer;
 import com.wtbw.lib.tile.util.RedstoneMode;
-import com.wtbw.machines.tile.BlockBreakerTileEntity;
 import com.wtbw.machines.tile.QuarryTileEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
-import net.minecraft.inventory.container.Container;
 import net.minecraft.util.IntReferenceHolder;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
