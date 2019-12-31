@@ -14,6 +14,7 @@ import com.wtbw.machines.tile.QuarryTileEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.ITextComponent;
+import net.minecraft.util.text.TranslationTextComponent;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -38,7 +39,7 @@ public class QuarryScreen extends BaseContainerScreen<QuarryContainer>
     final QuarryTileEntity tileEntity = container.tileEntity;
     addButton(new RedstoneButton<>(guiLeft - 21 + 5, guiTop + 17, tileEntity));
     final BaseEnergyStorage storage = tileEntity.getStorage();
-    energyBar = new ProgressBar(guiLeft + 10, guiTop + 10, 20, 60, storage::getMaxEnergyStored, storage::getEnergyStored)
+    energyBar = new ProgressBar(guiLeft + 10, guiTop + 16, 20, 54, storage::getMaxEnergyStored, storage::getEnergyStored)
     .setEmptyColor(0xffff0000).setFullColor(0xff00ff00).setGradient(true);
     TooltipRegion energyTooltip = new TooltipRegion(energyBar.getX(), energyBar.getY(), energyBar.getWidth(), energyBar.getHeight())
     {
@@ -67,9 +68,11 @@ public class QuarryScreen extends BaseContainerScreen<QuarryContainer>
   @Override
   protected void drawGuiContainerBackgroundLayer(float partialTicks, int mouseX, int mouseY)
   {
-    // todo: localization
+    String blockName = new TranslationTextComponent("block.wtbw_machines.quarry").getUnformattedComponentText();
+
     GuiUtil.renderTexture(guiLeft - 21, guiTop, xSize + 21, ySize, 0, 0, 256, 256, GUI);
-    drawString(font, "Quarry", guiLeft + 30, guiTop + 3, 0xffffff);
+    this.font.drawString(blockName, guiLeft + 8, guiTop + 5, 4210752);
+    this.font.drawString(this.playerInventory.getDisplayName().getFormattedText(), guiLeft + 8, guiTop + 73, 4210752);
     energyBar.draw();
   }
 }

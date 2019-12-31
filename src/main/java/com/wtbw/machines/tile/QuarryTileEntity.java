@@ -1,6 +1,5 @@
 package com.wtbw.machines.tile;
 
-import com.wtbw.lib.block.SixWayTileBlock;
 import com.wtbw.lib.gui.util.ClickType;
 import com.wtbw.lib.tile.util.IContentHolder;
 import com.wtbw.lib.tile.util.IRedstoneControlled;
@@ -13,14 +12,12 @@ import com.wtbw.lib.util.StackUtil;
 import com.wtbw.lib.util.Utilities;
 import com.wtbw.machines.WTBWMachines;
 import com.wtbw.machines.block.QuarryBlock;
-import com.wtbw.machines.gui.container.BlockBreakerContainer;
 import com.wtbw.machines.gui.container.QuarryContainer;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
-import net.minecraft.fluid.Fluids;
 import net.minecraft.inventory.container.Container;
 import net.minecraft.inventory.container.INamedContainerProvider;
 import net.minecraft.item.ItemStack;
@@ -49,19 +46,21 @@ import java.util.List;
 public class QuarryTileEntity extends TileEntity implements ITickableTileEntity, INamedContainerProvider, IRedstoneControlled, IContentHolder
 {
   //TODO Make Bounding border
-  
+  //TODO Add is done state
+
   private RedstoneControl control;
   private BlockPos currentPos;
   private Area area;
+
   private int tick;
   //TODO Config for quarrySize
-  private int quarrySize = ((16 * 1) / 2);
-  
+  private int quarrySize = 15;
+
   private BaseEnergyStorage storage;
   private int energyForWork = 1000;
   private LazyOptional<ItemStackHandler> inventory = LazyOptional.of(this::createInventory);
   private LazyOptional<BaseEnergyStorage> storageCap = LazyOptional.of(this::getStorage);
-  
+
   private Direction facing = null;
   
   public QuarryTileEntity()
@@ -79,7 +78,7 @@ public class QuarryTileEntity extends TileEntity implements ITickableTileEntity,
     }
     return storage;
   }
-  
+
   private ItemStackHandler createInventory()
   {
     return new ItemStackHandler(9);
@@ -139,11 +138,11 @@ public class QuarryTileEntity extends TileEntity implements ITickableTileEntity,
               {
                 storage.extractInternal(energyForWork, false);
                 BlockPos startPos = new BlockPos(area.start.getX(), area.getSide(Direction.UP), area.start.getZ());
-    
+
                 BlockPos nextX = new BlockPos(currentPos.getX() + 1, currentPos.getY(), currentPos.getZ());
                 BlockPos nextZ = new BlockPos(startPos.getX(), currentPos.getY(), currentPos.getZ() + 1);
                 BlockPos nextY = new BlockPos(startPos.getX(), currentPos.getY() - 1, startPos.getZ());
-    
+
                 if (area.isInside(nextX))
                 {
                   currentPos = nextX;
@@ -156,7 +155,7 @@ public class QuarryTileEntity extends TileEntity implements ITickableTileEntity,
                 {
                   currentPos = nextY;
                 }
-   
+
                 markDirty();
               }
             }
@@ -265,7 +264,7 @@ public class QuarryTileEntity extends TileEntity implements ITickableTileEntity,
     {
       return storageCap.cast();
     }
-    
+
     return super.getCapability(cap, side);
   }
   
