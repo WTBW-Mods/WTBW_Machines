@@ -4,6 +4,7 @@ import com.wtbw.lib.network.Networking;
 import com.wtbw.machines.block.ModBlocks;
 import com.wtbw.machines.config.CommonConfig;
 import com.wtbw.machines.network.UpdateDetectorPacket;
+import com.wtbw.machines.network.UpdateQuarryPacket;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
@@ -46,7 +47,7 @@ public class WTBWMachines
   private void setup(final FMLCommonSetupEvent event)
   {
     Networking.registerMessage(UpdateDetectorPacket.class, UpdateDetectorPacket::toBytes, UpdateDetectorPacket::new, UpdateDetectorPacket::handle);
-  
+    Networking.registerMessage(UpdateQuarryPacket.class, UpdateQuarryPacket::toBytes, UpdateQuarryPacket::new, UpdateQuarryPacket::handle);
     DistExecutor.runWhenOn(Dist.CLIENT, () -> () -> ClientRegistration.init());
   }
 }

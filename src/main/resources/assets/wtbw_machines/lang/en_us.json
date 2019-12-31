@@ -41,5 +41,7 @@
   "wtbw_machines.gui.exact": "Exact",
 
   "block.wtbw_machines.quarry": "Quarry",
-  "wtbw_machines.quarry.gui.current_block": "Currently mining: %s"
+  "wtbw_machines.quarry.gui.current_block": "Mining:",
+
+  "block.wtbw_machines.machine_block": "Machine Block"
 }
