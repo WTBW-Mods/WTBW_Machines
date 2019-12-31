@@ -1,6 +1,7 @@
 package com.wtbw.machines.tile;
 
 import com.wtbw.lib.gui.util.ClickType;
+import com.wtbw.lib.network.Networking;
 import com.wtbw.lib.tile.util.IContentHolder;
 import com.wtbw.lib.tile.util.IRedstoneControlled;
 import com.wtbw.lib.tile.util.RedstoneControl;
@@ -13,6 +14,7 @@ import com.wtbw.lib.util.nbt.NBTManager;
 import com.wtbw.machines.block.QuarryBlock;
 import com.wtbw.machines.config.CommonConfig;
 import com.wtbw.machines.gui.container.QuarryContainer;
+import com.wtbw.machines.network.UpdateQuarryPacket;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
@@ -46,7 +48,6 @@ import java.util.List;
 public class QuarryTileEntity extends TileEntity implements ITickableTileEntity, INamedContainerProvider, IRedstoneControlled, IContentHolder
 {
   //TODO Make Bounding border
-  //TODO Add is done state
 
   private RedstoneControl control;
   private BlockPos currentPos;
@@ -111,23 +112,6 @@ public class QuarryTileEntity extends TileEntity implements ITickableTileEntity,
         currentPos = value;
       }
     });
-    
-//    {
-//      @Override
-//      public void read(String name, CompoundNBT nbt)
-//      {
-//        currentPos = NBTHelper.getBlockPos(nbt, name);
-//      }
-//
-//      @Override
-//      public void write(String name, CompoundNBT nbt)
-//      {
-//        if (currentPos != null)
-//        {
-//          NBTHelper.putBlockPos(nbt, name, pos);
-//        }
-//      }
-//    });
 
       nbtManager.register("finished", new Manager.Bool()
       {
@@ -152,6 +136,22 @@ public class QuarryTileEntity extends TileEntity implements ITickableTileEntity,
       return storage = new BaseEnergyStorage(CommonConfig.instance().quarryCapacity.get(), Integer.MAX_VALUE, 0);
     }
     return storage;
+  }
+
+  public Boolean getDone() {
+    return isDone;
+  }
+
+  public void setDone(Boolean done) {
+    isDone = done;
+  }
+
+  public BlockPos getCurrentPos() {
+    return currentPos;
+  }
+
+  public void setCurrentPos(BlockPos currentPos) {
+    this.currentPos = currentPos;
   }
 
   private ItemStackHandler createInventory()
@@ -204,6 +204,7 @@ public class QuarryTileEntity extends TileEntity implements ITickableTileEntity,
         area = Utilities.getArea(pos.offset(getFacing()).offset(Direction.DOWN), getFacing(), quarrySize, pos.getY() - 1);
         currentPos = new BlockPos(area.start.getX(), area.getSide(Direction.UP), area.start.getZ());
         markDirty();
+        sendUpdate();
       }
 
 
@@ -224,6 +225,7 @@ public class QuarryTileEntity extends TileEntity implements ITickableTileEntity,
 
                 if (currentPos.getX() == area.end.getX() && currentPos.getZ() == area.end.getZ() && currentPos.getY() == area.start.getY()){
                     isDone = true;
+                    sendUpdate();
                     markDirty();
                 }
 
@@ -243,7 +245,7 @@ public class QuarryTileEntity extends TileEntity implements ITickableTileEntity,
                 {
                   currentPos = nextY;
                 }
-
+                Networking.sendAround(world, pos, 12, new UpdateQuarryPacket(pos, currentPos, isDone));
                 markDirty();
               }
             }
@@ -253,12 +255,16 @@ public class QuarryTileEntity extends TileEntity implements ITickableTileEntity,
       }
     }
   }
-  
+
+  private boolean sendUpdate(){
+    Networking.sendAround(world, pos, 12, new UpdateQuarryPacket(pos, currentPos, isDone));
+    return true;
+  }
+
   private boolean breakBlock()
   {
     BlockState blockState = world.getBlockState(currentPos);
-    
-    // todo: config for breaking tiles, blacklist
+
     CommonConfig config = CommonConfig.instance();
     boolean breakTiles = config.quarryBreakTileEntities.get();
     Block block = blockState.getBlock();

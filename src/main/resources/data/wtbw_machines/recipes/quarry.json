@@ -1,0 +1,25 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "GCG",
+    "GMG",
+    "GPG"
+  ],
+  "key": {
+    "C": {
+      "tag": "forge:chests"
+    },
+    "G": {
+      "item": "wtbw_core:groundium"
+    },
+    "M": {
+      "item": "wtbw_machines:machine_block"
+    },
+    "P": {
+      "item": "minecraft:diamond_pickaxe"
+    }
+  },
+  "result": {
+    "item": "wtbw_machines:quarry"
+  }
+}

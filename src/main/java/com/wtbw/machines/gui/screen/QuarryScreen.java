@@ -69,10 +69,22 @@ public class QuarryScreen extends BaseContainerScreen<QuarryContainer>
   protected void drawGuiContainerBackgroundLayer(float partialTicks, int mouseX, int mouseY)
   {
     String blockName = new TranslationTextComponent("block.wtbw_machines.quarry").getUnformattedComponentText();
+    String mining = new TranslationTextComponent("wtbw_machines.quarry.gui.current_block").getUnformattedComponentText();
 
     GuiUtil.renderTexture(guiLeft - 21, guiTop, xSize + 21, ySize, 0, 0, 256, 256, GUI);
     this.font.drawString(blockName, guiLeft + 8, guiTop + 6, 4210752);
     this.font.drawString(this.playerInventory.getDisplayName().getFormattedText(), guiLeft + 8, guiTop + 73, 4210752);
     energyBar.draw();
+
+    if (container.tileEntity.getCurrentPos() != null){
+      this.font.drawString(mining,guiLeft + 122, guiTop + 20, 4210752);
+    if (container.tileEntity.getDone()){
+      this.font.drawString("Done",guiLeft + 122, guiTop + 29, 45824);
+    } else {
+      this.font.drawString("X: " + this.container.tileEntity.getCurrentPos().getX(),guiLeft + 122, guiTop + 29, 4210752);
+      this.font.drawString("Y: " + this.container.tileEntity.getCurrentPos().getY(),guiLeft + 122, guiTop + 38, 4210752);
+      this.font.drawString("Z: " + this.container.tileEntity.getCurrentPos().getZ(),guiLeft + 122, guiTop + 47, 4210752);
+    }
+    }
   }
 }
