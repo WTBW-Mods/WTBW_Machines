@@ -2,7 +2,6 @@ package com.wtbw.machines;
 
 import com.wtbw.machines.block.ModBlocks;
 import com.wtbw.machines.gui.container.ModContainers;
-import com.wtbw.machines.gui.container.QuarryContainer;
 import com.wtbw.machines.gui.screen.*;
 import net.minecraft.client.gui.ScreenManager;
 import net.minecraft.client.renderer.RenderType;
@@ -15,7 +14,7 @@ public class ClientRegistration
 {
   public static void init(){
     registerScreens();
-    regiserRenderlayers();
+    registerRenderLayers();
   }
   public static void registerScreens()
   {
@@ -29,7 +28,7 @@ public class ClientRegistration
     ScreenManager.registerFactory(ModContainers.QUARRY, QuarryScreen::new);
   }
 
-  public static void regiserRenderlayers()
+  public static void registerRenderLayers()
   {
     RenderType cutout = RenderType.func_228643_e_();
     RenderTypeLookup.setRenderLayer(ModBlocks.QUARRY, cutout);
