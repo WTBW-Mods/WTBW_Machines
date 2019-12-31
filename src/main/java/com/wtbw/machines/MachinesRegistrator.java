@@ -12,6 +12,7 @@ import com.wtbw.machines.block.spikes.SpikesType;
 import com.wtbw.machines.gui.container.*;
 import com.wtbw.machines.tile.*;
 import com.wtbw.machines.tile.furnace.FurnaceTier;
+import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.item.ItemGroup;
 
@@ -43,11 +44,8 @@ public class MachinesRegistrator extends Registrator
   
     register(new BaseTileBlock<>(getBlockProperties(Material.IRON, 4), (world, state) -> new VacuumChestTileEntity()), "vacuum_chest");
 
-    //TODO Make Textures
-    //TODO Make Model
     //TODO Make Recipe
     register(new QuarryBlock(getBlockProperties(Material.IRON, 4).func_226896_b_()), "quarry");
-//    register(new BaseTileBlock<>(getBlockProperties(Material.IRON, 4).func_226896_b_(), (world, state) -> new QuarryTileEntity()), "quarry");
   
     register(new PushBlock(getBlockProperties(Material.IRON, 1), EntityPusherTileEntity.PushMode.PUSH), "pusher");
     register(new PushBlock(getBlockProperties(Material.IRON, 1), EntityPusherTileEntity.PushMode.PULL), "puller");
@@ -61,6 +59,8 @@ public class MachinesRegistrator extends Registrator
     register(new SolarPanelBlock(getBlockProperties(Material.IRON, 3), 150000, 80, 20).comparator(), "solar_panel");
     
     register(new BaseTileBlock<>(getBlockProperties(Material.IRON, 3), (world, state) -> new SimpleBatteryTileEntity()).comparator(), "simple_battery");
+
+    register(new Block(getBlockProperties(Material.IRON, 3)), "machine_block");
   }
   
   @Override
