@@ -23,13 +23,13 @@ import net.minecraft.world.IBlockReader;
 public class QuarryBlock extends BaseTileBlock<QuarryTileEntity>
 {
   public static final DirectionProperty FACING = HorizontalBlock.HORIZONTAL_FACING;
-  public static final VoxelShape LEG_1 = Block.makeCuboidShape(0, 0, 0, 2, 11, 2);
-  public static final VoxelShape LEG_2 = Block.makeCuboidShape(14, 0, 0, 16, 11, 2);
-  public static final VoxelShape LEG_3 = Block.makeCuboidShape(0, 14, 0, 2, 11, 16);
-  public static final VoxelShape LEG_4 = Block.makeCuboidShape(0, 11, 0, 16, 16, 16);
-  public static final VoxelShape TOP = Block.makeCuboidShape(1, 10, 1, 15, 12, 15);
-  public static final VoxelShape CORE = Block.makeCuboidShape(4, 10, 4, 12, 11, 12);
-  public static final VoxelShape SHAPE = VoxelShapes.or(LEG_1, LEG_2, LEG_3, LEG_4, TOP, CORE);
+  private static final VoxelShape LEG_1 = Block.makeCuboidShape(0, 0, 0, 2, 11, 2);
+  private static final VoxelShape LEG_2 = Block.makeCuboidShape(14, 0, 0, 16, 11, 2);
+  private static final VoxelShape LEG_3 = Block.makeCuboidShape(0, 0, 14, 2, 11, 16);
+  private static final VoxelShape LEG_4 = Block.makeCuboidShape(14, 0, 14, 16, 11, 16);
+  private static final VoxelShape TOP = Block.makeCuboidShape(0, 11, 0, 16, 16, 16);
+  private static final VoxelShape CORE = Block.makeCuboidShape(4, 1, 4, 12, 12, 12);
+  private static final VoxelShape SHAPE = VoxelShapes.or(LEG_1, LEG_2, LEG_3, LEG_4, TOP, CORE);
 
   public QuarryBlock(Properties properties) {
     super(properties, (world, state) -> new QuarryTileEntity());
@@ -39,6 +39,11 @@ public class QuarryBlock extends BaseTileBlock<QuarryTileEntity>
   @Override
   public VoxelShape getShape(BlockState state, IBlockReader worldIn, BlockPos pos, ISelectionContext context)
   {
+    return SHAPE;
+  }
+
+  @Override
+  public VoxelShape getRaytraceShape(BlockState state, IBlockReader worldIn, BlockPos pos) {
     return SHAPE;
   }
 
