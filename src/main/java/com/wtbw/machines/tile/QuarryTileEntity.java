@@ -6,10 +6,7 @@ import com.wtbw.lib.tile.util.IRedstoneControlled;
 import com.wtbw.lib.tile.util.RedstoneControl;
 import com.wtbw.lib.tile.util.RedstoneMode;
 import com.wtbw.lib.tile.util.energy.BaseEnergyStorage;
-import com.wtbw.lib.util.Area;
-import com.wtbw.lib.util.NBTHelper;
-import com.wtbw.lib.util.StackUtil;
-import com.wtbw.lib.util.Utilities;
+import com.wtbw.lib.util.*;
 import com.wtbw.machines.WTBWMachines;
 import com.wtbw.machines.block.QuarryBlock;
 import com.wtbw.machines.config.CommonConfig;
@@ -64,12 +61,76 @@ public class QuarryTileEntity extends TileEntity implements ITickableTileEntity,
 
   private Direction facing = null;
   
+  private NBTManager nbtManager;
+  
   public QuarryTileEntity()
   {
     super(ModTiles.QUARRY);
     
     control = new RedstoneControl(this, RedstoneMode.IGNORE);
     getStorage();
+    
+    nbtManager = new NBTManager();
+    nbtManager.register("energy", new NBTManager.Manager()
+    {
+      @Override
+      public void read(String name, CompoundNBT nbt)
+      {
+        if (storage != null)
+        {
+          storage.deserializeNBT(nbt.getCompound(name));
+        }
+      }
+  
+      @Override
+      public void write(String name, CompoundNBT nbt)
+      {
+        if (storage != null)
+        {
+          nbt.put(name, storage.serializeNBT());
+        }
+      }
+    });
+    
+    nbtManager.register("area", new NBTManager.Manager()
+    {
+      @Override
+      public void read(String name, CompoundNBT nbt)
+      {
+        if (area == null)
+        {
+          area = new Area(0, 0, 0, 0, 0, 0);
+          area.deserializeNBT(nbt.getCompound(name));
+        }
+      }
+  
+      @Override
+      public void write(String name, CompoundNBT nbt)
+      {
+        if (area != null)
+        {
+          nbt.put(name, area.serializeNBT());
+        }
+      }
+    });
+    
+    nbtManager.register("current", new NBTManager.Manager()
+    {
+      @Override
+      public void read(String name, CompoundNBT nbt)
+      {
+        currentPos = NBTHelper.getBlockPos(nbt, name);
+      }
+  
+      @Override
+      public void write(String name, CompoundNBT nbt)
+      {
+        if (currentPos != null)
+        {
+          NBTHelper.putBlockPos(nbt, name, pos);
+        }
+      }
+    });
   }
   
   public BaseEnergyStorage getStorage()
@@ -220,36 +281,40 @@ public class QuarryTileEntity extends TileEntity implements ITickableTileEntity,
   @Override
   public void read(CompoundNBT compound)
   {
-    if (compound.contains("area"))
-    {
-      if (area == null)
-      {
-        area = new Area(0, -1, 0, 0, 0, 0);
-      }
-  
-      area.deserializeNBT(compound.getCompound("area"));
-    }
-    
-    if (compound.contains("current"))
-    {
-      currentPos = NBTHelper.getBlockPos(compound, "current");
-    }
-    
-    if (compound.contains("energy"))
-    {
-      storage.deserializeNBT(compound.getCompound("energy"));
-    }
+//    if (compound.contains("area"))
+//    {
+//      if (area == null)
+//      {
+//        area = new Area(0, -1, 0, 0, 0, 0);
+//      }
+//
+//      area.deserializeNBT(compound.getCompound("area"));
+//    }
+//
+//    if (compound.contains("current"))
+//    {
+//      currentPos = NBTHelper.getBlockPos(compound, "current");
+//    }
+//
+//    if (compound.contains("energy"))
+//    {
+//      storage.deserializeNBT(compound.getCompound("energy"));
+//    }
 
+    nbtManager.read(compound);
+    
     super.read(compound);
   }
   
   @Override
   public CompoundNBT write(CompoundNBT compound)
   {
-    compound.put("area", area.serializeNBT());
-    NBTHelper.putBlockPos(compound, "current", currentPos);
-    compound.put("energy", storage.serializeNBT());
-
+//    compound.put("area", area.serializeNBT());
+//    NBTHelper.putBlockPos(compound, "current", currentPos);
+//    compound.put("energy", storage.serializeNBT());
+    
+    nbtManager.write(compound);
+    
     return super.write(compound);
   }
   
