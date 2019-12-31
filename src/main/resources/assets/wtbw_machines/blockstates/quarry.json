@@ -1,7 +1,8 @@
 {
   "variants": {
-    "": {
-      "model": "wtbw_machines:block/quarry"
-    }
+    "facing=south": { "model": "wtbw_machines:block/quarry" },
+    "facing=north": { "model": "wtbw_machines:block/quarry", "y": 180 },
+    "facing=east": { "model": "wtbw_machines:block/quarry", "y":  270},
+    "facing=west": { "model": "wtbw_machines:block/quarry", "y": 90}
   }
 }
