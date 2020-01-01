@@ -24,84 +24,8 @@ public class TieredFurnaceContainer extends BaseTileContainer<BaseFurnaceTileEnt
   {
     super(ModContainers.TIERED_FURNACE, id, world, pos, playerInventory);
 
-    tileEntity.getInputHandler().ifPresent(
-      handler -> addSlot
-        (
-          new SlotItemHandler(handler, 0, 56, 17)
-          {
-            @Override
-            public void putStack(@Nonnull ItemStack stack)
-            {
-              super.putStack(stack);
-            }
-
-            @Override
-            public boolean canTakeStack(PlayerEntity playerIn)
-            {
-              return true;
-            }
-
-            @Nonnull
-            @Override
-            public ItemStack decrStackSize(int amount)
-            {
-              int slotNumber = getSlotIndex();
-              ItemStack stackInSlot = handler.getStackInSlot(slotNumber);
-              if (amount > stackInSlot.getCount())
-              {
-                handler.setStackInSlot(slotNumber, ItemStack.EMPTY);
-                return stackInSlot;
-              }
-
-              ItemStack toReturn = stackInSlot.copy();
-              toReturn.setCount(amount);
-              stackInSlot.setCount(stackInSlot.getCount() - amount);
-              handler.setStackInSlot(slotNumber, stackInSlot.getCount() == 0 ? ItemStack.EMPTY : stackInSlot);
-
-              return toReturn;
-            }
-          }
-        ));
-
-    tileEntity.getFuelHandler().ifPresent(
-      handler -> addSlot
-        (
-          new SlotItemHandler(handler, 0, 56, 53)
-          {
-            @Override
-            public void putStack(@Nonnull ItemStack stack)
-            {
-              super.putStack(stack);
-            }
-
-            @Override
-            public boolean canTakeStack(PlayerEntity playerIn)
-            {
-              return true;
-            }
-
-            @Nonnull
-            @Override
-            public ItemStack decrStackSize(int amount)
-            {
-              int slotNumber = getSlotIndex();
-              ItemStack stackInSlot = handler.getStackInSlot(slotNumber);
-              if (amount > stackInSlot.getCount())
-              {
-                handler.setStackInSlot(slotNumber, ItemStack.EMPTY);
-                return stackInSlot;
-              }
-
-              ItemStack toReturn = stackInSlot.copy();
-              toReturn.setCount(amount);
-              stackInSlot.setCount(stackInSlot.getCount() - amount);
-              handler.setStackInSlot(slotNumber, stackInSlot.getCount() == 0 ? ItemStack.EMPTY : stackInSlot);
-
-              return toReturn;
-            }
-          }
-        ));
-
+    tileEntity.getInputHandler().ifPresent(handler -> addInputSlot(handler, 0, 56, 17));
+    tileEntity.getFuelHandler().ifPresent(handler -> addInputSlot(handler, 0, 56, 53));
     tileEntity.getOutputHandler().ifPresent(handler -> addSlot(new SlotItemHandler(handler, 0, 116, 35)));
 
     trackInt(new IntReferenceHolder()

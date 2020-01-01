@@ -7,11 +7,8 @@ import com.wtbw.lib.block.SixWayTileBlock;
 import com.wtbw.machines.tile.BlockBreakerTileEntity;
 import com.wtbw.machines.tile.BlockPlacerTileEntity;
 import com.wtbw.machines.tile.SolarPanelTileEntity;
-import com.wtbw.machines.tile.QuarryTileEntity;
 import com.wtbw.machines.tile.VacuumChestTileEntity;
 import com.wtbw.machines.tile.redstone.RedstoneTimerTileEntity;
-import net.minecraft.block.Block;
-import net.minecraft.block.Blocks;
 import net.minecraftforge.registries.ObjectHolder;
 
 /*

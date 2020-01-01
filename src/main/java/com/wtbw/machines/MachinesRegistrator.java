@@ -14,6 +14,7 @@ import com.wtbw.machines.recipe.DryerRecipe;
 import com.wtbw.machines.recipe.ModRecipes;
 import com.wtbw.machines.tile.*;
 import com.wtbw.machines.tile.furnace.FurnaceTier;
+import com.wtbw.machines.tile.machine.DryerTileEntity;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.item.ItemGroup;
@@ -107,6 +108,7 @@ public class MachinesRegistrator extends Registrator
     registerContainer(BlockPlacerContainer::new, "block_placer");
     registerContainer(BlockDetectorContainer::new, "block_detector");
     registerContainer(QuarryContainer::new, "quarry");
+    registerContainer(DryerContainer::new, "dryer");
   }
   
   public void registerRecipes(final RegistryEvent.Register<IRecipeSerializer<?>> event)

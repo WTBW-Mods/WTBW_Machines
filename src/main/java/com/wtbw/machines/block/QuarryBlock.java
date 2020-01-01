@@ -1,7 +1,7 @@
 package com.wtbw.machines.block;
 
 import com.wtbw.lib.block.BaseTileBlock;
-import com.wtbw.machines.tile.QuarryTileEntity;
+import com.wtbw.machines.tile.machine.QuarryTileEntity;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.HorizontalBlock;

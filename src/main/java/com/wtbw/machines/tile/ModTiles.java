@@ -2,6 +2,8 @@ package com.wtbw.machines.tile;
 
 import com.wtbw.machines.WTBWMachines;
 import com.wtbw.machines.tile.furnace.BaseFurnaceTileEntity;
+import com.wtbw.machines.tile.machine.DryerTileEntity;
+import com.wtbw.machines.tile.machine.QuarryTileEntity;
 import com.wtbw.machines.tile.redstone.RedstoneTimerTileEntity;
 
 import net.minecraft.tileentity.TileEntityType;

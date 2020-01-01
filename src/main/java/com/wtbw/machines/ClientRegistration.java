@@ -10,6 +10,7 @@ import net.minecraft.client.renderer.RenderTypeLookup;
 /*
   @author: Naxanria
 */
+@SuppressWarnings("ConstantConditions")
 public class ClientRegistration
 {
   public static void init(){
@@ -26,6 +27,7 @@ public class ClientRegistration
     ScreenManager.registerFactory(ModContainers.BLOCK_DETECTOR, BlockDetectorScreen::new);
 
     ScreenManager.registerFactory(ModContainers.QUARRY, QuarryScreen::new);
+    ScreenManager.registerFactory(ModContainers.DRYER, DryerScreen::new);
   }
 
   public static void registerRenderLayers()

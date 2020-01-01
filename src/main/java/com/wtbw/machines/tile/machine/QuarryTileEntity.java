@@ -1,4 +1,4 @@
-package com.wtbw.machines.tile;
+package com.wtbw.machines.tile.machine;
 
 import com.wtbw.lib.gui.util.ClickType;
 import com.wtbw.lib.network.Networking;
@@ -15,6 +15,7 @@ import com.wtbw.machines.block.QuarryBlock;
 import com.wtbw.machines.config.CommonConfig;
 import com.wtbw.machines.gui.container.QuarryContainer;
 import com.wtbw.machines.network.UpdateQuarryPacket;
+import com.wtbw.machines.tile.ModTiles;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;

@@ -1,4 +1,4 @@
-package com.wtbw.machines.tile;
+package com.wtbw.machines.tile.machine;
 
 import com.wtbw.lib.tile.util.*;
 import com.wtbw.lib.tile.util.energy.BaseEnergyStorage;
@@ -6,8 +6,10 @@ import com.wtbw.lib.util.nbt.Manager;
 import com.wtbw.lib.util.nbt.NBTManager;
 import com.wtbw.lib.util.StackUtil;
 import com.wtbw.lib.util.Utilities;
+import com.wtbw.machines.gui.container.DryerContainer;
 import com.wtbw.machines.recipe.DryerRecipe;
 import com.wtbw.machines.recipe.ModRecipes;
+import com.wtbw.machines.tile.ModTiles;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.container.Container;
@@ -111,7 +113,7 @@ public class DryerTileEntity extends TileEntity implements ITickableTileEntity, 
   }
   
   @Nonnull
-  protected BaseEnergyStorage getStorage()
+  public BaseEnergyStorage getStorage()
   {
     if (storage == null)
     {
@@ -122,7 +124,7 @@ public class DryerTileEntity extends TileEntity implements ITickableTileEntity, 
   }
   
   @Nonnull
-  protected ItemStackHandler getInventory()
+  public ItemStackHandler getInventory()
   {
     if (inventory == null)
     {
@@ -224,7 +226,7 @@ public class DryerTileEntity extends TileEntity implements ITickableTileEntity, 
   @Override
   public Container createMenu(int id, PlayerInventory inventory, PlayerEntity player)
   {
-    return null;
+    return new DryerContainer(id, world, pos, inventory);
   }
   
   @Override
@@ -236,6 +238,8 @@ public class DryerTileEntity extends TileEntity implements ITickableTileEntity, 
       
       if (inventory.getStackInSlot(INPUT_SLOT).isEmpty())
       {
+        progress = 0;
+        markDirty();
         return;
       }
       
@@ -315,7 +319,7 @@ public class DryerTileEntity extends TileEntity implements ITickableTileEntity, 
       }
       else
       {
-        output = recipe.getRecipeOutput();
+        output = recipe.getRecipeOutput().copy();
       }
       
       inventory.setStackInSlot(OUTPUT_SLOT, output);
@@ -341,5 +345,25 @@ public class DryerTileEntity extends TileEntity implements ITickableTileEntity, 
   {
     manager.write(compound);
     return super.write(compound);
+  }
+  
+  public NBTManager getManager()
+  {
+    return manager;
+  }
+  
+  public int getDuration()
+  {
+    return duration;
+  }
+  
+  public int getProgress()
+  {
+    return progress;
+  }
+  
+  public int getPowerUsage()
+  {
+    return powerUsage;
   }
 }

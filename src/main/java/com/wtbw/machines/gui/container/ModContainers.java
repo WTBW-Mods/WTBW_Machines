@@ -16,4 +16,5 @@ public class ModContainers
   public static final ContainerType<BlockPlacerContainer> BLOCK_PLACER = null;
   public static final ContainerType<BlockDetectorContainer> BLOCK_DETECTOR = null;
   public static final ContainerType<QuarryContainer> QUARRY = null;
+  public static final ContainerType<DryerContainer> DRYER = null;
 }
