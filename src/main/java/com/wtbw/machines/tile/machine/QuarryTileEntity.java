@@ -2,10 +2,7 @@ package com.wtbw.machines.tile.machine;
 
 import com.wtbw.lib.gui.util.ClickType;
 import com.wtbw.lib.network.Networking;
-import com.wtbw.lib.tile.util.IContentHolder;
-import com.wtbw.lib.tile.util.IRedstoneControlled;
-import com.wtbw.lib.tile.util.RedstoneControl;
-import com.wtbw.lib.tile.util.RedstoneMode;
+import com.wtbw.lib.tile.util.*;
 import com.wtbw.lib.tile.util.energy.BaseEnergyStorage;
 import com.wtbw.lib.util.*;
 import com.wtbw.lib.util.nbt.Manager;
@@ -46,7 +43,7 @@ import java.util.List;
   @author: Sunekaer
 */
 @SuppressWarnings("ConstantConditions")
-public class QuarryTileEntity extends TileEntity implements ITickableTileEntity, INamedContainerProvider, IRedstoneControlled, IContentHolder
+public class QuarryTileEntity extends TileEntity implements ITickableTileEntity, IWTBWNamedContainerProvider, IRedstoneControlled, IContentHolder
 {
   //TODO Make Bounding border
 
@@ -164,12 +161,6 @@ public class QuarryTileEntity extends TileEntity implements ITickableTileEntity,
   public RedstoneControl getControl()
   {
     return control;
-  }
-  
-  @Override
-  public ITextComponent getDisplayName()
-  {
-    return new TranslationTextComponent(getType().getRegistryName().toString());
   }
   
   @Nullable
