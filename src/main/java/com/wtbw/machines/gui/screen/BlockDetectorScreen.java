@@ -14,6 +14,7 @@ import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.state.IProperty;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.ITextComponent;
+import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraftforge.fml.client.config.GuiButtonExt;
 
 import java.util.Map;
@@ -23,7 +24,7 @@ import java.util.Map;
 */
 public class BlockDetectorScreen extends BaseContainerScreen<BlockDetectorContainer>
 {
-  public static final ResourceLocation GUI = new ResourceLocation("wtbw:textures/gui/block_detector.png");
+  public static final ResourceLocation GUI = new ResourceLocation("wtbw_machines:textures/gui/block_detector.png");
   
   private GuiButtonExt currentButton;
   private GuiButtonExt matchButton;
@@ -38,9 +39,9 @@ public class BlockDetectorScreen extends BaseContainerScreen<BlockDetectorContai
   {
     super.init();
   
-    currentButton = addButton(new GuiButtonExt(guiLeft + 10, guiTop + 4, 60, 22, I18n.format("wtbw.gui.current"),
+    currentButton = addButton(new GuiButtonExt(guiLeft + 80, guiTop + 4, 50, 22, I18n.format("wtbw_machines.gui.current"),
       button -> GuiUtil.sendButton(BlockDetectorTileEntity.BUTTON_CURRENT, container.tileEntity.getPos(), ClickType.LEFT)));
-    matchButton = addButton(new GuiButtonExt(guiLeft + 10 + 60 + 1, guiTop + 4, 60, 22, I18n.format("wtbw.gui.exact"),
+    matchButton = addButton(new GuiButtonExt(guiLeft + 80 + 50 + 1, guiTop + 4, 40, 22, I18n.format("wtbw_machines.gui.exact"),
       button -> GuiUtil.sendButton(BlockDetectorTileEntity.BUTTON_MATCH, container.tileEntity.getPos(), ClickType.LEFT)));
     matchButton.setFGColor(container.tileEntity.isExactMatch() ? 0xff00ff00 : 0xffff0000);
   }
@@ -63,6 +64,8 @@ public class BlockDetectorScreen extends BaseContainerScreen<BlockDetectorContai
 //    drawString(font, "Target: " + container.tileEntity.getTarget().toString(), guiLeft + 10, guiTop + 10 + 22 + 1, 0xffffffff);
     GuiUtil.renderTexture(guiLeft, guiTop, xSize, xSize, 0, 0, 256, 256, GUI);
     drawBlockState(guiLeft + 10, guiTop + 35, container.tileEntity.getTarget());
+    String blockName = new TranslationTextComponent("block.wtbw_machines.block_detector").getUnformattedComponentText();
+    this.font.drawString(blockName, guiLeft + 5, guiTop + 6, 0xff404040);
 //    drawString(font, container.tileEntity.getPower() + "", guiLeft + 10, guiTop + ySize - 10, 0xff8888FF);
   }
   

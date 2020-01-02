@@ -8,6 +8,7 @@ import com.wtbw.machines.gui.container.DryerContainer;
 import com.wtbw.machines.tile.machine.DryerTileEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.util.text.ITextComponent;
+import net.minecraft.util.text.TranslationTextComponent;
 
 /*
   @author: Naxanria
@@ -54,5 +55,8 @@ public class DryerScreen extends BaseContainerScreen<DryerContainer>
   {
     progressBar.draw();
     energyBar.draw();
+    String blockName = new TranslationTextComponent("block.wtbw_machines.dryer").getUnformattedComponentText();
+    this.font.drawString(blockName, guiLeft + 8, guiTop + 6, 0xff404040);
+    this.font.drawString(this.playerInventory.getDisplayName().getFormattedText(), guiLeft + 8, guiTop + 73, 0xff404040);
   }
 }

@@ -204,8 +204,8 @@ public class QuarryTileEntity extends TileEntity implements ITickableTileEntity,
       {
         area = Utilities.getArea(pos.offset(getFacing()).offset(Direction.DOWN), getFacing(), quarrySize, pos.getY() - 1);
         currentPos = new BlockPos(area.start.getX(), area.getSide(Direction.UP), area.start.getZ());
-        markDirty();
         sendUpdate();
+        markDirty();
       }
 
 
@@ -246,7 +246,7 @@ public class QuarryTileEntity extends TileEntity implements ITickableTileEntity,
                 {
                   currentPos = nextY;
                 }
-                Networking.sendAround(world, pos, 12, new UpdateQuarryPacket(pos, currentPos, isDone));
+                sendUpdate();
                 markDirty();
               }
             }

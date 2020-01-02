@@ -8,6 +8,7 @@ import com.wtbw.lib.gui.util.RedstoneButton;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.ITextComponent;
+import net.minecraft.util.text.TranslationTextComponent;
 
 /*
   @author: Naxanria
@@ -32,5 +33,8 @@ public class VacuumChestScreen extends BaseContainerScreen<VacuumChestContainer>
   protected void drawGuiContainerBackgroundLayer(float partialTicks, int mouseX, int mouseY)
   {
     GuiUtil.renderTexture(guiLeft - 22, guiTop, xSize + 22, ySize, 0, 0, 256, 256, GUI);
+    String blockName = new TranslationTextComponent("block.wtbw_machines.vacuum_chest").getUnformattedComponentText();
+    this.font.drawString(blockName, guiLeft + 8, guiTop + 6, 0xff404040);
+    this.font.drawString(this.playerInventory.getDisplayName().getFormattedText(), guiLeft + 8, guiTop + 73, 0xff404040);
   }
 }

@@ -51,7 +51,6 @@ public class MachinesRegistrator extends Registrator
   
     register(new BaseTileBlock<>(getBlockProperties(Material.IRON, 4), (world, state) -> new VacuumChestTileEntity()), "vacuum_chest");
 
-    //TODO Make Recipe
     register(new QuarryBlock(getBlockProperties(Material.IRON, 4).func_226896_b_()), "quarry");
   
     register(new PushBlock(getBlockProperties(Material.IRON, 1), EntityPusherTileEntity.PushMode.PUSH), "pusher");
@@ -69,6 +68,7 @@ public class MachinesRegistrator extends Registrator
     
     register(new BaseTileBlock<>(getBlockProperties(Material.IRON, 5), (world, state) -> new DryerTileEntity()), "dryer");
 
+    //TODO Make Recipe
     register(new Block(getBlockProperties(Material.IRON, 3)), "machine_block");
   }
   
