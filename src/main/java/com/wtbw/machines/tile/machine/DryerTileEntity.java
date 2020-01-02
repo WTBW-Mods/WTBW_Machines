@@ -53,6 +53,11 @@ public class DryerTileEntity extends TileEntity implements ITickableTileEntity, 
   private int duration;
   private int progress;
   private int powerUsage = 40;
+  
+  private int heat;
+  private int subHeat;
+  private int targetHeat;
+  
   private DryerRecipe recipe;
   
   public DryerTileEntity()
@@ -107,6 +112,51 @@ public class DryerTileEntity extends TileEntity implements ITickableTileEntity, 
       }
     });
     
+    manager.register("heat", new Manager.Int()
+    {
+      @Override
+      public Integer get()
+      {
+        return heat;
+      }
+  
+      @Override
+      public void set(Integer value)
+      {
+        heat = value;
+      }
+    });
+    
+    manager.register("targetHeat", new Manager.Int()
+    {
+      @Override
+      public Integer get()
+      {
+        return targetHeat;
+      }
+  
+      @Override
+      public void set(Integer value)
+      {
+        targetHeat = value;
+      }
+    });
+    
+    manager.register("subHeat", new Manager.Int()
+    {
+      @Override
+      public Integer get()
+      {
+        return subHeat;
+      }
+  
+      @Override
+      public void set(Integer value)
+      {
+        subHeat = value;
+      }
+    });
+    
     manager.register("control", new Manager.Redstone(control));
     manager.register("inventory", new Manager.Serializable(getInventory()));
     manager.register("energy", new Manager.Serializable(getStorage()));
@@ -117,7 +167,7 @@ public class DryerTileEntity extends TileEntity implements ITickableTileEntity, 
   {
     if (storage == null)
     {
-      storage = new BaseEnergyStorage(1000000, 5000, 0);
+      storage = new BaseEnergyStorage(10000000, 50000, 0);
     }
     
     return storage;
@@ -235,53 +285,120 @@ public class DryerTileEntity extends TileEntity implements ITickableTileEntity, 
     if (!world.isRemote)
     {
       boolean dirty = false;
+  
+      if (heat <= targetHeat)
+      {
+        powerUsage = targetHeat - heat / 2 + targetHeat / 2;
+      }
+      else
+      {
+        powerUsage = 25;
+      }
+      if (storage.getEnergyStored() >= powerUsage)
+      {
+        storage.extractInternal(powerUsage, false);
+      }
+      else
+      {
+        decayHeat();
+      }
       
       if (inventory.getStackInSlot(INPUT_SLOT).isEmpty())
       {
         progress = 0;
-        markDirty();
-        return;
-      }
-      
-      DryerRecipe old = recipe;
-      if (recipe == null)
-      {
-        recipe = getRecipe();
+        targetHeat = 20;
+        recipe = null;
       }
       else
       {
-        if (!recipe.ingredient.test(inventory.getStackInSlot(0)))
+        DryerRecipe old = recipe;
+        if (recipe == null)
         {
           recipe = getRecipe();
-          dirty = true;
         }
-      }
-      
-      if (recipe != null)
-      {
-        if (recipe != old)
+        else
         {
-          progress = 0;
-          duration = recipe.duration;
-          dirty = true;
-        }
-        
-        if (canOutput())
-        {
-          if (storage.getEnergyStored() >= powerUsage)
+          if (!recipe.ingredient.test(inventory.getStackInSlot(0)))
           {
-            storage.extractInternal(powerUsage, false);
-            doProgress();
+            recipe = getRecipe();
             dirty = true;
+          }
+        }
+  
+        if (recipe != null)
+        {
+          duration = recipe.duration;
+          targetHeat = recipe.heat;
+          
+          if (recipe != old)
+          {
+            progress = 0;
+
+            dirty = true;
+          }
+          
+          if (properHeat())
+          {
+            if (powerUsage < 0)
+            {
+              powerUsage = 0;
+            }
+      
+            if (canOutput())
+            {
+              if (storage.getEnergyStored() >= powerUsage)
+              {
+
+                doProgress();
+                dirty = true;
+              }
+            }
           }
         }
       }
       
-      if (dirty)
+      if (targetHeat < 20)
       {
-        markDirty();
+        targetHeat = 20;
       }
+      
+      if (heat < 20)
+      {
+        heat = 20;
+      }
+      
+      if (heat > targetHeat)
+      {
+        decayHeat();
+      }
+      
+      markDirty();
+      
     }
+  }
+  
+  private void decayHeat()
+  {
+    heat -= (int) (Math.sqrt(Math.abs(heat - targetHeat))) / 2 + 1;
+  }
+  
+  private void generateHeat()
+  {
+    heat += (int) (Math.sqrt(Math.abs(targetHeat - heat))) / 2 + 1;
+  }
+  
+  private boolean properHeat()
+  {
+    if (heat < targetHeat)
+    {
+      generateHeat();
+    }
+    else
+    {
+//      decayHeat();
+    }
+    
+    return heat >= targetHeat;
   }
   
   private boolean canOutput()
@@ -365,5 +482,20 @@ public class DryerTileEntity extends TileEntity implements ITickableTileEntity, 
   public int getPowerUsage()
   {
     return powerUsage;
+  }
+  
+  public int getHeat()
+  {
+    return heat;
+  }
+  
+  public int getSubHeat()
+  {
+    return subHeat;
+  }
+  
+  public int getTargetHeat()
+  {
+    return targetHeat;
   }
 }

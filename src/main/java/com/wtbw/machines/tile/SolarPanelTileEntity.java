@@ -12,7 +12,7 @@ public class SolarPanelTileEntity extends Generator
   
   public SolarPanelTileEntity(int capacity, int maxExtract, int generate)
   {
-    super(ModTiles.SOLAR_PANEL, capacity, maxExtract, generate);
+    super(ModTiles.SOLAR_PANEL, capacity, maxExtract, generate * 10000);
   }
   
   @Override

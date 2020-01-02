@@ -60,5 +60,9 @@ public class DryerScreen extends BaseContainerScreen<DryerContainer>
     
     progressBar.draw();
     energyBar.draw();
+  
+    DryerTileEntity tileEntity = container.tileEntity;
+    font.drawString("Heat " + tileEntity.getHeat() + "/" + tileEntity.getTargetHeat(), 0, 0, 0xffffffff);
+    font.drawString("PowerUsage " + tileEntity.getPowerUsage() + " RF", 0, 15, 0xffffffff);
   }
 }
