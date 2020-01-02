@@ -167,7 +167,7 @@ public class DryerTileEntity extends TileEntity implements ITickableTileEntity, 
   {
     if (storage == null)
     {
-      storage = new BaseEnergyStorage(10000000, 50000, 0);
+      storage = new BaseEnergyStorage(1000000, 50000, 0);
     }
     
     return storage;
