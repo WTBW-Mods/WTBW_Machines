@@ -23,6 +23,9 @@
   "block.wtbw_machines.block_placer": "Block Placer",
   "block.wtbw_machines.block_detector": "Block Detector",
 
+  "block.wtbw_machines.dryer": "Dryer",
+  "block.wtbw_machines.solar_panel": "Solar Panel",
+
   "wtbw_machines.tooltip.emitter": "Emits redstone signal based on the number displaying.\n(Sneak)Right click to cycle the number",
   "wtbw_machines.tooltip.timer": "Gives a redstone pulse every %s ticks",
   "wtbw_machines.tooltip.spikes": "Damages entities standing on top",

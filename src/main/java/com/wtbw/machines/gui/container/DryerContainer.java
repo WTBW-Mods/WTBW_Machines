@@ -38,10 +38,10 @@ public class DryerContainer extends BaseTileContainer<DryerTileEntity>
   
     ItemStackHandler handler = tileEntity.getInventory();
     
-    addInputSlot(handler, DryerTileEntity.INPUT_SLOT, 10, 50);
+    addInputSlot(handler, DryerTileEntity.INPUT_SLOT, 46, 50);
 
-    addSlot(handler, DryerTileEntity.OUTPUT_SLOT, 110, 50);
+    addSlot(handler, DryerTileEntity.OUTPUT_SLOT, 146, 50);
     
-    layoutPlayerInventorySlots(60, 84);
+    layoutPlayerInventorySlots(8, 84);
   }
 }

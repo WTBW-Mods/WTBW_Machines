@@ -36,7 +36,7 @@ import java.util.Optional;
   @author: Naxanria
 */
 @SuppressWarnings("ConstantConditions")
-public class DryerTileEntity extends TileEntity implements ITickableTileEntity, INamedContainerProvider, IRedstoneControlled, IContentHolder
+public class DryerTileEntity extends TileEntity implements ITickableTileEntity, IWTBWNamedContainerProvider, IRedstoneControlled, IContentHolder
 {
   public static final int INPUT_SLOT = 0;
   public static final int OUTPUT_SLOT = 1;
@@ -216,11 +216,11 @@ public class DryerTileEntity extends TileEntity implements ITickableTileEntity, 
     return RedstoneMode.noPulse;
   }
   
-  @Override
-  public ITextComponent getDisplayName()
-  {
-    return new TranslationTextComponent(getType().getRegistryName().toString());
-  }
+//  @Override
+//  public ITextComponent getDisplayName()
+//  {
+//    return new TranslationTextComponent("block." + getType().getRegistryName().toString().replace(":", "."));
+//  }
   
   @Nullable
   @Override

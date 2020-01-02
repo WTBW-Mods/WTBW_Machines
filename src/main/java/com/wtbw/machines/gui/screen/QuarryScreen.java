@@ -61,9 +61,11 @@ public class QuarryScreen extends BaseContainerScreen<QuarryContainer>
     String mining = new TranslationTextComponent("wtbw_machines.quarry.gui.current_block").getUnformattedComponentText();
 
     GuiUtil.renderTexture(guiLeft - 21, guiTop, xSize + 21, ySize, 0, 0, 256, 256, GUI);
-    this.font.drawString(blockName, guiLeft + 8, guiTop + 6, textColor);
-    this.font.drawString(this.playerInventory.getDisplayName().getFormattedText(), guiLeft + 8, guiTop + 73, textColor);
-    energyBar.draw();
+//    this.font.drawString(blockName, guiLeft + 8, guiTop + 6, textColor);
+//    this.font.drawString(this.playerInventory.getDisplayName().getFormattedText(), guiLeft + 8, guiTop + 73, textColor);
+//    energyBar.draw();
+    renderTitle();
+    renderInventoryText();
     
     int xp = guiLeft + 122;
     int yp = guiTop + 20;
