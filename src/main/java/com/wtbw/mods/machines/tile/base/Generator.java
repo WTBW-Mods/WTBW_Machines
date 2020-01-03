@@ -37,15 +37,24 @@ public abstract class Generator extends TileEntity implements ITickableTileEntit
   @Override
   public void tick()
   {
-    if (!world.isRemote)
+    boolean dirty = false;
+    if (canGenerate())
     {
-      if (canGenerate())
-      {
-        storage.insertInternal(getGenerate(), false);
-        onGenerate();
-        sendPowerAround();
-        markDirty();
-      }
+      storage.insertInternal(getGenerate(), false);
+      onGenerate();
+      dirty = true;
+    }
+    
+    int energy = storage.getEnergyStored();
+    sendPowerAround();
+    if (energy != storage.getEnergyStored())
+    {
+      dirty = true;
+    }
+  
+    if (dirty)
+    {
+      markDirty();
     }
   }
   
@@ -109,7 +118,8 @@ public abstract class Generator extends TileEntity implements ITickableTileEntit
   protected void sendPowerAround()
   {
     int toShare = Math.min(getEnergy(), storage.getMaxExtract());
-    Utilities.sendPowerAround(world, pos, toShare, shareEqually, providingSides());
+    toShare -= Utilities.sendPowerAround(world, pos, toShare, shareEqually, providingSides());
+    storage.extractInternal(toShare, false);
   }
   
   @Nonnull
