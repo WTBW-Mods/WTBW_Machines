@@ -12,7 +12,7 @@ public class SolarPanelTileEntity extends Generator
   
   public SolarPanelTileEntity(int capacity, int maxExtract, int generate)
   {
-    super(ModTiles.SOLAR_PANEL, capacity, maxExtract, generate * 10000);
+    super(ModTiles.SOLAR_PANEL, capacity, maxExtract, generate);
   }
   
   @Override
@@ -29,7 +29,5 @@ public class SolarPanelTileEntity extends Generator
   
   @Override
   protected void onGenerate()
-  {
-//    WTBWMachines.LOGGER.info("Generated! {} {}/{} {}%", getGenerate(), getEnergy(), getCapacity(), (int) (getPercentageFilled() * 100));
-  }
+  {  }
 }
