@@ -21,6 +21,7 @@ apply from: 'https://raw.githubusercontent.com/MinecraftModDevelopment/Gradle-Co
 
 def ENV = System.getenv()
 version = ENV.BUILD_NUMBER ? "${project_version}.${ENV.BUILD_NUMBER}" : "${project_version}.custom"
+group = 'com.wtbw.mods'
 archivesBaseName = "wtbw_machines-${minecraft_version}"
 
 sourceCompatibility = targetCompatibility = compileJava.sourceCompatibility = compileJava.targetCompatibility = '1.8'
@@ -70,7 +71,19 @@ dependencies {
         compile project(":wtbw_lib")
     }
     else {
-        compile fg.deobf (project.dependencies.create("com.github.wtbw-mods:wtbw_lib:${wtbwlib_version}") {
+        compile fg.deobf (project.dependencies.create("com.wtbw.mods:wtbw_lib-1.15.1:${wtbwlib_version}") {
+            transitive = false
+        })
+    }
+
+    if (findProject(':Mod_WTBW_Core') != null) {
+        compile project(':Mod_WTBW_Core')
+    }
+    else if (findProject(':wtbw_core') != null){
+        compile project(":wtbw_core")
+    }
+    else {
+        compile fg.deobf (project.dependencies.create("com.wtbw.mods:wtbw_core-1.15.1:${wtbwcore_version}") {
             transitive = false
         })
     }
