@@ -1,6 +1,6 @@
 package com.wtbw.machines.network;
 
-import com.wtbw.lib.network.Packet;
+import com.wtbw.mods.lib.network.Packet;
 import com.wtbw.machines.tile.machine.QuarryTileEntity;
 import net.minecraft.client.Minecraft;
 import net.minecraft.network.PacketBuffer;

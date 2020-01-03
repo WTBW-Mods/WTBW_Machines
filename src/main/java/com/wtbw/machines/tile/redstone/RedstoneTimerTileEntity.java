@@ -3,10 +3,10 @@ package com.wtbw.machines.tile.redstone;
 import com.wtbw.machines.block.redstone.RedstoneTimerBlock;
 import com.wtbw.machines.config.CommonConfig;
 import com.wtbw.machines.tile.ModTiles;
-import com.wtbw.lib.util.Colors;
-import com.wtbw.lib.util.Cooldown;
-import com.wtbw.lib.util.PlayEvent;
-import com.wtbw.lib.util.RandomUtil;
+import com.wtbw.mods.lib.util.Colors;
+import com.wtbw.mods.lib.util.Cooldown;
+import com.wtbw.mods.lib.util.PlayEvent;
+import com.wtbw.mods.lib.util.RandomUtil;
 import net.minecraft.tileentity.ITickableTileEntity;
 import net.minecraft.tileentity.TileEntity;
 

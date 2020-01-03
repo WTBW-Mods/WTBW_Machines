@@ -1,7 +1,7 @@
 package com.wtbw.machines.gui.container;
 
-import com.wtbw.lib.gui.container.BaseTileContainer;
-import com.wtbw.lib.util.nbt.NBTManager;
+import com.wtbw.mods.lib.gui.container.BaseTileContainer;
+import com.wtbw.mods.lib.util.nbt.NBTManager;
 import com.wtbw.machines.tile.machine.DryerTileEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.util.IntReferenceHolder;

@@ -1,9 +1,9 @@
 package com.wtbw.machines.gui.screen;
 
 
-import com.wtbw.lib.gui.screen.BaseContainerScreen;
-import com.wtbw.lib.gui.util.*;
-import com.wtbw.lib.tile.util.energy.BaseEnergyStorage;
+import com.wtbw.mods.lib.gui.screen.BaseContainerScreen;
+import com.wtbw.mods.lib.gui.util.*;
+import com.wtbw.mods.lib.tile.util.energy.BaseEnergyStorage;
 import com.wtbw.machines.WTBWMachines;
 import com.wtbw.machines.gui.container.QuarryContainer;
 import com.wtbw.machines.tile.machine.QuarryTileEntity;
@@ -11,9 +11,6 @@ import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TranslationTextComponent;
-
-import java.util.ArrayList;
-import java.util.List;
 
 /*
   @author: Sunekaer

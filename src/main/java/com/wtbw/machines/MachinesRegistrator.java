@@ -1,8 +1,8 @@
 package com.wtbw.machines;
 
-import com.wtbw.lib.Registrator;
-import com.wtbw.lib.block.BaseTileBlock;
-import com.wtbw.lib.block.SixWayTileBlock;
+import com.wtbw.mods.lib.Registrator;
+import com.wtbw.mods.lib.block.BaseTileBlock;
+import com.wtbw.mods.lib.block.SixWayTileBlock;
 import com.wtbw.machines.block.*;
 import com.wtbw.machines.block.redstone.BlockDetectorBlock;
 import com.wtbw.machines.block.redstone.RedstoneEmitterBlock;

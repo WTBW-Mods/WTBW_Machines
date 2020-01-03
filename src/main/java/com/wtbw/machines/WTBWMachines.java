@@ -1,13 +1,12 @@
 package com.wtbw.machines;
 
-import com.wtbw.lib.network.Networking;
+import com.wtbw.mods.lib.network.Networking;
 import com.wtbw.machines.block.ModBlocks;
 import com.wtbw.machines.config.CommonConfig;
 import com.wtbw.machines.network.UpdateDetectorPacket;
 import com.wtbw.machines.network.UpdateQuarryPacket;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
 import net.minecraft.item.crafting.IRecipeSerializer;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.eventbus.api.IEventBus;

@@ -1,6 +1,6 @@
 package com.wtbw.machines.block;
 
-import com.wtbw.lib.block.BaseTileBlock;
+import com.wtbw.mods.lib.block.BaseTileBlock;
 import com.wtbw.machines.tile.SolarPanelTileEntity;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;

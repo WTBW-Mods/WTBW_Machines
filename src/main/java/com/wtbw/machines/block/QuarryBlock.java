@@ -1,13 +1,15 @@
 package com.wtbw.machines.block;
 
-import com.wtbw.lib.block.BaseTileBlock;
+import com.wtbw.mods.lib.block.BaseTileBlock;
 import com.wtbw.machines.tile.machine.QuarryTileEntity;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
+import net.minecraft.block.Blocks;
 import net.minecraft.block.HorizontalBlock;
 import net.minecraft.item.BlockItemUseContext;
 import net.minecraft.state.DirectionProperty;
 import net.minecraft.state.StateContainer;
+import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.Direction;
 import net.minecraft.util.Mirror;
 import net.minecraft.util.Rotation;
@@ -16,6 +18,8 @@ import net.minecraft.util.math.shapes.ISelectionContext;
 import net.minecraft.util.math.shapes.VoxelShape;
 import net.minecraft.util.math.shapes.VoxelShapes;
 import net.minecraft.world.IBlockReader;
+import net.minecraft.world.IWorld;
+import org.apache.logging.log4j.Level;
 
 /*
   @author: Sunekaer
@@ -67,5 +71,47 @@ public class QuarryBlock extends BaseTileBlock<QuarryTileEntity>
   protected void fillStateContainer(StateContainer.Builder<Block, BlockState> builder)
   {
     builder.add(FACING);
+  }
+
+  public BlockState updatePostPlacement(BlockState state, Direction facing, BlockState facingState, IWorld world, BlockPos pos, BlockPos facingPos)
+  {
+    TileEntity tileEntity = world.getTileEntity(pos);
+
+    if (tileEntity instanceof QuarryTileEntity)
+    {
+      QuarryTileEntity quarry = (QuarryTileEntity) tileEntity;
+      int prev = quarry.upgradeLevel;
+
+      quarry.upgradeLevel = 0;
+
+      for (Direction direction : Direction.values())
+      {
+        Block b = world.getBlockState(pos.offset(direction)).getBlock();
+
+        if (b == Blocks.IRON_BLOCK)
+        {
+          quarry.upgradeLevel = Math.max(quarry.upgradeLevel, 1);
+        }
+        else if (b == Blocks.GOLD_BLOCK)
+        {
+          quarry.upgradeLevel = Math.max(quarry.upgradeLevel, 2);
+        }
+        else if (b == Blocks.DIAMOND_BLOCK)
+        {
+          quarry.upgradeLevel = Math.max(quarry.upgradeLevel, 3);
+        }
+        else if (b == Blocks.EMERALD_BLOCK)
+        {
+          quarry.upgradeLevel = Math.max(quarry.upgradeLevel, 4);
+        }
+      }
+      if(prev != quarry.upgradeLevel)
+      {
+        quarry.upgradeLevelUpdated();
+        quarry.markDirty();
+        LOGGER.log(Level.INFO, "Quarry at " + pos + " has changed Level to " + quarry.upgradeLevel);
+      }
+    }
+    return state;
   }
 }

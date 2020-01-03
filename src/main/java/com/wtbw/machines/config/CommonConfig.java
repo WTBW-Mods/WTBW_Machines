@@ -1,8 +1,8 @@
 package com.wtbw.machines.config;
 
-import com.wtbw.lib.config.BaseConfig;
-import com.wtbw.lib.config.SubConfig;
-import com.wtbw.lib.util.Utilities;
+import com.wtbw.mods.lib.config.BaseConfig;
+import com.wtbw.mods.lib.config.SubConfig;
+import com.wtbw.mods.lib.util.Utilities;
 import com.wtbw.machines.WTBWMachines;
 import com.wtbw.machines.tile.furnace.FurnaceTier;
 import net.minecraft.block.Block;

@@ -1,6 +1,6 @@
 package com.wtbw.machines.block;
 
-import com.wtbw.lib.block.BaseTileBlock;
+import com.wtbw.mods.lib.block.BaseTileBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.HorizontalBlock;

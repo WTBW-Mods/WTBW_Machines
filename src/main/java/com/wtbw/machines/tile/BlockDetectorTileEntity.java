@@ -1,9 +1,9 @@
 package com.wtbw.machines.tile;
 
-import com.wtbw.lib.block.SixWayTileBlock;
-import com.wtbw.lib.gui.util.ClickType;
-import com.wtbw.lib.network.Networking;
-import com.wtbw.lib.tile.util.IButtonHandler;
+import com.wtbw.mods.lib.block.SixWayTileBlock;
+import com.wtbw.mods.lib.gui.util.ClickType;
+import com.wtbw.mods.lib.network.Networking;
+import com.wtbw.mods.lib.tile.util.IButtonHandler;
 import com.wtbw.machines.gui.container.BlockDetectorContainer;
 import com.wtbw.machines.network.UpdateDetectorPacket;
 import net.minecraft.block.BlockState;

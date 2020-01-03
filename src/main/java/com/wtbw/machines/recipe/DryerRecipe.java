@@ -2,7 +2,7 @@ package com.wtbw.machines.recipe;
 
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
-import com.wtbw.lib.util.Utilities;
+import com.wtbw.mods.lib.util.Utilities;
 import com.wtbw.machines.WTBWMachines;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;

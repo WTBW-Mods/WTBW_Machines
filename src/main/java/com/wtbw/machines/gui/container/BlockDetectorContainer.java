@@ -1,6 +1,6 @@
 package com.wtbw.machines.gui.container;
 
-import com.wtbw.lib.gui.container.BaseTileContainer;
+import com.wtbw.mods.lib.gui.container.BaseTileContainer;
 import com.wtbw.machines.tile.BlockDetectorTileEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;

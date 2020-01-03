@@ -10,10 +10,11 @@ buildscript {
 }
 apply plugin: 'net.minecraftforge.gradle'
 apply plugin: 'eclipse'
-apply plugin: 'maven-publish'
+apply plugin: 'maven'
 
-version = "${project_version}"
-group = 'com.wtbw.machines'
+def ENV = System.getenv()
+version = ENV.BUILD_NUMBER ? "${project_version}.${ENV.BUILD_NUMBER}" : "${project_version}.custom"
+group = 'com.wtbw.mods.tools.mods'
 archivesBaseName = "wtbw_machines-${minecraft_version}"
 
 sourceCompatibility = targetCompatibility = compileJava.sourceCompatibility = compileJava.targetCompatibility = '1.8'
@@ -88,15 +89,24 @@ def reobfArtifact = artifacts.add('default', reobfFile) {
     type 'jar'
     builtBy 'reobfJar'
 }
-publishing {
-    publications {
-        mavenJava(MavenPublication) {
-            artifact reobfArtifact
-        }
-    }
-    repositories {
-        maven {
-            url "file:///${project.projectDir}/mcmodsrepo"
+
+task deobfJar(type: Jar) {
+    from sourceSets.main.output
+    classifier 'deobf'
+}
+
+build.dependsOn deobfJar
+
+artifacts {
+    archives deobfJar
+}
+
+if (ENV.LOCAL_MAVEN) {
+    uploadArchives {
+        repositories {
+            mavenDeployer {
+                repository(url: "file://${ENV.LOCAL_MAVEN}")
+            }
         }
     }
 }

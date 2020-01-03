@@ -1,8 +1,8 @@
 package com.wtbw.machines.tile.furnace;
 
-import com.wtbw.lib.tile.util.IContentHolder;
-import com.wtbw.lib.util.nbt.NBTHelper;
-import com.wtbw.lib.util.Utilities;
+import com.wtbw.mods.lib.tile.util.IContentHolder;
+import com.wtbw.mods.lib.util.nbt.NBTHelper;
+import com.wtbw.mods.lib.util.Utilities;
 import com.wtbw.machines.block.BaseFurnaceBlock;
 import com.wtbw.machines.gui.container.TieredFurnaceContainer;
 import net.minecraft.block.BlockState;

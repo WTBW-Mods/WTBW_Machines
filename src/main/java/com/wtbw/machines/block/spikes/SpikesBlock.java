@@ -1,6 +1,6 @@
 package com.wtbw.machines.block.spikes;
 
-import com.wtbw.lib.util.TextComponentBuilder;
+import com.wtbw.mods.lib.util.TextComponentBuilder;
 import com.wtbw.machines.WTBWMachines;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;

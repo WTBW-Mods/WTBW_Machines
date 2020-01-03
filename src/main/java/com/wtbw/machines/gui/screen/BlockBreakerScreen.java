@@ -1,9 +1,9 @@
 package com.wtbw.machines.gui.screen;
 
 
-import com.wtbw.lib.gui.screen.BaseContainerScreen;
-import com.wtbw.lib.gui.util.GuiUtil;
-import com.wtbw.lib.gui.util.RedstoneButton;
+import com.wtbw.mods.lib.gui.screen.BaseContainerScreen;
+import com.wtbw.mods.lib.gui.util.GuiUtil;
+import com.wtbw.mods.lib.gui.util.RedstoneButton;
 import com.wtbw.machines.WTBWMachines;
 import com.wtbw.machines.gui.container.BlockBreakerContainer;
 import net.minecraft.entity.player.PlayerInventory;

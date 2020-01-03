@@ -1,8 +1,8 @@
 package com.wtbw.machines.gui.container;
 
-import com.wtbw.lib.gui.container.BaseTileContainer;
+import com.wtbw.mods.lib.gui.container.BaseTileContainer;
 import com.wtbw.machines.tile.furnace.BaseFurnaceTileEntity;
-import com.wtbw.lib.util.Utilities;
+import com.wtbw.mods.lib.util.Utilities;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.Inventory;
@@ -12,8 +12,6 @@ import net.minecraft.util.IntReferenceHolder;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.items.SlotItemHandler;
-
-import javax.annotation.Nonnull;
 
 /*
   @author: Naxanria

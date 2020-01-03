@@ -1,10 +1,10 @@
 package com.wtbw.machines.gui.screen;
 
 import com.google.common.collect.ImmutableMap;
-import com.wtbw.lib.gui.screen.BaseContainerScreen;
-import com.wtbw.lib.gui.util.ClickType;
-import com.wtbw.lib.gui.util.GuiUtil;
-import com.wtbw.lib.network.BufferHelper;
+import com.wtbw.mods.lib.gui.screen.BaseContainerScreen;
+import com.wtbw.mods.lib.gui.util.ClickType;
+import com.wtbw.mods.lib.gui.util.GuiUtil;
+import com.wtbw.mods.lib.network.BufferHelper;
 import com.wtbw.machines.gui.container.BlockDetectorContainer;
 import com.wtbw.machines.tile.BlockDetectorTileEntity;
 import net.minecraft.block.Block;

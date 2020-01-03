@@ -1,15 +1,15 @@
 package com.wtbw.machines.tile;
 
 
-import com.wtbw.lib.block.SixWayTileBlock;
+import com.wtbw.mods.lib.block.SixWayTileBlock;
 import com.wtbw.machines.gui.container.BlockPlacerContainer;
-import com.wtbw.lib.tile.util.IContentHolder;
-import com.wtbw.lib.tile.util.IRedstoneControlled;
-import com.wtbw.lib.tile.util.RedstoneControl;
-import com.wtbw.lib.tile.util.RedstoneMode;
-import com.wtbw.lib.util.PlayEvent;
-import com.wtbw.lib.util.RandomUtil;
-import com.wtbw.lib.util.Utilities;
+import com.wtbw.mods.lib.tile.util.IContentHolder;
+import com.wtbw.mods.lib.tile.util.IRedstoneControlled;
+import com.wtbw.mods.lib.tile.util.RedstoneControl;
+import com.wtbw.mods.lib.tile.util.RedstoneMode;
+import com.wtbw.mods.lib.util.PlayEvent;
+import com.wtbw.mods.lib.util.RandomUtil;
+import com.wtbw.mods.lib.util.Utilities;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.SoundType;

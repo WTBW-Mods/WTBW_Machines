@@ -1,6 +1,6 @@
 package com.wtbw.machines.block.redstone;
 
-import com.wtbw.lib.block.SixWayTileBlock;
+import com.wtbw.mods.lib.block.SixWayTileBlock;
 import com.wtbw.machines.tile.BlockDetectorTileEntity;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;

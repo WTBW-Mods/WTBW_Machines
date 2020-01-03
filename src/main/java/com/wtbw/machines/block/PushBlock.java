@@ -1,7 +1,7 @@
 package com.wtbw.machines.block;
 
-import com.wtbw.lib.block.BaseTileBlock;
-import com.wtbw.lib.util.TextComponentBuilder;
+import com.wtbw.mods.lib.block.BaseTileBlock;
+import com.wtbw.mods.lib.util.TextComponentBuilder;
 import com.wtbw.machines.WTBWMachines;
 import com.wtbw.machines.config.CommonConfig;
 import com.wtbw.machines.tile.EntityPusherTileEntity;

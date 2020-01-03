@@ -1,10 +1,10 @@
 package com.wtbw.machines.block.redstone;
 
-import com.wtbw.lib.block.BaseTileBlock;
+import com.wtbw.mods.lib.block.BaseTileBlock;
 import com.wtbw.machines.WTBWMachines;
 import com.wtbw.machines.config.CommonConfig;
 import com.wtbw.machines.tile.redstone.RedstoneTimerTileEntity;
-import com.wtbw.lib.util.TextComponentBuilder;
+import com.wtbw.mods.lib.util.TextComponentBuilder;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.client.util.ITooltipFlag;

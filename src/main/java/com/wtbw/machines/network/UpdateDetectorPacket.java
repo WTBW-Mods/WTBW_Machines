@@ -1,7 +1,7 @@
 package com.wtbw.machines.network;
 
-import com.wtbw.lib.network.BufferHelper;
-import com.wtbw.lib.network.Packet;
+import com.wtbw.mods.lib.network.BufferHelper;
+import com.wtbw.mods.lib.network.Packet;
 import com.wtbw.machines.tile.BlockDetectorTileEntity;
 import net.minecraft.block.BlockState;
 import net.minecraft.client.Minecraft;

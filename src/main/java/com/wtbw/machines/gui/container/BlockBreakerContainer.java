@@ -1,8 +1,8 @@
 package com.wtbw.machines.gui.container;
 
-import com.wtbw.lib.gui.container.BaseTileContainer;
+import com.wtbw.mods.lib.gui.container.BaseTileContainer;
 import com.wtbw.machines.tile.BlockBreakerTileEntity;
-import com.wtbw.lib.tile.util.RedstoneMode;
+import com.wtbw.mods.lib.tile.util.RedstoneMode;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.util.IntReferenceHolder;

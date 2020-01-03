@@ -1,8 +1,8 @@
 package com.wtbw.machines.tile.base;
 
-import com.wtbw.lib.tile.util.IComparatorProvider;
-import com.wtbw.lib.tile.util.energy.BaseEnergyStorage;
-import com.wtbw.lib.util.Utilities;
+import com.wtbw.mods.lib.tile.util.IComparatorProvider;
+import com.wtbw.mods.lib.tile.util.energy.BaseEnergyStorage;
+import com.wtbw.mods.lib.util.Utilities;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.tileentity.ITickableTileEntity;
 import net.minecraft.tileentity.TileEntity;

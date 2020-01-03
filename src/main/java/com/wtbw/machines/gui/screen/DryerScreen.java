@@ -1,10 +1,10 @@
 package com.wtbw.machines.gui.screen;
 
-import com.wtbw.lib.gui.screen.BaseContainerScreen;
-import com.wtbw.lib.gui.util.EnergyBar;
-import com.wtbw.lib.gui.util.ProgressBar;
-import com.wtbw.lib.gui.util.RedstoneButton;
-import com.wtbw.lib.tile.util.energy.BaseEnergyStorage;
+import com.wtbw.mods.lib.gui.screen.BaseContainerScreen;
+import com.wtbw.mods.lib.gui.util.EnergyBar;
+import com.wtbw.mods.lib.gui.util.ProgressBar;
+import com.wtbw.mods.lib.gui.util.RedstoneButton;
+import com.wtbw.mods.lib.tile.util.energy.BaseEnergyStorage;
 import com.wtbw.machines.gui.container.DryerContainer;
 import com.wtbw.machines.tile.machine.DryerTileEntity;
 import net.minecraft.entity.player.PlayerInventory;

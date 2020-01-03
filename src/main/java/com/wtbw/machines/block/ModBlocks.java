@@ -2,8 +2,8 @@ package com.wtbw.machines.block;
 
 import com.wtbw.machines.WTBWMachines;
 import com.wtbw.machines.block.redstone.BlockDetectorBlock;
-import com.wtbw.lib.block.BaseTileBlock;
-import com.wtbw.lib.block.SixWayTileBlock;
+import com.wtbw.mods.lib.block.BaseTileBlock;
+import com.wtbw.mods.lib.block.SixWayTileBlock;
 import com.wtbw.machines.tile.BlockBreakerTileEntity;
 import com.wtbw.machines.tile.BlockPlacerTileEntity;
 import com.wtbw.machines.tile.SolarPanelTileEntity;
