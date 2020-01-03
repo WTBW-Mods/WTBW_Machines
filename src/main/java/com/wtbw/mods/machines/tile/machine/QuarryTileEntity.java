@@ -9,6 +9,7 @@ import com.wtbw.mods.lib.util.StackUtil;
 import com.wtbw.mods.lib.util.Utilities;
 import com.wtbw.mods.lib.util.nbt.Manager;
 import com.wtbw.mods.lib.util.nbt.NBTManager;
+import com.wtbw.mods.machines.WTBWMachines;
 import com.wtbw.mods.machines.block.QuarryBlock;
 import com.wtbw.mods.machines.config.CommonConfig;
 import com.wtbw.mods.machines.gui.container.QuarryContainer;
@@ -51,7 +52,7 @@ public class QuarryTileEntity extends TileEntity implements ITickableTileEntity,
     private Area area;
     private boolean isDone;
     private int tick;
-    private int quarrySize = 1;
+    private int quarrySize = 3;
     private BaseEnergyStorage storage;
     private LazyOptional<ItemStackHandler> inventory = LazyOptional.of(this::createInventory);
     private LazyOptional<BaseEnergyStorage> storageCap = LazyOptional.of(this::getStorage);
@@ -62,7 +63,6 @@ public class QuarryTileEntity extends TileEntity implements ITickableTileEntity,
         super(ModTiles.QUARRY);
 
         control = new RedstoneControl(this, RedstoneMode.ON);
-        getStorage();
 
         nbtManager = new NBTManager();
         nbtManager.register("energy", new Manager.Serializable(getStorage()));
@@ -113,8 +113,11 @@ public class QuarryTileEntity extends TileEntity implements ITickableTileEntity,
             @Override
             public void set(Integer value) {
                 upgradeLevel = value;
+                upgradeLevelUpdated();
             }
         });
+        
+        upgradeLevelUpdated();
     }
 
     public BaseEnergyStorage getStorage() {
@@ -172,7 +175,10 @@ public class QuarryTileEntity extends TileEntity implements ITickableTileEntity,
 
             tick++;
             if (area == null) {
-                area = Utilities.getArea(pos.offset(getFacing()).offset(Direction.DOWN), getFacing(), quarrySize, pos.getY() - 1);
+                area = Utilities.getArea(pos.offset(getFacing()).offset(Direction.DOWN, 2), getFacing(), quarrySize, pos.getY() - 1);
+                
+                WTBWMachines.LOGGER.info("Facing {}, Area: {}", getFacing(), area);
+                
                 currentPos = new BlockPos(area.start.getX(), pos.getY() - 1, area.start.getZ());
                 sendUpdate();
                 markDirty();
