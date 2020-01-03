@@ -14,7 +14,7 @@ apply plugin: 'maven'
 
 def ENV = System.getenv()
 version = ENV.BUILD_NUMBER ? "${project_version}.${ENV.BUILD_NUMBER}" : "${project_version}.custom"
-group = 'com.wtbw.mods.tools.mods'
+group = 'com.wtbw.mods'
 archivesBaseName = "wtbw_machines-${minecraft_version}"
 
 sourceCompatibility = targetCompatibility = compileJava.sourceCompatibility = compileJava.targetCompatibility = '1.8'
