@@ -60,7 +60,7 @@ public class QuarryScreen extends BaseContainerScreen<QuarryContainer>
     GuiUtil.renderTexture(guiLeft - 21, guiTop, xSize + 21, ySize, 0, 0, 256, 256, GUI);
 //    this.font.drawString(blockName, guiLeft + 8, guiTop + 6, textColor);
 //    this.font.drawString(this.playerInventory.getDisplayName().getFormattedText(), guiLeft + 8, guiTop + 73, textColor);
-//    energyBar.draw();
+    energyBar.draw();
     renderTitle();
     renderInventoryText();
     
