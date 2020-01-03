@@ -1,0 +1,7 @@
+{
+  "variants": {
+    "": {
+      "model": "wtbw_machines:block/tier3_upgrade"
+    }
+  }
+}

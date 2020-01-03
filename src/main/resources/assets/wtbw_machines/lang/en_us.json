@@ -16,7 +16,7 @@
   "block.wtbw_machines.wooden_spikes": "Wooden spikes",
   "block.wtbw_machines.bamboo_spikes": "Bamboo spikes",
   "block.wtbw_machines.iron_spikes": "Iron spikes",
-  "block.wtbw_machines.gold_spikes": "Gold spikes",
+  "block.wtbw_machines.gold_spikes": "Gold spikes",1
   "block.wtbw_machines.diamond_spikes": "Diamond spikes",
 
   "block.wtbw_machines.block_breaker": "Block Breaker",
@@ -46,5 +46,9 @@
   "block.wtbw_machines.quarry": "Quarry",
   "wtbw_machines.quarry.gui.current_block": "Mining:",
 
-  "block.wtbw_machines.machine_block": "Machine Block"
+  "block.wtbw_machines.machine_block": "Machine Block",
+  "block.wtbw_machines.tier1_upgrade": "Tier 1 Upgrade",
+  "block.wtbw_machines.tier2_upgrade": "Tier 2 Upgrade",
+  "block.wtbw_machines.tier3_upgrade": "Tier 3 Upgrade",
+  "block.wtbw_machines.tier4_upgrade": "Tier 4 Upgrade"
 }

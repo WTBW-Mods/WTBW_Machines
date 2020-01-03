@@ -70,7 +70,11 @@ public class MachinesRegistrator extends Registrator
 
     //TODO Make Recipe
     register(new Block(getBlockProperties(Material.IRON, 3)), "machine_block");
-    register(new QuarryMarker(getBlockProperties(Material.IRON, 1)), "quarry_marker");
+    register(new Block(getBlockProperties(Material.IRON, 3)), "tier1_upgrade");
+    register(new Block(getBlockProperties(Material.IRON, 3)), "tier2_upgrade");
+    register(new Block(getBlockProperties(Material.IRON, 3)), "tier3_upgrade");
+    register(new Block(getBlockProperties(Material.IRON, 3)), "tier4_upgrade");
+    //register(new QuarryMarker(getBlockProperties(Material.IRON, 1)), "quarry_marker");
   }
   
   @Override
