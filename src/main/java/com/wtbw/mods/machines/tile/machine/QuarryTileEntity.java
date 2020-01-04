@@ -57,6 +57,7 @@ public class QuarryTileEntity extends TileEntity implements ITickableTileEntity,
     private LazyOptional<ItemStackHandler> inventory = LazyOptional.of(this::createInventory);
     private LazyOptional<BaseEnergyStorage> storageCap = LazyOptional.of(this::getStorage);
     private Direction facing = null;
+    
     private NBTManager nbtManager;
 
     public QuarryTileEntity() {
@@ -64,8 +65,15 @@ public class QuarryTileEntity extends TileEntity implements ITickableTileEntity,
 
         control = new RedstoneControl(this, RedstoneMode.ON);
 
-        nbtManager = new NBTManager();
-        nbtManager.register("energy", new Manager.Serializable(getStorage()));
+        nbtManager = new NBTManager()
+            .register("energy", getStorage())
+            .registerBlockPos("current", () -> currentPos, i -> currentPos = i)
+            .registerBoolean("finished", () -> isDone, i -> isDone = i)
+            .registerInt("upgradeLevel", () -> upgradeLevel, i -> upgradeLevel = i)
+            .registerInt("quarrySize", () -> quarrySize, i -> quarrySize = i)
+            .register("storage", storage)
+            .register("inventory", inventory.orElseGet(ItemStackHandler::new));
+        
         nbtManager.register("area", new Manager() {
             @Override
             public void read(String name, CompoundNBT nbt) {
@@ -82,39 +90,39 @@ public class QuarryTileEntity extends TileEntity implements ITickableTileEntity,
                 }
             }
         });
-        nbtManager.register("current", new Manager.BlockPos() {
-            @Override
-            public net.minecraft.util.math.BlockPos get() {
-                return currentPos;
-            }
-
-            @Override
-            public void set(net.minecraft.util.math.BlockPos value) {
-                currentPos = value;
-            }
-        });
-        nbtManager.register("finished", new Manager.Bool() {
-            @Override
-            public Boolean get() {
-                return isDone;
-            }
-
-            @Override
-            public void set(Boolean value) {
-                isDone = value;
-            }
-        });
-        nbtManager.register("upgradeLevel", new Manager.Int() {
-            @Override
-            public Integer get() {
-                return upgradeLevel;
-            }
-
-            @Override
-            public void set(Integer value) {
-                upgradeLevel = value;
-            }
-        });
+//        nbtManager.register("current", new Manager.BlockPos() {
+//            @Override
+//            public net.minecraft.util.math.BlockPos get() {
+//                return currentPos;
+//            }
+//
+//            @Override
+//            public void set(net.minecraft.util.math.BlockPos value) {
+//                currentPos = value;
+//            }
+//        });
+//        nbtManager.register("finished", new Manager.Bool() {
+//            @Override
+//            public Boolean get() {
+//                return isDone;
+//            }
+//
+//            @Override
+//            public void set(Boolean value) {
+//                isDone = value;
+//            }
+//        });
+//        nbtManager.register("upgradeLevel", new Manager.Int() {
+//            @Override
+//            public Integer get() {
+//                return upgradeLevel;
+//            }
+//
+//            @Override
+//            public void set(Integer value) {
+//                upgradeLevel = value;
+//            }
+//        });
     }
 
     public BaseEnergyStorage getStorage() {

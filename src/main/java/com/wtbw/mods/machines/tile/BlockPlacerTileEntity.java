@@ -189,7 +189,7 @@ public class BlockPlacerTileEntity extends TileEntity implements ITickableTileEn
   @Override
   public void read(CompoundNBT compound)
   {
-    control.deserialize(compound.getCompound("control"));
+    control.deserializeNBT(compound.getCompound("control"));
     inventory.ifPresent(handler -> handler.deserializeNBT(compound.getCompound("inventory")));
     
     super.read(compound);
@@ -198,7 +198,7 @@ public class BlockPlacerTileEntity extends TileEntity implements ITickableTileEn
   @Override
   public CompoundNBT write(CompoundNBT compound)
   {
-    compound.put("control", control.serialize());
+    compound.put("control", control.serializeNBT());
     inventory.ifPresent(handler -> compound.put("inventory", handler.serializeNBT()));
     
     return super.write(compound);

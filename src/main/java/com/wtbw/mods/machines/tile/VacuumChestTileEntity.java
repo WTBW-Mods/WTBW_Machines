@@ -1,5 +1,6 @@
 package com.wtbw.mods.machines.tile;
 
+import com.wtbw.mods.lib.util.nbt.NBTManager;
 import com.wtbw.mods.machines.config.CommonConfig;
 import com.wtbw.mods.machines.gui.container.VacuumChestContainer;
 import com.wtbw.mods.lib.tile.util.IContentHolder;
@@ -54,11 +55,19 @@ public class VacuumChestTileEntity extends TileEntity implements ITickableTileEn
   
   private LazyOptional<ItemStackHandler> inventory = LazyOptional.of(this::createInventory);
   
+  private NBTManager manager;
+  
   public VacuumChestTileEntity()
   {
     super(ModTiles.VACUUM_CHEST);
     
     control = new RedstoneControl(this, RedstoneMode.IGNORE);
+    
+    manager = new NBTManager()
+      .registerInt("tick", () -> tick, i -> tick = i)
+      .register("control", control)
+      .register("inventory", inventory.orElseGet(ItemStackHandler::new))
+      .register("filter", filter);
   }
   
   private ItemStackHandler createInventory()
@@ -150,22 +159,24 @@ public class VacuumChestTileEntity extends TileEntity implements ITickableTileEn
   @Override
   public void read(CompoundNBT compound)
   {
-    tick = NBTHelper.getInt(compound, "tick");
+//    tick = NBTHelper.getInt(compound, "tick");
+//
+//    if (compound.contains("inventory"))
+//    {
+//      inventory.ifPresent(handler -> handler.deserializeNBT(compound.getCompound("inventory")));
+//    }
+//
+//    if (compound.contains("filter"))
+//    {
+//      filter.deserializeNBT(compound.getCompound("filter"));
+//    }
+//
+//    if (compound.contains("control"))
+//    {
+//      control.deserializeNBT(compound.getCompound("control"));
+//    }
     
-    if (compound.contains("inventory"))
-    {
-      inventory.ifPresent(handler -> handler.deserializeNBT(compound.getCompound("inventory")));
-    }
-    
-    if (compound.contains("filter"))
-    {
-      filter.deserializeNBT(compound.getCompound("filter"));
-    }
-    
-    if (compound.contains("control"))
-    {
-      control.deserialize(compound.getCompound("control"));
-    }
+    manager.read(compound);
     
     super.read(compound);
   }
@@ -173,14 +184,16 @@ public class VacuumChestTileEntity extends TileEntity implements ITickableTileEn
   @Override
   public CompoundNBT write(CompoundNBT compound)
   {
-    compound.putInt("tick", tick);
     
-    inventory.ifPresent(handler -> compound.put("inventory", handler.serializeNBT()));
-    
-    compound.put("filter", filter.serializeNBT());
-    
-    compound.put("control", control.serialize());
-    
+     manager.write(compound);
+//    compound.putInt("tick", tick);
+//
+//    inventory.ifPresent(handler -> compound.put("inventory", handler.serializeNBT()));
+//
+//    compound.put("filter", filter.serializeNBT());
+//
+//    compound.put("control", control.serializeNBT());
+//
     return super.write(compound);
   }
   
@@ -247,5 +260,10 @@ public class VacuumChestTileEntity extends TileEntity implements ITickableTileEn
   public RedstoneMode[] availableModes()
   {
     return RedstoneMode.noPulse;
+  }
+  
+  public NBTManager getManager()
+  {
+    return manager;
   }
 }

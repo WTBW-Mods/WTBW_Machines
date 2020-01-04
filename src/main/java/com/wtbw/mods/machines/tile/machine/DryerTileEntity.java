@@ -64,101 +64,113 @@ public class DryerTileEntity extends TileEntity implements ITickableTileEntity, 
     super(ModTiles.DRYER);
     
     control = new RedstoneControl(this, RedstoneMode.IGNORE);
-    manager = new NBTManager();
+    manager = new NBTManager()
+      .registerInt("duration",() -> duration, i -> duration = i)
+      .registerInt("progress", () -> progress, i -> progress = i)
+      .registerInt("powerUsage", () -> powerUsage, i -> powerUsage = i)
+      .registerInt("heat", () -> heat, i -> heat = i)
+      .registerInt("targetHeat", () -> targetHeat, i -> targetHeat = i)
+      .registerInt("subHeat", () -> subHeat, i -> subHeat = i)
+      .register("control", control)
+      .register("inventory", getInventory())
+      .register("storage", getStorage());
     
-    manager.register("duration", new Manager.Int()
-    {
-      @Override
-      public Integer get()
-      {
-        return duration;
-      }
-  
-      @Override
-      public void set(Integer value)
-      {
-        duration = value;
-      }
-    });
     
-    manager.register("progress", new Manager.Int()
-    {
-      @Override
-      public Integer get()
-      {
-        return progress;
-      }
-  
-      @Override
-      public void set(Integer value)
-      {
-        progress = value;
-      }
-    });
-    
-    manager.register("powerUsage", new Manager.Int()
-    {
-      @Override
-      public Integer get()
-      {
-        return powerUsage;
-      }
-  
-      @Override
-      public void set(Integer value)
-      {
-        powerUsage = value;
-      }
-    });
-    
-    manager.register("heat", new Manager.Int()
-    {
-      @Override
-      public Integer get()
-      {
-        return heat;
-      }
-  
-      @Override
-      public void set(Integer value)
-      {
-        heat = value;
-      }
-    });
-    
-    manager.register("targetHeat", new Manager.Int()
-    {
-      @Override
-      public Integer get()
-      {
-        return targetHeat;
-      }
-  
-      @Override
-      public void set(Integer value)
-      {
-        targetHeat = value;
-      }
-    });
-    
-    manager.register("subHeat", new Manager.Int()
-    {
-      @Override
-      public Integer get()
-      {
-        return subHeat;
-      }
-  
-      @Override
-      public void set(Integer value)
-      {
-        subHeat = value;
-      }
-    });
-    
-    manager.register("control", new Manager.Redstone(control));
-    manager.register("inventory", new Manager.Serializable(getInventory()));
-    manager.register("energy", new Manager.Serializable(getStorage()));
+//
+//
+//    manager.register("duration", new Manager.Int()
+//    {
+//      @Override
+//      public Integer get()
+//      {
+//        return duration;
+//      }
+//
+//      @Override
+//      public void set(Integer value)
+//      {
+//        duration = value;
+//      }
+//    });
+//
+//    manager.register("progress", new Manager.Int()
+//    {
+//      @Override
+//      public Integer get()
+//      {
+//        return progress;
+//      }
+//
+//      @Override
+//      public void set(Integer value)
+//      {
+//        progress = value;
+//      }
+//    });
+//
+//    manager.register("powerUsage", new Manager.Int()
+//    {
+//      @Override
+//      public Integer get()
+//      {
+//        return powerUsage;
+//      }
+//
+//      @Override
+//      public void set(Integer value)
+//      {
+//        powerUsage = value;
+//      }
+//    });
+//
+//    manager.register("heat", new Manager.Int()
+//    {
+//      @Override
+//      public Integer get()
+//      {
+//        return heat;
+//      }
+//
+//      @Override
+//      public void set(Integer value)
+//      {
+//        heat = value;
+//      }
+//    });
+//
+//    manager.register("targetHeat", new Manager.Int()
+//    {
+//      @Override
+//      public Integer get()
+//      {
+//        return targetHeat;
+//      }
+//
+//      @Override
+//      public void set(Integer value)
+//      {
+//        targetHeat = value;
+//      }
+//    });
+//
+//    manager.register("subHeat", new Manager.Int()
+//    {
+//      @Override
+//      public Integer get()
+//      {
+//        return subHeat;
+//      }
+//
+//      @Override
+//      public void set(Integer value)
+//      {
+//        subHeat = value;
+//      }
+//    });
+//
+//    manager.register("control", new Manager.Redstone(control));
+//    manager.register("inventory", new Manager.Serializable(getInventory()));
+//    manager.register("energy", new Manager.Serializable(getStorage()));
   }
   
   @Nonnull
