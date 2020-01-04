@@ -17,6 +17,7 @@ public class DryerScreen extends BaseContainerScreen<DryerContainer>
 {
   private ProgressBar progressBar;
   private EnergyBar energyBar;
+
   private RedstoneButton<DryerTileEntity> redstoneButton;
   
   public DryerScreen(DryerContainer container, PlayerInventory inventory, ITextComponent title)
@@ -30,12 +31,11 @@ public class DryerScreen extends BaseContainerScreen<DryerContainer>
     super.init();
     DryerTileEntity tileEntity = container.tileEntity;
     BaseEnergyStorage storage = tileEntity.getStorage();
-    progressBar = new ProgressBar(guiLeft + 66, guiTop + 55, 70, 3, tileEntity::getDuration, tileEntity::getProgress)
+    progressBar = new ProgressBar(guiLeft + 69, guiTop + 35, 70, 3, tileEntity::getDuration, tileEntity::getProgress)
       .setColor(0xffffffff).setFillDirection(ProgressBar.FillDirection.LEFT_RIGHT).setBorder(false);
     energyBar = new EnergyBar(storage, guiLeft + 12, guiTop + 15);
     addTooltipProvider(energyBar);
     redstoneButton = new RedstoneButton<>(guiLeft - 20, guiTop + 10, tileEntity);
-//    addButton(redstoneButton);
   }
   
   @Override
@@ -60,9 +60,13 @@ public class DryerScreen extends BaseContainerScreen<DryerContainer>
     
     progressBar.draw();
     energyBar.draw();
-  
+    
     DryerTileEntity tileEntity = container.tileEntity;
-    font.drawString("Heat " + tileEntity.getHeat() + "/" + tileEntity.getTargetHeat(), 0, 0, 0xffffffff);
-    font.drawString("PowerUsage " + tileEntity.getPowerUsage() + " RF", 0, 15, 0xffffffff);
+  
+    drawString(font,"Current heat " + tileEntity.getHeat(), guiLeft + 50, guiTop + 50, 0xffffffff);
+    drawString(font,"Target heat " + tileEntity.getTargetHeat(), guiLeft + 50, guiTop + 60, 0xffffffff);
+  
+//    font.drawString("Heat " + tileEntity.getHeat() + "/" + tileEntity.getTargetHeat(), 0, 0, 0xffffffff);
+//    font.drawString("PowerUsage " + tileEntity.getPowerUsage() + " RF", 0, 15, 0xffffffff);
   }
 }

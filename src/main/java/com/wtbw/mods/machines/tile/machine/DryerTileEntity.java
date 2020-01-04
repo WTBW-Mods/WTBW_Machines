@@ -12,6 +12,7 @@ import com.wtbw.mods.machines.recipe.ModRecipes;
 import com.wtbw.mods.machines.tile.ModTiles;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
+import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.container.Container;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundNBT;
@@ -43,6 +44,7 @@ public class DryerTileEntity extends TileEntity implements ITickableTileEntity, 
   
   private ItemStackHandler inventory;
   private InventoryWrapper inventoryWrapper;
+  private InventoryWrapper fakeInventory;
   private LazyOptional<BaseEnergyStorage> storageCap = LazyOptional.of(this::getStorage);
   private LazyOptional<ItemStackHandler> inventoryCap = LazyOptional.of(this::getInventory);
   
@@ -221,6 +223,16 @@ public class DryerTileEntity extends TileEntity implements ITickableTileEntity, 
     return inventoryWrapper;
   }
   
+  public InventoryWrapper getFakeInventory()
+  {
+    if (fakeInventory == null)
+    {
+      fakeInventory = new InventoryWrapper(new ItemStackHandler(1));
+    }
+    
+    return fakeInventory;
+  }
+  
   @Nonnull
   @Override
   public <T> LazyOptional<T> getCapability(@Nonnull Capability<T> cap, @Nullable Direction side)
@@ -241,7 +253,8 @@ public class DryerTileEntity extends TileEntity implements ITickableTileEntity, 
   protected boolean validRecipeInput(ItemStack stack)
   {
     // todo: only accept recipe valid items
-    return !stack.isEmpty();
+    getFakeInventory().setInventorySlotContents(0, stack);
+    return !stack.isEmpty() && getRecipe(getFakeInventory()) != null;
   }
   
   @Override
@@ -290,12 +303,15 @@ public class DryerTileEntity extends TileEntity implements ITickableTileEntity, 
       {
         powerUsage = 25;
       }
+      
+      
       if (storage.getEnergyStored() >= powerUsage)
       {
         storage.extractInternal(powerUsage, false);
       }
       else
       {
+        decayHeat();
         decayHeat();
       }
       
@@ -375,12 +391,12 @@ public class DryerTileEntity extends TileEntity implements ITickableTileEntity, 
   
   private void decayHeat()
   {
-    heat -= (int) (Math.sqrt(Math.abs(heat - targetHeat))) / 2 + 1;
+    heat -= (int) (Math.sqrt(Math.abs(heat - targetHeat))) / 5 + 1;
   }
   
   private void generateHeat()
   {
-    heat += (int) (Math.sqrt(Math.abs(targetHeat - heat))) / 2 + 1;
+    heat += (int) (Math.sqrt(Math.abs(targetHeat - heat))) / 5 + 1;
   }
   
   private boolean properHeat()
@@ -388,10 +404,6 @@ public class DryerTileEntity extends TileEntity implements ITickableTileEntity, 
     if (heat < targetHeat)
     {
       generateHeat();
-    }
-    else
-    {
-//      decayHeat();
     }
     
     return heat >= targetHeat;
@@ -441,7 +453,12 @@ public class DryerTileEntity extends TileEntity implements ITickableTileEntity, 
   
   private DryerRecipe getRecipe()
   {
-    Optional<DryerRecipe> recipe = world.getRecipeManager().getRecipe(ModRecipes.DRYING, getInventoryWrapper(), world);
+    return getRecipe(getInventoryWrapper());
+  }
+  
+  private DryerRecipe getRecipe(IInventory inventory)
+  {
+    Optional<DryerRecipe> recipe = world.getRecipeManager().getRecipe(ModRecipes.DRYING, inventory, world);
     
     return recipe.orElse(null);
   }
