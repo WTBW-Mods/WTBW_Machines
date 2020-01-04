@@ -8,6 +8,7 @@ import com.wtbw.mods.lib.tile.util.RedstoneControl;
 import com.wtbw.mods.lib.tile.util.RedstoneMode;
 import com.wtbw.mods.lib.util.StackUtil;
 import com.wtbw.mods.lib.util.Utilities;
+import com.wtbw.mods.machines.config.CommonConfig;
 import com.wtbw.mods.machines.gui.container.BlockBreakerContainer;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
@@ -83,7 +84,7 @@ public class BlockBreakerTileEntity extends TileEntity implements ITickableTileE
     if (!breakState.isAir(world, breakPos) && breakState.getFluidState() == Fluids.EMPTY.getDefaultState())
     {
       Block block = breakState.getBlock();
-      if (block == Blocks.BEDROCK)
+      if (CommonConfig.isInBlacklist(block))
       {
         return false;
       }
