@@ -12,6 +12,7 @@ import net.minecraftforge.fml.config.ModConfig;
 import org.apache.commons.lang3.tuple.Pair;
 
 import javax.annotation.Nonnull;
+import java.util.ArrayList;
 import java.util.List;
 
 /*
@@ -30,7 +31,7 @@ public class CommonConfig extends BaseConfig
     final Pair<CommonConfig, ForgeConfigSpec> specPair = new ForgeConfigSpec.Builder().configure(CommonConfig::new);
     instance = specPair.getLeft();
     
-    ModLoadingContext.get().registerConfig(ModConfig.Type.CLIENT, specPair.getRight());
+    ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, specPair.getRight());
   }
   
   public ForgeConfigSpec.IntValue vacuumRange;
@@ -58,7 +59,7 @@ public class CommonConfig extends BaseConfig
   public ForgeConfigSpec.BooleanValue quarryBreakTileEntities;
   
   // general blacklist for breaking blocks //
-  public ForgeConfigSpec.ConfigValue<List<String>> blockBreakBlacklist;
+  public ForgeConfigSpec.ConfigValue<List<? extends String>> blockBreakBlacklist;
   
   private CommonConfig(ForgeConfigSpec.Builder builder)
   {
@@ -81,11 +82,13 @@ public class CommonConfig extends BaseConfig
   {
     push("blocks");
     
+    List<String> defaultList = Utilities.listOf("minecraft:bedrock", "minecraft:end_portal_frame", "minecraft:end_portal", "minecraft:nether_portal", "minecraft:barrier_block");
     blockBreakBlacklist = builder
       .comment("The black list of blocks that can not be broken by machines (e.g. BlockBreaker, Quarry)")
       .translation(key("blocks.block_break_blacklist"))
-      .define("blockBreakBlacklist",
-        Utilities.listOf("minecraft:bedrock", "minecraft:end_portal_frame", "minecraft:end_portal", "minecraft:nether_portal", "minecraft:barrier_block")
+      .defineList("blockBreakBlacklist",
+        defaultList,
+        o -> o instanceof String && isResourceLocation((String) o)
       );
     
     furnaces();

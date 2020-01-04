@@ -170,7 +170,6 @@ public class QuarryTileEntity extends TileEntity implements ITickableTileEntity,
                 return;
             }
 
-
             tick++;
             if (area == null) {
                 area = Utilities.getArea(pos.offset(getFacing()).offset(Direction.DOWN), getFacing(), quarrySize, pos.getY() - 1);
@@ -327,6 +326,7 @@ public class QuarryTileEntity extends TileEntity implements ITickableTileEntity,
                 quarrySize = 33;
                 break;
         }
+
         area = Utilities.getArea(pos.offset(getFacing()).offset(Direction.DOWN), getFacing(), quarrySize, pos.getY() - 1);
         currentPos = new BlockPos(area.start.getX(), pos.getY() - 1, area.start.getZ());
     }
