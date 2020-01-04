@@ -48,7 +48,7 @@ public class PoweredCompressorEntity extends BaseMachineEntity {
         super(ModTiles.POWERED_COMPRESSOR, 100000, 50000, RedstoneMode.IGNORE);
 
         manager
-                .registerInt("duration",() -> duration, i -> duration = i)
+                .registerInt("duration", () -> duration, i -> duration = i)
                 .registerInt("progress", () -> progress, i -> progress = i)
                 .registerInt("powerCost", () -> powerCost, i -> powerCost = i)
                 .register("inventory", getInventory());
@@ -66,24 +66,18 @@ public class PoweredCompressorEntity extends BaseMachineEntity {
     }
 
     @Override
-    public RedstoneMode[] availableModes()
-    {
+    public RedstoneMode[] availableModes() {
         return RedstoneMode.noPulse;
     }
 
     @Nonnull
-    public ItemStackHandler getInventory()
-    {
-        if (inventory == null)
-        {
-            inventory = new ItemStackHandler(2)
-            {
+    public ItemStackHandler getInventory() {
+        if (inventory == null) {
+            inventory = new ItemStackHandler(2) {
                 @Nonnull
                 @Override
-                public ItemStack insertItem(int slot, @Nonnull ItemStack stack, boolean simulate)
-                {
-                    if (slot == INPUT_SLOT)
-                    {
+                public ItemStack insertItem(int slot, @Nonnull ItemStack stack, boolean simulate) {
+                    if (slot == INPUT_SLOT) {
                         return super.insertItem(slot, stack, simulate);
                     }
 
@@ -92,10 +86,8 @@ public class PoweredCompressorEntity extends BaseMachineEntity {
 
                 @Nonnull
                 @Override
-                public ItemStack extractItem(int slot, int amount, boolean simulate)
-                {
-                    if (slot == OUTPUT_SLOT)
-                    {
+                public ItemStack extractItem(int slot, int amount, boolean simulate) {
+                    if (slot == OUTPUT_SLOT) {
                         return super.extractItem(slot, amount, simulate);
                     }
 
@@ -103,8 +95,7 @@ public class PoweredCompressorEntity extends BaseMachineEntity {
                 }
 
                 @Override
-                public boolean isItemValid(int slot, @Nonnull ItemStack stack)
-                {
+                public boolean isItemValid(int slot, @Nonnull ItemStack stack) {
                     return slot == INPUT_SLOT && validRecipeInput(stack);
                 }
             };
@@ -113,20 +104,16 @@ public class PoweredCompressorEntity extends BaseMachineEntity {
         return inventory;
     }
 
-    public InventoryWrapper getInventoryWrapper()
-    {
-        if (inventoryWrapper == null)
-        {
+    public InventoryWrapper getInventoryWrapper() {
+        if (inventoryWrapper == null) {
             inventoryWrapper = new InventoryWrapper(getInventory());
         }
 
         return inventoryWrapper;
     }
 
-    public InventoryWrapper getFakeInventory()
-    {
-        if (fakeInventory == null)
-        {
+    public InventoryWrapper getFakeInventory() {
+        if (fakeInventory == null) {
             fakeInventory = new InventoryWrapper(new ItemStackHandler(1));
         }
 
@@ -135,50 +122,42 @@ public class PoweredCompressorEntity extends BaseMachineEntity {
 
     @Nonnull
     @Override
-    public <T> LazyOptional<T> getCapability(@Nonnull Capability<T> cap, @Nullable Direction side)
-    {
-        if (cap == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY)
-        {
+    public <T> LazyOptional<T> getCapability(@Nonnull Capability<T> cap, @Nullable Direction side) {
+        if (cap == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY) {
             return inventoryCap.cast();
         }
 
-        if (cap == CapabilityEnergy.ENERGY)
-        {
+        if (cap == CapabilityEnergy.ENERGY) {
             return storageCap.cast();
         }
 
         return super.getCapability(cap, side);
     }
 
-    protected boolean validRecipeInput(ItemStack stack)
-    {
+    protected boolean validRecipeInput(ItemStack stack) {
         // todo: only accept recipe valid items
         getFakeInventory().setInventorySlotContents(0, stack);
         return !stack.isEmpty() && getRecipe(getFakeInventory()) != null;
     }
 
-    private CompressingRecipe getRecipe()
-    {
+    private CompressingRecipe getRecipe() {
         return getRecipe(getInventoryWrapper());
     }
 
-    private CompressingRecipe getRecipe(IInventory inventory)
-    {
+    private CompressingRecipe getRecipe(IInventory inventory) {
         return Utilities.getRecipe(world, ModRecipes.COMPRESSING, inventory);
     }
 
-    private boolean canOutput()
-    {
+    private boolean canOutput() {
         return canOutput(OUTPUT_SLOT, inventory, recipe);
     }
+
     @Override
-    public void dropContents()
-    {
+    public void dropContents() {
         Utilities.dropItems(world, inventory, pos);
     }
 
-    public NBTManager getManager()
-    {
+    public NBTManager getManager() {
         return manager;
     }
 
@@ -195,11 +174,9 @@ public class PoweredCompressorEntity extends BaseMachineEntity {
     }
 
 
-    private void doProgress()
-    {
+    private void doProgress() {
         progress++;
-        if (progress >= duration)
-        {
+        if (progress >= duration) {
             progress = 0;
 
             ItemStack input = inventory.getStackInSlot(INPUT_SLOT);
@@ -207,15 +184,11 @@ public class PoweredCompressorEntity extends BaseMachineEntity {
             inventory.setStackInSlot(INPUT_SLOT, input);
 
             ItemStack output = inventory.getStackInSlot(OUTPUT_SLOT);
-            if (!output.isEmpty())
-            {
-                if (output.getItem() == recipe.output.getItem())
-                {
+            if (!output.isEmpty()) {
+                if (output.getItem() == recipe.output.getItem()) {
                     output.grow(recipe.output.getCount());
                 }
-            }
-            else
-            {
+            } else {
                 output = recipe.getRecipeOutput().copy();
             }
 
@@ -226,6 +199,39 @@ public class PoweredCompressorEntity extends BaseMachineEntity {
 
     @Override
     public void tick() {
+        if (!world.isRemote) {
+            boolean dirty = false;
 
+            if (!inventory.getStackInSlot(INPUT_SLOT).isEmpty()) {
+                System.out.println("item in input slot");
+                CompressingRecipe old = recipe;
+
+                if (recipe == null) {
+                    recipe = getRecipe();
+                } else {
+                    if (!recipe.ingredient.test(inventory.getStackInSlot(0))) {
+                        recipe = getRecipe();
+                        dirty = true;
+                    }
+                }
+                if (recipe != null) {
+                    duration = recipe.duration;
+                    powerCost = recipe.powerCost;
+                    if (recipe != old) {
+                        progress = 0;
+                        dirty = true;
+                    }
+                    if (canOutput()) {
+                        if (storage.getEnergyStored() >= powerCost) {
+                            doProgress();
+                            storage.extractInternal(powerCost / duration, false);
+                        }
+                    }
+                }
+            }
+            if (dirty) {
+                markDirty();
+            }
+        }
     }
 }
