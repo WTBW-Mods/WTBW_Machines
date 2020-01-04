@@ -4,6 +4,7 @@ import com.wtbw.mods.lib.Registrator;
 import com.wtbw.mods.lib.block.BaseTileBlock;
 import com.wtbw.mods.lib.block.SixWayTileBlock;
 import com.wtbw.mods.machines.block.*;
+import com.wtbw.mods.machines.block.base.BaseMachineBlock;
 import com.wtbw.mods.machines.block.redstone.BlockDetectorBlock;
 import com.wtbw.mods.machines.block.redstone.RedstoneEmitterBlock;
 import com.wtbw.mods.machines.block.redstone.RedstoneTimerBlock;
@@ -64,9 +65,9 @@ public class MachinesRegistrator extends Registrator
     
     register(new SolarPanelBlock(getBlockProperties(Material.IRON, 3), 150000, 80, 20).comparator(), "solar_panel");
     
-    register(new BaseTileBlock<>(getBlockProperties(Material.IRON, 3), (world, state) -> new SimpleBatteryTileEntity()).comparator(), "simple_battery");
+    register(new BaseMachineBlock<>(getBlockProperties(Material.IRON, 3), (world, state) -> new SimpleBatteryTileEntity()).comparator(), "simple_battery");
     
-    register(new BaseTileBlock<>(getBlockProperties(Material.IRON, 5), (world, state) -> new DryerTileEntity()), "dryer");
+    register(new BaseMachineBlock<>(getBlockProperties(Material.IRON, 5), (world, state) -> new DryerTileEntity()), "dryer");
 
     //TODO Make Recipe
     register(new Block(getBlockProperties(Material.IRON, 3)), "machine_block");
