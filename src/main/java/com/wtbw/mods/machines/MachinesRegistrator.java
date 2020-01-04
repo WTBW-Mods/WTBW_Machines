@@ -78,6 +78,9 @@ public class MachinesRegistrator extends Registrator
     register(new TierBlock(getBlockProperties(Material.IRON, 3), 3), "tier3_upgrade");
     register(new TierBlock(getBlockProperties(Material.IRON, 3), 4), "tier4_upgrade");
     //register(new QuarryMarker(getBlockProperties(Material.IRON, 1)), "quarry_marker");
+
+    register(new BaseMachineBlock<>(getBlockProperties(Material.IRON, 4), (world, starte) -> new PoweredFurnaceEntity()).mirrored(), "powered_furnace");
+    register(new BaseMachineBlock<>(getBlockProperties(Material.IRON, 4), (world, starte) -> new PoweredCrusherEntity()).mirrored(), "powered_crusher");
   }
   
   @Override
