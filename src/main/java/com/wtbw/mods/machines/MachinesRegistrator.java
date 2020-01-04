@@ -83,30 +83,7 @@ public class MachinesRegistrator extends Registrator
   @Override
   protected void registerAllItems()
   { }
-  
-//  @Override
-//  protected void registerAllTiles()
-//  {
-//    register(ModBlocks.IRON_FURNACE);
-//    register(ModBlocks.GOLD_FURNACE);
-//    register(ModBlocks.DIAMOND_FURNACE);
-//    register(ModBlocks.END_FURNACE);
-//
-//    register(ModBlocks.REDSTONE_TIMER);
-//    register(ModBlocks.BLOCK_BREAKER);
-//    register(ModBlocks.BLOCK_PLACER);
-//    register(ModBlocks.BLOCK_DETECTOR);
-//
-//    register(ModBlocks.PUSHER);
-//    register(ModBlocks.PULLER);
-//
-//    register(ModBlocks.VACUUM_CHEST);
-//
-//    register(ModBlocks.SOLAR_PANEL);
-//
-//    register(ModBlocks.QUARRY);
-//  }
-  
+ 
   @Override
   protected void registerAllContainers()
   {
@@ -118,6 +95,7 @@ public class MachinesRegistrator extends Registrator
     registerContainer(QuarryContainer::new, "quarry");
     registerContainer(DryerContainer::new, "dryer");
     registerContainer(SolarPanelContainer::new, "solar_panel");
+    registerContainer(BatteryContainer::new, "battery");
   }
   
   public void registerRecipes(final RegistryEvent.Register<IRecipeSerializer<?>> event)

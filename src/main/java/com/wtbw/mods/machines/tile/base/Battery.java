@@ -3,6 +3,8 @@ package com.wtbw.mods.machines.tile.base;
 import com.wtbw.mods.lib.tile.util.IComparatorProvider;
 import com.wtbw.mods.lib.tile.util.energy.BaseEnergyStorage;
 import com.wtbw.mods.lib.util.Utilities;
+import com.wtbw.mods.lib.util.nbt.Manager;
+import com.wtbw.mods.lib.util.nbt.NBTManager;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.tileentity.ITickableTileEntity;
 import net.minecraft.tileentity.TileEntity;
@@ -24,10 +26,29 @@ public class Battery extends TileEntity implements ITickableTileEntity, ICompara
   protected LazyOptional<BaseEnergyStorage> storageCap = LazyOptional.of(this::getStorage);
   protected boolean shareEqually = true;
   
+  protected final NBTManager manager;
+  
   public Battery(TileEntityType<?> tileEntityTypeIn, int capacity, int maxExtract, int maxInsert)
   {
     super(tileEntityTypeIn);
     storage = new BaseEnergyStorage(capacity, maxExtract, maxInsert);
+    
+    manager = new NBTManager();
+    manager.register("storage", new Manager.Serializable(storage));
+    manager.register("shareEqually", new Manager.Bool()
+    {
+      @Override
+      public Boolean get()
+      {
+        return shareEqually;
+      }
+  
+      @Override
+      public void set(Boolean value)
+      {
+        shareEqually = value;
+      }
+    });
   }
   
   @Override
@@ -43,7 +64,7 @@ public class Battery extends TileEntity implements ITickableTileEntity, ICompara
   @Override
   public void read(CompoundNBT compound)
   {
-    storage.deserializeNBT(compound.getCompound("storage"));
+    manager.read(compound);
     
     super.read(compound);
   }
@@ -51,7 +72,7 @@ public class Battery extends TileEntity implements ITickableTileEntity, ICompara
   @Override
   public CompoundNBT write(CompoundNBT compound)
   {
-    compound.put("storage", storage.serializeNBT());
+    manager.write(compound);
     
     return super.write(compound);
   }
@@ -90,8 +111,10 @@ public class Battery extends TileEntity implements ITickableTileEntity, ICompara
   protected void sendPowerAround()
   {
     int toShare = Math.min(getEnergy(), storage.getMaxExtract());
-    if (Utilities.sendPowerAround(world, pos, toShare, shareEqually, providingSides()) > 0)
+    int send = toShare - Utilities.sendPowerAround(world, pos, toShare, shareEqually, providingSides());
+    if (send > 0)
     {
+      storage.extractInternal(send, false);
       markDirty();
     }
   }
@@ -106,5 +129,15 @@ public class Battery extends TileEntity implements ITickableTileEntity, ICompara
     }
     
     return super.getCapability(cap, side);
+  }
+  
+  public boolean isShareEqually()
+  {
+    return shareEqually;
+  }
+  
+  public NBTManager getManager()
+  {
+    return manager;
   }
 }
