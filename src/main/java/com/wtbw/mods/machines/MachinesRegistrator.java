@@ -5,6 +5,7 @@ import com.wtbw.mods.lib.block.BaseTileBlock;
 import com.wtbw.mods.lib.block.SixWayTileBlock;
 import com.wtbw.mods.machines.block.*;
 import com.wtbw.mods.machines.block.base.BaseMachineBlock;
+import com.wtbw.mods.machines.block.base.TierBlock;
 import com.wtbw.mods.machines.block.redstone.BlockDetectorBlock;
 import com.wtbw.mods.machines.block.redstone.RedstoneEmitterBlock;
 import com.wtbw.mods.machines.block.redstone.RedstoneTimerBlock;
@@ -67,14 +68,15 @@ public class MachinesRegistrator extends Registrator
     
     register(new BaseMachineBlock<>(getBlockProperties(Material.IRON, 3), (world, state) -> new SimpleBatteryTileEntity()).comparator(), "simple_battery");
     
-    register(new BaseMachineBlock<>(getBlockProperties(Material.IRON, 5), (world, state) -> new DryerTileEntity()), "dryer");
+    register(new BaseMachineBlock<>(getBlockProperties(Material.IRON, 5), (world, state) -> new DryerTileEntity()).mirrored(), "dryer");
 
     //TODO Make Recipe
     register(new Block(getBlockProperties(Material.IRON, 3)), "machine_block");
-    register(new Block(getBlockProperties(Material.IRON, 3)), "tier1_upgrade");
-    register(new Block(getBlockProperties(Material.IRON, 3)), "tier2_upgrade");
-    register(new Block(getBlockProperties(Material.IRON, 3)), "tier3_upgrade");
-    register(new Block(getBlockProperties(Material.IRON, 3)), "tier4_upgrade");
+    
+    register(new TierBlock(getBlockProperties(Material.IRON, 3), 1), "tier1_upgrade");
+    register(new TierBlock(getBlockProperties(Material.IRON, 3), 2), "tier2_upgrade");
+    register(new TierBlock(getBlockProperties(Material.IRON, 3), 3), "tier3_upgrade");
+    register(new TierBlock(getBlockProperties(Material.IRON, 3), 4), "tier4_upgrade");
     //register(new QuarryMarker(getBlockProperties(Material.IRON, 1)), "quarry_marker");
   }
   
