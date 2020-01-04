@@ -11,6 +11,7 @@ import com.wtbw.mods.machines.gui.container.DryerContainer;
 import com.wtbw.mods.machines.recipe.DryerRecipe;
 import com.wtbw.mods.machines.recipe.ModRecipes;
 import com.wtbw.mods.machines.tile.ModTiles;
+import com.wtbw.mods.machines.tile.base.BaseMachineEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.IInventory;
@@ -28,20 +29,17 @@ import net.minecraftforge.items.ItemStackHandler;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
+import java.util.List;
 import java.util.Optional;
 
 /*
   @author: Naxanria
 */
 @SuppressWarnings("ConstantConditions")
-public class DryerTileEntity extends TileEntity implements ITickableTileEntity, IWTBWNamedContainerProvider, IRedstoneControlled, IContentHolder
+public class DryerTileEntity extends BaseMachineEntity
 {
   public static final int INPUT_SLOT = 0;
   public static final int OUTPUT_SLOT = 1;
-  
-  private RedstoneControl control;
-  private NBTManager manager;
-  private BaseEnergyStorage storage;
   
   private ItemStackHandler inventory;
   private InventoryWrapper inventoryWrapper;
@@ -61,20 +59,16 @@ public class DryerTileEntity extends TileEntity implements ITickableTileEntity, 
   
   public DryerTileEntity()
   {
-    super(ModTiles.DRYER);
+    super(ModTiles.DRYER, 1000000, 50000, RedstoneMode.IGNORE);
     
-    control = new RedstoneControl(this, RedstoneMode.IGNORE);
-    manager = new NBTManager()
+    manager
       .registerInt("duration",() -> duration, i -> duration = i)
       .registerInt("progress", () -> progress, i -> progress = i)
       .registerInt("powerUsage", () -> powerUsage, i -> powerUsage = i)
       .registerInt("heat", () -> heat, i -> heat = i)
       .registerInt("targetHeat", () -> targetHeat, i -> targetHeat = i)
       .registerInt("subHeat", () -> subHeat, i -> subHeat = i)
-      .register("control", control)
-      .register("inventory", getInventory())
-      .register("storage", getStorage());
-    
+      .register("inventory", getInventory());
     
 //
 //
@@ -277,6 +271,12 @@ public class DryerTileEntity extends TileEntity implements ITickableTileEntity, 
   }
   
   @Override
+  protected List<ItemStackHandler> getInventories()
+  {
+    return Utilities.listOf(inventory);
+  }
+  
+  @Override
   public RedstoneControl getControl()
   {
     return control;
@@ -445,16 +445,17 @@ public class DryerTileEntity extends TileEntity implements ITickableTileEntity, 
   
   private boolean canOutput()
   {
-    ItemStack current = inventory.getStackInSlot(OUTPUT_SLOT);
-    if (current.isEmpty())
-    {
-      return true;
-    }
-    
-    int maxSize = current.getMaxStackSize();
-    int size = current.getCount() + recipe.output.getCount();
-    
-    return size <= maxSize && StackUtil.doItemsStack(current, recipe.output);
+    return canOutput(OUTPUT_SLOT, inventory, recipe);
+//    ItemStack current = inventory.getStackInSlot(OUTPUT_SLOT);
+//    if (current.isEmpty())
+//    {
+//      return true;
+//    }
+//
+//    int maxSize = current.getMaxStackSize();
+//    int size = current.getCount() + recipe.output.getCount();
+//
+//    return size <= maxSize && StackUtil.doItemsStack(current, recipe.output);
   }
   
   private void doProgress()
@@ -495,29 +496,6 @@ public class DryerTileEntity extends TileEntity implements ITickableTileEntity, 
     return Utilities.getRecipe(world, ModRecipes.DRYING, inventory);
   }
   
-  @Override
-  public void read(CompoundNBT compound)
-  {
-    manager.read(compound);
-    super.read(compound);
-  }
-  
-  @Override
-  public CompoundNBT write(CompoundNBT compound)
-  {
-    manager.write(compound);
-    return super.write(compound);
-  }
-  
-  private boolean isOn()
-  {
-    return getBlockState().get(BaseMachineBlock.ON);
-  }
-  
-  private void setOn(boolean on)
-  {
-    world.setBlockState(pos, getBlockState().with(BaseMachineBlock.ON, on), 3);
-  }
   
   public NBTManager getManager()
   {
