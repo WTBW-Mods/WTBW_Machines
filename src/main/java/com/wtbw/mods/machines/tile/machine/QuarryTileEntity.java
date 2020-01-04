@@ -72,7 +72,8 @@ public class QuarryTileEntity extends TileEntity implements ITickableTileEntity,
             .registerInt("upgradeLevel", () -> upgradeLevel, i -> upgradeLevel = i)
             .registerInt("quarrySize", () -> quarrySize, i -> quarrySize = i)
             .register("storage", storage)
-            .register("inventory", inventory.orElseGet(ItemStackHandler::new));
+            .register("inventory", inventory.orElseGet(ItemStackHandler::new))
+            .register("control", control);
         
         nbtManager.register("area", new Manager() {
             @Override
