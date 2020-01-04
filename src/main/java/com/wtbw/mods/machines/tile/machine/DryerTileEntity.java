@@ -6,6 +6,7 @@ import com.wtbw.mods.lib.util.nbt.Manager;
 import com.wtbw.mods.lib.util.nbt.NBTManager;
 import com.wtbw.mods.lib.util.StackUtil;
 import com.wtbw.mods.lib.util.Utilities;
+import com.wtbw.mods.machines.block.base.BaseMachineBlock;
 import com.wtbw.mods.machines.gui.container.DryerContainer;
 import com.wtbw.mods.machines.recipe.DryerRecipe;
 import com.wtbw.mods.machines.recipe.ModRecipes;
@@ -294,6 +295,7 @@ public class DryerTileEntity extends TileEntity implements ITickableTileEntity, 
     if (!world.isRemote)
     {
       boolean dirty = false;
+      boolean on = false;
   
       if (heat <= targetHeat)
       {
@@ -308,9 +310,14 @@ public class DryerTileEntity extends TileEntity implements ITickableTileEntity, 
       if (storage.getEnergyStored() >= powerUsage)
       {
         storage.extractInternal(powerUsage, false);
+
       }
       else
       {
+        if (isOn())
+        {
+          setOn(false);
+        }
         decayHeat();
         decayHeat();
       }
@@ -362,7 +369,7 @@ public class DryerTileEntity extends TileEntity implements ITickableTileEntity, 
               {
 
                 doProgress();
-                dirty = true;
+                on = true;
               }
             }
           }
@@ -384,6 +391,11 @@ public class DryerTileEntity extends TileEntity implements ITickableTileEntity, 
         decayHeat();
       }
       
+//      if (on != isOn())
+//      {
+//        setOn(on);
+//      }
+      
       markDirty();
       
     }
@@ -391,11 +403,21 @@ public class DryerTileEntity extends TileEntity implements ITickableTileEntity, 
   
   private void decayHeat()
   {
+    if (isOn())
+    {
+      setOn(false);
+    }
+    
     heat -= (int) (Math.sqrt(Math.abs(heat - targetHeat))) / 5 + 1;
   }
   
   private void generateHeat()
   {
+    if (!isOn())
+    {
+      setOn(true);
+    }
+    
     heat += (int) (Math.sqrt(Math.abs(targetHeat - heat))) / 5 + 1;
   }
   
@@ -473,6 +495,16 @@ public class DryerTileEntity extends TileEntity implements ITickableTileEntity, 
   {
     manager.write(compound);
     return super.write(compound);
+  }
+  
+  private boolean isOn()
+  {
+    return getBlockState().get(BaseMachineBlock.ON);
+  }
+  
+  private void setOn(boolean on)
+  {
+    world.setBlockState(pos, getBlockState().with(BaseMachineBlock.ON, on), 3);
   }
   
   public NBTManager getManager()
