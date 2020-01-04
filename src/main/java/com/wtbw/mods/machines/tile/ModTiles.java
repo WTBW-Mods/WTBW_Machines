@@ -35,4 +35,8 @@ public class ModTiles
 
   public static final TileEntityType<QuarryTileEntity> QUARRY = null;
   public static final TileEntityType<DryerTileEntity> DRYER = null;
+
+  public static final TileEntityType<PoweredFurnaceEntity> POWERED_FURNACE = null;
+  public static final TileEntityType<PoweredCrusherEntity> POWERED_CRUSHER = null;
+
 }
