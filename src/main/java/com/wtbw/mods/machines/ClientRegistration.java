@@ -33,6 +33,7 @@ public class ClientRegistration
     
     ScreenManager.registerFactory(ModContainers.SOLAR_PANEL, SolarPanelScreen::new);
     ScreenManager.registerFactory(ModContainers.BATTERY, BatteryScreen::new);
+    ScreenManager.registerFactory(ModContainers.COMPRESSOR, CompressorScreen::new);
   }
 
   public static void registerRenderLayers()

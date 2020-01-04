@@ -1,0 +1,10 @@
+{
+  "type": "wtbw_machines:compressing",
+  "ingredient": {
+    "item": "minecraft:iron_ingot"
+  },
+  "result": "minecraft:dead_bush",
+  "count": 1,
+  "duration": 50,
+  "power_cost": 100
+}

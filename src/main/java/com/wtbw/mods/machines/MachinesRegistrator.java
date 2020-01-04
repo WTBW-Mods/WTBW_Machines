@@ -12,6 +12,7 @@ import com.wtbw.mods.machines.block.redstone.RedstoneTimerBlock;
 import com.wtbw.mods.machines.block.spikes.SpikesBlock;
 import com.wtbw.mods.machines.block.spikes.SpikesType;
 import com.wtbw.mods.machines.gui.container.*;
+import com.wtbw.mods.machines.recipe.CompressingRecipe;
 import com.wtbw.mods.machines.recipe.DryerRecipe;
 import com.wtbw.mods.machines.recipe.ModRecipes;
 import com.wtbw.mods.machines.tile.*;
@@ -100,6 +101,7 @@ public class MachinesRegistrator extends Registrator
     registerContainer(DryerContainer::new, "dryer");
     registerContainer(SolarPanelContainer::new, "solar_panel");
     registerContainer(BatteryContainer::new, "battery");
+    registerContainer(CompressorContainer::new, "compressor");
   }
   
   public void registerRecipes(final RegistryEvent.Register<IRecipeSerializer<?>> event)
@@ -107,5 +109,6 @@ public class MachinesRegistrator extends Registrator
     ModRecipes.init();
     
     event.getRegistry().register(DryerRecipe.SERIALIZER);
+    event.getRegistry().register(CompressingRecipe.SERIALIZER);
   }
 }

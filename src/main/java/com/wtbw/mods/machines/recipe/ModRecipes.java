@@ -16,7 +16,8 @@ public class ModRecipes
   {}
   
   public static final IRecipeType<DryerRecipe> DRYING = register("drying");
-  
+  public static final IRecipeType<CompressingRecipe> COMPRESSING = register("compressing");
+
   private static <T extends IRecipe<?>> IRecipeType<T> register(final String key)
   {
     return Registry.register(Registry.RECIPE_TYPE, new ResourceLocation(WTBWMachines.MODID, key), new IRecipeType<T>()
