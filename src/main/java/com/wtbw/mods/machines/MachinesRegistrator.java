@@ -81,6 +81,7 @@ public class MachinesRegistrator extends Registrator
 
     register(new BaseMachineBlock<>(getBlockProperties(Material.IRON, 4), (world, starte) -> new PoweredFurnaceEntity()).mirrored(), "powered_furnace");
     register(new BaseMachineBlock<>(getBlockProperties(Material.IRON, 4), (world, starte) -> new PoweredCrusherEntity()).mirrored(), "powered_crusher");
+    register(new BaseMachineBlock<>(getBlockProperties(Material.IRON, 4), (world, starte) -> new PoweredCompressorEntity()).mirrored(), "powered_compressor");
   }
   
   @Override

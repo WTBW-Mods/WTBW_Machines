@@ -38,5 +38,6 @@ public class ModTiles
 
   public static final TileEntityType<PoweredFurnaceEntity> POWERED_FURNACE = null;
   public static final TileEntityType<PoweredCrusherEntity> POWERED_CRUSHER = null;
+  public static final TileEntityType<PoweredCompressorEntity> POWERED_COMPRESSOR = null;
 
 }

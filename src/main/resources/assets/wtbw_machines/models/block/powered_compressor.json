@@ -1,0 +1,8 @@
+{
+	"parent": "block/orientable",
+	"textures": {
+		"top": "wtbw_machines:block/top",
+		"front": "wtbw_machines:block/powered_compressor_front",
+		"side": "wtbw_machines:block/side"
+	}
+}

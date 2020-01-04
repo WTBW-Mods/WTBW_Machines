@@ -5,8 +5,8 @@ import net.minecraft.tileentity.TileEntity;
 /*
   @author: Sunekaer
 */
-public class PoweredCrusherEntity extends TileEntity {
-    public PoweredCrusherEntity() {
+public class PoweredCompressorEntity extends TileEntity {
+    public PoweredCompressorEntity() {
         super(ModTiles.POWERED_CRUSHER);
     }
 }
