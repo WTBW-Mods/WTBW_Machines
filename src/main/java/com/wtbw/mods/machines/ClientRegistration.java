@@ -13,10 +13,12 @@ import net.minecraft.client.renderer.RenderTypeLookup;
 @SuppressWarnings("ConstantConditions")
 public class ClientRegistration
 {
-  public static void init(){
+  public static void init()
+  {
     registerScreens();
     registerRenderLayers();
   }
+  
   public static void registerScreens()
   {
     ScreenManager.registerFactory(ModContainers.TIERED_FURNACE, TieredFurnaceScreen::new);
@@ -28,11 +30,14 @@ public class ClientRegistration
 
     ScreenManager.registerFactory(ModContainers.QUARRY, QuarryScreen::new);
     ScreenManager.registerFactory(ModContainers.DRYER, DryerScreen::new);
+    
+    ScreenManager.registerFactory(ModContainers.SOLAR_PANEL, SolarPanelScreen::new);
   }
 
   public static void registerRenderLayers()
   {
     RenderType cutout = RenderType.func_228643_e_();
+    
     RenderTypeLookup.setRenderLayer(ModBlocks.QUARRY, cutout);
     RenderTypeLookup.setRenderLayer(ModBlocks.QUARRY_MARKER, cutout);
   }

@@ -113,11 +113,9 @@ public class QuarryTileEntity extends TileEntity implements ITickableTileEntity,
             @Override
             public void set(Integer value) {
                 upgradeLevel = value;
-                upgradeLevelUpdated();
+//                upgradeLevelUpdated();
             }
         });
-        
-        upgradeLevelUpdated();
     }
 
     public BaseEnergyStorage getStorage() {

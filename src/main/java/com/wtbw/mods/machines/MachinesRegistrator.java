@@ -110,6 +110,7 @@ public class MachinesRegistrator extends Registrator
     registerContainer(BlockDetectorContainer::new, "block_detector");
     registerContainer(QuarryContainer::new, "quarry");
     registerContainer(DryerContainer::new, "dryer");
+    registerContainer(SolarPanelContainer::new, "solar_panel");
   }
   
   public void registerRecipes(final RegistryEvent.Register<IRecipeSerializer<?>> event)

@@ -2,8 +2,10 @@ package com.wtbw.mods.machines.tile.base;
 
 import com.wtbw.mods.lib.tile.util.IComparatorProvider;
 import com.wtbw.mods.lib.tile.util.energy.BaseEnergyStorage;
-import com.wtbw.mods.lib.util.nbt.NBTHelper;
 import com.wtbw.mods.lib.util.Utilities;
+import com.wtbw.mods.lib.util.nbt.Manager;
+import com.wtbw.mods.lib.util.nbt.NBTManager;
+import com.wtbw.mods.machines.WTBWMachines;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.tileentity.ITickableTileEntity;
 import net.minecraft.tileentity.TileEntity;
@@ -27,41 +29,84 @@ public abstract class Generator extends TileEntity implements ITickableTileEntit
   
   protected boolean shareEqually = true;
   
+  protected NBTManager manager;
+  
+  protected boolean canGenerate;
+  
   public Generator(TileEntityType<?> tileEntityTypeIn, int capacity, int maxExtract, int generate)
   {
     super(tileEntityTypeIn);
     storage = new BaseEnergyStorage(capacity, 0, maxExtract);
     this.generate = generate;
+    
+    manager = new NBTManager();
+    manager.register("storage", new Manager.Serializable(storage));
+    manager.register("generate", new Manager.Int()
+    {
+      @Override
+      public Integer get()
+      {
+        return Generator.this.generate;
+      }
+  
+      @Override
+      public void set(Integer value)
+      {
+        Generator.this.generate = value;
+      }
+    });
+    
+    manager.register("canGenerate", new Manager.Bool()
+    {
+      @Override
+      public Boolean get()
+      {
+        return Generator.this.canGenerate;
+      }
+  
+      @Override
+      public void set(Boolean value)
+      {
+        Generator.this.canGenerate = value;
+      }
+    });
   }
   
   @Override
   public void tick()
   {
     boolean dirty = false;
-    if (canGenerate())
+    if (!world.isRemote)
     {
-      storage.insertInternal(getGenerate(), false);
-      onGenerate();
-      dirty = true;
-    }
-    
-    int energy = storage.getEnergyStored();
-    sendPowerAround();
-    if (energy != storage.getEnergyStored())
-    {
-      dirty = true;
-    }
+      if (generate > 0 && canGenerate)
+      {
+        storage.insertInternal(generate, false);
+        onGenerate();
+        dirty = true;
+      }
   
-    if (dirty)
-    {
-      markDirty();
+      int energy = storage.getEnergyStored();
+      sendPowerAround();
+      if (energy != storage.getEnergyStored())
+      {
+        dirty = true;
+      }
+  
+      if (dirty)
+      {
+        markDirty();
+      }
     }
   }
   
-  protected abstract boolean canGenerate();
+  public final boolean canGenerate()
+  {
+    return canGenerate;
+  }
+  
   protected abstract void onGenerate();
   
-  protected int getGenerate()
+  public final int getGenerate()
   {
     return generate;
   }
@@ -69,8 +114,7 @@ public abstract class Generator extends TileEntity implements ITickableTileEntit
   @Override
   public void read(CompoundNBT compound)
   {
-    storage.deserializeNBT(compound.getCompound("storage"));
-    generate = NBTHelper.getInt(compound, "generate");
+    manager.read(compound);
     
     super.read(compound);
   }
@@ -78,8 +122,7 @@ public abstract class Generator extends TileEntity implements ITickableTileEntit
   @Override
   public CompoundNBT write(CompoundNBT compound)
   {
-    compound.put("storage", storage.serializeNBT());
-    compound.putInt("generate", generate);
+    manager.write(compound);
     
     return super.write(compound);
   }
@@ -132,5 +175,10 @@ public abstract class Generator extends TileEntity implements ITickableTileEntit
     }
     
     return super.getCapability(cap, side);
+  }
+  
+  public NBTManager getManager()
+  {
+    return manager;
   }
 }
