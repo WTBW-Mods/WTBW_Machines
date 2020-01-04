@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "GIG",
+    "IMI",
+    "GIG"
+  ],
+  "key": {
+    "G": {
+      "item": "wtbw_core:groundium"
+    },
+    "M": {
+      "item": "wtbw_machines:tier3_upgrade"
+    },
+    "I": {
+      "item": "minecraft:emerald"
+    }
+  },
+  "result": {
+    "item": "wtbw_machines:tier4_upgrade"
+  }
+}

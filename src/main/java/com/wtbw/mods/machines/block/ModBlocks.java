@@ -9,6 +9,9 @@ import com.wtbw.mods.machines.tile.BlockPlacerTileEntity;
 import com.wtbw.mods.machines.tile.SolarPanelTileEntity;
 import com.wtbw.mods.machines.tile.VacuumChestTileEntity;
 import com.wtbw.mods.machines.tile.redstone.RedstoneTimerTileEntity;
+import net.minecraft.block.Block;
+
+import net.minecraft.block.Blocks;
 import net.minecraftforge.registries.ObjectHolder;
 
 /*
@@ -36,5 +39,10 @@ public class ModBlocks
   public static final BaseTileBlock<SolarPanelTileEntity> SOLAR_PANEL = null;
 
   public static final QuarryBlock QUARRY = null;
-  public static final QuarryMarker QUARRY_MARKER = null;
+  //public static final QuarryMarker QUARRY_MARKER = null;
+  public static final Block TIER1_UPGRADE = Blocks.AIR;
+  public static final Block TIER2_UPGRADE = Blocks.AIR;
+  public static final Block TIER3_UPGRADE = Blocks.AIR;
+  public static final Block TIER4_UPGRADE = Blocks.AIR;
+
 }

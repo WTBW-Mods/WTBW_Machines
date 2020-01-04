@@ -52,7 +52,7 @@ public class QuarryTileEntity extends TileEntity implements ITickableTileEntity,
     private Area area;
     private boolean isDone;
     private int tick;
-    private int quarrySize = 3;
+    private int quarrySize = 1;
     private BaseEnergyStorage storage;
     private LazyOptional<ItemStackHandler> inventory = LazyOptional.of(this::createInventory);
     private LazyOptional<BaseEnergyStorage> storageCap = LazyOptional.of(this::getStorage);
@@ -113,7 +113,6 @@ public class QuarryTileEntity extends TileEntity implements ITickableTileEntity,
             @Override
             public void set(Integer value) {
                 upgradeLevel = value;
-//                upgradeLevelUpdated();
             }
         });
     }
@@ -173,10 +172,8 @@ public class QuarryTileEntity extends TileEntity implements ITickableTileEntity,
 
             tick++;
             if (area == null) {
-                area = Utilities.getArea(pos.offset(getFacing()).offset(Direction.DOWN, 2), getFacing(), quarrySize, pos.getY() - 1);
-                
-                WTBWMachines.LOGGER.info("Facing {}, Area: {}", getFacing(), area);
-                
+                area = Utilities.getArea(pos.offset(getFacing()).offset(Direction.DOWN), getFacing(), quarrySize, pos.getY() - 1);
+//                WTBWMachines.LOGGER.info("Facing {}, Area: {}", getFacing(), area);
                 currentPos = new BlockPos(area.start.getX(), pos.getY() - 1, area.start.getZ());
                 sendUpdate();
                 markDirty();
@@ -185,7 +182,6 @@ public class QuarryTileEntity extends TileEntity implements ITickableTileEntity,
             if (area != null) {
                 if (control.update()) {
                     CommonConfig config = CommonConfig.instance();
-
                     if (tick % config.quarrySpeed.get() == 0) {
                         if (area.isInside(currentPos)) {
                             if (getStorage().getEnergyStored() >= config.quarryPowerUsage.get()) {
@@ -321,13 +317,13 @@ public class QuarryTileEntity extends TileEntity implements ITickableTileEntity,
                 quarrySize = 3;
                 break;
             case 2:
-                quarrySize = 7;
+                quarrySize = 9;
                 break;
             case 3:
-                quarrySize = 11;
+                quarrySize = 17;
                 break;
             case 4:
-                quarrySize = 15;
+                quarrySize = 33;
                 break;
         }
 

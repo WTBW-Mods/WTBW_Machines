@@ -1,12 +1,12 @@
 {
-  "type": "wtbw_machines:quarry_marker",
+  "type": "wtbw_machines:tier4_upgrade",
   "pools": [
     {
       "rolls": 1,
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "wtbw_machines:quarry_marker"
+          "name": "wtbw_machines:tier4_upgrade"
         }
       ],
       "conditions": [

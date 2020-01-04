@@ -39,6 +39,6 @@ public class ClientRegistration
     RenderType cutout = RenderType.func_228643_e_();
     
     RenderTypeLookup.setRenderLayer(ModBlocks.QUARRY, cutout);
-    RenderTypeLookup.setRenderLayer(ModBlocks.QUARRY_MARKER, cutout);
+    //RenderTypeLookup.setRenderLayer(ModBlocks.QUARRY_MARKER, cutout);
   }
 }

@@ -1,5 +1,6 @@
 package com.wtbw.mods.machines.block;
 
+import com.wtbw.mods.lib.WTBWLib;
 import com.wtbw.mods.lib.block.BaseTileBlock;
 import com.wtbw.mods.machines.tile.machine.QuarryTileEntity;
 import net.minecraft.block.Block;
@@ -19,6 +20,7 @@ import net.minecraft.util.math.shapes.VoxelShape;
 import net.minecraft.util.math.shapes.VoxelShapes;
 import net.minecraft.world.IBlockReader;
 import net.minecraft.world.IWorld;
+import net.minecraftforge.fml.common.Mod;
 import org.apache.logging.log4j.Level;
 
 /*
@@ -87,20 +89,19 @@ public class QuarryBlock extends BaseTileBlock<QuarryTileEntity>
       for (Direction direction : Direction.values())
       {
         Block b = world.getBlockState(pos.offset(direction)).getBlock();
-
-        if (b == Blocks.IRON_BLOCK)
+        if (b == ModBlocks.TIER1_UPGRADE)
         {
           quarry.upgradeLevel = Math.max(quarry.upgradeLevel, 1);
         }
-        else if (b == Blocks.GOLD_BLOCK)
+        else if (b == ModBlocks.TIER2_UPGRADE)
         {
           quarry.upgradeLevel = Math.max(quarry.upgradeLevel, 2);
         }
-        else if (b == Blocks.DIAMOND_BLOCK)
+        else if (b == ModBlocks.TIER3_UPGRADE)
         {
           quarry.upgradeLevel = Math.max(quarry.upgradeLevel, 3);
         }
-        else if (b == Blocks.EMERALD_BLOCK)
+        else if (b == ModBlocks.TIER4_UPGRADE)
         {
           quarry.upgradeLevel = Math.max(quarry.upgradeLevel, 4);
         }
@@ -109,7 +110,7 @@ public class QuarryBlock extends BaseTileBlock<QuarryTileEntity>
       {
         quarry.upgradeLevelUpdated();
         quarry.markDirty();
-        LOGGER.log(Level.INFO, "Quarry at " + pos + " has changed Level to " + quarry.upgradeLevel);
+        WTBWLib.LOGGER.debug("Quarry at " + pos + " has changed Level to " + quarry.upgradeLevel);
       }
     }
     return state;

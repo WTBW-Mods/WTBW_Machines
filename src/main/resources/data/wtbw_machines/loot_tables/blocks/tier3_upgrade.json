@@ -1,0 +1,19 @@
+{
+  "type": "wtbw_machines:tier2_upgrade",
+  "pools": [
+    {
+      "rolls": 1,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "wtbw_machines:tier3_upgrade"
+        }
+      ],
+      "conditions": [
+        {
+          "condition": "minecraft:survives_explosion"
+        }
+      ]
+    }
+  ]
+}
