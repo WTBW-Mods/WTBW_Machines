@@ -458,9 +458,7 @@ public class DryerTileEntity extends TileEntity implements ITickableTileEntity, 
   
   private DryerRecipe getRecipe(IInventory inventory)
   {
-    Optional<DryerRecipe> recipe = world.getRecipeManager().getRecipe(ModRecipes.DRYING, inventory, world);
-    
-    return recipe.orElse(null);
+    return Utilities.getRecipe(world, ModRecipes.DRYING, inventory);
   }
   
   @Override
