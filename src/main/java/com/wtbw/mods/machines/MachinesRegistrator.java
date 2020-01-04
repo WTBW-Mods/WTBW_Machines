@@ -125,11 +125,5 @@ public class MachinesRegistrator extends Registrator
     ModRecipes.init();
     
     event.getRegistry().register(DryerRecipe.SERIALIZER);
-  
-    WTBWMachines.LOGGER.info("registered types: ");
-    for (ResourceLocation id : Registry.RECIPE_TYPE.keySet())
-    {
-      WTBWMachines.LOGGER.info("\t{}", id.toString());
-    }
   }
 }
