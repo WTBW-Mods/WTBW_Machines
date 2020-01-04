@@ -1,33 +1,33 @@
 {
   "variants": {
-    "facing=north,powered=false": {
+    "facing=north,on=false": {
       "model": "wtbw_machines:block/dryer"
     },
-    "facing=south,powered=false": {
+    "facing=south,on=false": {
       "model": "wtbw_machines:block/dryer",
       "y": 180
     },
-    "facing=west,powered=false": {
+    "facing=west,on=false": {
       "model": "wtbw_machines:block/dryer",
       "y": 270
     },
-    "facing=east,powered=false": {
+    "facing=east,on=false": {
       "model": "wtbw_machines:block/dryer",
       "y": 90
     },
-    "facing=north,powered=true": {
-      "model": "wtbw_machines:block/dryer_powered"
+    "facing=north,on=true": {
+      "model": "wtbw_machines:block/dryer_on"
     },
-    "facing=south,powered=true": {
-      "model": "wtbw_machines:block/dryer_powered",
+    "facing=south,on=true": {
+      "model": "wtbw_machines:block/dryer_on",
       "y": 180
     },
-    "facing=west,powered=true": {
-      "model": "wtbw_machines:block/dryer_powered",
+    "facing=west,on=true": {
+      "model": "wtbw_machines:block/dryer_on",
       "y": 270
     },
-    "facing=east,powered=true": {
-      "model": "wtbw_machines:block/dryer_powered",
+    "facing=east,on=true": {
+      "model": "wtbw_machines:block/dryer_on",
       "y": 90
     }
   }
