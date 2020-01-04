@@ -2,10 +2,10 @@
   "parent": "block/block",
   "textures": {
     "bottom": "wtbw_machines:block/block_detector_back",
-    "side": "wtbw_core:block/base_side",
-    "top": "wtbw_core:block/base_side",
+    "side": "wtbw_machines:block/side",
+    "top": "wtbw_machines:block/side",
     "front": "wtbw_machines:block/block_detector_front",
-    "particle": "wtbw_core:block/base_side"
+    "particle": "wtbw_machines:block/side"
   },
   "elements": [
     {

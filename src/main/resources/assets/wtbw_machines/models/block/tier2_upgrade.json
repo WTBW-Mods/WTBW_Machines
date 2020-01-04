@@ -2,9 +2,9 @@
 	"parent": "block/cube",
 	"textures": {
 		"0": "wtbw_machines:block/tier2_side",
-		"1": "wtbw_core:block/base_side",
-		"2": "wtbw_core:block/base_side",
-		"particle": "wtbw_core:block/base_side"
+		"1": "wtbw_machines:block/side",
+		"2": "wtbw_machines:block/side",
+		"particle": "wtbw_machines:block/side"
 	},
 	"elements": [
 		{

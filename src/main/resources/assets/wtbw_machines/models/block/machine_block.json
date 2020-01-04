@@ -4,7 +4,7 @@
 		"0": "wtbw_machines:block/machine_side",
 		"1": "wtbw_machines:block/machine_top",
 		"2": "wtbw_machines:block/machine_bottom",
-		"particle": "wtbw_core:block/base_side"
+		"particle": "wtbw_machines:block/side"
 	},
 	"elements": [
 		{

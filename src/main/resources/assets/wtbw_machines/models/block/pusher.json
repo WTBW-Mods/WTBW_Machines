@@ -2,9 +2,9 @@
 	"credit": "Made with Blockbench",
 	"parent": "block/cube_all",
 	"textures": {
-		"0": "wtbw_core:block/base_side",
+		"0": "wtbw_machines:block/side",
 		"1": "wtbw_machines:block/pusher_top",
-		"particle": "wtbw_core:block/base_side"
+		"particle": "wtbw_machines:block/side"
 	},
 	"elements": [
 		{
