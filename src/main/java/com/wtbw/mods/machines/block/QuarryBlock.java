@@ -2,10 +2,10 @@ package com.wtbw.mods.machines.block;
 
 import com.wtbw.mods.lib.WTBWLib;
 import com.wtbw.mods.lib.block.BaseTileBlock;
+import com.wtbw.mods.machines.block.base.TierBlock;
 import com.wtbw.mods.machines.tile.machine.QuarryTileEntity;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
-import net.minecraft.block.Blocks;
 import net.minecraft.block.HorizontalBlock;
 import net.minecraft.item.BlockItemUseContext;
 import net.minecraft.state.DirectionProperty;
@@ -20,8 +20,7 @@ import net.minecraft.util.math.shapes.VoxelShape;
 import net.minecraft.util.math.shapes.VoxelShapes;
 import net.minecraft.world.IBlockReader;
 import net.minecraft.world.IWorld;
-import net.minecraftforge.fml.common.Mod;
-import org.apache.logging.log4j.Level;
+import net.minecraft.world.World;
 
 /*
   @author: Sunekaer
@@ -74,40 +73,60 @@ public class QuarryBlock extends BaseTileBlock<QuarryTileEntity>
   {
     builder.add(FACING);
   }
-
+  
+  @Override
+  public void onBlockAdded(BlockState state, World worldIn, BlockPos pos, BlockState oldState, boolean isMoving)
+  {
+    updateState(state, worldIn, pos);
+  }
+  
   public BlockState updatePostPlacement(BlockState state, Direction facing, BlockState facingState, IWorld world, BlockPos pos, BlockPos facingPos)
   {
+    return updateState(state, world, pos);
+  }
+  
+  private BlockState updateState(BlockState state, IWorld world, BlockPos pos)
+  {
     TileEntity tileEntity = world.getTileEntity(pos);
-
+    
     if (tileEntity instanceof QuarryTileEntity)
     {
       QuarryTileEntity quarry = (QuarryTileEntity) tileEntity;
-      int prev = quarry.upgradeLevel;
-
-      quarry.upgradeLevel = 0;
-
+      
+      int highestLevel = 0;
       for (Direction direction : Direction.values())
       {
         Block b = world.getBlockState(pos.offset(direction)).getBlock();
-        if (b == ModBlocks.TIER1_UPGRADE)
+        if (b instanceof TierBlock)
         {
-          quarry.upgradeLevel = Math.max(quarry.upgradeLevel, 1);
+          int tier = ((TierBlock) b).TIER;
+          if (tier > highestLevel)
+          {
+            highestLevel = tier;
+          }
         }
-        else if (b == ModBlocks.TIER2_UPGRADE)
-        {
-          quarry.upgradeLevel = Math.max(quarry.upgradeLevel, 2);
-        }
-        else if (b == ModBlocks.TIER3_UPGRADE)
-        {
-          quarry.upgradeLevel = Math.max(quarry.upgradeLevel, 3);
-        }
-        else if (b == ModBlocks.TIER4_UPGRADE)
-        {
-          quarry.upgradeLevel = Math.max(quarry.upgradeLevel, 4);
-        }
+        
+//        if (b == ModBlocks.TIER1_UPGRADE)
+//        {
+//          quarry.upgradeLevel = Math.max(quarry.upgradeLevel, 1);
+//        }
+//        else if (b == ModBlocks.TIER2_UPGRADE)
+//        {
+//          quarry.upgradeLevel = Math.max(quarry.upgradeLevel, 2);
+//        }
+//        else if (b == ModBlocks.TIER3_UPGRADE)
+//        {
+//          quarry.upgradeLevel = Math.max(quarry.upgradeLevel, 3);
+//        }
+//        else if (b == ModBlocks.TIER4_UPGRADE)
+//        {
+//          quarry.upgradeLevel = Math.max(quarry.upgradeLevel, 4);
+//        }
       }
-      if(prev != quarry.upgradeLevel)
+      
+      if(highestLevel != quarry.upgradeLevel)
       {
+        quarry.upgradeLevel = highestLevel;
         quarry.upgradeLevelUpdated();
         quarry.markDirty();
         WTBWLib.LOGGER.debug("Quarry at " + pos + " has changed Level to " + quarry.upgradeLevel);
