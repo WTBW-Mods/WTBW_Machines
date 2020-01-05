@@ -1,13 +1,13 @@
 {
   "type": "wtbw_machines:crushing",
   "ingredient": {
-    "item": "minecraft:gold_ore",
+    "item": "minecraft:nether_quartz_ore",
     "count": 1
   },
   "result": [
     {
-      "item": "wtbw_machines:gold_dust",
-      "count": 2
+      "item": "minecraft:quartz",
+      "count": 3
     },
     {
       "item": "minecraft:cobblestone",

@@ -32,7 +32,7 @@ public class CrushingRecipe implements IRecipe<IInventory> {
     public final int duration;
     public final int powerCost;
     public final int ingredientCost;
-    
+
     private List<ItemStack> maxOutput;
 
     public CrushingRecipe(ResourceLocation location, Ingredient ingredient, int ingredientCost, ItemStackChanceMap output, int duration, int powerCost) {
@@ -42,7 +42,7 @@ public class CrushingRecipe implements IRecipe<IInventory> {
         this.duration = duration;
         this.powerCost = powerCost;
         this.ingredientCost = ingredientCost;
-        
+
         maxOutput = output.getMaxRoll();
     }
 
@@ -66,13 +66,14 @@ public class CrushingRecipe implements IRecipe<IInventory> {
         return ItemStack.EMPTY;
     }
 
-    public List<ItemStack> getRecipeOutputList(){
+    public List<ItemStack> getRecipeOutputList() {
         return output.getRoll();
     }
 
-    public List<ItemStack> getRecipeOutputMaxList(){
+    public List<ItemStack> getRecipeOutputMaxList() {
         return maxOutput;
     }
+
     @Override
     public ResourceLocation getId() {
         return location;
@@ -90,7 +91,7 @@ public class CrushingRecipe implements IRecipe<IInventory> {
 
     public static class Serializer extends ForgeRegistryEntry<IRecipeSerializer<?>> implements IRecipeSerializer<CrushingRecipe> {
 
-        public Serializer(){
+        public Serializer() {
             setRegistryName(WTBWMachines.MODID, "crushing");
         }
 
@@ -99,28 +100,20 @@ public class CrushingRecipe implements IRecipe<IInventory> {
             JsonElement element = (JSONUtils.isJsonArray(json, "ingredient") ? JSONUtils.getJsonArray(json, "ingredient") : JSONUtils.getJsonObject(json, "ingredient"));
             Ingredient ingredient = Ingredient.deserialize(element);
             int ingredientCost = JSONUtils.getInt(json.getAsJsonObject("ingredient"), "count", 1);
-
             int powerCost = JSONUtils.getInt(json, "power_cost", 100);
-
             ItemStackChanceMap map = new ItemStackChanceMap();
             map.setAttemptsAsCount(true);
             for (JsonElement ele : JSONUtils.getJsonArray(json, "result")) {
                 JsonObject obj = ele.getAsJsonObject();
-
                 String a = JSONUtils.getString(obj, "item");
-                int b = JSONUtils.getInt(obj, "count",1);
+                int b = JSONUtils.getInt(obj, "count", 1);
                 float c = JSONUtils.getFloat(obj, "chance", 1);
-
                 ResourceLocation resultLocation = new ResourceLocation(a);
-
                 ItemStack aStack = new ItemStack(Registry.ITEM.getValue(resultLocation)
                         .orElseThrow(() -> new IllegalArgumentException("Item " + a + " does not exist")), b);
-
                 map.add(c, b, aStack);
             }
-
             int duration = JSONUtils.getInt(json, "duration", 1200);
-            
             return new CrushingRecipe(recipeId, ingredient, ingredientCost, map, duration, powerCost);
         }
 

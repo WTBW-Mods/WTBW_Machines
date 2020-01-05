@@ -12,9 +12,9 @@
     {
       "item": "minecraft:cobblestone",
       "count": 1,
-      "chance": 0.25
+      "chance": 0.60
     }
   ],
-  "duration": 100,
-  "power_cost": 250
+  "duration": 60,
+  "power_cost": 200
 }

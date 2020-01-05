@@ -1,12 +1,12 @@
 {
   "type": "wtbw_machines:crushing",
   "ingredient": {
-    "item": "minecraft:gold_ore",
+    "item": "minecraft:emerald_ore",
     "count": 1
   },
   "result": [
     {
-      "item": "wtbw_machines:gold_dust",
+      "item": "minecraft:emerald",
       "count": 2
     },
     {

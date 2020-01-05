@@ -6,7 +6,6 @@ import com.wtbw.mods.lib.tile.util.energy.BaseEnergyStorage;
 import com.wtbw.mods.lib.util.StackUtil;
 import com.wtbw.mods.lib.util.Utilities;
 import com.wtbw.mods.lib.util.nbt.NBTManager;
-import com.wtbw.mods.machines.WTBWMachines;
 import com.wtbw.mods.machines.gui.container.CrusherContainer;
 import com.wtbw.mods.machines.recipe.CrushingRecipe;
 import com.wtbw.mods.machines.recipe.ModRecipes;
@@ -59,7 +58,7 @@ public class PoweredCrusherEntity extends BaseMachineEntity {
                 .registerInt("duration", () -> duration, i -> duration = i)
                 .registerInt("progress", () -> progress, i -> progress = i)
                 .registerInt("powerCost", () -> powerCost, i -> powerCost = i)
-                .registerInt("ingredientCost", () ->  ingredientCost, i ->ingredientCost = i)
+                .registerInt("ingredientCost", () -> ingredientCost, i -> ingredientCost = i)
                 .register("inventory", getInventory())
                 .registerInt("tick", () -> tick, i -> tick = i);
     }
@@ -190,13 +189,13 @@ public class PoweredCrusherEntity extends BaseMachineEntity {
     }
 
     private void doProgress() {
-        progress ++;
+        progress++;
         if (progress >= duration) {
             progress = 0;
-    
-            List<ItemStack> roll  = recipe.getRecipeOutputList();
+
+            List<ItemStack> roll = recipe.getRecipeOutputList();
             StackUtil.insert(roll, inventory, OUTPUT_SLOT);
-            
+
             inventory.getStackInSlot(INPUT_SLOT).shrink(recipe.ingredientCost);
         }
     }
@@ -234,9 +233,8 @@ public class PoweredCrusherEntity extends BaseMachineEntity {
                         }
                     }
                 }
-            }else{
-                if(tick % 4 == 0)
-                {
+            } else {
+                if (tick % 4 == 0) {
                     progress = 0;
                     dirty = true;
                 }
