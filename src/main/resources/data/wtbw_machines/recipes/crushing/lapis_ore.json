@@ -1,7 +1,7 @@
 {
   "type": "wtbw_machines:crushing",
   "ingredient": {
-    "item": "minecraft:lapis_lazuli_ore",
+    "item": "minecraft:lapis_ore",
     "count": 1
   },
   "result": [
@@ -10,7 +10,7 @@
       "count": 3
     },
     {
-      "item": "minecraft:lapis_ore",
+      "item": "minecraft:lapis_lazuli",
       "count": 2,
       "chance": 0.5
     },
