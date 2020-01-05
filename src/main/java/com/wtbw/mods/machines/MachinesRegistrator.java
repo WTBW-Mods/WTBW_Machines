@@ -3,6 +3,7 @@ package com.wtbw.mods.machines;
 import com.wtbw.mods.lib.Registrator;
 import com.wtbw.mods.lib.block.BaseTileBlock;
 import com.wtbw.mods.lib.block.SixWayTileBlock;
+import com.wtbw.mods.lib.item.BaseItem;
 import com.wtbw.mods.machines.block.*;
 import com.wtbw.mods.machines.block.base.BaseMachineBlock;
 import com.wtbw.mods.machines.block.base.TierBlock;
@@ -20,6 +21,7 @@ import com.wtbw.mods.machines.tile.furnace.FurnaceTier;
 import com.wtbw.mods.machines.tile.machine.DryerTileEntity;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.crafting.IRecipeSerializer;
 import net.minecraft.util.ResourceLocation;
@@ -87,7 +89,10 @@ public class MachinesRegistrator extends Registrator
   
   @Override
   protected void registerAllItems()
-  { }
+  {
+    register(new Item(getItemProperties()), "iron_plate");
+    register(new Item(getItemProperties()), "gold_plate");
+  }
  
   @Override
   protected void registerAllContainers()

@@ -39,7 +39,7 @@ public class PoweredCompressorEntity extends BaseMachineEntity {
     private LazyOptional<ItemStackHandler> inventoryCap = LazyOptional.of(this::getInventory);
 
     private CompressingRecipe recipe;
-
+    private int tick;
     private int duration;
     private int progress;
     private int powerCost;
@@ -51,7 +51,8 @@ public class PoweredCompressorEntity extends BaseMachineEntity {
                 .registerInt("duration", () -> duration, i -> duration = i)
                 .registerInt("progress", () -> progress, i -> progress = i)
                 .registerInt("powerCost", () -> powerCost, i -> powerCost = i)
-                .register("inventory", getInventory());
+                .register("inventory", getInventory())
+                .registerInt("tick", () -> tick, i -> tick = i);
     }
 
     @Override
@@ -173,6 +174,9 @@ public class PoweredCompressorEntity extends BaseMachineEntity {
         return powerCost;
     }
 
+    public int getTick() {
+        return tick;
+    }
 
     private void doProgress() {
         progress++;
@@ -201,9 +205,8 @@ public class PoweredCompressorEntity extends BaseMachineEntity {
     public void tick() {
         if (!world.isRemote) {
             boolean dirty = false;
-
+            tick++;
             if (!inventory.getStackInSlot(INPUT_SLOT).isEmpty()) {
-                System.out.println("item in input slot");
                 CompressingRecipe old = recipe;
 
                 if (recipe == null) {
@@ -227,6 +230,12 @@ public class PoweredCompressorEntity extends BaseMachineEntity {
                             storage.extractInternal(powerCost / duration, false);
                         }
                     }
+                }
+            }else{
+                if(tick % 4 == 0)
+                {
+                    progress = 0;
+                    dirty = true;
                 }
             }
             if (dirty) {

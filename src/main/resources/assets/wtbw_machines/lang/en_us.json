@@ -54,5 +54,9 @@
   "block.wtbw_machines.powered_furnace": "Powered Furnace",
   "block.wtbw_machines.powered_crusher": "Powered Crusher",
   "block.wtbw_machines.powered_compressor": "Powered Compressor",
-  "block.wtbw_machines.simple_battery": "Simple Battery"
+  "block.wtbw_machines.simple_battery": "Simple Battery",
+
+
+  "item.wtbw_machines.iron_plate": "Iron Plate",
+  "item.wtbw_machines.gold_plate": "Gold Plate"
 }
