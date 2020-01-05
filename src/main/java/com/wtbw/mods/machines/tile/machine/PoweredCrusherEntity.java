@@ -3,6 +3,7 @@ package com.wtbw.mods.machines.tile.machine;
 import com.wtbw.mods.lib.tile.util.InventoryWrapper;
 import com.wtbw.mods.lib.tile.util.RedstoneMode;
 import com.wtbw.mods.lib.tile.util.energy.BaseEnergyStorage;
+import com.wtbw.mods.lib.util.StackUtil;
 import com.wtbw.mods.lib.util.Utilities;
 import com.wtbw.mods.lib.util.nbt.NBTManager;
 import com.wtbw.mods.machines.gui.container.CrusherContainer;
@@ -48,6 +49,7 @@ public class PoweredCrusherEntity extends BaseMachineEntity {
     private int progress;
     private int powerCost;
     private int ingredientCost;
+    private List<ItemStack> maxRolls;
 
     public PoweredCrusherEntity() {
         super(ModTiles.POWERED_CRUSHER, 100000, 50000, RedstoneMode.IGNORE);
@@ -154,7 +156,7 @@ public class PoweredCrusherEntity extends BaseMachineEntity {
     }
 
     private boolean canOutput() {
-        return canOutput(OUTPUT_SLOT, inventory, recipe);
+        return (StackUtil.canInsert(inventory, maxRolls, true));
     }
 
     @Override
@@ -186,71 +188,58 @@ public class PoweredCrusherEntity extends BaseMachineEntity {
         return tick;
     }
 
-//    private void doProgress() {
-//        progress++;
-//        if (progress >= duration) {
-//            progress = 0;
-//
-//            ItemStack input = inventory.getStackInSlot(INPUT_SLOT);
-//            input.shrink(ingredientCost);
-//            inventory.setStackInSlot(INPUT_SLOT, input);
-//
-//            ItemStack output = inventory.getStackInSlot(OUTPUT_SLOT);
-//            if (!output.isEmpty()) {
-//                if (output.getItem() == recipe.output.getItem()) {
-//                    output.grow(recipe.output.getCount());
-//                }
-//            } else {
-//                output = recipe.getRecipeOutput().copy();
-//            }
-//
-//            inventory.setStackInSlot(OUTPUT_SLOT, output);
-//        }
-//    }
+    private void doProgress() {
+        progress++;
+        if (progress >= duration) {
+            progress = 0;
+
+        }
+    }
 
 
     @Override
     public void tick() {
-//        if (!world.isRemote) {
-//            boolean dirty = false;
-//            tick++;
-//            if (!inventory.getStackInSlot(INPUT_SLOT).isEmpty()) {
-//                CrushingRecipe old = recipe;
-//                if (recipe == null) {
-//                    recipe = getRecipe();
-//                } else {
-//                    if (!recipe.ingredient.test(inventory.getStackInSlot(0))) {
-//                        recipe = getRecipe();
-//                        dirty = true;
-//                    }
-//                }
-//                if (recipe != null) {
-//                    duration = recipe.duration;
-//                    powerCost = recipe.powerCost;
-//                    ingredientCost = recipe.ingredientCost;
-//                    if (recipe != old) {
-//                        progress = 0;
-//                        dirty = true;
-//                    }
-//                    if (canOutput()) {
-//                        if (inventory.getStackInSlot(0).getCount() >= ingredientCost) {
-//                            if (storage.getEnergyStored() >= powerCost) {
-//                                doProgress();
-//                                storage.extractInternal(powerCost / duration, false);
-//                            }
-//                        }
-//                    }
-//                }
-//            }else{
-//                if(tick % 4 == 0)
-//                {
-//                    progress = 0;
-//                    dirty = true;
-//                }
-//            }
-//            if (dirty) {
-//                markDirty();
-//            }
-//        }
+        if (!world.isRemote) {
+            boolean dirty = false;
+            tick++;
+            if (!inventory.getStackInSlot(INPUT_SLOT).isEmpty()) {
+                CrushingRecipe old = recipe;
+                if (recipe == null) {
+                    recipe = getRecipe();
+                } else {
+                    if (!recipe.ingredient.test(inventory.getStackInSlot(0))) {
+                        recipe = getRecipe();
+                        dirty = true;
+                    }
+                }
+                if (recipe != null) {
+                    duration = recipe.duration;
+                    powerCost = recipe.powerCost;
+                    ingredientCost = recipe.ingredientCost;
+                    maxRolls = recipe.getRecipeOutputMaxList();
+                    if (recipe != old) {
+                        progress = 0;
+                        dirty = true;
+                    }
+                    if (canOutput()) {
+                        if (inventory.getStackInSlot(0).getCount() >= ingredientCost) {
+                            if (storage.getEnergyStored() >= powerCost) {
+                                doProgress();
+                                storage.extractInternal(powerCost / duration, false);
+                            }
+                        }
+                    }
+                }
+            }else{
+                if(tick % 4 == 0)
+                {
+                    progress = 0;
+                    dirty = true;
+                }
+            }
+            if (dirty) {
+                markDirty();
+            }
+        }
     }
 }

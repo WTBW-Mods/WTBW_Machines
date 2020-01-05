@@ -1,13 +1,10 @@
 package com.wtbw.mods.machines.recipe;
 
-import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
-import com.wtbw.mods.lib.util.ChanceMap;
-import com.wtbw.mods.lib.util.ItemStackChanceMap;
+import com.wtbw.mods.lib.util.rand.ItemStackChanceMap;
 import com.wtbw.mods.machines.WTBWMachines;
 import net.minecraft.inventory.IInventory;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.IRecipe;
 import net.minecraft.item.crafting.IRecipeSerializer;
@@ -21,6 +18,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.registries.ForgeRegistryEntry;
 
 import javax.annotation.Nullable;
+import java.util.List;
 
 /*
   @author: Sunekaer
@@ -64,6 +62,13 @@ public class CrushingRecipe implements IRecipe<IInventory> {
         return ItemStack.EMPTY;
     }
 
+    public List<ItemStack> getRecipeOutputList(){
+        return output.getRoll();
+    }
+
+    public List<ItemStack> getRecipeOutputMaxList(){
+        return output.getMaxRoll();
+    }
     @Override
     public ResourceLocation getId() {
         return location;

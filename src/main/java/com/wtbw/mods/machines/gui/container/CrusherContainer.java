@@ -22,11 +22,11 @@ public class CrusherContainer extends BaseTileContainer<PoweredCrusherEntity> {
 
         ItemStackHandler handler = tileEntity.getInventory();
 
-        addInputSlot(handler, PoweredCrusherEntity.INPUT_SLOT, 46, 30);
+        addInputSlot(handler, PoweredCrusherEntity.INPUT_SLOT, 175 / 2 - 6, 20);
 
-        addSlot(handler, PoweredCrusherEntity.OUTPUT_SLOT, 146, 30);
-        addSlot(handler, PoweredCrusherEntity.OUTPUT_SLOT2, 162, 30);
-        addSlot(handler, PoweredCrusherEntity.OUTPUT_SLOT3, 146, 46);
+        addSlot(handler, PoweredCrusherEntity.OUTPUT_SLOT, 175 / 2 - 24, 52);
+        addSlot(handler, PoweredCrusherEntity.OUTPUT_SLOT2, 175 / 2 - 6, 52);
+        addSlot(handler, PoweredCrusherEntity.OUTPUT_SLOT3, 175 / 2 + 12, 52);
 
         layoutPlayerInventorySlots();
     }

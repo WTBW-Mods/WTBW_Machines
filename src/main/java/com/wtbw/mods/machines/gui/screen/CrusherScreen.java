@@ -33,8 +33,8 @@ public class CrusherScreen extends BaseContainerScreen<CrusherContainer>
     super.init();
     PoweredCrusherEntity tileEntity = container.tileEntity;
     BaseEnergyStorage storage = tileEntity.getStorage();
-    progressBar = new ProgressBar(guiLeft + 69, guiTop + 35, 70, 3, tileEntity::getDuration, tileEntity::getProgress)
-      .setColor(0xffffffff).setFillDirection(ProgressBar.FillDirection.LEFT_RIGHT).setBorder(false);
+    progressBar = new ProgressBar(guiLeft + 175 / 2 -1 , guiTop + 39, 6, 10, tileEntity::getDuration, tileEntity::getProgress)
+      .setColor(0xffffffff).setFillDirection(ProgressBar.FillDirection.TOP_BOTTOM).setBorder(false);
     energyBar = new EnergyBar(storage, guiLeft + 12, guiTop + 15);
     addTooltipProvider(energyBar);
     redstoneButton = new RedstoneButton<>(guiLeft - 20, guiTop + 10, tileEntity);
@@ -62,7 +62,7 @@ public class CrusherScreen extends BaseContainerScreen<CrusherContainer>
     
     progressBar.draw();
     energyBar.draw();
-
+    fill(guiLeft + 175 / 2, guiTop + 69, guiLeft + 175 / 2 ,guiTop + 70 ,0xffffffff);
 //    PoweredCompressorEntity tileEntity = container.tileEntity;
   
 //    drawString(font,"Current heat " + tileEntity.getHeat(), guiLeft + 50, guiTop + 50, 0xffffffff);
