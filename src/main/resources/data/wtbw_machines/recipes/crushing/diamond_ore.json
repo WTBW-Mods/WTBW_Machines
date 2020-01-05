@@ -7,7 +7,27 @@
   "result": [
     {
       "item": "minecraft:diamond",
-      "count": 3
+      "count": 2
+    },
+    {
+      "item": "minecraft:diamond",
+      "count": 1,
+      "chance": 0.5
+    },
+    {
+      "item": "minecraft:diamond",
+      "count": 1,
+      "chance": 0.25
+    },
+    {
+      "item": "wtbw_machines:diamond_dust",
+      "count": 1,
+      "chance": 0.1
+    },
+    {
+      "item": "wtbw_machines:diamond_dust",
+      "count": 1,
+      "chance": 0.05
     },
     {
       "item": "minecraft:cobblestone",

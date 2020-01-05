@@ -7,7 +7,22 @@
   "result": [
     {
       "item": "minecraft:lapis",
-      "count": 4
+      "count": 3
+    },
+    {
+      "item": "minecraft:lapis",
+      "count": 2,
+      "chance": 0.5
+    },
+    {
+      "item": "minecraft:lapis",
+      "count": 2,
+      "chance": 0.25
+    },
+    {
+      "item": "minecraft:lapis",
+      "count": 1,
+      "chance": 0.1
     },
     {
       "item": "minecraft:cobblestone",

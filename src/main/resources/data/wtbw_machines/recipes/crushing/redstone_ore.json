@@ -10,6 +10,21 @@
       "count": 4
     },
     {
+      "item": "minecraft:redstone",
+      "count": 2,
+      "chance": 0.75
+    },
+    {
+      "item": "minecraft:redstone",
+      "count": 1,
+      "chance": 0.5
+    },
+    {
+      "item": "minecraft:redstone",
+      "count": 1,
+      "chance": 0.25
+    },
+    {
       "item": "minecraft:cobblestone",
       "count": 1,
       "chance": 0.60

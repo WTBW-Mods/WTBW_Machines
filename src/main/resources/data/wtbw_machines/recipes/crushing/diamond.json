@@ -1,0 +1,15 @@
+{
+  "type": "wtbw_machines:crushing",
+  "ingredient": {
+    "item": "minecraft:diamond",
+    "count": 1
+  },
+  "result": [
+    {
+      "item": "wtbw_machines:diamond_dust",
+      "count": 1
+    }
+  ],
+  "duration": 60,
+  "power_cost": 200
+}

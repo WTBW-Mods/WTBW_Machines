@@ -10,6 +10,26 @@
       "count": 3
     },
     {
+      "item": "minecraft:quartz",
+      "count": 2,
+      "chance": 0.5
+    },
+    {
+      "item": "minecraft:quartz",
+      "count": 1,
+      "chance": 0.25
+    },
+    {
+      "item": "wtbw_machines:quartz_dust",
+      "count": 1,
+      "chance": 0.1
+    },
+    {
+      "item": "wtbw_machines:quartz_dust",
+      "count": 1,
+      "chance": 0.05
+    },
+    {
       "item": "minecraft:cobblestone",
       "count": 1,
       "chance": 0.60

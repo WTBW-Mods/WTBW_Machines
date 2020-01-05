@@ -100,6 +100,9 @@ public class MachinesRegistrator extends Registrator
     register(new Item(getItemProperties()), "ender_pearl_dust");
     register(new Item(getItemProperties()), "charcoal_dust");
     register(new Item(getItemProperties()), "coal_dust");
+    register(new Item(getItemProperties()), "emerald_dust");
+    register(new Item(getItemProperties()), "diamond_dust");
+    register(new Item(getItemProperties()), "quartz_dust");
   }
  
   @Override

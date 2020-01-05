@@ -1,0 +1,15 @@
+{
+  "type": "wtbw_machines:crushing",
+  "ingredient": {
+    "item": "minecraft:obsidian",
+    "count": 1
+  },
+  "result": [
+    {
+      "item": "wtbw_machines:obsidian_dust",
+      "count": 4
+    }
+  ],
+  "duration": 200,
+  "power_cost": 500
+}
