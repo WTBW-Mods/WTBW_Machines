@@ -1,7 +1,7 @@
-package com.wtbw.mods.machines.tile;
+package com.wtbw.mods.machines.tile.machine;
 
+import com.wtbw.mods.machines.tile.ModTiles;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.tileentity.TileEntityType;
 
 /*
   @author: Sunekaer

@@ -3,7 +3,6 @@ package com.wtbw.mods.machines;
 import com.wtbw.mods.lib.Registrator;
 import com.wtbw.mods.lib.block.BaseTileBlock;
 import com.wtbw.mods.lib.block.SixWayTileBlock;
-import com.wtbw.mods.lib.item.BaseItem;
 import com.wtbw.mods.machines.block.*;
 import com.wtbw.mods.machines.block.base.BaseMachineBlock;
 import com.wtbw.mods.machines.block.base.TierBlock;
@@ -14,18 +13,20 @@ import com.wtbw.mods.machines.block.spikes.SpikesBlock;
 import com.wtbw.mods.machines.block.spikes.SpikesType;
 import com.wtbw.mods.machines.gui.container.*;
 import com.wtbw.mods.machines.recipe.CompressingRecipe;
+import com.wtbw.mods.machines.recipe.CrushingRecipe;
 import com.wtbw.mods.machines.recipe.DryerRecipe;
 import com.wtbw.mods.machines.recipe.ModRecipes;
 import com.wtbw.mods.machines.tile.*;
 import com.wtbw.mods.machines.tile.furnace.FurnaceTier;
 import com.wtbw.mods.machines.tile.machine.DryerTileEntity;
+import com.wtbw.mods.machines.tile.machine.PoweredCompressorEntity;
+import com.wtbw.mods.machines.tile.machine.PoweredCrusherEntity;
+import com.wtbw.mods.machines.tile.machine.PoweredFurnaceEntity;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.crafting.IRecipeSerializer;
-import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.registry.Registry;
 import net.minecraftforge.event.RegistryEvent;
 
 /*
@@ -107,6 +108,7 @@ public class MachinesRegistrator extends Registrator
     registerContainer(SolarPanelContainer::new, "solar_panel");
     registerContainer(BatteryContainer::new, "battery");
     registerContainer(CompressorContainer::new, "compressor");
+    registerContainer(CrusherContainer::new, "crusher");
   }
   
   public void registerRecipes(final RegistryEvent.Register<IRecipeSerializer<?>> event)
@@ -115,5 +117,6 @@ public class MachinesRegistrator extends Registrator
     
     event.getRegistry().register(DryerRecipe.SERIALIZER);
     event.getRegistry().register(CompressingRecipe.SERIALIZER);
+    event.getRegistry().register(CrushingRecipe.SERIALIZER);
   }
 }

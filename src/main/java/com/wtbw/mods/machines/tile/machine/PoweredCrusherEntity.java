@@ -1,13 +1,14 @@
-package com.wtbw.mods.machines.tile;
+package com.wtbw.mods.machines.tile.machine;
 
 import com.wtbw.mods.lib.tile.util.InventoryWrapper;
 import com.wtbw.mods.lib.tile.util.RedstoneMode;
 import com.wtbw.mods.lib.tile.util.energy.BaseEnergyStorage;
 import com.wtbw.mods.lib.util.Utilities;
 import com.wtbw.mods.lib.util.nbt.NBTManager;
-import com.wtbw.mods.machines.gui.container.CompressorContainer;
-import com.wtbw.mods.machines.recipe.CompressingRecipe;
+import com.wtbw.mods.machines.gui.container.CrusherContainer;
+import com.wtbw.mods.machines.recipe.CrushingRecipe;
 import com.wtbw.mods.machines.recipe.ModRecipes;
+import com.wtbw.mods.machines.tile.ModTiles;
 import com.wtbw.mods.machines.tile.base.BaseMachineEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
@@ -28,9 +29,12 @@ import java.util.List;
 /*
   @author: Sunekaer
 */
-public class PoweredCompressorEntity extends BaseMachineEntity {
+public class PoweredCrusherEntity extends BaseMachineEntity {
     public static final int INPUT_SLOT = 0;
     public static final int OUTPUT_SLOT = 1;
+    public static final int OUTPUT_SLOT2 = 2;
+    public static final int OUTPUT_SLOT3 = 3;
+
 
     private ItemStackHandler inventory;
     private InventoryWrapper inventoryWrapper;
@@ -38,15 +42,15 @@ public class PoweredCompressorEntity extends BaseMachineEntity {
     private LazyOptional<BaseEnergyStorage> storageCap = LazyOptional.of(this::getStorage);
     private LazyOptional<ItemStackHandler> inventoryCap = LazyOptional.of(this::getInventory);
 
-    private CompressingRecipe recipe;
+    private CrushingRecipe recipe;
     private int tick;
     private int duration;
     private int progress;
     private int powerCost;
     private int ingredientCost;
 
-    public PoweredCompressorEntity() {
-        super(ModTiles.POWERED_COMPRESSOR, 100000, 50000, RedstoneMode.IGNORE);
+    public PoweredCrusherEntity() {
+        super(ModTiles.POWERED_CRUSHER, 100000, 50000, RedstoneMode.IGNORE);
 
         manager
                 .registerInt("duration", () -> duration, i -> duration = i)
@@ -65,7 +69,7 @@ public class PoweredCompressorEntity extends BaseMachineEntity {
     @Nullable
     @Override
     public Container createMenu(int id, PlayerInventory inventory, PlayerEntity player) {
-        return new CompressorContainer(id, world, pos, inventory);
+        return new CrusherContainer(id, world, pos, inventory);
     }
 
     @Override
@@ -76,7 +80,7 @@ public class PoweredCompressorEntity extends BaseMachineEntity {
     @Nonnull
     public ItemStackHandler getInventory() {
         if (inventory == null) {
-            inventory = new ItemStackHandler(2) {
+            inventory = new ItemStackHandler(4) {
                 @Nonnull
                 @Override
                 public ItemStack insertItem(int slot, @Nonnull ItemStack stack, boolean simulate) {
@@ -90,10 +94,9 @@ public class PoweredCompressorEntity extends BaseMachineEntity {
                 @Nonnull
                 @Override
                 public ItemStack extractItem(int slot, int amount, boolean simulate) {
-                    if (slot == OUTPUT_SLOT) {
+                    if (slot == OUTPUT_SLOT || slot == OUTPUT_SLOT2 || slot == OUTPUT_SLOT3) {
                         return super.extractItem(slot, amount, simulate);
                     }
-
                     return ItemStack.EMPTY;
                 }
 
@@ -142,12 +145,12 @@ public class PoweredCompressorEntity extends BaseMachineEntity {
         return !stack.isEmpty() && getRecipe(getFakeInventory()) != null;
     }
 
-    private CompressingRecipe getRecipe() {
+    private CrushingRecipe getRecipe() {
         return getRecipe(getInventoryWrapper());
     }
 
-    private CompressingRecipe getRecipe(IInventory inventory) {
-        return Utilities.getRecipe(world, ModRecipes.COMPRESSING, inventory);
+    private CrushingRecipe getRecipe(IInventory inventory) {
+        return Utilities.getRecipe(world, ModRecipes.CRUSHING, inventory);
     }
 
     private boolean canOutput() {
@@ -183,71 +186,71 @@ public class PoweredCompressorEntity extends BaseMachineEntity {
         return tick;
     }
 
-    private void doProgress() {
-        progress++;
-        if (progress >= duration) {
-            progress = 0;
-
-            ItemStack input = inventory.getStackInSlot(INPUT_SLOT);
-            input.shrink(ingredientCost);
-            inventory.setStackInSlot(INPUT_SLOT, input);
-
-            ItemStack output = inventory.getStackInSlot(OUTPUT_SLOT);
-            if (!output.isEmpty()) {
-                if (output.getItem() == recipe.output.getItem()) {
-                    output.grow(recipe.output.getCount());
-                }
-            } else {
-                output = recipe.getRecipeOutput().copy();
-            }
-
-            inventory.setStackInSlot(OUTPUT_SLOT, output);
-        }
-    }
+//    private void doProgress() {
+//        progress++;
+//        if (progress >= duration) {
+//            progress = 0;
+//
+//            ItemStack input = inventory.getStackInSlot(INPUT_SLOT);
+//            input.shrink(ingredientCost);
+//            inventory.setStackInSlot(INPUT_SLOT, input);
+//
+//            ItemStack output = inventory.getStackInSlot(OUTPUT_SLOT);
+//            if (!output.isEmpty()) {
+//                if (output.getItem() == recipe.output.getItem()) {
+//                    output.grow(recipe.output.getCount());
+//                }
+//            } else {
+//                output = recipe.getRecipeOutput().copy();
+//            }
+//
+//            inventory.setStackInSlot(OUTPUT_SLOT, output);
+//        }
+//    }
 
 
     @Override
     public void tick() {
-        if (!world.isRemote) {
-            boolean dirty = false;
-            tick++;
-            if (!inventory.getStackInSlot(INPUT_SLOT).isEmpty()) {
-                CompressingRecipe old = recipe;
-                if (recipe == null) {
-                    recipe = getRecipe();
-                } else {
-                    if (!recipe.ingredient.test(inventory.getStackInSlot(0))) {
-                        recipe = getRecipe();
-                        dirty = true;
-                    }
-                }
-                if (recipe != null) {
-                    duration = recipe.duration;
-                    powerCost = recipe.powerCost;
-                    ingredientCost = recipe.ingredientCost;
-                    if (recipe != old) {
-                        progress = 0;
-                        dirty = true;
-                    }
-                    if (canOutput()) {
-                        if (inventory.getStackInSlot(0).getCount() >= ingredientCost) {
-                            if (storage.getEnergyStored() >= powerCost) {
-                                doProgress();
-                                storage.extractInternal(powerCost / duration, false);
-                            }
-                        }
-                    }
-                }
-            }else{
-                if(tick % 4 == 0)
-                {
-                    progress = 0;
-                    dirty = true;
-                }
-            }
-            if (dirty) {
-                markDirty();
-            }
-        }
+//        if (!world.isRemote) {
+//            boolean dirty = false;
+//            tick++;
+//            if (!inventory.getStackInSlot(INPUT_SLOT).isEmpty()) {
+//                CrushingRecipe old = recipe;
+//                if (recipe == null) {
+//                    recipe = getRecipe();
+//                } else {
+//                    if (!recipe.ingredient.test(inventory.getStackInSlot(0))) {
+//                        recipe = getRecipe();
+//                        dirty = true;
+//                    }
+//                }
+//                if (recipe != null) {
+//                    duration = recipe.duration;
+//                    powerCost = recipe.powerCost;
+//                    ingredientCost = recipe.ingredientCost;
+//                    if (recipe != old) {
+//                        progress = 0;
+//                        dirty = true;
+//                    }
+//                    if (canOutput()) {
+//                        if (inventory.getStackInSlot(0).getCount() >= ingredientCost) {
+//                            if (storage.getEnergyStored() >= powerCost) {
+//                                doProgress();
+//                                storage.extractInternal(powerCost / duration, false);
+//                            }
+//                        }
+//                    }
+//                }
+//            }else{
+//                if(tick % 4 == 0)
+//                {
+//                    progress = 0;
+//                    dirty = true;
+//                }
+//            }
+//            if (dirty) {
+//                markDirty();
+//            }
+//        }
     }
 }

@@ -6,21 +6,23 @@ import com.wtbw.mods.lib.gui.util.ProgressBar;
 import com.wtbw.mods.lib.gui.util.RedstoneButton;
 import com.wtbw.mods.lib.tile.util.energy.BaseEnergyStorage;
 import com.wtbw.mods.machines.gui.container.CompressorContainer;
+import com.wtbw.mods.machines.gui.container.CrusherContainer;
 import com.wtbw.mods.machines.tile.machine.PoweredCompressorEntity;
+import com.wtbw.mods.machines.tile.machine.PoweredCrusherEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.util.text.ITextComponent;
 
 /*
   @author: Sunekaer
 */
-public class CompressorScreen extends BaseContainerScreen<CompressorContainer>
+public class CrusherScreen extends BaseContainerScreen<CrusherContainer>
 {
   private ProgressBar progressBar;
   private EnergyBar energyBar;
 
-  private RedstoneButton<PoweredCompressorEntity> redstoneButton;
+  private RedstoneButton<PoweredCrusherEntity> redstoneButton;
 
-  public CompressorScreen(CompressorContainer container, PlayerInventory inventory, ITextComponent title)
+  public CrusherScreen(CrusherContainer container, PlayerInventory inventory, ITextComponent title)
   {
     super(container, inventory, title);
   }
@@ -29,7 +31,7 @@ public class CompressorScreen extends BaseContainerScreen<CompressorContainer>
   protected void init()
   {
     super.init();
-    PoweredCompressorEntity tileEntity = container.tileEntity;
+    PoweredCrusherEntity tileEntity = container.tileEntity;
     BaseEnergyStorage storage = tileEntity.getStorage();
     progressBar = new ProgressBar(guiLeft + 69, guiTop + 35, 70, 3, tileEntity::getDuration, tileEntity::getProgress)
       .setColor(0xffffffff).setFillDirection(ProgressBar.FillDirection.LEFT_RIGHT).setBorder(false);

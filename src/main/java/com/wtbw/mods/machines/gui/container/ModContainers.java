@@ -20,4 +20,5 @@ public class ModContainers
   public static final ContainerType<SolarPanelContainer> SOLAR_PANEL = null;
   public static final ContainerType<BatteryContainer> BATTERY = null;
   public static final ContainerType<CompressorContainer> COMPRESSOR = null;
+  public static final ContainerType<CrusherContainer> CRUSHER = null;
 }

@@ -17,6 +17,7 @@ public class ModRecipes
   
   public static final IRecipeType<DryerRecipe> DRYING = register("drying");
   public static final IRecipeType<CompressingRecipe> COMPRESSING = register("compressing");
+  public static final IRecipeType<CrushingRecipe> CRUSHING = register("crushing");
 
   private static <T extends IRecipe<?>> IRecipeType<T> register(final String key)
   {
