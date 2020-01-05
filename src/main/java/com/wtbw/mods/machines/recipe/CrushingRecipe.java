@@ -32,6 +32,8 @@ public class CrushingRecipe implements IRecipe<IInventory> {
     public final int duration;
     public final int powerCost;
     public final int ingredientCost;
+    
+    private List<ItemStack> maxOutput;
 
     public CrushingRecipe(ResourceLocation location, Ingredient ingredient, int ingredientCost, ItemStackChanceMap output, int duration, int powerCost) {
         this.location = location;
@@ -40,6 +42,8 @@ public class CrushingRecipe implements IRecipe<IInventory> {
         this.duration = duration;
         this.powerCost = powerCost;
         this.ingredientCost = ingredientCost;
+        
+        maxOutput = output.getMaxRoll();
     }
 
     @Override
@@ -67,7 +71,7 @@ public class CrushingRecipe implements IRecipe<IInventory> {
     }
 
     public List<ItemStack> getRecipeOutputMaxList(){
-        return output.getMaxRoll();
+        return maxOutput;
     }
     @Override
     public ResourceLocation getId() {
@@ -99,8 +103,7 @@ public class CrushingRecipe implements IRecipe<IInventory> {
             int powerCost = JSONUtils.getInt(json, "power_cost", 100);
 
             ItemStackChanceMap map = new ItemStackChanceMap();
-            for (JsonElement ele : JSONUtils.getJsonArray(json, "result")
-                 ) {
+            for (JsonElement ele : JSONUtils.getJsonArray(json, "result")) {
                 JsonObject obj = ele.getAsJsonObject();
 
                 String a = JSONUtils.getString(obj, "item");
@@ -116,6 +119,7 @@ public class CrushingRecipe implements IRecipe<IInventory> {
             }
 
             int duration = JSONUtils.getInt(json, "duration", 1200);
+            
             return new CrushingRecipe(recipeId, ingredient, ingredientCost, map, duration, powerCost);
         }
 
