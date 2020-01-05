@@ -103,6 +103,7 @@ public class CrushingRecipe implements IRecipe<IInventory> {
             int powerCost = JSONUtils.getInt(json, "power_cost", 100);
 
             ItemStackChanceMap map = new ItemStackChanceMap();
+            map.setAttemptsAsCount(true);
             for (JsonElement ele : JSONUtils.getJsonArray(json, "result")) {
                 JsonObject obj = ele.getAsJsonObject();
 

@@ -1,12 +1,12 @@
 {
   "type": "wtbw_machines:crushing",
   "ingredient": {
-    "item": "minecraft:iron_ore",
+    "item": "minecraft:gold_ore",
     "count": 1
   },
   "result": [
     {
-      "item": "wtbw_machines:iron_dust",
+      "item": "wtbw_machines:gold_dust",
       "count": 2
     },
     {

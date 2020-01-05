@@ -1,18 +1,13 @@
 {
   "type": "wtbw_machines:crushing",
   "ingredient": {
-    "item": "minecraft:iron_ore",
+    "item": "minecraft:iron_ingot",
     "count": 1
   },
   "result": [
     {
       "item": "wtbw_machines:iron_dust",
-      "count": 2
-    },
-    {
-      "item": "minecraft:cobblestone",
-      "count": 1,
-      "chance": 0.25
+      "count": 1
     }
   ],
   "duration": 100,
