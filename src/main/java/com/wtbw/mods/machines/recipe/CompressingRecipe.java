@@ -29,13 +29,15 @@ public class CompressingRecipe implements IRecipe<IInventory> {
 
     public final int duration;
     public final int powerCost;
+    public final int ingredientCost;
 
-    public CompressingRecipe(ResourceLocation location, Ingredient ingredient, ItemStack output, int duration, int powerCost) {
+    public CompressingRecipe(ResourceLocation location, Ingredient ingredient, int ingredientCost, ItemStack output, int duration, int powerCost) {
         this.location = location;
         this.ingredient = ingredient;
         this.output = output;
         this.duration = duration;
         this.powerCost = powerCost;
+        this.ingredientCost = ingredientCost;
     }
 
     @Override
@@ -83,6 +85,7 @@ public class CompressingRecipe implements IRecipe<IInventory> {
         public CompressingRecipe read(ResourceLocation recipeId, JsonObject json) {
             JsonElement element = (JSONUtils.isJsonArray(json, "ingredient") ? JSONUtils.getJsonArray(json, "ingredient") : JSONUtils.getJsonObject(json, "ingredient"));
             Ingredient ingredient = Ingredient.deserialize(element);
+            int ingredientCost = JSONUtils.getInt(json.getAsJsonObject("ingredient"), "count", 1);
             String result = JSONUtils.getString(json, "result");
             int count = JSONUtils.getInt(json, "count", 1);
             int powerCost = JSONUtils.getInt(json, "power_cost", 100);
@@ -93,22 +96,24 @@ public class CompressingRecipe implements IRecipe<IInventory> {
                     .orElseThrow(() -> new IllegalArgumentException("Item " + result + " does not exist")), count);
 
             int duration = JSONUtils.getInt(json, "duration", 1200);
-            return new CompressingRecipe(recipeId, ingredient, resultStack, duration, powerCost);
+            return new CompressingRecipe(recipeId, ingredient, ingredientCost, resultStack, duration, powerCost);
         }
 
         @Nullable
         @Override
         public CompressingRecipe read(ResourceLocation recipeId, PacketBuffer buffer) {
             Ingredient ingredient = Ingredient.read(buffer);
+            int ingredientCost = buffer.readInt();
             ItemStack output = buffer.readItemStack();
             int duration = buffer.readInt();
             int powerCost = buffer.readInt();
-            return new CompressingRecipe(recipeId, ingredient, output, duration, powerCost);
+            return new CompressingRecipe(recipeId, ingredient, ingredientCost, output, duration, powerCost);
         }
 
         @Override
         public void write(PacketBuffer buffer, CompressingRecipe recipe) {
             recipe.ingredient.write(buffer);
+            buffer.writeInt(recipe.ingredientCost);
             buffer.writeItemStack(recipe.output);
             buffer.writeInt(recipe.duration);
             buffer.writeInt(recipe.powerCost);
