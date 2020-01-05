@@ -43,6 +43,7 @@ public class PoweredCompressorEntity extends BaseMachineEntity {
     private int duration;
     private int progress;
     private int powerCost;
+    private int ingredientCost;
 
     public PoweredCompressorEntity() {
         super(ModTiles.POWERED_COMPRESSOR, 100000, 50000, RedstoneMode.IGNORE);
@@ -51,6 +52,7 @@ public class PoweredCompressorEntity extends BaseMachineEntity {
                 .registerInt("duration", () -> duration, i -> duration = i)
                 .registerInt("progress", () -> progress, i -> progress = i)
                 .registerInt("powerCost", () -> powerCost, i -> powerCost = i)
+                .registerInt("ingredientCost", () ->  ingredientCost, i ->ingredientCost = i)
                 .register("inventory", getInventory())
                 .registerInt("tick", () -> tick, i -> tick = i);
     }
@@ -136,7 +138,6 @@ public class PoweredCompressorEntity extends BaseMachineEntity {
     }
 
     protected boolean validRecipeInput(ItemStack stack) {
-        // todo: only accept recipe valid items
         getFakeInventory().setInventorySlotContents(0, stack);
         return !stack.isEmpty() && getRecipe(getFakeInventory()) != null;
     }
@@ -174,6 +175,10 @@ public class PoweredCompressorEntity extends BaseMachineEntity {
         return powerCost;
     }
 
+    public int getIngredientCost() {
+        return ingredientCost;
+    }
+
     public int getTick() {
         return tick;
     }
@@ -184,7 +189,7 @@ public class PoweredCompressorEntity extends BaseMachineEntity {
             progress = 0;
 
             ItemStack input = inventory.getStackInSlot(INPUT_SLOT);
-            input.shrink(1);
+            input.shrink(ingredientCost);
             inventory.setStackInSlot(INPUT_SLOT, input);
 
             ItemStack output = inventory.getStackInSlot(OUTPUT_SLOT);
@@ -208,7 +213,6 @@ public class PoweredCompressorEntity extends BaseMachineEntity {
             tick++;
             if (!inventory.getStackInSlot(INPUT_SLOT).isEmpty()) {
                 CompressingRecipe old = recipe;
-
                 if (recipe == null) {
                     recipe = getRecipe();
                 } else {
@@ -220,14 +224,17 @@ public class PoweredCompressorEntity extends BaseMachineEntity {
                 if (recipe != null) {
                     duration = recipe.duration;
                     powerCost = recipe.powerCost;
+                    ingredientCost = recipe.ingredientCost;
                     if (recipe != old) {
                         progress = 0;
                         dirty = true;
                     }
                     if (canOutput()) {
-                        if (storage.getEnergyStored() >= powerCost) {
-                            doProgress();
-                            storage.extractInternal(powerCost / duration, false);
+                        if (inventory.getStackInSlot(0).getCount() >= ingredientCost) {
+                            if (storage.getEnergyStored() >= powerCost) {
+                                doProgress();
+                                storage.extractInternal(powerCost / duration, false);
+                            }
                         }
                     }
                 }
