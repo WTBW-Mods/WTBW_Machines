@@ -322,7 +322,6 @@ public class DryerTileEntity extends BaseMachineEntity
       if (storage.getEnergyStored() >= powerUsage)
       {
         storage.extractInternal(powerUsage, false);
-
       }
       else
       {

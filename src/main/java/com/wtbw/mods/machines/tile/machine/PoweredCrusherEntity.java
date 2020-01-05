@@ -6,6 +6,7 @@ import com.wtbw.mods.lib.tile.util.energy.BaseEnergyStorage;
 import com.wtbw.mods.lib.util.StackUtil;
 import com.wtbw.mods.lib.util.Utilities;
 import com.wtbw.mods.lib.util.nbt.NBTManager;
+import com.wtbw.mods.machines.block.base.BaseMachineBlock;
 import com.wtbw.mods.machines.gui.container.CrusherContainer;
 import com.wtbw.mods.machines.recipe.CrushingRecipe;
 import com.wtbw.mods.machines.recipe.ModRecipes;
@@ -147,6 +148,11 @@ public class PoweredCrusherEntity extends BaseMachineEntity {
         return !stack.isEmpty() && getRecipe(getFakeInventory()) != null;
     }
 
+    protected void setOn(boolean on)
+    {
+        world.setBlockState(pos, getBlockState().with(BaseMachineBlock.ON, on), 3);
+    }
+
     private CrushingRecipe getRecipe() {
         return getRecipe(getInventoryWrapper());
     }
@@ -205,6 +211,7 @@ public class PoweredCrusherEntity extends BaseMachineEntity {
     public void tick() {
         if (!world.isRemote) {
             boolean dirty = false;
+            boolean on = false;
             tick++;
             if (!inventory.getStackInSlot(INPUT_SLOT).isEmpty()) {
                 CrushingRecipe old = recipe;
@@ -223,11 +230,13 @@ public class PoweredCrusherEntity extends BaseMachineEntity {
                     maxRolls = recipe.getRecipeOutputMaxList();
                     if (recipe != old) {
                         progress = 0;
+                        on = false;
                         dirty = true;
                     }
                     if (inventory.getStackInSlot(INPUT_SLOT).getCount() >= ingredientCost) {
                         if (storage.getEnergyStored() >= powerCost && canOutput()) {
                             doProgress();
+                            on = true;
                             storage.extractInternal(powerCost / duration, false);
                             dirty = true;
                         }
@@ -236,9 +245,19 @@ public class PoweredCrusherEntity extends BaseMachineEntity {
             } else {
                 if (tick % 4 == 0) {
                     progress = 0;
+                    on = false;
                     dirty = true;
                 }
             }
+
+            if (on) {
+                setOn(true);
+                dirty = true;
+            } else {
+                setOn(false);
+                dirty = true;
+            }
+
             if (dirty) {
                 markDirty();
             }
