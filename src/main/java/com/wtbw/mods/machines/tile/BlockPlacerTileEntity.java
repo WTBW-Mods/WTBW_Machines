@@ -8,7 +8,7 @@ import com.wtbw.mods.lib.tile.util.IRedstoneControlled;
 import com.wtbw.mods.lib.tile.util.RedstoneControl;
 import com.wtbw.mods.lib.tile.util.RedstoneMode;
 import com.wtbw.mods.lib.util.PlayEvent;
-import com.wtbw.mods.lib.util.RandomUtil;
+import com.wtbw.mods.lib.util.rand.RandomUtil;
 import com.wtbw.mods.lib.util.Utilities;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;

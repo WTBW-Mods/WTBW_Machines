@@ -6,7 +6,7 @@ import com.wtbw.mods.machines.tile.ModTiles;
 import com.wtbw.mods.lib.util.Colors;
 import com.wtbw.mods.lib.util.Cooldown;
 import com.wtbw.mods.lib.util.PlayEvent;
-import com.wtbw.mods.lib.util.RandomUtil;
+import com.wtbw.mods.lib.util.rand.RandomUtil;
 import net.minecraft.tileentity.ITickableTileEntity;
 import net.minecraft.tileentity.TileEntity;
 
