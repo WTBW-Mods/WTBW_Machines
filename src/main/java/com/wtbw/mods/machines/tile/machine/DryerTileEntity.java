@@ -69,102 +69,6 @@ public class DryerTileEntity extends BaseMachineEntity
       .registerInt("targetHeat", () -> targetHeat, i -> targetHeat = i)
       .registerInt("subHeat", () -> subHeat, i -> subHeat = i)
       .register("inventory", getInventory());
-    
-//
-//
-//    manager.register("duration", new Manager.Int()
-//    {
-//      @Override
-//      public Integer get()
-//      {
-//        return duration;
-//      }
-//
-//      @Override
-//      public void set(Integer value)
-//      {
-//        duration = value;
-//      }
-//    });
-//
-//    manager.register("progress", new Manager.Int()
-//    {
-//      @Override
-//      public Integer get()
-//      {
-//        return progress;
-//      }
-//
-//      @Override
-//      public void set(Integer value)
-//      {
-//        progress = value;
-//      }
-//    });
-//
-//    manager.register("powerUsage", new Manager.Int()
-//    {
-//      @Override
-//      public Integer get()
-//      {
-//        return powerUsage;
-//      }
-//
-//      @Override
-//      public void set(Integer value)
-//      {
-//        powerUsage = value;
-//      }
-//    });
-//
-//    manager.register("heat", new Manager.Int()
-//    {
-//      @Override
-//      public Integer get()
-//      {
-//        return heat;
-//      }
-//
-//      @Override
-//      public void set(Integer value)
-//      {
-//        heat = value;
-//      }
-//    });
-//
-//    manager.register("targetHeat", new Manager.Int()
-//    {
-//      @Override
-//      public Integer get()
-//      {
-//        return targetHeat;
-//      }
-//
-//      @Override
-//      public void set(Integer value)
-//      {
-//        targetHeat = value;
-//      }
-//    });
-//
-//    manager.register("subHeat", new Manager.Int()
-//    {
-//      @Override
-//      public Integer get()
-//      {
-//        return subHeat;
-//      }
-//
-//      @Override
-//      public void set(Integer value)
-//      {
-//        subHeat = value;
-//      }
-//    });
-//
-//    manager.register("control", new Manager.Redstone(control));
-//    manager.register("inventory", new Manager.Serializable(getInventory()));
-//    manager.register("energy", new Manager.Serializable(getStorage()));
   }
   
   @Nonnull
@@ -288,12 +192,6 @@ public class DryerTileEntity extends BaseMachineEntity
     return RedstoneMode.noPulse;
   }
   
-//  @Override
-//  public ITextComponent getDisplayName()
-//  {
-//    return new TranslationTextComponent("block." + getType().getRegistryName().toString().replace(":", "."));
-//  }
-  
   @Nullable
   @Override
   public Container createMenu(int id, PlayerInventory inventory, PlayerEntity player)
@@ -306,9 +204,6 @@ public class DryerTileEntity extends BaseMachineEntity
   {
     if (!world.isRemote)
     {
-      boolean dirty = false;
-      boolean on = false;
-  
       if (heat <= targetHeat)
       {
         powerUsage = targetHeat - heat / 2 + targetHeat / 2;
@@ -351,7 +246,6 @@ public class DryerTileEntity extends BaseMachineEntity
           if (!recipe.ingredient.test(inventory.getStackInSlot(0)))
           {
             recipe = getRecipe();
-            dirty = true;
           }
         }
   
@@ -363,8 +257,6 @@ public class DryerTileEntity extends BaseMachineEntity
           if (recipe != old)
           {
             progress = 0;
-
-            dirty = true;
           }
           
           if (properHeat())
@@ -380,7 +272,6 @@ public class DryerTileEntity extends BaseMachineEntity
               {
 
                 doProgress();
-                on = true;
               }
             }
           }
@@ -401,12 +292,7 @@ public class DryerTileEntity extends BaseMachineEntity
       {
         decayHeat();
       }
-      
-//      if (on != isOn())
-//      {
-//        setOn(on);
-//      }
-      
+
       markDirty();
       
     }
@@ -445,16 +331,6 @@ public class DryerTileEntity extends BaseMachineEntity
   private boolean canOutput()
   {
     return canOutput(OUTPUT_SLOT, inventory, recipe);
-//    ItemStack current = inventory.getStackInSlot(OUTPUT_SLOT);
-//    if (current.isEmpty())
-//    {
-//      return true;
-//    }
-//
-//    int maxSize = current.getMaxStackSize();
-//    int size = current.getCount() + recipe.output.getCount();
-//
-//    return size <= maxSize && StackUtil.doItemsStack(current, recipe.output);
   }
   
   private void doProgress()
