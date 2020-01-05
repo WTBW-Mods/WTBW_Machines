@@ -1,12 +1,11 @@
 package com.wtbw.mods.machines.tile.machine;
 
-import com.wtbw.mods.lib.tile.util.*;
+import com.wtbw.mods.lib.tile.util.InventoryWrapper;
+import com.wtbw.mods.lib.tile.util.RedstoneControl;
+import com.wtbw.mods.lib.tile.util.RedstoneMode;
 import com.wtbw.mods.lib.tile.util.energy.BaseEnergyStorage;
-import com.wtbw.mods.lib.util.nbt.Manager;
-import com.wtbw.mods.lib.util.nbt.NBTManager;
-import com.wtbw.mods.lib.util.StackUtil;
 import com.wtbw.mods.lib.util.Utilities;
-import com.wtbw.mods.machines.block.base.BaseMachineBlock;
+import com.wtbw.mods.lib.util.nbt.NBTManager;
 import com.wtbw.mods.machines.gui.container.DryerContainer;
 import com.wtbw.mods.machines.recipe.DryerRecipe;
 import com.wtbw.mods.machines.recipe.ModRecipes;
@@ -17,9 +16,6 @@ import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.container.Container;
 import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.CompoundNBT;
-import net.minecraft.tileentity.ITickableTileEntity;
-import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.Direction;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.util.LazyOptional;
@@ -30,7 +26,6 @@ import net.minecraftforge.items.ItemStackHandler;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import java.util.List;
-import java.util.Optional;
 
 /*
   @author: Naxanria

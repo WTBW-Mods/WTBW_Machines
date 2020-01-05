@@ -1,15 +1,15 @@
 package com.wtbw.mods.machines.gui.screen;
 
 import com.wtbw.mods.lib.gui.screen.BaseContainerScreen;
-import com.wtbw.mods.lib.gui.util.EnergyBar;
-import com.wtbw.mods.lib.gui.util.ProgressBar;
-import com.wtbw.mods.lib.gui.util.RedstoneButton;
+import com.wtbw.mods.lib.gui.util.*;
 import com.wtbw.mods.lib.tile.util.energy.BaseEnergyStorage;
+import com.wtbw.mods.machines.WTBWMachines;
 import com.wtbw.mods.machines.gui.container.CompressorContainer;
 import com.wtbw.mods.machines.gui.container.CrusherContainer;
 import com.wtbw.mods.machines.tile.machine.PoweredCompressorEntity;
 import com.wtbw.mods.machines.tile.machine.PoweredCrusherEntity;
 import net.minecraft.entity.player.PlayerInventory;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.ITextComponent;
 
 /*
@@ -17,7 +17,11 @@ import net.minecraft.util.text.ITextComponent;
 */
 public class CrusherScreen extends BaseContainerScreen<CrusherContainer>
 {
-  private ProgressBar progressBar;
+  public static final SpriteMap ICONS = new SpriteMap(32, new ResourceLocation(WTBWMachines.MODID, "textures/gui/icons.png"));
+  public static final Sprite PROGRESS_BACKGROUND = ICONS.getSprite(0, 0, 7, 5);
+  public static final Sprite PROGRESS = ICONS.getSprite(0, 5, 7, 5);
+  
+  private SpriteProgressBar progressBar;
   private EnergyBar energyBar;
 
   private RedstoneButton<PoweredCrusherEntity> redstoneButton;
@@ -33,8 +37,8 @@ public class CrusherScreen extends BaseContainerScreen<CrusherContainer>
     super.init();
     PoweredCrusherEntity tileEntity = container.tileEntity;
     BaseEnergyStorage storage = tileEntity.getStorage();
-    progressBar = new ProgressBar(guiLeft + 175 / 2 -1 , guiTop + 39, 6, 10, tileEntity::getDuration, tileEntity::getProgress)
-      .setColor(0xffffffff).setFillDirection(ProgressBar.FillDirection.TOP_BOTTOM).setBorder(false);
+    progressBar = new SpriteProgressBar(guiLeft + 175 / 2 -1 , guiTop + 39, PROGRESS, PROGRESS_BACKGROUND, tileEntity::getDuration, tileEntity::getProgress)
+      .setFillDirection(ProgressBar.FillDirection.TOP_BOTTOM).cast();
     energyBar = new EnergyBar(storage, guiLeft + 12, guiTop + 15);
     addTooltipProvider(energyBar);
     redstoneButton = new RedstoneButton<>(guiLeft - 20, guiTop + 10, tileEntity);
