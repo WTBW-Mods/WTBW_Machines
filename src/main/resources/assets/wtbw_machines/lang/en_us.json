@@ -56,6 +56,7 @@
   "block.wtbw_machines.simple_battery": "Simple Battery",
   "block.wtbw_machines.quarry": "Quarry",
 
+  "wtbw_machines.tooltip.shift_more_info": "Press SHIFT for more info...",
   "wtbw_machines.tooltip.emitter": "Emits redstone signal based on the number displaying.\n(Sneak)Right click to cycle the number",
   "wtbw_machines.tooltip.timer": "Gives a redstone pulse every %s ticks",
   "wtbw_machines.tooltip.spikes": "Damages entities standing on top",
@@ -63,6 +64,8 @@
   "wtbw_machines.tooltip.spikes_non_lethal": "This spike leaves entities at 1 health",
   "wtbw_machines.tooltip.pusher_range": "This block pushes entities in a %s block radius",
   "wtbw_machines.tooltip.puller_range": "This block pulls entities in a %s block radius",
+  "wtbw_machines.tooltip.generating": "Generating: ",
+  "wtbw_machines.tooltip.capacity": "Capacity: ",
 
   "death.attack.spikes.wooden": "Wood spikes pierced %s",
   "death.attack.spikes.bamboo": "Bamboo spikes pierced %s",
