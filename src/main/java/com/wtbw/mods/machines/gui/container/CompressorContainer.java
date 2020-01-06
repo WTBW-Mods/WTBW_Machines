@@ -21,9 +21,9 @@ public class CompressorContainer extends BaseTileContainer<PoweredCompressorEnti
 
         ItemStackHandler handler = tileEntity.getInventory();
 
-        addInputSlot(handler, PoweredCompressorEntity.INPUT_SLOT, 46, 30);
+        addInputSlot(handler, PoweredCompressorEntity.INPUT_SLOT, 175 / 2 - 6, 20);
 
-        addSlot(handler, PoweredCompressorEntity.OUTPUT_SLOT, 146, 30);
+        addSlot(handler, PoweredCompressorEntity.OUTPUT_SLOT, 175 / 2 - 6, 52);
 
         layoutPlayerInventorySlots();
     }

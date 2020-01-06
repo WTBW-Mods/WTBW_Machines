@@ -4,10 +4,15 @@ import com.wtbw.mods.lib.gui.screen.BaseContainerScreen;
 import com.wtbw.mods.lib.gui.util.EnergyBar;
 import com.wtbw.mods.lib.gui.util.ProgressBar;
 import com.wtbw.mods.lib.gui.util.RedstoneButton;
+import com.wtbw.mods.lib.gui.util.SpriteProgressBar;
+import com.wtbw.mods.lib.gui.util.sprite.Sprite;
+import com.wtbw.mods.lib.gui.util.sprite.SpriteMap;
 import com.wtbw.mods.lib.tile.util.energy.BaseEnergyStorage;
+import com.wtbw.mods.machines.WTBWMachines;
 import com.wtbw.mods.machines.gui.container.CompressorContainer;
 import com.wtbw.mods.machines.tile.machine.PoweredCompressorEntity;
 import net.minecraft.entity.player.PlayerInventory;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.ITextComponent;
 
 /*
@@ -15,7 +20,13 @@ import net.minecraft.util.text.ITextComponent;
 */
 public class CompressorScreen extends BaseContainerScreen<CompressorContainer>
 {
-  private ProgressBar progressBar;
+  public static final Sprite PROGRESS_BACKGROUNDLeft = CrusherScreen.ICONS.getSprite(0, 20, 10, 10);
+  public static final Sprite PROGRESS_BACKGROUNDRight = PROGRESS_BACKGROUNDLeft.getRight(10, 10);
+  public static final Sprite PROGRESSLeft = PROGRESS_BACKGROUNDLeft.getBelow(10, 10);
+  public static final Sprite PROGRESSRight = PROGRESS_BACKGROUNDRight.getBelow(10, 10);
+
+  private ProgressBar progressBarLeft;
+  private ProgressBar progressBarRight;
   private EnergyBar energyBar;
 
   private RedstoneButton<PoweredCompressorEntity> redstoneButton;
@@ -31,8 +42,10 @@ public class CompressorScreen extends BaseContainerScreen<CompressorContainer>
     super.init();
     PoweredCompressorEntity tileEntity = container.tileEntity;
     BaseEnergyStorage storage = tileEntity.getStorage();
-    progressBar = new ProgressBar(guiLeft + 69, guiTop + 35, 70, 3, tileEntity::getDuration, tileEntity::getProgress)
-      .setColor(0xffffffff).setFillDirection(ProgressBar.FillDirection.LEFT_RIGHT).setBorder(false);
+    progressBarLeft = new SpriteProgressBar(guiLeft + 175 / 2 - 8 , guiTop + 39, PROGRESSLeft, PROGRESS_BACKGROUNDLeft, tileEntity::getDuration, tileEntity::getProgress)
+            .setFillDirection(ProgressBar.FillDirection.LEFT_RIGHT).cast();
+    progressBarRight = new SpriteProgressBar(guiLeft + 175 / 2 + 2 , guiTop + 39, PROGRESSRight, PROGRESS_BACKGROUNDRight, tileEntity::getDuration, tileEntity::getProgress)
+            .setFillDirection(ProgressBar.FillDirection.RIGHT_LEFT).cast();
     energyBar = new EnergyBar(storage, guiLeft + 12, guiTop + 15);
     addTooltipProvider(energyBar);
     redstoneButton = new RedstoneButton<>(guiLeft - 20, guiTop + 10, tileEntity);
@@ -42,9 +55,14 @@ public class CompressorScreen extends BaseContainerScreen<CompressorContainer>
   public void tick()
   {
     super.tick();
-    if (progressBar != null)
+    if (progressBarLeft != null)
     {
-      progressBar.update();
+      progressBarLeft.update();
+    }
+
+    if (progressBarRight != null)
+    {
+      progressBarRight.update();
     }
     
     if (energyBar != null)
@@ -58,15 +76,8 @@ public class CompressorScreen extends BaseContainerScreen<CompressorContainer>
   {
     defaultGui();
     
-    progressBar.draw();
+    progressBarLeft.draw();
+    progressBarRight.draw();
     energyBar.draw();
-
-//    PoweredCompressorEntity tileEntity = container.tileEntity;
-  
-//    drawString(font,"Current heat " + tileEntity.getHeat(), guiLeft + 50, guiTop + 50, 0xffffffff);
-//    drawString(font,"Target heat " + tileEntity.getTargetHeat(), guiLeft + 50, guiTop + 60, 0xffffffff);
-//
-//    font.drawString("Heat " + tileEntity.getHeat() + "/" + tileEntity.getTargetHeat(), 0, 0, 0xffffffff);
-//    font.drawString("PowerUsage " + tileEntity.getPowerUsage() + " RF", 0, 15, 0xffffffff);
   }
 }

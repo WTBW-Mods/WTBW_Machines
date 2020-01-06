@@ -18,9 +18,9 @@ import net.minecraft.util.text.ITextComponent;
 */
 public class CrusherScreen extends BaseContainerScreen<CrusherContainer>
 {
-  public static final SpriteMap ICONS = new SpriteMap(32, new ResourceLocation(WTBWMachines.MODID, "textures/gui/icons.png"));
-  public static final Sprite PROGRESS_BACKGROUND = ICONS.getSprite(0, 0, 9, 5);
-  public static final Sprite PROGRESS = PROGRESS_BACKGROUND.getBelow(9, 5);
+  public static final SpriteMap ICONS = new SpriteMap(64, new ResourceLocation(WTBWMachines.MODID, "textures/gui/icons.png"));
+  public static final Sprite PROGRESS_BACKGROUND = ICONS.getSprite(10, 0, 10, 10);
+  public static final Sprite PROGRESS = PROGRESS_BACKGROUND.getBelow(10, 10);
   
   private SpriteProgressBar progressBar;
   private EnergyBar energyBar;
@@ -38,7 +38,7 @@ public class CrusherScreen extends BaseContainerScreen<CrusherContainer>
     super.init();
     PoweredCrusherEntity tileEntity = container.tileEntity;
     BaseEnergyStorage storage = tileEntity.getStorage();
-    progressBar = new SpriteProgressBar(guiLeft + 175 / 2 -1 , guiTop + 39, PROGRESS, PROGRESS_BACKGROUND, tileEntity::getDuration, tileEntity::getProgress)
+    progressBar = new SpriteProgressBar(guiLeft + 175 / 2 - 3 , guiTop + 39, PROGRESS, PROGRESS_BACKGROUND, tileEntity::getDuration, tileEntity::getProgress)
       .setFillDirection(ProgressBar.FillDirection.TOP_BOTTOM).cast();
     energyBar = new EnergyBar(storage, guiLeft + 12, guiTop + 15);
     addTooltipProvider(energyBar);
@@ -67,7 +67,7 @@ public class CrusherScreen extends BaseContainerScreen<CrusherContainer>
     
     progressBar.draw();
     energyBar.draw();
-    fill(guiLeft + 175 / 2, guiTop + 69, guiLeft + 175 / 2 ,guiTop + 70 ,0xffffffff);
+    //fill(guiLeft + 175 / 2, guiTop + 69, guiLeft + 175 / 2 ,guiTop + 70 ,0xffffffff);
 //    PoweredCompressorEntity tileEntity = container.tileEntity;
   
 //    drawString(font,"Current heat " + tileEntity.getHeat(), guiLeft + 50, guiTop + 50, 0xffffffff);
