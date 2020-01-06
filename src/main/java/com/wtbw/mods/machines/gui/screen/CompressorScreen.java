@@ -6,13 +6,10 @@ import com.wtbw.mods.lib.gui.util.ProgressBar;
 import com.wtbw.mods.lib.gui.util.RedstoneButton;
 import com.wtbw.mods.lib.gui.util.SpriteProgressBar;
 import com.wtbw.mods.lib.gui.util.sprite.Sprite;
-import com.wtbw.mods.lib.gui.util.sprite.SpriteMap;
 import com.wtbw.mods.lib.tile.util.energy.BaseEnergyStorage;
-import com.wtbw.mods.machines.WTBWMachines;
 import com.wtbw.mods.machines.gui.container.CompressorContainer;
 import com.wtbw.mods.machines.tile.machine.PoweredCompressorEntity;
 import net.minecraft.entity.player.PlayerInventory;
-import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.ITextComponent;
 
 /*
@@ -20,10 +17,10 @@ import net.minecraft.util.text.ITextComponent;
 */
 public class CompressorScreen extends BaseContainerScreen<CompressorContainer>
 {
-  public static final Sprite PROGRESS_BACKGROUNDLeft = CrusherScreen.ICONS.getSprite(0, 20, 10, 10);
-  public static final Sprite PROGRESS_BACKGROUNDRight = PROGRESS_BACKGROUNDLeft.getRight(10, 10);
-  public static final Sprite PROGRESSLeft = PROGRESS_BACKGROUNDLeft.getBelow(10, 10);
-  public static final Sprite PROGRESSRight = PROGRESS_BACKGROUNDRight.getBelow(10, 10);
+  public static final Sprite PROGRESS_BACKGROUND_LEFT = CrusherScreen.ICONS.getSprite(0, 20, 10, 10);
+  public static final Sprite PROGRESS_BACKGROUND_RIGHT = PROGRESS_BACKGROUND_LEFT.getRight(10, 10);
+  public static final Sprite PROGRESS_LEFT = PROGRESS_BACKGROUND_LEFT.getBelow(10, 10);
+  public static final Sprite PROGRESS_RIGHT = PROGRESS_BACKGROUND_RIGHT.getBelow(10, 10);
 
   private ProgressBar progressBarLeft;
   private ProgressBar progressBarRight;
@@ -42,9 +39,9 @@ public class CompressorScreen extends BaseContainerScreen<CompressorContainer>
     super.init();
     PoweredCompressorEntity tileEntity = container.tileEntity;
     BaseEnergyStorage storage = tileEntity.getStorage();
-    progressBarLeft = new SpriteProgressBar(guiLeft + 175 / 2 - 8 , guiTop + 39, PROGRESSLeft, PROGRESS_BACKGROUNDLeft, tileEntity::getDuration, tileEntity::getProgress)
+    progressBarLeft = new SpriteProgressBar(guiLeft + 175 / 2 - 8 , guiTop + 39, PROGRESS_LEFT, PROGRESS_BACKGROUND_LEFT, tileEntity::getDuration, tileEntity::getProgress)
             .setFillDirection(ProgressBar.FillDirection.LEFT_RIGHT).cast();
-    progressBarRight = new SpriteProgressBar(guiLeft + 175 / 2 + 2 , guiTop + 39, PROGRESSRight, PROGRESS_BACKGROUNDRight, tileEntity::getDuration, tileEntity::getProgress)
+    progressBarRight = new SpriteProgressBar(guiLeft + 175 / 2 + 2 , guiTop + 39, PROGRESS_RIGHT, PROGRESS_BACKGROUND_RIGHT, tileEntity::getDuration, tileEntity::getProgress)
             .setFillDirection(ProgressBar.FillDirection.RIGHT_LEFT).cast();
     energyBar = new EnergyBar(storage, guiLeft + 12, guiTop + 15);
     addTooltipProvider(energyBar);
