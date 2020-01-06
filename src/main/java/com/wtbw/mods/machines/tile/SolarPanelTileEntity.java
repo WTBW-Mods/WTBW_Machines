@@ -19,9 +19,9 @@ public class SolarPanelTileEntity extends Generator implements IWTBWNamedContain
 {
   public static final Direction[] PROVIDING_SIDES = new Direction[]{ Direction.SOUTH, Direction.WEST, Direction.NORTH, Direction.EAST, Direction.DOWN };
   
-  public static final Tier STANDARD = new Tier(150000, 80, 10, () -> ModTiles.SOLAR_PANEL);
-  public static final Tier ADVANCED = new Tier(250000, 240, 40, () -> ModTiles.SOLAR_PANEL_ADVANCED);
-  public static final Tier EXTREME = new Tier(500000, 720, 250, () -> ModTiles.SOLAR_PANEL_EXTREME);
+  public static final Tier MK1 = new Tier(150000, 80, 10, () -> ModTiles.SOLAR_PANEL_MK1);
+  public static final Tier MK2 = new Tier(250000, 240, 40, () -> ModTiles.SOLAR_PANEL_MK2);
+  public static final Tier MK3 = new Tier(500000, 720, 250, () -> ModTiles.SOLAR_PANEL_MK3);
   
   public static class Tier
   {

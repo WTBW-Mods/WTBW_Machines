@@ -1,12 +1,12 @@
 {
-  "type": "wtbw_machines:solar_panel",
+  "type": "wtbw_machines:solar_panel_mk1",
   "pools": [
     {
       "rolls": 1,
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "wtbw_machines:solar_panel"
+          "name": "wtbw_machines:solar_panel_mk1"
         }
       ],
       "conditions": [

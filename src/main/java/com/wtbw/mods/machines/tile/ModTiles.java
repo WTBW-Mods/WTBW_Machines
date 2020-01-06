@@ -29,9 +29,9 @@ public class ModTiles
   public static final TileEntityType<BlockPlacerTileEntity> BLOCK_PLACER = null;
   public static final TileEntityType<BlockDetectorTileEntity> BLOCK_DETECTOR = null;
   
-  public static final TileEntityType<SolarPanelTileEntity> SOLAR_PANEL = null;
-  public static final TileEntityType<SolarPanelTileEntity> SOLAR_PANEL_ADVANCED = null;
-  public static final TileEntityType<SolarPanelTileEntity> SOLAR_PANEL_EXTREME = null;
+  public static final TileEntityType<SolarPanelTileEntity> SOLAR_PANEL_MK1 = null;
+  public static final TileEntityType<SolarPanelTileEntity> SOLAR_PANEL_MK2 = null;
+  public static final TileEntityType<SolarPanelTileEntity> SOLAR_PANEL_MK3 = null;
   
   public static final TileEntityType<SimpleBatteryTileEntity> SIMPLE_BATTERY = null;
 

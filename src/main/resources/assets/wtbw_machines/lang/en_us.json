@@ -39,9 +39,9 @@
   "block.wtbw_machines.block_placer": "Block Placer",
   "block.wtbw_machines.block_detector": "Block Detector",
 
-  "block.wtbw_machines.solar_panel": "Solar Panel",
-  "block.wtbw_machines.solar_panel_advanced": "Advanced Solar Panel",
-  "block.wtbw_machines.solar_panel_extreme": "Extreme Solar Panel",
+  "block.wtbw_machines.solar_panel_mk1": "Solar Panel MK I",
+  "block.wtbw_machines.solar_panel_mk2": "Solar Panel MK II",
+  "block.wtbw_machines.solar_panel_mk3": "Solar Panel MK III",
 
   "block.wtbw_machines.machine_block": "Machine Block",
   "block.wtbw_machines.tier1_upgrade": "Tier 1 Upgrade",
