@@ -4,7 +4,7 @@ import com.wtbw.mods.lib.gui.screen.BaseContainerScreen;
 import com.wtbw.mods.lib.gui.util.*;
 import com.wtbw.mods.lib.gui.util.sprite.Sprite;
 import com.wtbw.mods.lib.gui.util.sprite.SpriteMap;
-import com.wtbw.mods.lib.gui.util.sprite.SpriteProgressBar;
+import com.wtbw.mods.lib.gui.util.SpriteProgressBar;
 import com.wtbw.mods.lib.tile.util.energy.BaseEnergyStorage;
 import com.wtbw.mods.machines.WTBWMachines;
 import com.wtbw.mods.machines.gui.container.CrusherContainer;
@@ -20,7 +20,7 @@ public class CrusherScreen extends BaseContainerScreen<CrusherContainer>
 {
   public static final SpriteMap ICONS = new SpriteMap(32, new ResourceLocation(WTBWMachines.MODID, "textures/gui/icons.png"));
   public static final Sprite PROGRESS_BACKGROUND = ICONS.getSprite(0, 0, 9, 5);
-  public static final Sprite PROGRESS = ICONS.getSprite(0, 5, 9, 5);
+  public static final Sprite PROGRESS = PROGRESS_BACKGROUND.getBelow(9, 5);
   
   private SpriteProgressBar progressBar;
   private EnergyBar energyBar;
