@@ -2,11 +2,12 @@ package com.wtbw.mods.machines.gui.screen;
 
 import com.wtbw.mods.lib.gui.screen.BaseContainerScreen;
 import com.wtbw.mods.lib.gui.util.*;
+import com.wtbw.mods.lib.gui.util.sprite.Sprite;
+import com.wtbw.mods.lib.gui.util.sprite.SpriteMap;
+import com.wtbw.mods.lib.gui.util.sprite.SpriteProgressBar;
 import com.wtbw.mods.lib.tile.util.energy.BaseEnergyStorage;
 import com.wtbw.mods.machines.WTBWMachines;
-import com.wtbw.mods.machines.gui.container.CompressorContainer;
 import com.wtbw.mods.machines.gui.container.CrusherContainer;
-import com.wtbw.mods.machines.tile.machine.PoweredCompressorEntity;
 import com.wtbw.mods.machines.tile.machine.PoweredCrusherEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.util.ResourceLocation;
