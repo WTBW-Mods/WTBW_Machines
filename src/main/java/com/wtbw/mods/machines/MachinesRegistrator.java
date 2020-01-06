@@ -12,10 +12,7 @@ import com.wtbw.mods.machines.block.redstone.RedstoneTimerBlock;
 import com.wtbw.mods.machines.block.spikes.SpikesBlock;
 import com.wtbw.mods.machines.block.spikes.SpikesType;
 import com.wtbw.mods.machines.gui.container.*;
-import com.wtbw.mods.machines.recipe.CompressingRecipe;
-import com.wtbw.mods.machines.recipe.CrushingRecipe;
-import com.wtbw.mods.machines.recipe.DryerRecipe;
-import com.wtbw.mods.machines.recipe.ModRecipes;
+import com.wtbw.mods.machines.recipe.*;
 import com.wtbw.mods.machines.tile.*;
 import com.wtbw.mods.machines.tile.furnace.FurnaceTier;
 import com.wtbw.mods.machines.tile.machine.DryerTileEntity;
@@ -123,6 +120,7 @@ public class MachinesRegistrator extends Registrator
     registerContainer(BatteryContainer::new, "battery");
     registerContainer(CompressorContainer::new, "compressor");
     registerContainer(CrusherContainer::new, "crusher");
+    registerContainer(PoweredFurnaceContainer::new, "powered_furnace");
   }
   
   public void registerRecipes(final RegistryEvent.Register<IRecipeSerializer<?>> event)
@@ -132,5 +130,6 @@ public class MachinesRegistrator extends Registrator
     event.getRegistry().register(DryerRecipe.SERIALIZER);
     event.getRegistry().register(CompressingRecipe.SERIALIZER);
     event.getRegistry().register(CrushingRecipe.SERIALIZER);
+    event.getRegistry().register(PoweredFurnaceRecipe.SERIALIZER);
   }
 }

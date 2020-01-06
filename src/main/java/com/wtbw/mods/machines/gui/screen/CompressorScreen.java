@@ -6,13 +6,10 @@ import com.wtbw.mods.lib.gui.util.ProgressBar;
 import com.wtbw.mods.lib.gui.util.RedstoneButton;
 import com.wtbw.mods.lib.gui.util.SpriteProgressBar;
 import com.wtbw.mods.lib.gui.util.sprite.Sprite;
-import com.wtbw.mods.lib.gui.util.sprite.SpriteMap;
 import com.wtbw.mods.lib.tile.util.energy.BaseEnergyStorage;
-import com.wtbw.mods.machines.WTBWMachines;
 import com.wtbw.mods.machines.gui.container.CompressorContainer;
 import com.wtbw.mods.machines.tile.machine.PoweredCompressorEntity;
 import net.minecraft.entity.player.PlayerInventory;
-import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.ITextComponent;
 
 /*
