@@ -1,6 +1,6 @@
 {
   "parent": "wtbw_machines:block/solar_panel",
   "textures": {
-    "1": "wtbw_machines:block/solar_panel_extreme"
+    "1": "wtbw_machines:block/solar_panel_mk3"
   }
 }

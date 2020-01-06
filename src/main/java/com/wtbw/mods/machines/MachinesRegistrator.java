@@ -68,9 +68,9 @@ public class MachinesRegistrator extends Registrator
     register(new SpikesBlock(getBlockProperties(Material.IRON, 5), SpikesType.GOLD), "gold_spikes");
     register(new SpikesBlock(getBlockProperties(Material.IRON, 6), SpikesType.DIAMOND), "diamond_spikes");
     
-    register(new SolarPanelBlock(getBlockProperties(Material.IRON, 3), SolarPanelTileEntity.STANDARD).comparator(), "solar_panel");
-    register(new SolarPanelBlock(getBlockProperties(Material.IRON, 5), SolarPanelTileEntity.ADVANCED).comparator(), "solar_panel_advanced");
-    register(new SolarPanelBlock(getBlockProperties(Material.IRON, 7), SolarPanelTileEntity.EXTREME).comparator(), "solar_panel_extreme");
+    register(new SolarPanelBlock(getBlockProperties(Material.IRON, 3), SolarPanelTileEntity.MK1).comparator(), "solar_panel_mk1");
+    register(new SolarPanelBlock(getBlockProperties(Material.IRON, 5), SolarPanelTileEntity.MK2).comparator(), "solar_panel_mk2");
+    register(new SolarPanelBlock(getBlockProperties(Material.IRON, 7), SolarPanelTileEntity.MK3).comparator(), "solar_panel_mk3");
     
     register(new BaseMachineBlock<>(getBlockProperties(Material.IRON, 3), (world, state) -> new SimpleBatteryTileEntity()).comparator(), "simple_battery");
     
