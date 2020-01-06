@@ -30,6 +30,9 @@ public class ModTiles
   public static final TileEntityType<BlockDetectorTileEntity> BLOCK_DETECTOR = null;
   
   public static final TileEntityType<SolarPanelTileEntity> SOLAR_PANEL = null;
+  public static final TileEntityType<SolarPanelTileEntity> SOLAR_PANEL_ADVANCED = null;
+  public static final TileEntityType<SolarPanelTileEntity> SOLAR_PANEL_EXTREME = null;
+  
   public static final TileEntityType<SimpleBatteryTileEntity> SIMPLE_BATTERY = null;
 
   public static final TileEntityType<QuarryTileEntity> QUARRY = null;
@@ -38,5 +41,6 @@ public class ModTiles
   public static final TileEntityType<PoweredFurnaceEntity> POWERED_FURNACE = null;
   public static final TileEntityType<PoweredCrusherEntity> POWERED_CRUSHER = null;
   public static final TileEntityType<PoweredCompressorEntity> POWERED_COMPRESSOR = null;
-
+  
+  
 }

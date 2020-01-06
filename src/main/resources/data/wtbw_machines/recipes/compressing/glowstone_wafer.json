@@ -1,0 +1,11 @@
+{
+  "type": "wtbw_machines:compressing",
+  "ingredient": {
+    "item": "minecraft:glowstone",
+    "count": 16
+  },
+  "result": "wtbw_machines:glowstone_wafer",
+  "count": 1,
+  "duration": 360,
+  "power_cost": 7200
+}

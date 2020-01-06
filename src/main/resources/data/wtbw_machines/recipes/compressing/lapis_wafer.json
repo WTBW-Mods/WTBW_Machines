@@ -1,0 +1,11 @@
+{
+  "type": "wtbw_machines:compressing",
+  "ingredient": {
+    "tag": "forge:storage_blocks/lapis",
+    "count": 1
+  },
+  "result": "wtbw_machines:lapis_wafer",
+  "count": 1,
+  "duration": 360,
+  "power_cost": 7200
+}

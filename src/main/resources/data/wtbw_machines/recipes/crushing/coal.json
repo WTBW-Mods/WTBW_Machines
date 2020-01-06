@@ -1,0 +1,15 @@
+{
+  "type": "wtbw_machines:crushing",
+  "ingredient": {
+    "item": "minecraft:coal",
+    "count": 1
+  },
+  "result": [
+    {
+      "item": "wtbw_machines:coal_dust",
+      "count": 1
+    }
+  ],
+  "duration": 120,
+  "power_cost": 300
+}

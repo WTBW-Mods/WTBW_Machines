@@ -13,7 +13,7 @@
       "item": "wtbw_machines:machine_block"
     },
     "I": {
-      "item": "minecraft:iron_ingot"
+      "tag": "forge:ingots/iron"
     }
   },
   "result": {

@@ -1,0 +1,16 @@
+{
+  "replace": false,
+  "values": [
+    "#forge:dusts/iron",
+    "#forge:dusts/gold",
+    "#forge:dusts/diamond",
+    "#forge:dusts/emerald",
+    "#forge:dusts/coal",
+    "#forge:dusts/charcoal",
+    "#forge:dusts/obsidian",
+    "#forge:dusts/quartz",
+    "#forge:dusts/ender_pearl",
+    "minecraft:glowstone_dust",
+    "minecraft:redstone"
+  ]
+}

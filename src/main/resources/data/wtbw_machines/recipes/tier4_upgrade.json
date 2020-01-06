@@ -13,7 +13,7 @@
       "item": "wtbw_machines:tier3_upgrade"
     },
     "I": {
-      "item": "minecraft:emerald"
+      "tag": "forge:gems/emerald"
     }
   },
   "result": {

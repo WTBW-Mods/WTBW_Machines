@@ -1,6 +1,22 @@
 {
   "itemGroup.wtbw_machines": "WTBW - Machines",
 
+  "item.wtbw_machines.iron_plate": "Iron Plate",
+  "item.wtbw_machines.gold_plate": "Gold Plate",
+
+  "item.wtbw_machines.iron_dust": "Iron Dust",
+  "item.wtbw_machines.gold_dust": "Gold Dust",
+  "item.wtbw_machines.diamond_dust": "Diamond Dust",
+  "item.wtbw_machines.emerald_dust": "Emerald Dust",
+  "item.wtbw_machines.coal_dust": "Coal Dust",
+  "item.wtbw_machines.charcoal_dust": "Charcoal Dust",
+  "item.wtbw_machines.quartz_dust": "Quartz Dust",
+  "item.wtbw_machines.obsidian_dust": "Obsidian Dust",
+  "item.wtbw_machines.ender_pearl_dust": "Ender Pearl Dust",
+
+  "item.wtbw_machines.lapis_wafer": "Lapis Wafer",
+  "item.wtbw_machines.glowstone_wafer": "Glowstone Wafer",
+
   "block.wtbw_machines.redstone_timer": "Redstone Timer",
   "block.wtbw_machines.redstone_emitter": "Redstone Emitter",
 
@@ -23,8 +39,22 @@
   "block.wtbw_machines.block_placer": "Block Placer",
   "block.wtbw_machines.block_detector": "Block Detector",
 
-  "block.wtbw_machines.dryer": "Dryer",
   "block.wtbw_machines.solar_panel": "Solar Panel",
+  "block.wtbw_machines.solar_panel_advanced": "Advanced Solar Panel",
+  "block.wtbw_machines.solar_panel_extreme": "Extreme Solar Panel",
+
+  "block.wtbw_machines.machine_block": "Machine Block",
+  "block.wtbw_machines.tier1_upgrade": "Tier 1 Upgrade",
+  "block.wtbw_machines.tier2_upgrade": "Tier 2 Upgrade",
+  "block.wtbw_machines.tier3_upgrade": "Tier 3 Upgrade",
+  "block.wtbw_machines.tier4_upgrade": "Tier 4 Upgrade",
+
+  "block.wtbw_machines.dryer": "Dryer",
+  "block.wtbw_machines.powered_furnace": "Powered Furnace",
+  "block.wtbw_machines.powered_crusher": "Powered Crusher",
+  "block.wtbw_machines.powered_compressor": "Powered Compressor",
+  "block.wtbw_machines.simple_battery": "Simple Battery",
+  "block.wtbw_machines.quarry": "Quarry",
 
   "wtbw_machines.tooltip.emitter": "Emits redstone signal based on the number displaying.\n(Sneak)Right click to cycle the number",
   "wtbw_machines.tooltip.timer": "Gives a redstone pulse every %s ticks",
@@ -42,21 +72,7 @@
 
   "wtbw_machines.gui.current": "Current",
   "wtbw_machines.gui.exact": "Exact",
-
-  "block.wtbw_machines.quarry": "Quarry",
-  "wtbw_machines.quarry.gui.current_block": "Mining:",
-
-  "block.wtbw_machines.machine_block": "Machine Block",
-  "block.wtbw_machines.tier1_upgrade": "Tier 1 Upgrade",
-  "block.wtbw_machines.tier2_upgrade": "Tier 2 Upgrade",
-  "block.wtbw_machines.tier3_upgrade": "Tier 3 Upgrade",
-  "block.wtbw_machines.tier4_upgrade": "Tier 4 Upgrade",
-  "block.wtbw_machines.powered_furnace": "Powered Furnace",
-  "block.wtbw_machines.powered_crusher": "Powered Crusher",
-  "block.wtbw_machines.powered_compressor": "Powered Compressor",
-  "block.wtbw_machines.simple_battery": "Simple Battery",
+  "wtbw_machines.gui.quarry.current_block": "Mining:"
 
 
-  "item.wtbw_machines.iron_plate": "Iron Plate",
-  "item.wtbw_machines.gold_plate": "Gold Plate"
 }

@@ -7,10 +7,10 @@
   ],
   "key": {
     "I": {
-      "item": "minecraft:gold_ingot"
+      "tag": "forge:ingots/gold"
     },
     "B": {
-      "item": "minecraft:gold_block"
+      "tag": "forge:storage_blocks/gold"
     },
     "F": {
       "item": "wtbw_machines:iron_furnace"

@@ -68,7 +68,9 @@ public class MachinesRegistrator extends Registrator
     register(new SpikesBlock(getBlockProperties(Material.IRON, 5), SpikesType.GOLD), "gold_spikes");
     register(new SpikesBlock(getBlockProperties(Material.IRON, 6), SpikesType.DIAMOND), "diamond_spikes");
     
-    register(new SolarPanelBlock(getBlockProperties(Material.IRON, 3), 150000, 80, 20).comparator(), "solar_panel");
+    register(new SolarPanelBlock(getBlockProperties(Material.IRON, 3), SolarPanelTileEntity.STANDARD).comparator(), "solar_panel");
+    register(new SolarPanelBlock(getBlockProperties(Material.IRON, 5), SolarPanelTileEntity.ADVANCED).comparator(), "solar_panel_advanced");
+    register(new SolarPanelBlock(getBlockProperties(Material.IRON, 7), SolarPanelTileEntity.EXTREME).comparator(), "solar_panel_extreme");
     
     register(new BaseMachineBlock<>(getBlockProperties(Material.IRON, 3), (world, state) -> new SimpleBatteryTileEntity()).comparator(), "simple_battery");
     
@@ -81,11 +83,10 @@ public class MachinesRegistrator extends Registrator
     register(new TierBlock(getBlockProperties(Material.IRON, 3), 2), "tier2_upgrade");
     register(new TierBlock(getBlockProperties(Material.IRON, 3), 3), "tier3_upgrade");
     register(new TierBlock(getBlockProperties(Material.IRON, 3), 4), "tier4_upgrade");
-    //register(new QuarryMarker(getBlockProperties(Material.IRON, 1)), "quarry_marker");
 
-    register(new BaseMachineBlock<>(getBlockProperties(Material.IRON, 4), (world, starte) -> new PoweredFurnaceEntity()).mirrored(), "powered_furnace");
-    register(new BaseMachineBlock<>(getBlockProperties(Material.IRON, 4), (world, starte) -> new PoweredCrusherEntity()).mirrored(), "powered_crusher");
-    register(new BaseMachineBlock<>(getBlockProperties(Material.IRON, 4), (world, starte) -> new PoweredCompressorEntity()).mirrored(), "powered_compressor");
+    register(new BaseMachineBlock<>(getBlockProperties(Material.IRON, 4), (world, state) -> new PoweredFurnaceEntity()).mirrored(), "powered_furnace");
+    register(new BaseMachineBlock<>(getBlockProperties(Material.IRON, 4), (world, state) -> new PoweredCrusherEntity()).mirrored(), "powered_crusher");
+    register(new BaseMachineBlock<>(getBlockProperties(Material.IRON, 4), (world, state) -> new PoweredCompressorEntity()).mirrored(), "powered_compressor");
   }
   
   @Override
@@ -103,6 +104,9 @@ public class MachinesRegistrator extends Registrator
     register(new Item(getItemProperties()), "emerald_dust");
     register(new Item(getItemProperties()), "diamond_dust");
     register(new Item(getItemProperties()), "quartz_dust");
+    
+    register(new Item(getItemProperties()), "lapis_wafer");
+    register(new Item(getItemProperties()), "glowstone_wafer");
   }
  
   @Override

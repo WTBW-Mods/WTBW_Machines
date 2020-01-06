@@ -10,13 +10,13 @@
       "item": "minecraft:end_stone"
     },
     "B": {
-      "item": "minecraft:diamond_block"
+      "tag": "forge:storage_blocks/diamond"
     },
     "F": {
       "item": "wtbw_machines:diamond_furnace"
     },
     "N": {
-      "item": "minecraft:nether_star"
+      "item": "wtbw_core:ender_core"
     }
   },
   "result": {

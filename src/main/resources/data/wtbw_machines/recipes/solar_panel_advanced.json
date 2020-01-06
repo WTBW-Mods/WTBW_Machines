@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "LLL",
+    "SSS",
+    "PPP"
+  ],
+  "key": {
+    "L": {
+      "item": "wtbw_machines:lapis_wafer"
+    },
+    "S": {
+      "item": "wtbw_machines:solar_panel"
+    },
+    "P": {
+      "tag": "forge:plates/iron"
+    }
+  },
+  "result": {
+    "item": "wtbw_machines:solar_panel_advanced"
+  }
+}

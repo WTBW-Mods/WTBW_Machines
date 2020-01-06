@@ -1,7 +1,7 @@
 {
   "type": "wtbw_machines:crushing",
   "ingredient": {
-    "item": "minecraft:iron_ore",
+    "tag": "forge:ores/iron",
     "count": 1
   },
   "result": [
@@ -12,9 +12,9 @@
     {
       "item": "minecraft:cobblestone",
       "count": 1,
-      "chance": 0.60
+      "chance": 0.30
     }
   ],
-  "duration": 60,
+  "duration": 120,
   "power_cost": 300
 }

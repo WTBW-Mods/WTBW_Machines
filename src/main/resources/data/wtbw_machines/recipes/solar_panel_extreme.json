@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "GGG",
+    "SSS",
+    "PPP"
+  ],
+  "key": {
+    "G": {
+      "item": "wtbw_machines:glowstone_wafer"
+    },
+    "S": {
+      "item": "wtbw_machines:solar_panel_advanced"
+    },
+    "P": {
+      "tag": "forge:plates/iron"
+    }
+  },
+  "result": {
+    "item": "wtbw_machines:solar_panel_extreme"
+  }
+}

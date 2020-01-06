@@ -1,0 +1,15 @@
+{
+  "type": "wtbw_machines:crushing",
+  "ingredient": {
+    "item": "minecraft:charcoal",
+    "count": 1
+  },
+  "result": [
+    {
+      "item": "wtbw_machines:charcoal_dust",
+      "count": 1
+    }
+  ],
+  "duration": 120,
+  "power_cost": 300
+}

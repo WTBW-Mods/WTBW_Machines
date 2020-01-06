@@ -1,20 +1,30 @@
 {
   "type": "wtbw_machines:crushing",
   "ingredient": {
-    "item": "minecraft:coal_ore",
+    "tag": "forge:ores/coal",
     "count": 1
   },
   "result": [
     {
       "item": "minecraft:coal",
-      "count": 4
+      "count": 3
+    },
+    {
+      "item": "minecraft:coal",
+      "count": 1,
+      "chance": 0.75
+    },
+    {
+      "item": "wtbw_machines:coal_dust",
+      "count": 1,
+      "chance": 0.15
     },
     {
       "item": "minecraft:cobblestone",
       "count": 1,
-      "chance": 0.60
+      "chance": 0.30
     }
   ],
-  "duration": 60,
+  "duration": 180,
   "power_cost": 300
 }

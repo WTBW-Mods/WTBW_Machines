@@ -1,7 +1,7 @@
 {
   "type": "wtbw_machines:crushing",
   "ingredient": {
-    "item": "minecraft:emerald_ore",
+    "tag": "forge:ores/emerald",
     "count": 1
   },
   "result": [
@@ -32,9 +32,9 @@
     {
       "item": "minecraft:cobblestone",
       "count": 1,
-      "chance": 0.60
+      "chance": 0.30
     }
   ],
-  "duration": 60,
+  "duration": 180,
   "power_cost": 300
 }

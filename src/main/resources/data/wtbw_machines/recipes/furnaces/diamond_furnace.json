@@ -7,10 +7,10 @@
   ],
   "key": {
     "I": {
-      "item": "minecraft:diamond"
+      "tag": "forge:gems/diamond"
     },
     "B": {
-      "item": "minecraft:diamond_block"
+      "tag": "forge:storage_blocks/diamond"
     },
     "F": {
       "item": "wtbw_machines:gold_furnace"

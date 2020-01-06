@@ -55,7 +55,7 @@ public class QuarryScreen extends BaseContainerScreen<QuarryContainer>
     int textColor = 0xff404040;
     
     String blockName = new TranslationTextComponent("block.wtbw_machines.quarry").getUnformattedComponentText();
-    String mining = new TranslationTextComponent("wtbw_machines.quarry.gui.current_block").getUnformattedComponentText();
+    String mining = new TranslationTextComponent("wtbw_machines.gui.quarry.current_block").getUnformattedComponentText();
 
     GuiUtil.renderTexture(guiLeft - 21, guiTop, xSize + 21, ySize, 0, 0, 256, 256, GUI);
 //    this.font.drawString(blockName, guiLeft + 8, guiTop + 6, textColor);

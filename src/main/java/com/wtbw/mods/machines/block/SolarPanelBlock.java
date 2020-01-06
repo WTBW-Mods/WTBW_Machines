@@ -16,9 +16,9 @@ public class SolarPanelBlock extends BaseTileBlock<SolarPanelTileEntity>
 {
   public static final VoxelShape SHAPE = Block.makeCuboidShape(0, 0, 0, 16, 3, 16);
   
-  public SolarPanelBlock(Properties properties, int capacity, int maxTransfer, int generate)
+  public SolarPanelBlock(Properties properties, SolarPanelTileEntity.Tier tier)
   {
-    super(properties, (world, state) -> new SolarPanelTileEntity(capacity, maxTransfer, generate));
+    super(properties, (world, state) -> new SolarPanelTileEntity(tier));
   }
   
   @Override
