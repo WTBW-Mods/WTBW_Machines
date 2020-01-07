@@ -25,6 +25,7 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.crafting.IRecipeSerializer;
 import net.minecraftforge.event.RegistryEvent;
+import net.minecraftforge.registries.IForgeRegistry;
 
 /*
   @author: Naxanria
@@ -126,10 +127,12 @@ public class MachinesRegistrator extends Registrator
   public void registerRecipes(final RegistryEvent.Register<IRecipeSerializer<?>> event)
   {
     ModRecipes.init();
-    
-    event.getRegistry().register(DryerRecipe.SERIALIZER);
-    event.getRegistry().register(CompressingRecipe.SERIALIZER);
-    event.getRegistry().register(CrushingRecipe.SERIALIZER);
-    event.getRegistry().register(PoweredFurnaceRecipe.SERIALIZER);
+  
+    IForgeRegistry<IRecipeSerializer<?>> registry = event.getRegistry();
+  
+    registry.register(DryerRecipe.SERIALIZER);
+    registry.register(CompressingRecipe.SERIALIZER);
+    registry.register(CrushingRecipe.SERIALIZER);
+    registry.register(PoweredFurnaceRecipe.SERIALIZER);
   }
 }
