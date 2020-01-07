@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "GFG",
+    "GMG",
+    "GFG"
+  ],
+  "key": {
+    "F": {
+      "item": "minecraft:furnace"
+    },
+    "G": {
+      "item": "wtbw_core:groundium"
+    },
+    "M": {
+      "item": "wtbw_machines:machine_block"
+    }
+  },
+  "result": {
+    "item": "wtbw_machines:powered_furnace"
+  }
+}

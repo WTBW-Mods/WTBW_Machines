@@ -48,7 +48,7 @@
   "block.wtbw_machines.tier2_upgrade": "Tier 2 Upgrade",
   "block.wtbw_machines.tier3_upgrade": "Tier 3 Upgrade",
   "block.wtbw_machines.tier4_upgrade": "Tier 4 Upgrade",
-  "wtbw_machines.tooltip.tier": "Placed next to the Quarry \n increases the quarry size to %s",
+  "wtbw_machines.tooltip.tier": "Placed next to the Quarry \nincreases the quarry size to %s",
 
   "block.wtbw_machines.dryer": "Dryer",
   "block.wtbw_machines.powered_furnace": "Powered Furnace",

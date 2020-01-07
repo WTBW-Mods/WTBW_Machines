@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "GGG",
+    "PMP",
+    "GGG"
+  ],
+  "key": {
+    "P": {
+      "item": "minecraft:piston"
+    },
+    "G": {
+      "item": "wtbw_core:groundium"
+    },
+    "M": {
+      "item": "wtbw_machines:machine_block"
+    }
+  },
+  "result": {
+    "item": "wtbw_machines:powered_compressor"
+  }
+}
