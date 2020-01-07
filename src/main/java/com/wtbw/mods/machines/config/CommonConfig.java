@@ -135,27 +135,27 @@ public class CommonConfig extends BaseConfig
       .define("break_tiles", false);
 
     quarryDefaultSize = builder
-            .comment("The power it uses to break a block", "default: 1")
+            .comment("Quarry's default size", "default: 1")
             .translation(key("blocks.quarry.power_usage"))
             .defineInRange("blocks.quarry.default_size", 1, 1, Integer.MAX_VALUE);
 
     quarryTier1 = builder
-            .comment("The power it uses to break a block", "default: 3")
+            .comment("Tier 1 upgrade size ", "default: 3")
             .translation(key("blocks.quarry.power_usage"))
             .defineInRange("blocks.quarry.tier1", 3, 1, Integer.MAX_VALUE);
 
     quarryTier2 = builder
-            .comment("The power it uses to break a block", "default: 9")
+            .comment("Tier 2 upgrade size", "default: 9")
             .translation(key("blocks.quarry.power_usage"))
             .defineInRange("blocks.quarry.tier2", 9, 1, Integer.MAX_VALUE);
 
     quarryTier3 = builder
-            .comment("The power it uses to break a block", "default: 17")
+            .comment("Tier 3 upgrade size", "default: 17")
             .translation(key("blocks.quarry.power_usage"))
             .defineInRange("blocks.quarry.tier3", 17, 1, Integer.MAX_VALUE);
 
     quarryTier4 = builder
-            .comment("The power it uses to break a block", "default: 33")
+            .comment("Tier 4 upgrade size", "default: 33")
             .translation(key("blocks.quarry.power_usage"))
             .defineInRange("blocks.quarry.tier4", 33, 1, Integer.MAX_VALUE);
     pop();
