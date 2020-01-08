@@ -13,8 +13,8 @@
               "source": "block_entity",
               "ops": [
                 {
-                  "source": "energy",
-                  "target": "BlockEntityTag.energy",
+                  "source": "storage",
+                  "target": "BlockEntityTag.storage",
                   "op": "replace"
                 }
               ]
