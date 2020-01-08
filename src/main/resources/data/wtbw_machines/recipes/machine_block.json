@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "GCG",
+    "GBG",
+    "GGG"
+  ],
+  "key": {
+    "C": {
+      "tag": "forge:chests"
+    },
+    "G": {
+      "item": "wtbw_core:groundium"
+    },
+    "B": {
+      "item": "wtbw_machines:simple_battery"
+    }
+  },
+  "result": {
+    "item": "wtbw_machines:machine_block"
+  }
+}

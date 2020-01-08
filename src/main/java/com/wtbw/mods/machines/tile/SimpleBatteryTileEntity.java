@@ -16,7 +16,7 @@ public class SimpleBatteryTileEntity extends Battery implements IWTBWNamedContai
 {
   public SimpleBatteryTileEntity()
   {
-    super(ModTiles.SIMPLE_BATTERY, 100000, 1000, 1000);
+    super(ModTiles.SIMPLE_BATTERY, 32000, 1000, 1000);
   }
   
   @Nullable

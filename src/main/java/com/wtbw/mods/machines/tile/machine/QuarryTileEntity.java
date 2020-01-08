@@ -52,7 +52,7 @@ public class QuarryTileEntity extends TileEntity implements ITickableTileEntity,
     private Area area;
     private boolean isDone;
     private int tick;
-    private int quarrySize = 1;
+    private int quarrySize = CommonConfig.instance().quarryDefaultSize.get();
     private BaseEnergyStorage storage;
     private LazyOptional<ItemStackHandler> inventory = LazyOptional.of(this::createInventory);
     private LazyOptional<BaseEnergyStorage> storageCap = LazyOptional.of(this::getStorage);
@@ -91,39 +91,6 @@ public class QuarryTileEntity extends TileEntity implements ITickableTileEntity,
                 }
             }
         });
-//        nbtManager.register("current", new Manager.BlockPos() {
-//            @Override
-//            public net.minecraft.util.math.BlockPos get() {
-//                return currentPos;
-//            }
-//
-//            @Override
-//            public void set(net.minecraft.util.math.BlockPos value) {
-//                currentPos = value;
-//            }
-//        });
-//        nbtManager.register("finished", new Manager.Bool() {
-//            @Override
-//            public Boolean get() {
-//                return isDone;
-//            }
-//
-//            @Override
-//            public void set(Boolean value) {
-//                isDone = value;
-//            }
-//        });
-//        nbtManager.register("upgradeLevel", new Manager.Int() {
-//            @Override
-//            public Integer get() {
-//                return upgradeLevel;
-//            }
-//
-//            @Override
-//            public void set(Integer value) {
-//                upgradeLevel = value;
-//            }
-//        });
     }
 
     public BaseEnergyStorage getStorage() {
@@ -182,7 +149,6 @@ public class QuarryTileEntity extends TileEntity implements ITickableTileEntity,
             tick++;
             if (area == null) {
                 area = Utilities.getArea(pos.offset(getFacing()).offset(Direction.DOWN), getFacing(), quarrySize, pos.getY() - 1);
-//                WTBWMachines.LOGGER.info("Facing {}, Area: {}", getFacing(), area);
                 currentPos = new BlockPos(area.start.getX(), pos.getY() - 1, area.start.getZ());
                 sendUpdate();
                 markDirty();
@@ -320,19 +286,19 @@ public class QuarryTileEntity extends TileEntity implements ITickableTileEntity,
     public void upgradeLevelUpdated() {
         switch (upgradeLevel) {
             case 0:
-                quarrySize = 1;
+                quarrySize = CommonConfig.instance().quarryDefaultSize.get();
                 break;
             case 1:
-                quarrySize = 3;
+                quarrySize = CommonConfig.instance().quarryTier1.get();
                 break;
             case 2:
-                quarrySize = 9;
+                quarrySize = CommonConfig.instance().quarryTier2.get();
                 break;
             case 3:
-                quarrySize = 17;
+                quarrySize = CommonConfig.instance().quarryTier3.get();
                 break;
             case 4:
-                quarrySize = 33;
+                quarrySize = CommonConfig.instance().quarryTier4.get();
                 break;
         }
 
