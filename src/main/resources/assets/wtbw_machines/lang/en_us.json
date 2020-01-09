@@ -50,7 +50,7 @@
   "block.wtbw_machines.tier4_upgrade": "Tier 4 Upgrade",
   "wtbw_machines.tooltip.tier": "Placed next to the Quarry \nincreases the quarry size to %s",
 
-  "block.wtbw_machines.dryer": "Dryer",
+  "block.wtbw_machines.dehydrator": "Dehydrator",
   "block.wtbw_machines.powered_furnace": "Powered Furnace",
   "block.wtbw_machines.powered_crusher": "Powered Crusher",
   "block.wtbw_machines.powered_compressor": "Powered Compressor",

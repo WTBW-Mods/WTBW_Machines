@@ -1,13 +1,13 @@
 {
   "type": "minecraft:crafting_shaped",
   "pattern": [
-    "GIG",
+    "GmG",
     "GMG",
-    "GLG"
+    "GBG"
   ],
   "key": {
-    "I": {
-      "item": "minecraft:iron_bars"
+    "m": {
+      "item": "minecraft:magma_block"
     },
     "G": {
       "item": "wtbw_core:groundium"
@@ -15,11 +15,11 @@
     "M": {
       "item": "wtbw_machines:machine_block"
     },
-    "L": {
-      "item": "minecraft:lava_bucket"
+    "B": {
+      "item": "minecraft:bucket"
     }
   },
   "result": {
-    "item": "wtbw_machines:dryer"
+    "item": "wtbw_machines:dehydrator"
   }
 }

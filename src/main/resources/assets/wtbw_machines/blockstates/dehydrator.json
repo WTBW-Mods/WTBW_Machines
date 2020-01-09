@@ -1,33 +1,33 @@
 {
   "variants": {
     "facing=north,on=false": {
-      "model": "wtbw_machines:block/dryer"
+      "model": "wtbw_machines:block/dehydrator"
     },
     "facing=south,on=false": {
-      "model": "wtbw_machines:block/dryer",
+      "model": "wtbw_machines:block/dehydrator",
       "y": 180
     },
     "facing=west,on=false": {
-      "model": "wtbw_machines:block/dryer",
+      "model": "wtbw_machines:block/dehydrator",
       "y": 270
     },
     "facing=east,on=false": {
-      "model": "wtbw_machines:block/dryer",
+      "model": "wtbw_machines:block/dehydrator",
       "y": 90
     },
     "facing=north,on=true": {
-      "model": "wtbw_machines:block/dryer_on"
+      "model": "wtbw_machines:block/dehydrator_on"
     },
     "facing=south,on=true": {
-      "model": "wtbw_machines:block/dryer_on",
+      "model": "wtbw_machines:block/dehydrator_on",
       "y": 180
     },
     "facing=west,on=true": {
-      "model": "wtbw_machines:block/dryer_on",
+      "model": "wtbw_machines:block/dehydrator_on",
       "y": 270
     },
     "facing=east,on=true": {
-      "model": "wtbw_machines:block/dryer_on",
+      "model": "wtbw_machines:block/dehydrator_on",
       "y": 90
     }
   }

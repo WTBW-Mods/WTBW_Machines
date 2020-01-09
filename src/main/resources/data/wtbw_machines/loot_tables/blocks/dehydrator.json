@@ -1,12 +1,12 @@
 {
-  "type": "wtbw_machines:dryer",
+  "type": "wtbw_machines:dehydrator",
   "pools": [
     {
       "rolls": 1,
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "wtbw_machines:dryer"
+          "name": "wtbw_machines:dehydrator"
         }
       ],
       "conditions": [

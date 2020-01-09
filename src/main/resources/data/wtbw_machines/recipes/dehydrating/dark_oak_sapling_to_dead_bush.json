@@ -1,9 +1,10 @@
 {
-  "type": "wtbw_machines:drying",
+  "type": "wtbw_machines:dehydrating",
   "ingredient": {
     "item": "minecraft:dark_oak_sapling"
   },
   "result": "minecraft:dead_bush",
   "count": 1,
-  "duration": 50
+  "powerCost": 3200,
+  "duration": 160
 }

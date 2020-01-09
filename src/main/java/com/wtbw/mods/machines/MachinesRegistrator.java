@@ -15,7 +15,7 @@ import com.wtbw.mods.machines.gui.container.*;
 import com.wtbw.mods.machines.recipe.*;
 import com.wtbw.mods.machines.tile.*;
 import com.wtbw.mods.machines.tile.furnace.FurnaceTier;
-import com.wtbw.mods.machines.tile.machine.DryerTileEntity;
+import com.wtbw.mods.machines.tile.machine.DehydratorTileEntity;
 import com.wtbw.mods.machines.tile.machine.PoweredCompressorEntity;
 import com.wtbw.mods.machines.tile.machine.PoweredCrusherEntity;
 import com.wtbw.mods.machines.tile.machine.PoweredFurnaceEntity;
@@ -72,9 +72,8 @@ public class MachinesRegistrator extends Registrator
     
     register(new BaseMachineBlock<>(getBlockProperties(Material.IRON, 3), (world, state) -> new SimpleBatteryTileEntity()).comparator(), "simple_battery");
     
-    register(new BaseMachineBlock<>(getBlockProperties(Material.IRON, 5), (world, state) -> new DryerTileEntity()).mirrored(), "dryer");
-
-    //TODO Make Recipe
+    register(new BaseMachineBlock<>(getBlockProperties(Material.IRON, 5), (world, state) -> new DehydratorTileEntity()).mirrored(), "dehydrator");
+    
     register(new Block(getBlockProperties(Material.IRON, 3)), "machine_block");
     
     register(new TierBlock(getBlockProperties(Material.IRON, 3), 1), "tier1_upgrade");
@@ -116,7 +115,7 @@ public class MachinesRegistrator extends Registrator
     registerContainer(BlockPlacerContainer::new, "block_placer");
     registerContainer(BlockDetectorContainer::new, "block_detector");
     registerContainer(QuarryContainer::new, "quarry");
-    registerContainer(DryerContainer::new, "dryer");
+    registerContainer(DehydratorContainer::new, "dehydrator");
     registerContainer(SolarPanelContainer::new, "solar_panel");
     registerContainer(BatteryContainer::new, "battery");
     registerContainer(CompressorContainer::new, "compressor");
@@ -130,7 +129,7 @@ public class MachinesRegistrator extends Registrator
   
     IForgeRegistry<IRecipeSerializer<?>> registry = event.getRegistry();
   
-    registry.register(DryerRecipe.SERIALIZER);
+    registry.register(DehydratingRecipe.SERIALIZER);
     registry.register(CompressingRecipe.SERIALIZER);
     registry.register(CrushingRecipe.SERIALIZER);
     registry.register(PoweredFurnaceRecipe.SERIALIZER);
