@@ -76,5 +76,7 @@
 
   "wtbw_machines.gui.current": "Current",
   "wtbw_machines.gui.exact": "Exact",
-  "wtbw_machines.gui.quarry.current_block": "Mining:"
+  "wtbw_machines.gui.quarry.current_block": "Mining:",
+
+  "wtbw_machines.jei.crushing": "Crushing"
 }
