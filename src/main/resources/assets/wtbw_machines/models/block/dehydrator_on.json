@@ -2,7 +2,7 @@
 	"parent": "block/orientable",
 	"textures": {
 		"top": "wtbw_machines:block/top",
-		"front": "wtbw_machines:block/dryer_off",
+		"front": "wtbw_machines:block/dehydrator_on",
 		"side": "wtbw_machines:block/side"
 	}
 }

@@ -1,9 +1,10 @@
 {
-  "type": "wtbw_machines:drying",
+  "type": "wtbw_machines:dehydrating",
   "ingredient": {
     "item": "minecraft:cooked_beef"
   },
   "result": "minecraft:leather",
-  "count": 1,
-  "duration": 200
+  "count": 2,
+  "powerCost": 15000,
+  "duration": 350
 }

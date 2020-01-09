@@ -6,8 +6,8 @@ import com.wtbw.mods.lib.tile.util.RedstoneMode;
 import com.wtbw.mods.lib.tile.util.energy.BaseEnergyStorage;
 import com.wtbw.mods.lib.util.Utilities;
 import com.wtbw.mods.lib.util.nbt.NBTManager;
-import com.wtbw.mods.machines.gui.container.DryerContainer;
-import com.wtbw.mods.machines.recipe.DryerRecipe;
+import com.wtbw.mods.machines.gui.container.DehydratorContainer;
+import com.wtbw.mods.machines.recipe.DehydratingRecipe;
 import com.wtbw.mods.machines.recipe.ModRecipes;
 import com.wtbw.mods.machines.tile.ModTiles;
 import com.wtbw.mods.machines.tile.base.BaseMachineEntity;
@@ -31,7 +31,7 @@ import java.util.List;
   @author: Naxanria
 */
 @SuppressWarnings("ConstantConditions")
-public class DryerTileEntity extends BaseMachineEntity
+public class DehydratorTileEntity extends BaseMachineEntity
 {
   public static final int INPUT_SLOT = 0;
   public static final int OUTPUT_SLOT = 1;
@@ -46,35 +46,17 @@ public class DryerTileEntity extends BaseMachineEntity
   private int progress;
   private int powerUsage = 40;
   
-  private int heat;
-  private int subHeat;
-  private int targetHeat;
+  private DehydratingRecipe recipe;
   
-  private DryerRecipe recipe;
-  
-  public DryerTileEntity()
+  public DehydratorTileEntity()
   {
-    super(ModTiles.DRYER, 1000000, 50000, RedstoneMode.IGNORE);
+    super(ModTiles.DEHYDRATOR, 100000, 5000, RedstoneMode.IGNORE);
     
     manager
       .registerInt("duration",() -> duration, i -> duration = i)
       .registerInt("progress", () -> progress, i -> progress = i)
       .registerInt("powerUsage", () -> powerUsage, i -> powerUsage = i)
-      .registerInt("heat", () -> heat, i -> heat = i)
-      .registerInt("targetHeat", () -> targetHeat, i -> targetHeat = i)
-      .registerInt("subHeat", () -> subHeat, i -> subHeat = i)
       .register("inventory", getInventory());
-  }
-  
-  @Nonnull
-  public BaseEnergyStorage getStorage()
-  {
-    if (storage == null)
-    {
-      storage = new BaseEnergyStorage(1000000, 50000, 0);
-    }
-    
-    return storage;
   }
   
   @Nonnull
@@ -158,7 +140,6 @@ public class DryerTileEntity extends BaseMachineEntity
   
   protected boolean validRecipeInput(ItemStack stack)
   {
-    // todo: only accept recipe valid items
     getFakeInventory().setInventorySlotContents(0, stack);
     return !stack.isEmpty() && getRecipe(getFakeInventory()) != null;
   }
@@ -191,7 +172,7 @@ public class DryerTileEntity extends BaseMachineEntity
   @Override
   public Container createMenu(int id, PlayerInventory inventory, PlayerEntity player)
   {
-    return new DryerContainer(id, world, pos, inventory);
+    return new DehydratorContainer(id, world, pos, inventory);
   }
   
   @Override
@@ -199,39 +180,15 @@ public class DryerTileEntity extends BaseMachineEntity
   {
     if (!world.isRemote)
     {
-      if (heat <= targetHeat)
-      {
-        powerUsage = targetHeat - heat / 2 + targetHeat / 2;
-      }
-      else
-      {
-        powerUsage = 25;
-      }
-      
-      
-      if (storage.getEnergyStored() >= powerUsage)
-      {
-        storage.extractInternal(powerUsage, false);
-      }
-      else
-      {
-        if (isOn())
-        {
-          setOn(false);
-        }
-        decayHeat();
-        decayHeat();
-      }
-      
+      boolean on = false;
       if (inventory.getStackInSlot(INPUT_SLOT).isEmpty())
       {
         progress = 0;
-        targetHeat = 20;
         recipe = null;
       }
       else
       {
-        DryerRecipe old = recipe;
+        DehydratingRecipe old = recipe;
         if (recipe == null)
         {
           recipe = getRecipe();
@@ -247,81 +204,35 @@ public class DryerTileEntity extends BaseMachineEntity
         if (recipe != null)
         {
           duration = recipe.duration;
-          targetHeat = recipe.heat;
-          
+          powerUsage = recipe.powerCost / duration;
+  
           if (recipe != old)
           {
             progress = 0;
           }
-          
-          if (properHeat())
+  
+        }
+  
+        if (canOutput())
+        {
+          if (storage.getEnergyStored() >= powerUsage)
           {
-            if (powerUsage < 0)
-            {
-              powerUsage = 0;
-            }
-      
-            if (canOutput())
-            {
-              if (storage.getEnergyStored() >= powerUsage)
-              {
-
-                doProgress();
-              }
-            }
+            storage.extractInternal(powerUsage, false);
+            doProgress();
+            on = true;
           }
         }
       }
       
-      if (targetHeat < 20)
+      if (isOn() != on)
       {
-        targetHeat = 20;
+        setOn(on);
       }
-      
-      if (heat < 20)
-      {
-        heat = 20;
-      }
-      
-      if (heat > targetHeat)
-      {
-        decayHeat();
-      }
-
+  
       markDirty();
-      
     }
   }
   
-  private void decayHeat()
-  {
-    if (isOn())
-    {
-      setOn(false);
-    }
-    
-    heat -= (int) (Math.sqrt(Math.abs(heat - targetHeat))) / 5 + 1;
-  }
-  
-  private void generateHeat()
-  {
-    if (!isOn())
-    {
-      setOn(true);
-    }
-    
-    heat += (int) (Math.sqrt(Math.abs(targetHeat - heat))) / 5 + 1;
-  }
-  
-  private boolean properHeat()
-  {
-    if (heat < targetHeat)
-    {
-      generateHeat();
-    }
-    
-    return heat >= targetHeat;
-  }
   
   private boolean canOutput()
   {
@@ -356,14 +267,14 @@ public class DryerTileEntity extends BaseMachineEntity
     }
   }
   
-  private DryerRecipe getRecipe()
+  private DehydratingRecipe getRecipe()
   {
     return getRecipe(getInventoryWrapper());
   }
   
-  private DryerRecipe getRecipe(IInventory inventory)
+  private DehydratingRecipe getRecipe(IInventory inventory)
   {
-    return Utilities.getRecipe(world, ModRecipes.DRYING, inventory);
+    return Utilities.getRecipe(world, ModRecipes.DEHYDRATING, inventory);
   }
   
   
@@ -385,20 +296,5 @@ public class DryerTileEntity extends BaseMachineEntity
   public int getPowerUsage()
   {
     return powerUsage;
-  }
-  
-  public int getHeat()
-  {
-    return heat;
-  }
-  
-  public int getSubHeat()
-  {
-    return subHeat;
-  }
-  
-  public int getTargetHeat()
-  {
-    return targetHeat;
   }
 }
