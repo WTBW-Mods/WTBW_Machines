@@ -18,7 +18,7 @@ import net.minecraft.util.text.ITextComponent;
 */
 public class CrusherScreen extends BaseContainerScreen<CrusherContainer>
 {
-  public static final SpriteMap ICONS = new SpriteMap(64, new ResourceLocation(WTBWMachines.MODID, "textures/gui/icons.png"));
+  public static final SpriteMap ICONS = new SpriteMap(256, new ResourceLocation(WTBWMachines.MODID, "textures/gui/icons.png"));
   public static final Sprite PROGRESS_BACKGROUND = ICONS.getSprite(10, 0, 10, 10);
   public static final Sprite PROGRESS = PROGRESS_BACKGROUND.getBelow(10, 10);
   
