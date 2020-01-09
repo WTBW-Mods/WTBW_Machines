@@ -45,5 +45,5 @@ public class ModBlocks
   public static final Block TIER3_UPGRADE = Blocks.AIR;
   public static final Block TIER4_UPGRADE = Blocks.AIR;
 
-  public static final Block CRUSHER = null;
+  public static final Block POWERED_CRUSHER = Blocks.AIR;
 }
