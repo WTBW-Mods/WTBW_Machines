@@ -20,7 +20,7 @@ import net.minecraft.util.text.ITextComponent;
 */
 public class PoweredFurnaceScreen extends BaseContainerScreen<PoweredFurnaceContainer>
 {
-  public static final SpriteMap ICONS = new SpriteMap(64, new ResourceLocation(WTBWMachines.MODID, "textures/gui/icons.png"));
+  public static final SpriteMap ICONS = new SpriteMap(256, new ResourceLocation(WTBWMachines.MODID, "textures/gui/icons.png"));
   public static final Sprite PROGRESS_BACKGROUND = ICONS.getSprite(20, 0, 14, 14);
   public static final Sprite PROGRESS = PROGRESS_BACKGROUND.getBelow(14, 14);
 
