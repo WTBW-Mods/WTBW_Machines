@@ -3,7 +3,7 @@
   "pattern": [
     "GPG",
     "GMG",
-    "GIG"
+    "GBG"
   ],
   "key": {
     "P": {
@@ -15,11 +15,11 @@
     "M": {
       "item": "wtbw_machines:machine_block"
     },
-    "I": {
-      "item": "minecraft:iron_bars"
+    "B": {
+      "tag": "forge:storage_blocks/iron"
     }
   },
   "result": {
-    "item": "wtbw_machines:powered_compressor"
+    "item": "wtbw_machines:powered_crusher"
   }
 }
