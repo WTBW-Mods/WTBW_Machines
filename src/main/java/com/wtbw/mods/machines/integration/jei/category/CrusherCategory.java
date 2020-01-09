@@ -2,9 +2,8 @@ package com.wtbw.mods.machines.integration.jei.category;
 
 import com.wtbw.mods.machines.WTBWMachines;
 import com.wtbw.mods.machines.block.ModBlocks;
-import mezz.jei.api.gui.IRecipeLayout;
+import com.wtbw.mods.machines.recipe.CrushingRecipe;
 import mezz.jei.api.helpers.IGuiHelper;
-import mezz.jei.api.ingredients.IIngredients;
 import mezz.jei.plugins.vanilla.cooking.AbstractCookingCategory;
 import net.minecraft.util.ResourceLocation;
 
@@ -24,7 +23,7 @@ public class CrusherCategory extends AbstractCookingCategory {
     }
 
     @Override
-    public Class<? extends CrusherRecipe> getRecipeClass() {
-        return CrusherRecipe.class;
+    public Class<? extends CrushingRecipe> getRecipeClass() {
+        return CrushingRecipe.class;
     }
 }
