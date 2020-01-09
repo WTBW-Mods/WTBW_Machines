@@ -1,16 +1,7 @@
 package com.wtbw.mods.machines.block;
 
 import com.wtbw.mods.machines.WTBWMachines;
-import com.wtbw.mods.machines.block.redstone.BlockDetectorBlock;
-import com.wtbw.mods.lib.block.BaseTileBlock;
-import com.wtbw.mods.lib.block.SixWayTileBlock;
-import com.wtbw.mods.machines.tile.BlockBreakerTileEntity;
-import com.wtbw.mods.machines.tile.BlockPlacerTileEntity;
-import com.wtbw.mods.machines.tile.SolarPanelTileEntity;
-import com.wtbw.mods.machines.tile.VacuumChestTileEntity;
-import com.wtbw.mods.machines.tile.redstone.RedstoneTimerTileEntity;
 import net.minecraft.block.Block;
-
 import net.minecraft.block.Blocks;
 import net.minecraftforge.registries.ObjectHolder;
 
@@ -20,30 +11,44 @@ import net.minecraftforge.registries.ObjectHolder;
 @ObjectHolder(WTBWMachines.MODID)
 public class ModBlocks
 {
-  public static final TieredFurnaceBlock IRON_FURNACE = null;
-  public static final TieredFurnaceBlock GOLD_FURNACE = null;
-  public static final TieredFurnaceBlock DIAMOND_FURNACE = null;
-  public static final TieredFurnaceBlock END_FURNACE = null;
+  public static final Block IRON_FURNACE = Blocks.AIR;
+  public static final Block GOLD_FURNACE = Blocks.AIR;
+  public static final Block DIAMOND_FURNACE = Blocks.AIR;
+  public static final Block END_FURNACE = Blocks.AIR;
 
-  public static final BaseTileBlock<RedstoneTimerTileEntity> REDSTONE_TIMER = null;
+  public static final Block REDSTONE_TIMER = Blocks.AIR;
+  public static final Block REDSTONE_EMITTER = Blocks.AIR;
   
-  public static final SixWayTileBlock<BlockBreakerTileEntity> BLOCK_BREAKER = null;
-  public static final SixWayTileBlock<BlockPlacerTileEntity> BLOCK_PLACER = null;
-  public static final BlockDetectorBlock BLOCK_DETECTOR = null;
+  public static final Block BLOCK_BREAKER = Blocks.AIR;
+  public static final Block BLOCK_PLACER = Blocks.AIR;
+  public static final Block BLOCK_DETECTOR = Blocks.AIR;
 
-  public static final BaseTileBlock<VacuumChestTileEntity> VACUUM_CHEST = null;
+  public static final Block VACUUM_CHEST = Blocks.AIR;
   
-  public static final PushBlock PUSHER = null;
-  public static final PushBlock PULLER = null;
+  public static final Block PUSHER = Blocks.AIR;
+  public static final Block PULLER = Blocks.AIR;
   
-  public static final BaseTileBlock<SolarPanelTileEntity> SOLAR_PANEL = null;
+  public static final Block SOLAR_PANEL_MK1 = Blocks.AIR;
+  public static final Block SOLAR_PANEL_MK2 = Blocks.AIR;
+  public static final Block SOLAR_PANEL_MK3 = Blocks.AIR;
+  
+  public static final Block WOODEN_SPIKES = Blocks.AIR;
+  public static final Block BAMBOO_SPIKES = Blocks.AIR;
+  public static final Block IRON_SPIKES = Blocks.AIR;
+  public static final Block GOLD_SPIKES = Blocks.AIR;
+  public static final Block DIAMOND_SPIKES = Blocks.AIR;
 
-  public static final QuarryBlock QUARRY = null;
-  //public static final QuarryMarker QUARRY_MARKER = null;
+  public static final Block QUARRY = Blocks.AIR;
+  
   public static final Block TIER1_UPGRADE = Blocks.AIR;
   public static final Block TIER2_UPGRADE = Blocks.AIR;
   public static final Block TIER3_UPGRADE = Blocks.AIR;
   public static final Block TIER4_UPGRADE = Blocks.AIR;
 
   public static final Block POWERED_CRUSHER = Blocks.AIR;
+  public static final Block POWERED_COMPRESSOR = Blocks.AIR;
+  
+  public static final Block DEHYDRATOR = Blocks.AIR;
+  
+  public static final Block MACHINE_BLOCK = Blocks.AIR;
 }
