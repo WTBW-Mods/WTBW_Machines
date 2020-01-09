@@ -65,6 +65,7 @@ minecraft {
 repositories {
     mavenLocal()
     maven { url "https://maven.latmod.com/" }
+    maven { url "https://dvs1.progwml6.com/files/maven/"}
 }
 
 dependencies {
@@ -92,6 +93,8 @@ dependencies {
             transitive = false
         })
     }
+
+    compileOnly fg.deobf("mezz.jei:jei-${jei_version}")
 }
 
 jar {

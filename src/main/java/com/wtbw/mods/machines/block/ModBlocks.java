@@ -12,7 +12,6 @@ import com.wtbw.mods.machines.tile.redstone.RedstoneTimerTileEntity;
 import net.minecraft.block.Block;
 
 import net.minecraft.block.Blocks;
-import net.minecraft.tileentity.TileEntityType;
 import net.minecraftforge.registries.ObjectHolder;
 
 /*
@@ -45,4 +44,6 @@ public class ModBlocks
   public static final Block TIER2_UPGRADE = Blocks.AIR;
   public static final Block TIER3_UPGRADE = Blocks.AIR;
   public static final Block TIER4_UPGRADE = Blocks.AIR;
+
+  public static final Block CRUSHER = null;
 }
