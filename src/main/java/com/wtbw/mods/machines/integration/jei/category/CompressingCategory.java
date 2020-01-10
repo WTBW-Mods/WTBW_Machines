@@ -1,10 +1,14 @@
 package com.wtbw.mods.machines.integration.jei.category;
 
+import com.wtbw.mods.lib.gui.util.EnergyBar;
+import com.wtbw.mods.lib.gui.util.ProgressBar;
+import com.wtbw.mods.lib.tile.util.energy.BaseEnergyStorage;
 import com.wtbw.mods.lib.util.Cache;
 import com.wtbw.mods.machines.ClientConstants;
 import com.wtbw.mods.machines.block.ModBlocks;
 import com.wtbw.mods.machines.gui.screen.CompressorScreen;
 import com.wtbw.mods.machines.recipe.CompressingRecipe;
+import com.wtbw.mods.machines.recipe.CrushingRecipe;
 import com.wtbw.mods.machines.tile.machine.PoweredCompressorEntity;
 import mezz.jei.api.constants.VanillaTypes;
 import mezz.jei.api.gui.IRecipeLayout;
@@ -16,6 +20,9 @@ import mezz.jei.api.helpers.IGuiHelper;
 import mezz.jei.api.ingredients.IIngredients;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
+
+import java.util.Collections;
+import java.util.List;
 
 /*
   @author: Naxanria
@@ -29,16 +36,18 @@ public class CompressingCategory extends AbstractRecipeCategory<CompressingRecip
 
   private final IDrawableAnimated progressLeft;
   private final IDrawableAnimated progressRight;
-  
+
+  EnergyBar energyBar;
+
   public CompressingCategory(IGuiHelper guiHelper)
   {
     super
     (
       CompressingRecipe.class,
       UID,
-      key("compressing"),
+      "compressing",
       guiHelper,
-      () -> guiHelper.createDrawable(ClientConstants.Jei.BACKGROUND,0, 54, 54, 54),
+      () -> guiHelper.createDrawable(ClientConstants.Jei.BACKGROUND,0, 54, 90, 54),
       () -> guiHelper.createDrawableIngredient(new ItemStack(ModBlocks.POWERED_COMPRESSOR))
     );
     
@@ -62,6 +71,9 @@ public class CompressingCategory extends AbstractRecipeCategory<CompressingRecip
     
     guiItemStacks.init(INPUT_SLOT, true, halfX - 9, 0);
     guiItemStacks.init(OUTPUT_SLOT, false, halfX - 9, 36);
+    energyBar = new EnergyBar(new BaseEnergyStorage(100000), 0, 0).setDimensions(16, 54).cast();
+    energyBar.storage.setEnergy(recipe.powerCost);
+    energyBar.update();
     guiItemStacks.set(ingredients);
   }
   
@@ -72,5 +84,11 @@ public class CompressingCategory extends AbstractRecipeCategory<CompressingRecip
     CompressorScreen.PROGRESS_BACKGROUND_RIGHT.render(halfX, halfY - 5);
     progressLeft.draw(halfX - 10, halfY - 5);
     progressRight.draw(halfX, halfY - 5);
+    energyBar.draw(0, 0);
+  }
+
+  @Override
+  public List<String> getTooltipStrings(CompressingRecipe recipe, double mouseX, double mouseY) {
+    return energyBar.isHover((int) mouseX, (int) mouseY) ? energyBar.getTooltip() : Collections.emptyList();
   }
 }

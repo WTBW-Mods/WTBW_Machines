@@ -1,5 +1,7 @@
 package com.wtbw.mods.machines.integration.jei.category;
 
+import com.wtbw.mods.lib.gui.util.EnergyBar;
+import com.wtbw.mods.lib.tile.util.energy.BaseEnergyStorage;
 import com.wtbw.mods.lib.util.BiValue;
 import com.wtbw.mods.lib.util.Cache;
 import com.wtbw.mods.lib.util.Utilities;
@@ -19,13 +21,12 @@ import mezz.jei.api.gui.ingredient.IGuiItemStackGroup;
 import mezz.jei.api.gui.ingredient.ITooltipCallback;
 import mezz.jei.api.helpers.IGuiHelper;
 import mezz.jei.api.ingredients.IIngredients;
-import mezz.jei.api.recipe.category.IRecipeCategory;
-import mezz.jei.util.Translator;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 
 import javax.annotation.Nonnull;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 /*
@@ -38,6 +39,8 @@ public class CrusherCategory extends AbstractRecipeCategory<CrushingRecipe>
   public static final ResourceLocation UID = new ResourceLocation(WTBWMachines.MODID, "crusher_category");
   
   protected final IDrawableAnimated progress;
+
+  EnergyBar energyBar;
   
   public CrusherCategory(IGuiHelper guiHelper)
   {
@@ -45,9 +48,9 @@ public class CrusherCategory extends AbstractRecipeCategory<CrushingRecipe>
     (
       CrushingRecipe.class,
       UID,
-      key("crushing"),
+      "crushing",
       guiHelper,
-      () -> guiHelper.createDrawable(ClientConstants.Jei.BACKGROUND, 0, 0, 126, 54),
+      () -> guiHelper.createDrawable(ClientConstants.Jei.BACKGROUND, 0, 0, 162, 54),
       () -> guiHelper.createDrawableIngredient(new ItemStack(ModBlocks.POWERED_CRUSHER))
     );
     
@@ -70,7 +73,7 @@ public class CrusherCategory extends AbstractRecipeCategory<CrushingRecipe>
     guiItemStacks.addTooltipCallback(new TooltipCallback(crushingRecipe));
     guiItemStacks.init(inputSlot, true, halfX - 9, 0);
     
-    int x = 0;
+    int x = 18;
     int y = 36;
     int count = 6;
     int dx = 18;
@@ -81,6 +84,9 @@ public class CrusherCategory extends AbstractRecipeCategory<CrushingRecipe>
       x += dx;
     }
 
+    energyBar = new EnergyBar(new BaseEnergyStorage(100000),  0, 0).setDimensions(16 , 54).cast();
+    energyBar.storage.setEnergy(crushingRecipe.powerCost);
+    energyBar.update();
     guiItemStacks.set(ingredients);
   }
   
@@ -94,6 +100,7 @@ public class CrusherCategory extends AbstractRecipeCategory<CrushingRecipe>
   {
     CrusherScreen.PROGRESS_BACKGROUND.render(halfX - 5, 22);
     progress.draw(halfX - 5, 22);
+    energyBar.draw(0, 0);
   }
   
   private class TooltipCallback implements ITooltipCallback<ItemStack>
@@ -118,5 +125,10 @@ public class CrusherCategory extends AbstractRecipeCategory<CrushingRecipe>
         }
       }
     }
+  }
+
+  @Override
+  public List<String> getTooltipStrings(CrushingRecipe recipe, double mouseX, double mouseY) {
+    return energyBar.isHover((int) mouseX, (int) mouseY) ? energyBar.getTooltip() : Collections.emptyList();
   }
 }
