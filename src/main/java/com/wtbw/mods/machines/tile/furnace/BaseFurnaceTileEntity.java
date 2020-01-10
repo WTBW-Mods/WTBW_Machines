@@ -424,7 +424,7 @@ public class BaseFurnaceTileEntity extends TileEntity implements ITickableTileEn
 
     inputHandler.ifPresent(handler -> handler.deserializeNBT(NBTHelper.getCompound(compound, "input")));
     fuelHandler.ifPresent(handler -> handler.deserializeNBT(NBTHelper.getCompound(compound, "fuel")));
-    outputHandler.ifPresent(handler -> handler.deserializeNBT(NBTHelper.getCompound(compound, "output")));
+    outputHandler.ifPresent(handler -> handler.deserializeNBT(NBTHelper.getCompound(compound, "chanceMap")));
 
     super.read(compound);
   }
@@ -444,7 +444,7 @@ public class BaseFurnaceTileEntity extends TileEntity implements ITickableTileEn
 
     inputHandler.ifPresent(handler -> compound.put("input", handler.serializeNBT()));
     fuelHandler.ifPresent(handler -> compound.put("fuel", handler.serializeNBT()));
-    outputHandler.ifPresent(handler -> compound.put("output", handler.serializeNBT()));
+    outputHandler.ifPresent(handler -> compound.put("chanceMap", handler.serializeNBT()));
 
     return super.write(compound);
   }
