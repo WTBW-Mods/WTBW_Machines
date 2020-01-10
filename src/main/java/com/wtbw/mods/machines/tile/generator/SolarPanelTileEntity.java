@@ -1,7 +1,8 @@
-package com.wtbw.mods.machines.tile;
+package com.wtbw.mods.machines.tile.generator;
 
 import com.wtbw.mods.lib.tile.util.IWTBWNamedContainerProvider;
 import com.wtbw.mods.machines.gui.container.SolarPanelContainer;
+import com.wtbw.mods.machines.tile.ModTiles;
 import com.wtbw.mods.machines.tile.base.Generator;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;

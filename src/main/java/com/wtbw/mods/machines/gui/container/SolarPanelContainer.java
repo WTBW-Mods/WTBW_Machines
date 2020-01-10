@@ -1,14 +1,10 @@
 package com.wtbw.mods.machines.gui.container;
 
 import com.wtbw.mods.lib.gui.container.BaseTileContainer;
-import com.wtbw.mods.lib.util.nbt.NBTManager;
-import com.wtbw.mods.machines.tile.SolarPanelTileEntity;
+import com.wtbw.mods.machines.tile.generator.SolarPanelTileEntity;
 import net.minecraft.entity.player.PlayerInventory;
-import net.minecraft.inventory.container.ContainerType;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
-
-import javax.annotation.Nullable;
 
 /*
   @author: Naxanria

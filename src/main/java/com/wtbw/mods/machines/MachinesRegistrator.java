@@ -15,6 +15,7 @@ import com.wtbw.mods.machines.gui.container.*;
 import com.wtbw.mods.machines.recipe.*;
 import com.wtbw.mods.machines.tile.*;
 import com.wtbw.mods.machines.tile.furnace.FurnaceTier;
+import com.wtbw.mods.machines.tile.generator.SolarPanelTileEntity;
 import com.wtbw.mods.machines.tile.machine.DehydratorTileEntity;
 import com.wtbw.mods.machines.tile.machine.PoweredCompressorEntity;
 import com.wtbw.mods.machines.tile.machine.PoweredCrusherEntity;

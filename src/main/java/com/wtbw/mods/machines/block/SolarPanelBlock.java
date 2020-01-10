@@ -3,7 +3,7 @@ package com.wtbw.mods.machines.block;
 import com.wtbw.mods.lib.block.BaseTileBlock;
 import com.wtbw.mods.lib.util.TextComponentBuilder;
 import com.wtbw.mods.machines.WTBWMachines;
-import com.wtbw.mods.machines.tile.SolarPanelTileEntity;
+import com.wtbw.mods.machines.tile.generator.SolarPanelTileEntity;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.client.gui.screen.Screen;
