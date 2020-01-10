@@ -7,6 +7,7 @@ import com.wtbw.mods.lib.gui.util.RedstoneButton;
 import com.wtbw.mods.lib.gui.util.SpriteProgressBar;
 import com.wtbw.mods.lib.gui.util.sprite.Sprite;
 import com.wtbw.mods.lib.tile.util.energy.BaseEnergyStorage;
+import com.wtbw.mods.machines.ClientConstants;
 import com.wtbw.mods.machines.gui.container.CompressorContainer;
 import com.wtbw.mods.machines.tile.machine.PoweredCompressorEntity;
 import net.minecraft.entity.player.PlayerInventory;
@@ -17,7 +18,7 @@ import net.minecraft.util.text.ITextComponent;
 */
 public class CompressorScreen extends BaseContainerScreen<CompressorContainer>
 {
-  public static final Sprite PROGRESS_BACKGROUND_LEFT = CrusherScreen.ICONS.getSprite(0, 20, 10, 10);
+  public static final Sprite PROGRESS_BACKGROUND_LEFT = ClientConstants.Gui.ICONS.getSprite(0, 20, 10, 10);
   public static final Sprite PROGRESS_BACKGROUND_RIGHT = PROGRESS_BACKGROUND_LEFT.getRight(10, 10);
   public static final Sprite PROGRESS_LEFT = PROGRESS_BACKGROUND_LEFT.getBelow(10, 10);
   public static final Sprite PROGRESS_RIGHT = PROGRESS_BACKGROUND_RIGHT.getBelow(10, 10);

@@ -57,7 +57,7 @@ public class PoweredCrusherEntity extends BaseMachineEntity {
 
         manager
                 .registerInt("duration", () -> duration, i -> duration = i)
-                .registerInt("progress", () -> progress, i -> progress = i)
+                .registerInt("PROGRESS", () -> progress, i -> progress = i)
                 .registerInt("powerCost", () -> powerCost, i -> powerCost = i)
                 .registerInt("ingredientCost", () -> ingredientCost, i -> ingredientCost = i)
                 .register("inventory", getInventory())

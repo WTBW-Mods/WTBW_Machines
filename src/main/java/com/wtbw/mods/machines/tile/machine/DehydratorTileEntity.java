@@ -54,7 +54,7 @@ public class DehydratorTileEntity extends BaseMachineEntity
     
     manager
       .registerInt("duration",() -> duration, i -> duration = i)
-      .registerInt("progress", () -> progress, i -> progress = i)
+      .registerInt("PROGRESS", () -> progress, i -> progress = i)
       .registerInt("powerUsage", () -> powerUsage, i -> powerUsage = i)
       .register("inventory", getInventory());
   }

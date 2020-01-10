@@ -139,13 +139,15 @@ public class CrushingRecipe implements IRecipe<IInventory>
       for (JsonElement ele : JSONUtils.getJsonArray(json, "result"))
       {
         JsonObject obj = ele.getAsJsonObject();
-        String a = JSONUtils.getString(obj, "item");
-        int b = JSONUtils.getInt(obj, "count", 1);
-        float c = JSONUtils.getFloat(obj, "chance", 1);
-        ResourceLocation resultLocation = new ResourceLocation(a);
+        String item = JSONUtils.getString(obj, "item");
+        int count = JSONUtils.getInt(obj, "count", 1);
+        float chance = JSONUtils.getFloat(obj, "chance", 1);
+        
+        ResourceLocation resultLocation = new ResourceLocation(item);
         ItemStack aStack = new ItemStack(Registry.ITEM.getValue(resultLocation)
-          .orElseThrow(() -> new IllegalArgumentException("Item " + a + " does not exist")), b);
-        map.add(c, b, aStack);
+          .orElseThrow(() -> new IllegalArgumentException("Item " + item + " does not exist")), count);
+        
+        map.add(chance, count, aStack);
       }
       
       if (map.getEntries() > 6)

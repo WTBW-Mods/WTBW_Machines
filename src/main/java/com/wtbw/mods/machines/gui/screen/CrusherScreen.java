@@ -1,16 +1,16 @@
 package com.wtbw.mods.machines.gui.screen;
 
 import com.wtbw.mods.lib.gui.screen.BaseContainerScreen;
-import com.wtbw.mods.lib.gui.util.*;
-import com.wtbw.mods.lib.gui.util.sprite.Sprite;
-import com.wtbw.mods.lib.gui.util.sprite.SpriteMap;
+import com.wtbw.mods.lib.gui.util.EnergyBar;
+import com.wtbw.mods.lib.gui.util.ProgressBar;
+import com.wtbw.mods.lib.gui.util.RedstoneButton;
 import com.wtbw.mods.lib.gui.util.SpriteProgressBar;
+import com.wtbw.mods.lib.gui.util.sprite.Sprite;
 import com.wtbw.mods.lib.tile.util.energy.BaseEnergyStorage;
-import com.wtbw.mods.machines.WTBWMachines;
+import com.wtbw.mods.machines.ClientConstants;
 import com.wtbw.mods.machines.gui.container.CrusherContainer;
 import com.wtbw.mods.machines.tile.machine.PoweredCrusherEntity;
 import net.minecraft.entity.player.PlayerInventory;
-import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.ITextComponent;
 
 /*
@@ -18,8 +18,7 @@ import net.minecraft.util.text.ITextComponent;
 */
 public class CrusherScreen extends BaseContainerScreen<CrusherContainer>
 {
-  public static final SpriteMap ICONS = new SpriteMap(256, new ResourceLocation(WTBWMachines.MODID, "textures/gui/icons.png"));
-  public static final Sprite PROGRESS_BACKGROUND = ICONS.getSprite(10, 0, 10, 10);
+  public static final Sprite PROGRESS_BACKGROUND = ClientConstants.Gui.ICONS.getSprite(10, 0, 10, 10);
   public static final Sprite PROGRESS = PROGRESS_BACKGROUND.getBelow(10, 10);
   
   private SpriteProgressBar progressBar;

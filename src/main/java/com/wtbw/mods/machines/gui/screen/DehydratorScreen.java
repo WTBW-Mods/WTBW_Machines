@@ -7,6 +7,7 @@ import com.wtbw.mods.lib.gui.util.RedstoneButton;
 import com.wtbw.mods.lib.gui.util.SpriteProgressBar;
 import com.wtbw.mods.lib.gui.util.sprite.Sprite;
 import com.wtbw.mods.lib.tile.util.energy.BaseEnergyStorage;
+import com.wtbw.mods.machines.ClientConstants;
 import com.wtbw.mods.machines.gui.container.DehydratorContainer;
 import com.wtbw.mods.machines.tile.machine.DehydratorTileEntity;
 import net.minecraft.entity.player.PlayerInventory;
@@ -17,6 +18,9 @@ import net.minecraft.util.text.ITextComponent;
 */
 public class DehydratorScreen extends BaseContainerScreen<DehydratorContainer>
 {
+  public static final Sprite PROGRESS_BACKGROUND = ClientConstants.Gui.ICONS.getSprite(0, 0, 10, 10);
+  public static final Sprite PROGRESS = PROGRESS_BACKGROUND.getBelow(10, 10);
+  
   private ProgressBar progressBar;
   private EnergyBar energyBar;
 
@@ -33,17 +37,12 @@ public class DehydratorScreen extends BaseContainerScreen<DehydratorContainer>
     super.init();
     DehydratorTileEntity tileEntity = container.tileEntity;
     BaseEnergyStorage storage = tileEntity.getStorage();
-    Sprite bg = CrusherScreen.ICONS.getSprite(0, 0, 10, 10);
-    Sprite progress = bg.getBelow(10, 10);
-    progressBar = new SpriteProgressBar(guiLeft + 175 / 2 -3, guiTop + 39, progress, bg, tileEntity::getDuration, tileEntity::getProgress)
-      .setFillDirection(ProgressBar.FillDirection.TOP_BOTTOM);
     
-//    progressBar = new ProgressBar(guiLeft + 69, guiTop + 35, 70, 3, tileEntity::getDuration, tileEntity::getProgress)
-//      .setColor(0xffffffff).setFillDirection(ProgressBar.FillDirection.LEFT_RIGHT).setBorder(false);
+    progressBar = new SpriteProgressBar(guiLeft + 175 / 2 -3, guiTop + 39, PROGRESS, PROGRESS_BACKGROUND, tileEntity::getDuration, tileEntity::getProgress)
+      .setFillDirection(ProgressBar.FillDirection.TOP_BOTTOM);
     energyBar = getDefaultBar(storage);
     
     addTooltipProvider(energyBar);
-//    redstoneButton = new RedstoneButton<>(guiLeft - 20, guiTop + 10, tileEntity);
   }
   
   @Override

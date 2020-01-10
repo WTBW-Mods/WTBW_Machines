@@ -1,9 +1,13 @@
 package com.wtbw.mods.machines.integration.jei.category;
 
 import com.wtbw.mods.lib.util.BiValue;
+import com.wtbw.mods.lib.util.Cache;
 import com.wtbw.mods.lib.util.Utilities;
+import com.wtbw.mods.machines.ClientConstants;
+import com.wtbw.mods.machines.Constants;
 import com.wtbw.mods.machines.WTBWMachines;
 import com.wtbw.mods.machines.block.ModBlocks;
+import com.wtbw.mods.machines.gui.screen.CrusherScreen;
 import com.wtbw.mods.machines.recipe.CrushingRecipe;
 import com.wtbw.mods.machines.tile.machine.PoweredCrusherEntity;
 import mezz.jei.api.constants.VanillaTypes;
@@ -27,56 +31,27 @@ import java.util.List;
 /*
   @author: Sunekaer, Naxanria
 */
-public class CrusherCategory implements IRecipeCategory<CrushingRecipe>
+public class CrusherCategory extends AbstractRecipeCategory<CrushingRecipe>
 {
   protected static final int inputSlot = PoweredCrusherEntity.INPUT_SLOT;
   
-  public static final ResourceLocation GUI = new ResourceLocation("wtbw_machines:textures/gui/recipe_crushing.png");
-  public static final ResourceLocation ICONS = new ResourceLocation("wtbw_machines:textures/gui/icons.png");
+  public static final ResourceLocation UID = new ResourceLocation(WTBWMachines.MODID, "crusher_category");
   
   protected final IDrawableAnimated progress;
-  protected final IDrawableStatic background;
   
-  private final String localizedName;
-  private final IGuiHelper guiHelper;
-  
-  public static final ResourceLocation UID = new ResourceLocation(WTBWMachines.MODID, "crusher_category");
   public CrusherCategory(IGuiHelper guiHelper)
   {
-    this.guiHelper = guiHelper;
-    this.background = guiHelper.createDrawable(GUI, 0, 0, 126, 54);
-    this.localizedName = Translator.translateToLocal("wtbw_machines.jei.crushing");
-    this.progress = guiHelper.drawableBuilder(ICONS, 10, 10, 10, 10).buildAnimated(300, IDrawableAnimated.StartDirection.TOP, false);
-  }
-  
-  @Override
-  public ResourceLocation getUid()
-  {
-    return UID;
-  }
-  
-  @Override
-  public Class<? extends CrushingRecipe> getRecipeClass()
-  {
-    return CrushingRecipe.class;
-  }
-  
-  @Override
-  public String getTitle()
-  {
-    return this.localizedName;
-  }
-  
-  @Override
-  public IDrawable getBackground()
-  {
-    return background;
-  }
-  
-  @Override
-  public IDrawable getIcon()
-  {
-    return guiHelper.createDrawableIngredient(new ItemStack(ModBlocks.POWERED_CRUSHER));
+    super
+    (
+      CrushingRecipe.class,
+      UID,
+      key("crushing"),
+      guiHelper,
+      () -> guiHelper.createDrawable(ClientConstants.Jei.BACKGROUND, 0, 0, 126, 54),
+      () -> guiHelper.createDrawableIngredient(new ItemStack(ModBlocks.POWERED_CRUSHER))
+    );
+    
+    this.progress = guiHelper.drawableBuilder(ClientConstants.ICONS, 10, 10, 10, 10).buildAnimated(300, IDrawableAnimated.StartDirection.TOP, false);
   }
   
   @Override
@@ -93,7 +68,7 @@ public class CrusherCategory implements IRecipeCategory<CrushingRecipe>
   {
     IGuiItemStackGroup guiItemStacks = recipeLayout.getItemStacks();
     guiItemStacks.addTooltipCallback(new TooltipCallback(crushingRecipe));
-    guiItemStacks.init(inputSlot, true, background.getWidth() / 2 - 9, 0);
+    guiItemStacks.init(inputSlot, true, halfX - 9, 0);
     
     int x = 0;
     int y = 36;
@@ -109,15 +84,27 @@ public class CrusherCategory implements IRecipeCategory<CrushingRecipe>
     guiItemStacks.set(ingredients);
   }
   
+  private String convert(float chance)
+  {
+    return Utilities.df_2.format(chance * 100f) + "%";
+  }
+  
+  @Override
+  public void draw(CrushingRecipe recipe, double mouseX, double mouseY)
+  {
+    CrusherScreen.PROGRESS_BACKGROUND.render(halfX - 5, 22);
+    progress.draw(halfX - 5, 22);
+  }
+  
   private class TooltipCallback implements ITooltipCallback<ItemStack>
   {
     private final CrushingRecipe recipe;
-  
+    
     TooltipCallback(CrushingRecipe recipe)
     {
       this.recipe = recipe;
     }
-  
+    
     @Override
     public void onTooltip(int index, boolean bool, @Nonnull ItemStack stack, @Nonnull List<String> list)
     {
@@ -131,16 +118,5 @@ public class CrusherCategory implements IRecipeCategory<CrushingRecipe>
         }
       }
     }
-  }
-  
-  private String convert(float chance)
-  {
-    return Utilities.df_2.format(chance * 100f) + "%";
-  }
-  
-  @Override
-  public void draw(CrushingRecipe recipe, double mouseX, double mouseY)
-  {
-    this.progress.draw(background.getWidth() / 2 - 5, 22);
   }
 }

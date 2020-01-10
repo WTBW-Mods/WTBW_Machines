@@ -3,6 +3,7 @@ package com.wtbw.mods.machines.block;
 import com.wtbw.mods.machines.WTBWMachines;
 import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
+import net.minecraft.util.IItemProvider;
 import net.minecraftforge.registries.ObjectHolder;
 
 /*
@@ -51,4 +52,5 @@ public class ModBlocks
   public static final Block DEHYDRATOR = Blocks.AIR;
   
   public static final Block MACHINE_BLOCK = Blocks.AIR;
+  public static final Block POWERED_FURNACE = Blocks.AIR;
 }
