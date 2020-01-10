@@ -135,7 +135,7 @@ public class CrushingRecipe implements IRecipe<IInventory>
       int powerCost = JSONUtils.getInt(json, "power_cost", 100);
       ItemStackChanceMap map = new ItemStackChanceMap();
       map.setAttemptsAsCount(true);
-      int count = 0;
+
       for (JsonElement ele : JSONUtils.getJsonArray(json, "result"))
       {
         JsonObject obj = ele.getAsJsonObject();
@@ -146,11 +146,13 @@ public class CrushingRecipe implements IRecipe<IInventory>
         ItemStack aStack = new ItemStack(Registry.ITEM.getValue(resultLocation)
           .orElseThrow(() -> new IllegalArgumentException("Item " + a + " does not exist")), b);
         map.add(c, b, aStack);
-        if (++count == 6)
-        {
-          throw new IllegalArgumentException("Maximum of 6 entries!");
-        }
       }
+      
+      if (map.getEntries() > 6)
+      {
+        throw new IllegalArgumentException("Maximum of 6 entries! [" + map.getEntries() + "]");
+      }
+      
       int duration = JSONUtils.getInt(json, "duration", 1200);
       return new CrushingRecipe(recipeId, ingredient, ingredientCost, map, duration, powerCost);
     }
