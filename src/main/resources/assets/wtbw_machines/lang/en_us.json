@@ -78,5 +78,8 @@
   "wtbw_machines.gui.exact": "Exact",
   "wtbw_machines.gui.quarry.current_block": "Mining:",
 
-  "wtbw_machines.jei.crushing": "Crushing"
+  "wtbw_machines.jei.crushing": "Crushing",
+  "wtbw_machines.jei.dehydrating": "Dehydrating",
+  "wtbw_machines.jei.powered_furnace": "Smelting",
+  "wtbw_machines.jei.compressing": "Compressing"
 }

@@ -1,9 +1,12 @@
 package com.wtbw.mods.machines.integration.jei.category;
 
+import com.wtbw.mods.lib.gui.util.EnergyBar;
+import com.wtbw.mods.lib.tile.util.energy.BaseEnergyStorage;
 import com.wtbw.mods.machines.ClientConstants;
 import com.wtbw.mods.machines.WTBWMachines;
 import com.wtbw.mods.machines.block.ModBlocks;
 import com.wtbw.mods.machines.gui.screen.PoweredFurnaceScreen;
+import com.wtbw.mods.machines.recipe.CrushingRecipe;
 import com.wtbw.mods.machines.recipe.PoweredFurnaceRecipe;
 import com.wtbw.mods.machines.tile.machine.PoweredFurnaceEntity;
 import mezz.jei.api.constants.VanillaTypes;
@@ -14,6 +17,9 @@ import mezz.jei.api.helpers.IGuiHelper;
 import mezz.jei.api.ingredients.IIngredients;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
+
+import java.util.Collections;
+import java.util.List;
 
 /*
   @author: Naxanria
@@ -26,6 +32,8 @@ public class PoweredFurnaceCategory extends AbstractRecipeCategory<PoweredFurnac
   public static final int OUTPUT_SLOT = PoweredFurnaceEntity.OUTPUT_SLOT;
   
   private final IDrawableAnimated progress;
+
+  EnergyBar energyBar;
   
   public PoweredFurnaceCategory(IGuiHelper guiHelper)
   {
@@ -33,15 +41,15 @@ public class PoweredFurnaceCategory extends AbstractRecipeCategory<PoweredFurnac
       (
         PoweredFurnaceRecipe.class,
         UID,
-        key("powered_furnace"),
+        "powered_furnace",
         guiHelper,
-        () -> guiHelper.createDrawable(ClientConstants.Jei.BACKGROUND, 0, 54, 54, 54),
+        () -> guiHelper.createDrawable(ClientConstants.Jei.BACKGROUND, 0, 54, 90, 54),
         () -> guiHelper.createDrawableIngredient(new ItemStack(ModBlocks.POWERED_FURNACE))
       );
     
     WTBWMachines.LOGGER.info("Created!");
-    progress = guiHelper.drawableBuilder(ClientConstants.ICONS, 20, 15, 14, 15)
-      .buildAnimated(200, IDrawableAnimated.StartDirection.BOTTOM, false);
+    progress = guiHelper.drawableBuilder(ClientConstants.ICONS, 34, 15, 14, 15)
+      .buildAnimated(200, IDrawableAnimated.StartDirection.TOP, false);
   }
   
   @Override
@@ -58,13 +66,24 @@ public class PoweredFurnaceCategory extends AbstractRecipeCategory<PoweredFurnac
   
     guiItemStacks.init(INPUT_SLOT, true, halfX - 9, 0);
     guiItemStacks.init(OUTPUT_SLOT, false, halfX - 9, 36);
+
+    energyBar = new EnergyBar(new BaseEnergyStorage(100000),  0, 0).setDimensions(16 , 54).cast();
+    energyBar.storage.setEnergy(recipe.powerCost);
+    energyBar.update();
+
     guiItemStacks.set(ingredients);
   }
   
   @Override
   public void draw(PoweredFurnaceRecipe recipe, double mouseX, double mouseY)
   {
-    PoweredFurnaceScreen.PROGRESS_BACKGROUND.render(halfX - 7, halfY - 7);
+    PoweredFurnaceScreen.ICONS.getSprite(34, 0, 14, 14).render(halfX - 7, halfY - 7);
     progress.draw(halfX - 7, halfY - 7);
+    energyBar.draw(0, 0);
+  }
+
+  @Override
+  public List<String> getTooltipStrings(PoweredFurnaceRecipe recipe, double mouseX, double mouseY) {
+    return energyBar.isHover((int) mouseX, (int) mouseY) ? energyBar.getTooltip() : Collections.emptyList();
   }
 }

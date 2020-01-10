@@ -1,5 +1,6 @@
 package com.wtbw.mods.machines.tile.machine;
 
+import com.wtbw.mods.lib.gui.util.EnergyBar;
 import com.wtbw.mods.lib.tile.util.InventoryWrapper;
 import com.wtbw.mods.lib.tile.util.RedstoneMode;
 import com.wtbw.mods.lib.tile.util.energy.BaseEnergyStorage;
@@ -52,6 +53,8 @@ public class PoweredCrusherEntity extends BaseMachineEntity {
     private int ingredientCost;
     private List<ItemStack> maxRolls;
 
+    EnergyBar energyBar;
+
     public PoweredCrusherEntity() {
         super(ModTiles.POWERED_CRUSHER, 100000, 50000, RedstoneMode.IGNORE);
 
@@ -74,6 +77,8 @@ public class PoweredCrusherEntity extends BaseMachineEntity {
     public Container createMenu(int id, PlayerInventory inventory, PlayerEntity player) {
         return new CrusherContainer(id, world, pos, inventory);
     }
+
+
 
     @Override
     public RedstoneMode[] availableModes() {
