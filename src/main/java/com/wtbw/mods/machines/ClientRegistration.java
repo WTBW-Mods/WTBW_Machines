@@ -36,6 +36,8 @@ public class ClientRegistration
     ScreenManager.registerFactory(ModContainers.COMPRESSOR, CompressorScreen::new);
     ScreenManager.registerFactory(ModContainers.CRUSHER, CrusherScreen::new);
     ScreenManager.registerFactory(ModContainers.POWERED_FURNACE, PoweredFurnaceScreen::new);
+    
+    ScreenManager.registerFactory(ModContainers.FUEL_GENERATOR, FuelGeneratorScreen::new);
   }
 
   public static void registerRenderLayers()

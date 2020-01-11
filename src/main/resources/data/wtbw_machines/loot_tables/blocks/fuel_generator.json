@@ -6,7 +6,7 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "wtbw_machines:powered_compressor",
+          "name": "wtbw_machines:fuel_generator",
           "functions": [
             {
               "function": "minecraft:copy_nbt",
@@ -15,6 +15,16 @@
                 {
                   "source": "storage",
                   "target": "BlockEntityTag.storage",
+                  "op": "replace"
+                },
+                {
+                  "source": "genTime",
+                  "target": "BlockEntityTag.genTime",
+                  "op": "replace"
+                },
+                {
+                  "source": "genCounter",
+                  "target": "BlockEntityTag.genCounter",
                   "op": "replace"
                 }
               ]
@@ -31,7 +41,7 @@
           ]
         }
       ],
-      "name": "wtbw_machines:powered_compressor"
+      "name": "wtbw_machines:fuel_generator"
     }
   ]
 }

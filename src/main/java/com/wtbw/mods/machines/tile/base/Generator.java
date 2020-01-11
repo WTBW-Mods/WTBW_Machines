@@ -1,11 +1,13 @@
 package com.wtbw.mods.machines.tile.base;
 
 import com.wtbw.mods.lib.tile.util.IComparatorProvider;
+import com.wtbw.mods.lib.tile.util.IWTBWNamedContainerProvider;
 import com.wtbw.mods.lib.tile.util.energy.BaseEnergyStorage;
 import com.wtbw.mods.lib.util.Utilities;
 import com.wtbw.mods.lib.util.nbt.Manager;
 import com.wtbw.mods.lib.util.nbt.NBTManager;
 import com.wtbw.mods.machines.WTBWMachines;
+import com.wtbw.mods.machines.block.base.BaseMachineBlock;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.tileentity.ITickableTileEntity;
 import net.minecraft.tileentity.TileEntity;
@@ -142,6 +144,11 @@ public abstract class Generator extends TileEntity implements ITickableTileEntit
     return storage.getPercentageFilled();
   }
   
+  public int getEnergyMissing()
+  {
+    return storage.getMaxEnergyStored() - storage.getEnergyStored();
+  }
+  
   public BaseEnergyStorage getStorage()
   {
     return storage;
@@ -175,6 +182,16 @@ public abstract class Generator extends TileEntity implements ITickableTileEntit
     }
     
     return super.getCapability(cap, side);
+  }
+  
+  protected boolean isOn()
+  {
+    return getBlockState().get(BaseMachineBlock.ON);
+  }
+  
+  protected void setOn(boolean on)
+  {
+    world.setBlockState(pos, getBlockState().with(BaseMachineBlock.ON, on), 3);
   }
   
   public NBTManager getManager()

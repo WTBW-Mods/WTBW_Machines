@@ -2,6 +2,7 @@ package com.wtbw.mods.machines.tile;
 
 import com.wtbw.mods.machines.WTBWMachines;
 import com.wtbw.mods.machines.tile.furnace.BaseFurnaceTileEntity;
+import com.wtbw.mods.machines.tile.generator.FuelGeneratorEntity;
 import com.wtbw.mods.machines.tile.generator.SolarPanelTileEntity;
 import com.wtbw.mods.machines.tile.machine.*;
 import com.wtbw.mods.machines.tile.redstone.RedstoneTimerTileEntity;
@@ -33,6 +34,8 @@ public class ModTiles
   public static final TileEntityType<SolarPanelTileEntity> SOLAR_PANEL_MK1 = null;
   public static final TileEntityType<SolarPanelTileEntity> SOLAR_PANEL_MK2 = null;
   public static final TileEntityType<SolarPanelTileEntity> SOLAR_PANEL_MK3 = null;
+  
+  public static final TileEntityType<FuelGeneratorEntity> FUEL_GENERATOR = null;
   
   public static final TileEntityType<SimpleBatteryTileEntity> SIMPLE_BATTERY = null;
 

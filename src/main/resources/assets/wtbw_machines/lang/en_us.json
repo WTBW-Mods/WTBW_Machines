@@ -48,7 +48,6 @@
   "block.wtbw_machines.tier2_upgrade": "Tier 2 Upgrade",
   "block.wtbw_machines.tier3_upgrade": "Tier 3 Upgrade",
   "block.wtbw_machines.tier4_upgrade": "Tier 4 Upgrade",
-  "wtbw_machines.tooltip.tier": "Placed next to the Quarry \nincreases the quarry size to %s",
 
   "block.wtbw_machines.dehydrator": "Dehydrator",
   "block.wtbw_machines.powered_furnace": "Powered Furnace",
@@ -56,6 +55,7 @@
   "block.wtbw_machines.powered_compressor": "Powered Compressor",
   "block.wtbw_machines.simple_battery": "Simple Battery",
   "block.wtbw_machines.quarry": "Quarry",
+  "block.wtbw_machines.fuel_generator": "Fuel Generator",
 
   "wtbw_machines.tooltip.shift_more_info": "Press SHIFT for more info...",
   "wtbw_machines.tooltip.emitter": "Emits redstone signal based on the number displaying.\n(Sneak)Right click to cycle the number",
@@ -67,6 +67,8 @@
   "wtbw_machines.tooltip.puller_range": "This block pulls entities in a %s block radius",
   "wtbw_machines.tooltip.generating": "Generating: ",
   "wtbw_machines.tooltip.capacity": "Capacity: ",
+  "wtbw_machines.tooltip.tier": "Placed next to the Quarry \nincreases the quarry size to %s",
+  "wtbw_machines.tooltip.fuel_generator": "Generates %s EF/t",
 
   "death.attack.spikes.wooden": "Wood spikes pierced %s",
   "death.attack.spikes.bamboo": "Bamboo spikes pierced %s",

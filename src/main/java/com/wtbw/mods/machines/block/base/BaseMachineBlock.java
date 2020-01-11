@@ -34,9 +34,6 @@ public class BaseMachineBlock<TE extends TileEntity> extends BaseTileBlock<TE>
   public static final DirectionProperty FACING = BlockStateProperties.HORIZONTAL_FACING;
   public static final BooleanProperty ON = BooleanProperty.create("on");
   
-  // dummies
-  private BaseEnergyStorage storage;
-  
   protected boolean mirrorFacing;
 
   
@@ -83,28 +80,4 @@ public class BaseMachineBlock<TE extends TileEntity> extends BaseTileBlock<TE>
     builder.add(FACING, ON);
   }
   
-  @Override
-  public void addInformation(ItemStack stack, @Nullable IBlockReader worldIn, List<ITextComponent> tooltip, ITooltipFlag flagIn)
-  {
-    CompoundNBT data = stack.getChildTag("BlockEntityTag");
-    
-    if (data != null)
-    {
-      if (data.contains("storage", Constants.NBT.TAG_COMPOUND))
-      {
-        if (storage == null)
-        {
-          storage = new BaseEnergyStorage(100);
-        }
-        
-        storage.deserializeNBT(data.getCompound("storage"));
-        if (storage.getEnergyStored() > 0)
-        {
-          tooltip.add(TextComponentBuilder.create(Utilities.getTooltip(storage, !Screen.hasShiftDown())).aqua().build());
-        }
-      }
-    }
-  
-    super.addInformation(stack, worldIn, tooltip, flagIn);
-  }
 }

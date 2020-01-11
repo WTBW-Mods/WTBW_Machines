@@ -3,6 +3,7 @@ package com.wtbw.mods.machines;
 import com.wtbw.mods.lib.Registrator;
 import com.wtbw.mods.lib.block.BaseTileBlock;
 import com.wtbw.mods.lib.block.SixWayTileBlock;
+import com.wtbw.mods.lib.util.TextComponentBuilder;
 import com.wtbw.mods.machines.block.*;
 import com.wtbw.mods.machines.block.base.BaseMachineBlock;
 import com.wtbw.mods.machines.block.base.TierBlock;
@@ -15,6 +16,7 @@ import com.wtbw.mods.machines.gui.container.*;
 import com.wtbw.mods.machines.recipe.*;
 import com.wtbw.mods.machines.tile.*;
 import com.wtbw.mods.machines.tile.furnace.FurnaceTier;
+import com.wtbw.mods.machines.tile.generator.FuelGeneratorEntity;
 import com.wtbw.mods.machines.tile.generator.SolarPanelTileEntity;
 import com.wtbw.mods.machines.tile.machine.DehydratorTileEntity;
 import com.wtbw.mods.machines.tile.machine.PoweredCompressorEntity;
@@ -85,6 +87,9 @@ public class MachinesRegistrator extends Registrator
     register(new BaseMachineBlock<>(getBlockProperties(Material.IRON, 4), (world, state) -> new PoweredFurnaceEntity()).mirrored(), "powered_furnace");
     register(new BaseMachineBlock<>(getBlockProperties(Material.IRON, 4), (world, state) -> new PoweredCrusherEntity()).mirrored(), "powered_crusher");
     register(new BaseMachineBlock<>(getBlockProperties(Material.IRON, 4), (world, state) -> new PoweredCompressorEntity()).mirrored(), "powered_compressor");
+    
+    register(new BaseMachineBlock<>(getBlockProperties(Material.IRON, 4), (world, state) -> new FuelGeneratorEntity()).mirrored(), "fuel_generator",
+      getItemProperties().addTooltip(TextComponentBuilder.createTranslated(WTBWMachines.MODID + ".tooltip.fuel_generator", 45).green().build()));
   }
   
   @Override
@@ -122,6 +127,7 @@ public class MachinesRegistrator extends Registrator
     registerContainer(CompressorContainer::new, "compressor");
     registerContainer(CrusherContainer::new, "crusher");
     registerContainer(PoweredFurnaceContainer::new, "powered_furnace");
+    registerContainer(FuelGeneratorContainer::new, "fuel_generator");
   }
   
   public void registerRecipes(final RegistryEvent.Register<IRecipeSerializer<?>> event)
