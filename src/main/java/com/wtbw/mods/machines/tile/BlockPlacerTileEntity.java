@@ -2,11 +2,8 @@ package com.wtbw.mods.machines.tile;
 
 
 import com.wtbw.mods.lib.block.SixWayTileBlock;
+import com.wtbw.mods.lib.tile.util.*;
 import com.wtbw.mods.machines.gui.container.BlockPlacerContainer;
-import com.wtbw.mods.lib.tile.util.IContentHolder;
-import com.wtbw.mods.lib.tile.util.IRedstoneControlled;
-import com.wtbw.mods.lib.tile.util.RedstoneControl;
-import com.wtbw.mods.lib.tile.util.RedstoneMode;
 import com.wtbw.mods.lib.util.PlayEvent;
 import com.wtbw.mods.lib.util.rand.RandomUtil;
 import com.wtbw.mods.lib.util.Utilities;
@@ -45,7 +42,7 @@ import java.util.concurrent.atomic.AtomicBoolean;
   @author: Naxanria
 */
 @SuppressWarnings("ConstantConditions")
-public class BlockPlacerTileEntity extends TileEntity implements ITickableTileEntity, IContentHolder, IRedstoneControlled, INamedContainerProvider
+public class BlockPlacerTileEntity extends TileEntity implements ITickableTileEntity, IContentHolder, IRedstoneControlled, IWTBWNamedContainerProvider
 {
   private LazyOptional<ItemStackHandler> inventory = LazyOptional.of(this::createInventory);
   private RedstoneControl control;
@@ -171,12 +168,6 @@ public class BlockPlacerTileEntity extends TileEntity implements ITickableTileEn
   public LazyOptional<ItemStackHandler> getInventory()
   {
     return inventory;
-  }
-  
-  @Override
-  public ITextComponent getDisplayName()
-  {
-    return new TranslationTextComponent(getType().getRegistryName().toString());
   }
   
   @Nullable

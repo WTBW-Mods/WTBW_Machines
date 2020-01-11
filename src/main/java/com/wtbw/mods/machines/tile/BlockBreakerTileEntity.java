@@ -2,10 +2,7 @@ package com.wtbw.mods.machines.tile;
 
 import com.wtbw.mods.lib.block.SixWayTileBlock;
 import com.wtbw.mods.lib.gui.util.ClickType;
-import com.wtbw.mods.lib.tile.util.IContentHolder;
-import com.wtbw.mods.lib.tile.util.IRedstoneControlled;
-import com.wtbw.mods.lib.tile.util.RedstoneControl;
-import com.wtbw.mods.lib.tile.util.RedstoneMode;
+import com.wtbw.mods.lib.tile.util.*;
 import com.wtbw.mods.lib.util.StackUtil;
 import com.wtbw.mods.lib.util.Utilities;
 import com.wtbw.mods.machines.config.CommonConfig;
@@ -40,7 +37,7 @@ import java.util.List;
   @author: Naxanria
 */
 @SuppressWarnings("ConstantConditions")
-public class BlockBreakerTileEntity extends TileEntity implements ITickableTileEntity, INamedContainerProvider, IRedstoneControlled, IContentHolder
+public class BlockBreakerTileEntity extends TileEntity implements ITickableTileEntity, IWTBWNamedContainerProvider, IRedstoneControlled, IContentHolder
 {
   private LazyOptional<ItemStackHandler> inventory = LazyOptional.of(this::createInventory);
   
@@ -125,12 +122,6 @@ public class BlockBreakerTileEntity extends TileEntity implements ITickableTileE
   public RedstoneControl getControl()
   {
     return control;
-  }
-  
-  @Override
-  public ITextComponent getDisplayName()
-  {
-    return new TranslationTextComponent(getType().getRegistryName().toString());
   }
   
   @Nullable

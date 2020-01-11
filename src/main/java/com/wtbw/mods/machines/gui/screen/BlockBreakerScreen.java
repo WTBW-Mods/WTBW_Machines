@@ -27,15 +27,16 @@ public class BlockBreakerScreen extends BaseContainerScreen<BlockBreakerContaine
   protected void init()
   {
     super.init();
-    addButton(new RedstoneButton<>(guiLeft - 21 + 5, guiTop + 17, container.tileEntity));
+    addButton(new RedstoneButton<>(guiLeft - 22, guiTop + 17, container.tileEntity));
   }
   
   @Override
   protected void drawGuiContainerBackgroundLayer(float partialTicks, int mouseX, int mouseY)
   {
-    GuiUtil.renderTexture(guiLeft - 21, guiTop, xSize + 21, ySize, 0, 0, 256, 256, GUI);
-    String blockName = new TranslationTextComponent("block.wtbw_machines.block_breaker").getUnformattedComponentText();
-    this.font.drawString(blockName, guiLeft + 8, guiTop + 6, 0xff404040);
-    this.font.drawString(this.playerInventory.getDisplayName().getFormattedText(), guiLeft + 8, guiTop + 73, 0xff404040);
+    defaultGui();
+//    GuiUtil.renderTexture(guiLeft - 21, guiTop, xSize + 21, ySize, 0, 0, 256, 256, GUI);
+//    String blockName = new TranslationTextComponent("block.wtbw_machines.block_breaker").getUnformattedComponentText();
+//    this.font.drawString(blockName, guiLeft + 8, guiTop + 6, 0xff404040);
+//    this.font.drawString(this.playerInventory.getDisplayName().getFormattedText(), guiLeft + 8, guiTop + 73, 0xff404040);
   }
 }
