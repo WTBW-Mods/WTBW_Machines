@@ -30,10 +30,10 @@ public class QuarryScreen extends BaseContainerScreen<QuarryContainer>
   {
     super.init();
     final QuarryTileEntity tileEntity = container.tileEntity;
-    addButton(new RedstoneButton<>(guiLeft - 21 + 5, guiTop + 17, tileEntity));
+    addButton(new RedstoneButton<>(guiLeft - 22, guiTop + 17, tileEntity));
   
     final BaseEnergyStorage storage = tileEntity.getStorage();
-    energyBar = new EnergyBar(storage, guiLeft + 10, guiTop + 16);
+    energyBar = getDefaultBar(storage);
     addTooltipProvider(energyBar);
   }
   
@@ -53,16 +53,12 @@ public class QuarryScreen extends BaseContainerScreen<QuarryContainer>
   {
     int green = 0xff00B300;
     int textColor = 0xff404040;
-    
-    String blockName = new TranslationTextComponent("block.wtbw_machines.quarry").getUnformattedComponentText();
+
     String mining = new TranslationTextComponent("wtbw_machines.gui.quarry.current_block").getUnformattedComponentText();
 
-    GuiUtil.renderTexture(guiLeft - 21, guiTop, xSize + 21, ySize, 0, 0, 256, 256, GUI);
-//    this.font.drawString(blockName, guiLeft + 8, guiTop + 6, textColor);
-//    this.font.drawString(this.playerInventory.getDisplayName().getFormattedText(), guiLeft + 8, guiTop + 73, textColor);
+    defaultGui();
+    
     energyBar.draw();
-    renderTitle();
-    renderInventoryText();
     
     int xp = guiLeft + 122;
     int yp = guiTop + 20;
