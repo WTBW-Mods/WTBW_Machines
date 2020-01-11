@@ -10,10 +10,10 @@ import net.minecraft.world.IBlockReader;
 /*
   @author: Sunekaer
 */
-public class QuarryMarker extends Block {
+public class QuarryMarkerBlock extends Block {
     protected static final VoxelShape SHAPE = net.minecraft.block.Block.makeCuboidShape(7.0D, 0.0D, 7.0D, 9.0D, 10.0D, 9.0D);
 
-    public QuarryMarker(net.minecraft.block.Block.Properties properties) {
+    public QuarryMarkerBlock(net.minecraft.block.Block.Properties properties) {
         super(properties);
     }
 
