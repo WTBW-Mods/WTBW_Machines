@@ -78,8 +78,7 @@ public class BlockBreakerTileEntity extends TileEntity implements ITickableTileE
     Direction facing = world.getBlockState(pos).get(SixWayTileBlock.FACING);
     BlockPos breakPos = pos.offset(facing);
     BlockState breakState = world.getBlockState(breakPos);
-  
-    // todo: config for breaking tiles, blacklist
+
     boolean breakTiles = false;
     if (!breakState.isAir(world, breakPos) && breakState.getFluidState() == Fluids.EMPTY.getDefaultState())
     {
