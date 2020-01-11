@@ -143,7 +143,7 @@ if (ENV.WTBW_CF_KEY) {
         apiKey = ENV.WTBW_CF_KEY
         project {
             id = "wtbw_machines"
-            releaseType = "release"
+            releaseType = "beta"
             addGameVersion "1.15.1"
             changelog = getGitChangelog
             changelogType = 'markdown'
