@@ -6,7 +6,6 @@ import com.wtbw.mods.machines.ClientConstants;
 import com.wtbw.mods.machines.WTBWMachines;
 import com.wtbw.mods.machines.block.ModBlocks;
 import com.wtbw.mods.machines.gui.screen.PoweredFurnaceScreen;
-import com.wtbw.mods.machines.recipe.CrushingRecipe;
 import com.wtbw.mods.machines.recipe.PoweredFurnaceRecipe;
 import com.wtbw.mods.machines.tile.machine.PoweredFurnaceEntity;
 import mezz.jei.api.constants.VanillaTypes;
@@ -33,8 +32,9 @@ public class PoweredFurnaceCategory extends AbstractRecipeCategory<PoweredFurnac
   
   private final IDrawableAnimated progress;
 
-  EnergyBar energyBar;
-  
+  EnergyBar energyBar = new EnergyBar(new BaseEnergyStorage(100000),  0, 0).setDimensions(16 , 54).cast();
+
+
   public PoweredFurnaceCategory(IGuiHelper guiHelper)
   {
     super
@@ -67,10 +67,6 @@ public class PoweredFurnaceCategory extends AbstractRecipeCategory<PoweredFurnac
     guiItemStacks.init(INPUT_SLOT, true, halfX - 9, 0);
     guiItemStacks.init(OUTPUT_SLOT, false, halfX - 9, 36);
 
-    energyBar = new EnergyBar(new BaseEnergyStorage(100000),  0, 0).setDimensions(16 , 54).cast();
-    energyBar.storage.setEnergy(recipe.powerCost);
-    energyBar.update();
-
     guiItemStacks.set(ingredients);
   }
   
@@ -79,11 +75,15 @@ public class PoweredFurnaceCategory extends AbstractRecipeCategory<PoweredFurnac
   {
     PoweredFurnaceScreen.ICONS.getSprite(34, 0, 14, 14).render(halfX - 7, halfY - 7);
     progress.draw(halfX - 7, halfY - 7);
+    energyBar.storage.setEnergy(recipe.powerCost);
+    energyBar.update();
     energyBar.draw(0, 0);
   }
 
   @Override
   public List<String> getTooltipStrings(PoweredFurnaceRecipe recipe, double mouseX, double mouseY) {
+    energyBar.storage.setEnergy(recipe.powerCost);
+    energyBar.update();
     return energyBar.isHover((int) mouseX, (int) mouseY) ? energyBar.getTooltip() : Collections.emptyList();
   }
 }

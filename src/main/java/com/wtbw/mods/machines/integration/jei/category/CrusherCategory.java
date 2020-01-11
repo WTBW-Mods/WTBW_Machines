@@ -40,7 +40,7 @@ public class CrusherCategory extends AbstractRecipeCategory<CrushingRecipe>
   
   protected final IDrawableAnimated progress;
 
-  EnergyBar energyBar;
+  EnergyBar energyBar = new EnergyBar(new BaseEnergyStorage(100000),  0, 0).setDimensions(16 , 54).cast();
   
   public CrusherCategory(IGuiHelper guiHelper)
   {
@@ -83,10 +83,6 @@ public class CrusherCategory extends AbstractRecipeCategory<CrushingRecipe>
       guiItemStacks.init(i + 1, false, x, y);
       x += dx;
     }
-
-    energyBar = new EnergyBar(new BaseEnergyStorage(100000),  0, 0).setDimensions(16 , 54).cast();
-    energyBar.storage.setEnergy(crushingRecipe.powerCost);
-    energyBar.update();
     guiItemStacks.set(ingredients);
   }
   
@@ -100,6 +96,8 @@ public class CrusherCategory extends AbstractRecipeCategory<CrushingRecipe>
   {
     CrusherScreen.PROGRESS_BACKGROUND.render(halfX - 5, 22);
     progress.draw(halfX - 5, 22);
+    energyBar.storage.setEnergy(recipe.powerCost);
+    energyBar.update();
     energyBar.draw(0, 0);
   }
   
@@ -129,6 +127,8 @@ public class CrusherCategory extends AbstractRecipeCategory<CrushingRecipe>
 
   @Override
   public List<String> getTooltipStrings(CrushingRecipe recipe, double mouseX, double mouseY) {
+    energyBar.storage.setEnergy(recipe.powerCost);
+    energyBar.update();
     return energyBar.isHover((int) mouseX, (int) mouseY) ? energyBar.getTooltip() : Collections.emptyList();
   }
 }

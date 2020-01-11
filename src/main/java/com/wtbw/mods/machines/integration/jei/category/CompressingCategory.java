@@ -37,7 +37,7 @@ public class CompressingCategory extends AbstractRecipeCategory<CompressingRecip
   private final IDrawableAnimated progressLeft;
   private final IDrawableAnimated progressRight;
 
-  EnergyBar energyBar;
+  EnergyBar energyBar = new EnergyBar(new BaseEnergyStorage(100000),  0, 0).setDimensions(16 , 54).cast();
 
   public CompressingCategory(IGuiHelper guiHelper)
   {
@@ -71,9 +71,7 @@ public class CompressingCategory extends AbstractRecipeCategory<CompressingRecip
     
     guiItemStacks.init(INPUT_SLOT, true, halfX - 9, 0);
     guiItemStacks.init(OUTPUT_SLOT, false, halfX - 9, 36);
-    energyBar = new EnergyBar(new BaseEnergyStorage(100000), 0, 0).setDimensions(16, 54).cast();
-    energyBar.storage.setEnergy(recipe.powerCost);
-    energyBar.update();
+
     guiItemStacks.set(ingredients);
   }
   
@@ -84,11 +82,15 @@ public class CompressingCategory extends AbstractRecipeCategory<CompressingRecip
     CompressorScreen.PROGRESS_BACKGROUND_RIGHT.render(halfX, halfY - 5);
     progressLeft.draw(halfX - 10, halfY - 5);
     progressRight.draw(halfX, halfY - 5);
+    energyBar.storage.setEnergy(recipe.powerCost);
+    energyBar.update();
     energyBar.draw(0, 0);
   }
 
   @Override
   public List<String> getTooltipStrings(CompressingRecipe recipe, double mouseX, double mouseY) {
+    energyBar.storage.setEnergy(recipe.powerCost);
+    energyBar.update();
     return energyBar.isHover((int) mouseX, (int) mouseY) ? energyBar.getTooltip() : Collections.emptyList();
   }
 }

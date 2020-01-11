@@ -34,8 +34,9 @@ public class DehydratingCategory extends AbstractRecipeCategory<DehydratingRecip
   
   private final IDrawableAnimated progress;
 
-  EnergyBar energyBar;
-  
+  EnergyBar     energyBar = new EnergyBar(new BaseEnergyStorage(100000), 0, 0).setDimensions(16, 54).cast();
+
+
   public DehydratingCategory(IGuiHelper guiHelper)
   {
     super
@@ -65,10 +66,6 @@ public class DehydratingCategory extends AbstractRecipeCategory<DehydratingRecip
     guiItemStacks.init(INPUT_SLOT, true, halfX - 9, 0);
     guiItemStacks.init(OUTPUT_SLOT, false, halfX - 9, 36);
 
-    energyBar = new EnergyBar(new BaseEnergyStorage(100000),  0, 0).setDimensions(16 , 54).cast();
-    energyBar.storage.setEnergy(recipe.powerCost);
-    energyBar.update();
-
     guiItemStacks.set(ingredients);
   }
   
@@ -79,11 +76,15 @@ public class DehydratingCategory extends AbstractRecipeCategory<DehydratingRecip
     int y = halfY - 5;
     DehydratorScreen.PROGRESS_BACKGROUND.render(x, y);
     progress.draw(x, y);
+    energyBar.storage.setEnergy(recipe.powerCost);
+    energyBar.update();
     energyBar.draw(0, 0);
   }
 
   @Override
   public List<String> getTooltipStrings(DehydratingRecipe recipe, double mouseX, double mouseY) {
+    energyBar.storage.setEnergy(recipe.powerCost);
+    energyBar.update();
     return energyBar.isHover((int) mouseX, (int) mouseY) ? energyBar.getTooltip() : Collections.emptyList();
   }
 }
