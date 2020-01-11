@@ -69,6 +69,7 @@
   "wtbw_machines.tooltip.capacity": "Capacity: ",
   "wtbw_machines.tooltip.tier": "Placed next to the Quarry \nincreases the quarry size to %s",
   "wtbw_machines.tooltip.fuel_generator": "Generates %s EF/t",
+  "wtbw_machines.tooltip.burn_time": "Burn time left: %s ticks",
 
   "death.attack.spikes.wooden": "Wood spikes pierced %s",
   "death.attack.spikes.bamboo": "Bamboo spikes pierced %s",
