@@ -1,15 +1,15 @@
 {
   "type": "wtbw_machines:crushing",
   "ingredient": {
-    "tag": "forge:ingots/gold",
+    "tag": "forge:cobblestone",
     "count": 1
   },
   "result": [
     {
-      "item": "wtbw_machines:gold_dust",
+      "item": "minecraft:gravel",
       "count": 1
     }
   ],
-  "duration": 120,
-  "power_cost": 300
+  "duration": 200,
+  "power_cost": 4000
 }

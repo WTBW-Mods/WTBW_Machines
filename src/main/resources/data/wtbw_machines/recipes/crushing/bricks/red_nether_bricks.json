@@ -1,0 +1,25 @@
+{
+  "type": "wtbw_machines:crushing",
+  "ingredient": {
+    "item": "minecraft:red_nether_bricks",
+    "count": 1
+  },
+  "result": [
+    {
+      "item": "minecraft:nether_brick",
+      "count": 2
+    },
+    {
+      "item": "minecraft:nether_wart",
+      "count": 1,
+      "chance": 0.50
+    },
+    {
+      "item": "minecraft:nether_wart",
+      "count": 1,
+      "chance": 0.50
+    }
+  ],
+  "duration": 180,
+  "power_cost": 3000
+}

@@ -1,15 +1,15 @@
 {
   "type": "wtbw_machines:crushing",
   "ingredient": {
-    "tag": "forge:obsidian",
+    "tag": "forge:storage_blocks/quartz",
     "count": 1
   },
   "result": [
     {
-      "item": "wtbw_machines:obsidian_dust",
+      "item": "minecraft:quartz",
       "count": 4
     }
   ],
-  "duration": 260,
-  "power_cost": 2500
+  "duration": 180,
+  "power_cost": 3000
 }

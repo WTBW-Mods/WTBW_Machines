@@ -1,28 +1,33 @@
 {
   "type": "wtbw_machines:crushing",
   "ingredient": {
-    "tag": "forge:ores/lapis",
+    "tag": "forge:ores/quartz",
     "count": 1
   },
   "result": [
     {
-      "item": "minecraft:lapis_lazuli",
+      "item": "minecraft:quartz",
       "count": 3
     },
     {
-      "item": "minecraft:lapis_lazuli",
+      "item": "minecraft:quartz",
       "count": 2,
       "chance": 0.5
     },
     {
-      "item": "minecraft:lapis_lazuli",
-      "count": 2,
+      "item": "minecraft:quartz",
+      "count": 1,
       "chance": 0.25
     },
     {
-      "item": "minecraft:lapis_lazuli",
+      "item": "wtbw_machines:quartz_dust",
       "count": 1,
       "chance": 0.1
+    },
+    {
+      "item": "wtbw_machines:quartz_dust",
+      "count": 1,
+      "chance": 0.05
     },
     {
       "item": "minecraft:cobblestone",
@@ -30,6 +35,6 @@
       "chance": 0.30
     }
   ],
-  "duration": 120,
-  "power_cost": 300
+  "duration": 200,
+  "power_cost": 4000
 }

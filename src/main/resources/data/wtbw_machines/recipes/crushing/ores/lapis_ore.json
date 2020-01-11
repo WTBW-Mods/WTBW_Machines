@@ -1,0 +1,35 @@
+{
+  "type": "wtbw_machines:crushing",
+  "ingredient": {
+    "tag": "forge:ores/lapis",
+    "count": 1
+  },
+  "result": [
+    {
+      "item": "minecraft:lapis_lazuli",
+      "count": 3
+    },
+    {
+      "item": "minecraft:lapis_lazuli",
+      "count": 2,
+      "chance": 0.5
+    },
+    {
+      "item": "minecraft:lapis_lazuli",
+      "count": 2,
+      "chance": 0.25
+    },
+    {
+      "item": "minecraft:lapis_lazuli",
+      "count": 1,
+      "chance": 0.1
+    },
+    {
+      "item": "minecraft:cobblestone",
+      "count": 1,
+      "chance": 0.30
+    }
+  ],
+  "duration": 200,
+  "power_cost": 4000
+}

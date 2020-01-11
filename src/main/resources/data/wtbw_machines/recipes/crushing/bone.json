@@ -1,13 +1,13 @@
 {
   "type": "wtbw_machines:crushing",
   "ingredient": {
-    "tag": "forge:ender_pearls",
+    "tag": "forge:bones",
     "count": 1
   },
   "result": [
     {
-      "item": "wtbw_machines:ender_pearl_dust",
-      "count": 1
+      "item": "minecraft:bone_meal",
+      "count": 5
     }
   ],
   "duration": 180,

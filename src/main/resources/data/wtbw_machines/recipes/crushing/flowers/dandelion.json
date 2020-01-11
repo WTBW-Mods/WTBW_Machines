@@ -1,0 +1,20 @@
+{
+  "type": "wtbw_machines:crushing",
+  "ingredient": {
+    "item": "minecraft:dandelion",
+    "count": 1
+  },
+  "result": [
+    {
+      "item": "minecraft:yellow_dye",
+      "count": 2
+    },
+    {
+      "item": "minecraft:yellow_dye",
+      "count": 1,
+      "chance": 0.45
+    }
+  ],
+  "duration": 180,
+  "power_cost": 2000
+}

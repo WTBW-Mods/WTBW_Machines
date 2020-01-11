@@ -1,0 +1,10 @@
+{
+  "type": "wtbw_machines:dehydrating",
+  "ingredient": {
+    "item": "minecraft:brain_coral_fan"
+  },
+  "result": "minecraft:dead_brain_coral_fan",
+  "count": 1,
+  "powerCost": 3200,
+  "duration": 160
+}

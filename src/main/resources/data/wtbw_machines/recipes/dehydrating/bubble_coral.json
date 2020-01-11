@@ -1,0 +1,10 @@
+{
+  "type": "wtbw_machines:dehydrating",
+  "ingredient": {
+    "item": "minecraft:bubble_coral"
+  },
+  "result": "minecraft:dead_bubble_coral",
+  "count": 1,
+  "powerCost": 3200,
+  "duration": 160
+}

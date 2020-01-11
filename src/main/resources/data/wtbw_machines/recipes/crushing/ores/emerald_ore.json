@@ -1,31 +1,31 @@
 {
   "type": "wtbw_machines:crushing",
   "ingredient": {
-    "tag": "forge:ores/diamond",
+    "tag": "forge:ores/emerald",
     "count": 1
   },
   "result": [
     {
-      "item": "minecraft:diamond",
+      "item": "minecraft:emerald",
       "count": 2
     },
     {
-      "item": "minecraft:diamond",
+      "item": "minecraft:emerald",
       "count": 1,
       "chance": 0.5
     },
     {
-      "item": "minecraft:diamond",
+      "item": "minecraft:emerald",
       "count": 1,
       "chance": 0.25
     },
     {
-      "item": "wtbw_machines:diamond_dust",
+      "item": "wtbw_machines:emerald_dust",
       "count": 1,
       "chance": 0.1
     },
     {
-      "item": "wtbw_machines:diamond_dust",
+      "item": "wtbw_machines:emerald_dust",
       "count": 1,
       "chance": 0.05
     },
@@ -35,6 +35,6 @@
       "chance": 0.30
     }
   ],
-  "duration": 180,
-  "power_cost": 300
+  "duration": 200,
+  "power_cost": 4000
 }

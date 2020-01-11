@@ -15,6 +15,6 @@
       "chance": 0.30
     }
   ],
-  "duration": 120,
-  "power_cost": 300
+  "duration": 200,
+  "power_cost": 4000
 }
