@@ -145,6 +145,11 @@ if (ENV.WTBW_CF_KEY) {
             id = "wtbw_machines"
             releaseType = "beta"
             addGameVersion "1.15.1"
+            relations {
+                requiredDependency 'wtbw_lib'
+                requiredDependency 'wtbw_core'
+                optionalDependency 'jei'
+            }
             changelog = getGitChangelog
             changelogType = 'markdown'
             addArtifact(deobfJar)
