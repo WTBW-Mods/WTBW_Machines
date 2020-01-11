@@ -1,9 +1,9 @@
 {
   "type": "minecraft:crafting_shaped",
   "pattern": [
-    "GPG",
-    "GMG",
-    "GBG"
+    "GGG",
+    "PMP",
+    "GGG"
   ],
   "key": {
     "P": {
@@ -14,12 +14,9 @@
     },
     "M": {
       "item": "wtbw_machines:machine_block"
-    },
-    "B": {
-      "tag": "forge:storage_blocks/iron"
     }
   },
   "result": {
-    "item": "wtbw_machines:powered_crusher"
+    "item": "wtbw_machines:compressor"
   }
 }

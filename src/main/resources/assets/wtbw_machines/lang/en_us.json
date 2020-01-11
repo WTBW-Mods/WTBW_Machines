@@ -51,8 +51,8 @@
 
   "block.wtbw_machines.dehydrator": "Dehydrator",
   "block.wtbw_machines.powered_furnace": "Powered Furnace",
-  "block.wtbw_machines.powered_crusher": "Powered Crusher",
-  "block.wtbw_machines.powered_compressor": "Powered Compressor",
+  "block.wtbw_machines.crusher": "Crusher",
+  "block.wtbw_machines.compressor": "Compressor",
   "block.wtbw_machines.simple_battery": "Simple Battery",
   "block.wtbw_machines.quarry": "Quarry",
   "block.wtbw_machines.fuel_generator": "Fuel Generator",

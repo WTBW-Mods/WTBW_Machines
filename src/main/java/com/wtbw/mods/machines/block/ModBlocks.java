@@ -46,8 +46,8 @@ public class ModBlocks
   public static final Block TIER3_UPGRADE = Blocks.AIR;
   public static final Block TIER4_UPGRADE = Blocks.AIR;
 
-  public static final Block POWERED_CRUSHER = Blocks.AIR;
-  public static final Block POWERED_COMPRESSOR = Blocks.AIR;
+  public static final Block CRUSHER = Blocks.AIR;
+  public static final Block COMPRESSOR = Blocks.AIR;
   
   public static final Block DEHYDRATOR = Blocks.AIR;
   

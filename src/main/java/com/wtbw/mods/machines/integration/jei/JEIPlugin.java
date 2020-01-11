@@ -48,9 +48,9 @@ public class JEIPlugin implements IModPlugin
     registration.addRecipeCatalyst(new ItemStack(ModBlocks.POWERED_FURNACE), VanillaRecipeCategoryUid.FURNACE);
     registration.addRecipeCatalyst(new ItemStack(ModBlocks.POWERED_FURNACE), PoweredFurnaceCategory.UID);
     
-    registration.addRecipeCatalyst(new ItemStack(ModBlocks.POWERED_CRUSHER), CrusherCategory.UID);
+    registration.addRecipeCatalyst(new ItemStack(ModBlocks.CRUSHER), CrusherCategory.UID);
     registration.addRecipeCatalyst(new ItemStack(ModBlocks.DEHYDRATOR), DehydratingCategory.UID);
-    registration.addRecipeCatalyst(new ItemStack(ModBlocks.POWERED_COMPRESSOR), CompressingCategory.UID);
+    registration.addRecipeCatalyst(new ItemStack(ModBlocks.COMPRESSOR), CompressingCategory.UID);
   }
   
   @Override

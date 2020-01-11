@@ -3,10 +3,8 @@ package com.wtbw.mods.machines.integration.jei.category;
 import com.wtbw.mods.lib.gui.util.EnergyBar;
 import com.wtbw.mods.lib.tile.util.energy.BaseEnergyStorage;
 import com.wtbw.mods.lib.util.BiValue;
-import com.wtbw.mods.lib.util.Cache;
 import com.wtbw.mods.lib.util.Utilities;
 import com.wtbw.mods.machines.ClientConstants;
-import com.wtbw.mods.machines.Constants;
 import com.wtbw.mods.machines.WTBWMachines;
 import com.wtbw.mods.machines.block.ModBlocks;
 import com.wtbw.mods.machines.gui.screen.CrusherScreen;
@@ -14,9 +12,7 @@ import com.wtbw.mods.machines.recipe.CrushingRecipe;
 import com.wtbw.mods.machines.tile.machine.PoweredCrusherEntity;
 import mezz.jei.api.constants.VanillaTypes;
 import mezz.jei.api.gui.IRecipeLayout;
-import mezz.jei.api.gui.drawable.IDrawable;
 import mezz.jei.api.gui.drawable.IDrawableAnimated;
-import mezz.jei.api.gui.drawable.IDrawableStatic;
 import mezz.jei.api.gui.ingredient.IGuiItemStackGroup;
 import mezz.jei.api.gui.ingredient.ITooltipCallback;
 import mezz.jei.api.helpers.IGuiHelper;
@@ -51,7 +47,7 @@ public class CrusherCategory extends AbstractRecipeCategory<CrushingRecipe>
       "crushing",
       guiHelper,
       () -> guiHelper.createDrawable(ClientConstants.Jei.BACKGROUND, 0, 0, 162, 54),
-      () -> guiHelper.createDrawableIngredient(new ItemStack(ModBlocks.POWERED_CRUSHER))
+      () -> guiHelper.createDrawableIngredient(new ItemStack(ModBlocks.CRUSHER))
     );
     
     this.progress = guiHelper.drawableBuilder(ClientConstants.ICONS, 10, 10, 10, 10).buildAnimated(300, IDrawableAnimated.StartDirection.TOP, false);

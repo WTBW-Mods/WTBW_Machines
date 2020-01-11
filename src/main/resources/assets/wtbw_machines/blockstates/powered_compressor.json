@@ -1,8 +1,0 @@
-{
-  "variants": {
-    "facing=north": { "model": "wtbw_machines:block/powered_compressor" },
-    "facing=south": { "model": "wtbw_machines:block/powered_compressor", "y": 180 },
-    "facing=east": { "model": "wtbw_machines:block/powered_compressor", "y":  90},
-    "facing=west": { "model": "wtbw_machines:block/powered_compressor", "y": 270}
-  }
-}

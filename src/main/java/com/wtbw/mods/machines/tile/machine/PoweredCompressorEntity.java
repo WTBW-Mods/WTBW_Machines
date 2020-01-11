@@ -47,7 +47,7 @@ public class PoweredCompressorEntity extends BaseMachineEntity {
     private int ingredientCost;
 
     public PoweredCompressorEntity() {
-        super(ModTiles.POWERED_COMPRESSOR, 100000, 50000, RedstoneMode.IGNORE);
+        super(ModTiles.COMPRESSOR, 100000, 50000, RedstoneMode.IGNORE);
 
         manager
                 .registerInt("duration", () -> duration, i -> duration = i)

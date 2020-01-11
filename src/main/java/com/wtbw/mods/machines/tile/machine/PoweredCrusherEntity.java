@@ -56,7 +56,7 @@ public class PoweredCrusherEntity extends BaseMachineEntity {
     EnergyBar energyBar;
 
     public PoweredCrusherEntity() {
-        super(ModTiles.POWERED_CRUSHER, 100000, 50000, RedstoneMode.IGNORE);
+        super(ModTiles.CRUSHER, 100000, 50000, RedstoneMode.IGNORE);
 
         manager
                 .registerInt("duration", () -> duration, i -> duration = i)

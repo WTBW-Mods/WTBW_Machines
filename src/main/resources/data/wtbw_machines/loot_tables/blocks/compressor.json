@@ -6,7 +6,7 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "wtbw_machines:powered_compressor",
+          "name": "wtbw_machines:compressor",
           "functions": [
             {
               "function": "minecraft:copy_nbt",
@@ -31,7 +31,7 @@
           ]
         }
       ],
-      "name": "wtbw_machines:powered_compressor"
+      "name": "wtbw_machines:compressor"
     }
   ]
 }
