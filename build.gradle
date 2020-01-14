@@ -145,6 +145,7 @@ if (ENV.WTBW_CF_KEY) {
             id = "357095"
             releaseType = "beta"
             addGameVersion "1.15.1"
+            addGameVersion "Forge"
             relations {
                 requiredDependency 'wtbw_lib'
                 requiredDependency 'wtbw_core'
