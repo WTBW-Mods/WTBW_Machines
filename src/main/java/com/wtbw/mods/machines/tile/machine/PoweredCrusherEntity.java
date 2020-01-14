@@ -239,7 +239,7 @@ public class PoweredCrusherEntity extends BaseMachineEntity {
                         dirty = true;
                     }
                     if (inventory.getStackInSlot(INPUT_SLOT).getCount() >= ingredientCost) {
-                        if (storage.getEnergyStored() >= powerCost && canOutput()) {
+                        if (storage.getEnergyStored() >= powerCost / duration && canOutput()) {
                             doProgress();
                             on = true;
                             storage.extractInternal(powerCost / duration, false);

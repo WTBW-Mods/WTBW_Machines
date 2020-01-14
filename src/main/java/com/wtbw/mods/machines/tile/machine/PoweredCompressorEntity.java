@@ -232,7 +232,7 @@ public class PoweredCompressorEntity extends BaseMachineEntity {
                     }
                     if (canOutput()) {
                         if (inventory.getStackInSlot(0).getCount() >= ingredientCost) {
-                            if (storage.getEnergyStored() >= powerCost) {
+                            if (storage.getEnergyStored() >= powerCost / duration) {
                                 doProgress();
                                 storage.extractInternal(powerCost / duration, false);
                             }

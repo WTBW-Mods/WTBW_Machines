@@ -256,7 +256,7 @@ public class PoweredFurnaceEntity extends BaseMachineEntity {
 
                     if (canOutput()) {
                         if (inventory.getStackInSlot(INPUT_SLOT).getCount() >= ingredientCost) {
-                            if (storage.getEnergyStored() >= powerCost) {
+                            if (storage.getEnergyStored() >= powerCost / duration) {
                                 doProgress();
                                 storage.extractInternal(powerCost / duration, false);
                             }
