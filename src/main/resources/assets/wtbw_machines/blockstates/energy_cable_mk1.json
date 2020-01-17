@@ -1,0 +1,32 @@
+{
+  "multipart": [
+    {
+      "apply": { "model": "wtbw_machines:block/energy_cable_mk1"}
+    },
+    {
+      "when" : { "north": "true" },
+      "apply": { "model": "wtbw_machines:block/energy_cable_part_mk1" }
+    },
+    {
+      "when" : { "south": "true" },
+      "apply": { "model": "wtbw_machines:block/energy_cable_part_mk1", "y": 180 }
+    },
+    {
+      "when" : { "west": "true" },
+      "apply": { "model": "wtbw_machines:block/energy_cable_part_mk1" , "y": 270 }
+    },
+    {
+      "when" : { "east": "true" },
+      "apply": { "model": "wtbw_machines:block/energy_cable_part_mk1", "y": 90 }
+    },
+    {
+      "when" : { "up": "true" },
+      "apply": { "model": "wtbw_machines:block/energy_cable_part_mk1", "x": 270 }
+    },
+    {
+      "when" : { "down": "true" },
+      "apply": { "model": "wtbw_machines:block/energy_cable_part_mk1", "x": 90 }
+    }
+  ]
+
+}

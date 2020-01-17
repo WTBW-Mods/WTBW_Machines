@@ -1,6 +1,7 @@
 package com.wtbw.mods.machines.tile;
 
 import com.wtbw.mods.machines.WTBWMachines;
+import com.wtbw.mods.machines.tile.cables.EnergyCableEntity;
 import com.wtbw.mods.machines.tile.furnace.BaseFurnaceTileEntity;
 import com.wtbw.mods.machines.tile.generator.FuelGeneratorEntity;
 import com.wtbw.mods.machines.tile.generator.SolarPanelTileEntity;
@@ -47,4 +48,10 @@ public class ModTiles
   public static final TileEntityType<PoweredCompressorEntity> COMPRESSOR = null;
   
   
+  public static final TileEntityType<EnergyCableEntity> ENERGY_CABLE_MK1 = null;
+  public static final TileEntityType<EnergyCableEntity> ENERGY_CABLE_MK2 = null;
+  public static final TileEntityType<EnergyCableEntity> ENERGY_CABLE_MK3 = null;
+  public static final TileEntityType<EnergyCableEntity> ENERGY_CABLE_MK4 = null;
+  public static final TileEntityType<EnergyCableEntity> ENERGY_CABLE_MK5 = null;
+  public static final TileEntityType<EnergyCableEntity> ENERGY_CABLE_MK6 = null;
 }

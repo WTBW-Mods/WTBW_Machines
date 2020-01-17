@@ -57,7 +57,10 @@
   "block.wtbw_machines.quarry": "Quarry",
   "block.wtbw_machines.fuel_generator": "Fuel Generator",
 
+  "block.wtbw_machines.energy_cable_mk1": "Power Cable",
+
   "wtbw_machines.tooltip.shift_more_info": "Press SHIFT for more info...",
+  "wtbw_machines.tooltip.ef_tick": "EF/t",
   "wtbw_machines.tooltip.emitter": "Emits redstone signal based on the number displaying.\n(Sneak)Right click to cycle the number",
   "wtbw_machines.tooltip.timer": "Gives a redstone pulse every %s ticks",
   "wtbw_machines.tooltip.spikes": "Damages entities standing on top",
@@ -70,6 +73,7 @@
   "wtbw_machines.tooltip.tier": "Placed next to the Quarry \nincreases the quarry size to %s",
   "wtbw_machines.tooltip.fuel_generator": "Generates %s EF/t",
   "wtbw_machines.tooltip.burn_time": "Burn time left: %s ticks",
+  "wtbw_machines.tooltip.energy_cable_transfer": "This cable can transfer up to",
 
   "death.attack.spikes.wooden": "Wood spikes pierced %s",
   "death.attack.spikes.bamboo": "Bamboo spikes pierced %s",

@@ -15,6 +15,7 @@ import com.wtbw.mods.machines.block.spikes.SpikesType;
 import com.wtbw.mods.machines.gui.container.*;
 import com.wtbw.mods.machines.recipe.*;
 import com.wtbw.mods.machines.tile.*;
+import com.wtbw.mods.machines.tile.cables.EnergyCableTier;
 import com.wtbw.mods.machines.tile.furnace.FurnaceTier;
 import com.wtbw.mods.machines.tile.generator.FuelGeneratorEntity;
 import com.wtbw.mods.machines.tile.generator.SolarPanelTileEntity;
@@ -90,6 +91,15 @@ public class MachinesRegistrator extends Registrator
     
     register(new BaseMachineBlock<>(getBlockProperties(Material.IRON, 4), (world, state) -> new FuelGeneratorEntity()).mirrored(), "fuel_generator",
       getItemProperties().addTooltip(TextComponentBuilder.createTranslated(WTBWMachines.MODID + ".tooltip.fuel_generator", 45).green().build()));
+    
+    register(new EnergyCableBlock(getBlockProperties(Material.IRON, 4).func_226896_b_(), EnergyCableTier.MK1), "energy_cable_mk1");
+    /*
+    register(new EnergyCableBlock(getBlockProperties(Material.IRON, 4).func_226896_b_(), EnergyCableTier.MK2), "energy_cable_mk2");
+    register(new EnergyCableBlock(getBlockProperties(Material.IRON, 4).func_226896_b_(), EnergyCableTier.MK3), "energy_cable_mk3");
+    register(new EnergyCableBlock(getBlockProperties(Material.IRON, 4).func_226896_b_(), EnergyCableTier.MK4), "energy_cable_mk4");
+    register(new EnergyCableBlock(getBlockProperties(Material.IRON, 4).func_226896_b_(), EnergyCableTier.MK5), "energy_cable_mk5");
+    register(new EnergyCableBlock(getBlockProperties(Material.IRON, 4).func_226896_b_(), EnergyCableTier.MK6), "energy_cable_mk6");
+    */
   }
   
   @Override
