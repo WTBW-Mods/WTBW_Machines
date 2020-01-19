@@ -1,9 +1,12 @@
 package com.wtbw.mods.machines.block;
 
 import com.wtbw.mods.lib.block.BaseTileBlock;
+import com.wtbw.mods.machines.block.util.WrenchHelper;
+import com.wtbw.mods.machines.item.WrenchItem;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.HorizontalBlock;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.BlockItemUseContext;
 import net.minecraft.item.ItemStack;
 import net.minecraft.particles.ParticleTypes;
@@ -14,6 +17,7 @@ import net.minecraft.state.properties.BlockStateProperties;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.*;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.BlockRayTraceResult;
 import net.minecraft.world.World;
 import net.minecraft.world.storage.loot.LootContext;
 import net.minecraftforge.api.distmarker.Dist;
@@ -35,6 +39,8 @@ public class BaseFurnaceBlock<TE extends TileEntity> extends BaseTileBlock<TE>
     super(properties, tileEntityProvider);
 
     setDefaultState(stateContainer.getBaseState().with(FACING, Direction.NORTH).with(LIT, false));
+  
+    WrenchItem.registerWrenchAction(this, WrenchHelper.horizontalRotationWrenchAction(FACING).and(WrenchHelper.dropWrenchAction()));
   }
 
   @Override
@@ -93,5 +99,19 @@ public class BaseFurnaceBlock<TE extends TileEntity> extends BaseTileBlock<TE>
       worldIn.addParticle(ParticleTypes.SMOKE, d0 + d5, d1 + d6, d2 + d7, 0.0D, 0.0D, 0.0D);
       worldIn.addParticle(ParticleTypes.FLAME, d0 + d5, d1 + d6, d2 + d7, 0.0D, 0.0D, 0.0D);
     }
+  }
+  
+  @Override
+  public ActionResultType func_225533_a_(BlockState state, World world, BlockPos pos, PlayerEntity playerEntity, Hand hand, BlockRayTraceResult hit)
+  {
+    
+    return WrenchHelper.isUsingWrench(playerEntity, hand) ? ActionResultType.PASS : super.func_225533_a_(state, world, pos, playerEntity, hand, hit);
+//    ItemStack stack = playerEntity.getHeldItem(hand);
+//    if (stack.getItem() instanceof WrenchItem)
+//    {
+//      return ActionResultType.PASS;
+//    }
+//
+//    return super.func_225533_a_(state, world, pos, playerEntity, hand, hit);
   }
 }

@@ -3,16 +3,20 @@ package com.wtbw.mods.machines;
 import com.wtbw.mods.lib.Registrator;
 import com.wtbw.mods.lib.block.BaseTileBlock;
 import com.wtbw.mods.lib.block.SixWayTileBlock;
+import com.wtbw.mods.lib.item.BaseItemProperties;
 import com.wtbw.mods.lib.util.TextComponentBuilder;
 import com.wtbw.mods.machines.block.*;
 import com.wtbw.mods.machines.block.base.BaseMachineBlock;
 import com.wtbw.mods.machines.block.base.TierBlock;
+import com.wtbw.mods.machines.block.base.WrenchableSixWayTileBlock;
 import com.wtbw.mods.machines.block.redstone.BlockDetectorBlock;
 import com.wtbw.mods.machines.block.redstone.RedstoneEmitterBlock;
 import com.wtbw.mods.machines.block.redstone.RedstoneTimerBlock;
 import com.wtbw.mods.machines.block.spikes.SpikesBlock;
 import com.wtbw.mods.machines.block.spikes.SpikesType;
+import com.wtbw.mods.machines.block.util.WrenchHelper;
 import com.wtbw.mods.machines.gui.container.*;
+import com.wtbw.mods.machines.item.WrenchItem;
 import com.wtbw.mods.machines.recipe.*;
 import com.wtbw.mods.machines.tile.*;
 import com.wtbw.mods.machines.tile.cables.EnergyCableTier;
@@ -51,10 +55,11 @@ public class MachinesRegistrator extends Registrator
   
     register(new RedstoneTimerBlock(getBlockProperties(Material.IRON, 4)), "redstone_timer");
     register(new RedstoneEmitterBlock(getBlockProperties(Material.IRON, 4)), "redstone_emitter");
-  
-    register(new SixWayTileBlock<>(getBlockProperties(Material.IRON, 4), (world, state) -> new BlockBreakerTileEntity()), "block_breaker");
-    register(new SixWayTileBlock<>(getBlockProperties(Material.IRON, 4), (world, state) -> new BlockPlacerTileEntity()), "block_placer");
-
+    
+    
+    register(new WrenchableSixWayTileBlock<>(getBlockProperties(Material.IRON, 4), (world, state) -> new BlockBreakerTileEntity()), "block_breaker");
+    register(new WrenchableSixWayTileBlock<>(getBlockProperties(Material.IRON, 4), (world, state) -> new BlockPlacerTileEntity()), "block_placer");
+    
     register(new BlockDetectorBlock(getBlockProperties(Material.IRON, 4)), "block_detector");
   
     register(new BaseTileBlock<>(getBlockProperties(Material.IRON, 4), (world, state) -> new VacuumChestTileEntity()), "vacuum_chest");
@@ -105,21 +110,24 @@ public class MachinesRegistrator extends Registrator
   @Override
   protected void registerAllItems()
   {
-    register(new Item(getItemProperties()), "iron_plate");
-    register(new Item(getItemProperties()), "gold_plate");
+    BaseItemProperties baseProperties = getItemProperties();
+    register(new Item(baseProperties), "iron_plate");
+    register(new Item(baseProperties), "gold_plate");
     
-    register(new Item(getItemProperties()), "gold_dust");
-    register(new Item(getItemProperties()), "iron_dust");
-    register(new Item(getItemProperties()), "obsidian_dust");
-    register(new Item(getItemProperties()), "ender_pearl_dust");
-    register(new Item(getItemProperties()), "charcoal_dust");
-    register(new Item(getItemProperties()), "coal_dust");
-    register(new Item(getItemProperties()), "emerald_dust");
-    register(new Item(getItemProperties()), "diamond_dust");
-    register(new Item(getItemProperties()), "quartz_dust");
+    register(new Item(baseProperties), "gold_dust");
+    register(new Item(baseProperties), "iron_dust");
+    register(new Item(baseProperties), "obsidian_dust");
+    register(new Item(baseProperties), "ender_pearl_dust");
+    register(new Item(baseProperties), "charcoal_dust");
+    register(new Item(baseProperties), "coal_dust");
+    register(new Item(baseProperties), "emerald_dust");
+    register(new Item(baseProperties), "diamond_dust");
+    register(new Item(baseProperties), "quartz_dust");
     
-    register(new Item(getItemProperties()), "lapis_wafer");
-    register(new Item(getItemProperties()), "glowstone_wafer");
+    register(new Item(baseProperties), "lapis_wafer");
+    register(new Item(baseProperties), "glowstone_wafer");
+    
+    register(new WrenchItem(getItemProperties()), "wrench");
   }
  
   @Override
@@ -150,5 +158,13 @@ public class MachinesRegistrator extends Registrator
     registry.register(CompressingRecipe.SERIALIZER);
     registry.register(CrushingRecipe.SERIALIZER);
     registry.register(PoweredFurnaceRecipe.SERIALIZER);
+  }
+  
+  public void registerWrenchActions()
+  {
+    WrenchItem.registerWrenchAction(ModBlocks.BLOCK_BREAKER, WrenchHelper.rotationWrenchAction(WrenchableSixWayTileBlock.FACING).and(WrenchHelper.dropWrenchAction()));
+    WrenchItem.registerWrenchAction(ModBlocks.BLOCK_PLACER, WrenchHelper.rotationWrenchAction(WrenchableSixWayTileBlock.FACING).and(WrenchHelper.dropWrenchAction()));
+    WrenchItem.registerWrenchAction(ModBlocks.BLOCK_DETECTOR, WrenchHelper.rotationWrenchAction(WrenchableSixWayTileBlock.FACING).and(WrenchHelper.dropWrenchAction()));
+    WrenchItem.registerWrenchAction(ModBlocks.VACUUM_CHEST, WrenchHelper.dropWrenchAction());
   }
 }

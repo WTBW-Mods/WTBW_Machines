@@ -4,6 +4,8 @@ import com.wtbw.mods.lib.block.BaseTileBlock;
 import com.wtbw.mods.lib.util.TextComponentBuilder;
 import com.wtbw.mods.lib.util.Utilities;
 import com.wtbw.mods.machines.ClientConstants;
+import com.wtbw.mods.machines.block.util.WrenchHelper;
+import com.wtbw.mods.machines.item.WrenchItem;
 import com.wtbw.mods.machines.tile.cables.EnergyCableEntity;
 import com.wtbw.mods.machines.tile.cables.EnergyCableTier;
 import net.minecraft.block.Block;
@@ -75,6 +77,9 @@ public class EnergyCableBlock extends BaseTileBlock<EnergyCableEntity>
     );
     
     this.tier = tier;
+  
+    WrenchItem.registerWrenchAction(this, WrenchHelper.dropWrenchAction());
+    // todo: make faces be "blocked" to connect
   }
   
   private BlockState makeConnections(IWorldReader world, BlockPos pos)

@@ -27,7 +27,7 @@ public class WTBWMachines
   public static final String MODID = "wtbw_machines";
   
   public static final Logger LOGGER = LogManager.getLogger(MODID);
-  
+  private MachinesRegistrator machinesRegistrator;
   public static final ItemGroup GROUP = new ItemGroup(MODID)
   {
     @Override
@@ -40,7 +40,8 @@ public class WTBWMachines
   public WTBWMachines()
   {
     CommonConfig.init();
-    MachinesRegistrator machinesRegistrator = new MachinesRegistrator(GROUP, MODID);
+    
+    machinesRegistrator = new MachinesRegistrator(GROUP, MODID);
     IEventBus eventBus = FMLJavaModLoadingContext.get().getModEventBus();
     eventBus.addListener(this::setup);
     
@@ -51,6 +52,9 @@ public class WTBWMachines
   {
     Networking.registerMessage(UpdateDetectorPacket.class, UpdateDetectorPacket::toBytes, UpdateDetectorPacket::new, UpdateDetectorPacket::handle);
     Networking.registerMessage(UpdateQuarryPacket.class, UpdateQuarryPacket::toBytes, UpdateQuarryPacket::new, UpdateQuarryPacket::handle);
+    
+    machinesRegistrator.registerWrenchActions();
+    
     DistExecutor.runWhenOn(Dist.CLIENT, () -> () -> ClientRegistration.init());
   }
 }

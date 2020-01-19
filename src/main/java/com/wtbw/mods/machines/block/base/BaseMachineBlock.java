@@ -1,30 +1,21 @@
 package com.wtbw.mods.machines.block.base;
 
 import com.wtbw.mods.lib.block.BaseTileBlock;
-import com.wtbw.mods.lib.tile.util.energy.BaseEnergyStorage;
-import com.wtbw.mods.lib.util.TextComponentBuilder;
-import com.wtbw.mods.lib.util.Utilities;
+import com.wtbw.mods.machines.block.util.WrenchHelper;
+import com.wtbw.mods.machines.item.WrenchItem;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
-import net.minecraft.client.gui.screen.Screen;
-import net.minecraft.client.util.ITooltipFlag;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.BlockItemUseContext;
-import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.state.BooleanProperty;
 import net.minecraft.state.DirectionProperty;
 import net.minecraft.state.StateContainer;
 import net.minecraft.state.properties.BlockStateProperties;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.Direction;
-import net.minecraft.util.Mirror;
-import net.minecraft.util.Rotation;
-import net.minecraft.util.text.ITextComponent;
-import net.minecraft.world.IBlockReader;
-import net.minecraftforge.common.util.Constants;
-
-import javax.annotation.Nullable;
-import java.util.List;
+import net.minecraft.util.*;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.BlockRayTraceResult;
+import net.minecraft.world.World;
 
 /*
   @author: Naxanria
@@ -34,14 +25,16 @@ public class BaseMachineBlock<TE extends TileEntity> extends BaseTileBlock<TE>
   public static final DirectionProperty FACING = BlockStateProperties.HORIZONTAL_FACING;
   public static final BooleanProperty ON = BooleanProperty.create("on");
   
+  
   protected boolean mirrorFacing;
-
   
   public BaseMachineBlock(Properties properties, TileEntityProvider<TE> tileEntityProvider)
   {
     super(properties, tileEntityProvider);
     
     setDefaultState(stateContainer.getBaseState().with(FACING, Direction.NORTH).with(ON, false));
+
+    WrenchItem.registerWrenchAction(this, WrenchHelper.horizontalRotationWrenchAction(FACING).and(WrenchHelper.dropWrenchAction()));
   }
   
   /**
@@ -79,5 +72,10 @@ public class BaseMachineBlock<TE extends TileEntity> extends BaseTileBlock<TE>
   {
     builder.add(FACING, ON);
   }
-  
+
+  @Override
+  public ActionResultType func_225533_a_(BlockState state, World world, BlockPos pos, PlayerEntity playerEntity, Hand hand, BlockRayTraceResult hit)
+  {
+    return WrenchHelper.isUsingWrench(playerEntity, hand) ? ActionResultType.PASS : super.func_225533_a_(state, world, pos, playerEntity, hand, hit);
+  }
 }
