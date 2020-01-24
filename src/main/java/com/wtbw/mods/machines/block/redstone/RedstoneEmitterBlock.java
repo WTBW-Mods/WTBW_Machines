@@ -52,7 +52,7 @@ public class RedstoneEmitterBlock extends Block
   }
   
   @Override
-  public ActionResultType func_225533_a_(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockRayTraceResult rayTraceResult)
+  public ActionResultType onBlockActivated(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockRayTraceResult rayTraceResult)
   {
     if (player.isAllowEdit() && hand != Hand.OFF_HAND)
     {
@@ -86,7 +86,7 @@ public class RedstoneEmitterBlock extends Block
       }
     }
     
-    return super.func_225533_a_(state, world, pos, player, hand, rayTraceResult);
+    return super.onBlockActivated(state, world, pos, player, hand, rayTraceResult);
   }
   
   @Override

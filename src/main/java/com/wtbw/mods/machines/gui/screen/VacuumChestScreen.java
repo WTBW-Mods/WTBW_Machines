@@ -26,7 +26,7 @@ public class VacuumChestScreen extends BaseContainerScreen<VacuumChestContainer>
   protected void init()
   {
     super.init();
-    addButton(new RedstoneButton<>(guiLeft - 22 + 4, guiTop + 17, container.tileEntity));
+    addButton(new RedstoneButton<>(guiLeft - 22, guiTop + 12, container.tileEntity));
   }
   
   @Override

@@ -14,9 +14,8 @@ public class RenderBattery extends TileEntityRenderer<SimpleBatteryTileEntity> {
     public RenderBattery(TileEntityRendererDispatcher renderer){
         super(renderer);
     }
-
-    @Override
-    public void func_225616_a_(SimpleBatteryTileEntity tile, float partialTick, MatrixStack matrix, IRenderTypeBuffer buffer, int int1, int int2){
+        @Override
+    public void render(SimpleBatteryTileEntity tile, float partialTick, MatrixStack matrix, IRenderTypeBuffer buffer, int int1, int int2){
         BaseEnergyStorage storage = tile.getStorage();
 //        storage.getPercentageFilled();
 
