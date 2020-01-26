@@ -104,7 +104,6 @@ public class BaseFurnaceBlock<TE extends TileEntity> extends BaseTileBlock<TE>
   @Override
   public ActionResultType onBlockActivated(BlockState state, World world, BlockPos pos, PlayerEntity playerEntity, Hand hand, BlockRayTraceResult hit)
   {
-    
     return WrenchHelper.isUsingWrench(playerEntity, hand) ? ActionResultType.PASS : super.onBlockActivated(state, world, pos, playerEntity, hand, hit);
 //    ItemStack stack = playerEntity.getHeldItem(hand);
 //    if (stack.getItem() instanceof WrenchItem)

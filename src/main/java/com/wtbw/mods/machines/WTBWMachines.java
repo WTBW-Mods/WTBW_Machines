@@ -3,6 +3,7 @@ package com.wtbw.mods.machines;
 import com.wtbw.mods.lib.network.Networking;
 import com.wtbw.mods.machines.block.ModBlocks;
 import com.wtbw.mods.machines.config.CommonConfig;
+import com.wtbw.mods.machines.network.SyncBatteryBlockBar;
 import com.wtbw.mods.machines.network.UpdateDetectorPacket;
 import com.wtbw.mods.machines.network.UpdateQuarryPacket;
 import net.minecraft.item.ItemGroup;
@@ -52,6 +53,7 @@ public class WTBWMachines
   {
     Networking.registerMessage(UpdateDetectorPacket.class, UpdateDetectorPacket::toBytes, UpdateDetectorPacket::new, UpdateDetectorPacket::handle);
     Networking.registerMessage(UpdateQuarryPacket.class, UpdateQuarryPacket::toBytes, UpdateQuarryPacket::new, UpdateQuarryPacket::handle);
+    Networking.registerMessage(SyncBatteryBlockBar.class, SyncBatteryBlockBar::toBytes, SyncBatteryBlockBar::new, SyncBatteryBlockBar::handle);
     
     machinesRegistrator.registerWrenchActions();
     
