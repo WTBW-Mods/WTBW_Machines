@@ -66,12 +66,11 @@ public class QuarryTileEntity extends TileEntity implements ITickableTileEntity,
         control = new RedstoneControl(this, RedstoneMode.ON);
 
         nbtManager = new NBTManager()
-            .register("energy", getStorage())
             .registerBlockPos("current", () -> currentPos, i -> currentPos = i)
             .registerBoolean("finished", () -> isDone, i -> isDone = i)
             .registerInt("upgradeLevel", () -> upgradeLevel, i -> upgradeLevel = i)
             .registerInt("quarrySize", () -> quarrySize, i -> quarrySize = i)
-            .register("storage", storage)
+            .register("storage", getStorage())
             .register("inventory", inventory.orElseGet(ItemStackHandler::new))
             .register("control", control);
         
