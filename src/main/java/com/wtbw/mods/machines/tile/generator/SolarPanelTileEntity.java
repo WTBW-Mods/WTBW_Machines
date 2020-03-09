@@ -3,6 +3,7 @@ package com.wtbw.mods.machines.tile.generator;
 import com.wtbw.mods.lib.tile.util.GuiUpdateHelper;
 import com.wtbw.mods.lib.tile.util.IGuiUpdateHandler;
 import com.wtbw.mods.lib.tile.util.IWTBWNamedContainerProvider;
+import com.wtbw.mods.machines.WTBWMachines;
 import com.wtbw.mods.machines.gui.container.SolarPanelContainer;
 import com.wtbw.mods.machines.tile.ModTiles;
 import com.wtbw.mods.machines.tile.base.Generator;
@@ -99,6 +100,7 @@ public class SolarPanelTileEntity extends Generator implements IWTBWNamedContain
   @Override
   public void handleGuiUpdateTag(CompoundNBT nbt)
   {
-    GuiUpdateHelper.updateEnergy(storage, nbt.getIntArray("storage"));
+    WTBWMachines.LOGGER.info("NBT Keys: {}", nbt.keySet());
+    GuiUpdateHelper.updateEnergy(storage, nbt.getIntArray("energy"));
   }
 }
