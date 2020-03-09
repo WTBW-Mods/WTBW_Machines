@@ -1,12 +1,10 @@
 package com.wtbw.mods.machines.tile.base;
 
 import com.wtbw.mods.lib.tile.util.IComparatorProvider;
-import com.wtbw.mods.lib.tile.util.IWTBWNamedContainerProvider;
 import com.wtbw.mods.lib.tile.util.energy.BaseEnergyStorage;
 import com.wtbw.mods.lib.util.Utilities;
 import com.wtbw.mods.lib.util.nbt.Manager;
 import com.wtbw.mods.lib.util.nbt.NBTManager;
-import com.wtbw.mods.machines.WTBWMachines;
 import com.wtbw.mods.machines.block.base.BaseMachineBlock;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.tileentity.ITickableTileEntity;
@@ -42,7 +40,7 @@ public abstract class Generator extends TileEntity implements ITickableTileEntit
     this.generate = generate;
     
     manager = new NBTManager();
-    manager.register("storage", new Manager.Serializable(storage));
+    manager.register("storage", (Manager.Serializable) new Manager.Serializable(storage).noGuiTracking());
     manager.register("generate", new Manager.Int()
     {
       @Override

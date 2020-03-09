@@ -1,5 +1,7 @@
 package com.wtbw.mods.machines.tile.generator;
 
+import com.wtbw.mods.lib.tile.util.GuiUpdateHelper;
+import com.wtbw.mods.lib.tile.util.IGuiUpdateHandler;
 import com.wtbw.mods.lib.tile.util.IWTBWNamedContainerProvider;
 import com.wtbw.mods.machines.gui.container.SolarPanelContainer;
 import com.wtbw.mods.machines.tile.ModTiles;
@@ -7,6 +9,7 @@ import com.wtbw.mods.machines.tile.base.Generator;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.container.Container;
+import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.tileentity.TileEntityType;
 import net.minecraft.util.Direction;
 
@@ -16,7 +19,7 @@ import java.util.function.Supplier;
 /*
   @author: Naxanria
 */
-public class SolarPanelTileEntity extends Generator implements IWTBWNamedContainerProvider
+public class SolarPanelTileEntity extends Generator implements IWTBWNamedContainerProvider, IGuiUpdateHandler
 {
   public static final Direction[] PROVIDING_SIDES = new Direction[]{ Direction.SOUTH, Direction.WEST, Direction.NORTH, Direction.EAST, Direction.DOWN };
   
@@ -83,5 +86,19 @@ public class SolarPanelTileEntity extends Generator implements IWTBWNamedContain
   public Container createMenu(int id, PlayerInventory inventory, PlayerEntity player)
   {
     return new SolarPanelContainer(id, world, pos, inventory);
+  }
+  
+  @Override
+  public CompoundNBT getGuiUpdateTag()
+  {
+    CompoundNBT nbt = new CompoundNBT();
+    nbt.putIntArray("energy", GuiUpdateHelper.getEnergyUpdateValues(storage, true));
+    return nbt;
+  }
+  
+  @Override
+  public void handleGuiUpdateTag(CompoundNBT nbt)
+  {
+    GuiUpdateHelper.updateEnergy(storage, nbt.getIntArray("storage"));
   }
 }

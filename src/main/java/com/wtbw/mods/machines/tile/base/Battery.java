@@ -34,7 +34,7 @@ public class Battery extends TileEntity implements ITickableTileEntity, ICompara
     storage = new BaseEnergyStorage(capacity, maxExtract, maxInsert);
     
     manager = new NBTManager();
-    manager.register("storage", new Manager.Serializable(storage));
+    manager.register("storage", new Manager.Serializable(storage), false);
     manager.register("shareEqually", new Manager.Bool()
     {
       @Override

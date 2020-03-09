@@ -14,11 +14,13 @@ public class SolarPanelContainer extends BaseTileContainer<SolarPanelTileEntity>
   public SolarPanelContainer(int id, World world, BlockPos pos, PlayerInventory playerInventory)
   {
     super(ModContainers.SOLAR_PANEL, id, world, pos, playerInventory);
-  
+    
     track(tileEntity.getManager());
 //    NBTManager manager = tileEntity.getManager();
 //    manager.referenceHolders().forEach(iIntReferenceHolder -> trackInt(iIntReferenceHolder.getReferenceHolder()));
 //
     layoutPlayerInventorySlots();
   }
+  
+  
 }

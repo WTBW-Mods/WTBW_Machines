@@ -42,7 +42,7 @@ import java.util.List;
   @author: Sunekaer
 */
 @SuppressWarnings("ConstantConditions")
-public class QuarryTileEntity extends TileEntity implements ITickableTileEntity, IWTBWNamedContainerProvider, IRedstoneControlled, IContentHolder {
+public class QuarryTileEntity extends TileEntity implements ITickableTileEntity, IWTBWNamedContainerProvider, IRedstoneControlled, IContentHolder, IGuiUpdateHandler {
     //TODO Make Bounding border
 
     public int upgradeLevel;
@@ -70,7 +70,7 @@ public class QuarryTileEntity extends TileEntity implements ITickableTileEntity,
             .registerBoolean("finished", () -> isDone, i -> isDone = i)
             .registerInt("upgradeLevel", () -> upgradeLevel, i -> upgradeLevel = i)
             .registerInt("quarrySize", () -> quarrySize, i -> quarrySize = i)
-            .register("storage", getStorage())
+            .register("storage", getStorage(), false)
             .register("inventory", inventory.orElseGet(ItemStackHandler::new))
             .register("control", control);
         
@@ -303,5 +303,19 @@ public class QuarryTileEntity extends TileEntity implements ITickableTileEntity,
 
         area = Utilities.getArea(pos.offset(getFacing()).offset(Direction.DOWN), getFacing(), quarrySize, pos.getY() - 1);
         currentPos = new BlockPos(area.start.getX(), pos.getY() - 1, area.start.getZ());
+    }
+    
+    @Override
+    public CompoundNBT getGuiUpdateTag()
+    {
+        CompoundNBT nbt = new CompoundNBT();
+        nbt.putIntArray("storage", GuiUpdateHelper.getEnergyUpdateValues(storage));
+        return nbt;
+    }
+    
+    @Override
+    public void handleGuiUpdateTag(CompoundNBT nbt)
+    {
+        GuiUpdateHelper.updateEnergy(storage, nbt.getIntArray("storage"));
     }
 }

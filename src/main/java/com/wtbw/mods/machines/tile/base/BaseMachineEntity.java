@@ -19,7 +19,7 @@ import java.util.List;
 /*
   @author: Naxanria
 */
-public abstract class BaseMachineEntity extends TileEntity implements ITickableTileEntity, IRedstoneControlled, IContentHolder, IWTBWNamedContainerProvider
+public abstract class BaseMachineEntity extends TileEntity implements ITickableTileEntity, IRedstoneControlled, IContentHolder, IWTBWNamedContainerProvider, IGuiUpdateHandler
 {
   protected RedstoneControl control;
   protected BaseEnergyStorage storage;
@@ -38,7 +38,7 @@ public abstract class BaseMachineEntity extends TileEntity implements ITickableT
     control = new RedstoneControl(this, defaultMode);
     
     manager = new NBTManager()
-      .register("storage", storage)
+      .register("storage", storage, false)
       .register("control", control);
   }
   
@@ -142,5 +142,19 @@ public abstract class BaseMachineEntity extends TileEntity implements ITickableT
     }
     
     return false;
+  }
+  
+  @Override
+  public CompoundNBT getGuiUpdateTag()
+  {
+    CompoundNBT nbt = new CompoundNBT();
+    nbt.putIntArray("storage", GuiUpdateHelper.getEnergyUpdateValues(storage, true));
+    return nbt;
+  }
+  
+  @Override
+  public void handleGuiUpdateTag(CompoundNBT nbt)
+  {
+    GuiUpdateHelper.updateEnergy(storage, nbt.getIntArray("storage"));
   }
 }

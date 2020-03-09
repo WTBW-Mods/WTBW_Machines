@@ -1,6 +1,8 @@
 package com.wtbw.mods.machines.tile.generator;
 
+import com.wtbw.mods.lib.tile.util.GuiUpdateHelper;
 import com.wtbw.mods.lib.tile.util.IContentHolder;
+import com.wtbw.mods.lib.tile.util.IGuiUpdateHandler;
 import com.wtbw.mods.lib.tile.util.IWTBWNamedContainerProvider;
 import com.wtbw.mods.lib.util.Utilities;
 import com.wtbw.mods.machines.gui.container.FuelGeneratorContainer;
@@ -24,7 +26,7 @@ import javax.annotation.Nullable;
 /*
   @author: Naxanria
 */
-public class FuelGeneratorEntity extends Generator implements IWTBWNamedContainerProvider, IContentHolder
+public class FuelGeneratorEntity extends Generator implements IWTBWNamedContainerProvider, IContentHolder, IGuiUpdateHandler
 {
   private ItemStackHandler inventory;
   private LazyOptional<ItemStackHandler> inventoryCap = LazyOptional.of(this::getInventory);
@@ -166,5 +168,19 @@ public class FuelGeneratorEntity extends Generator implements IWTBWNamedContaine
   public int getGenCounter()
   {
     return genCounter;
+  }
+  
+  @Override
+  public CompoundNBT getGuiUpdateTag()
+  {
+    CompoundNBT nbt = new CompoundNBT();
+    nbt.putIntArray("storage", GuiUpdateHelper.getEnergyUpdateValues(storage, true));
+    return nbt;
+  }
+  
+  @Override
+  public void handleGuiUpdateTag(CompoundNBT nbt)
+  {
+    GuiUpdateHelper.updateEnergy(storage, nbt.getIntArray("storage"));
   }
 }
