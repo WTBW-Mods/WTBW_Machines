@@ -1,0 +1,25 @@
+{
+  "type": "wtbw_machines:crushing",
+  "ingredient": {
+    "item": "minecraft:iron_horse_armor",
+    "count": 1
+  },
+  "result": [
+    {
+      "item": "minecraft:iron_ingot",
+      "count": 2
+    },
+    {
+      "item": "minecraft:iron_ingot",
+      "count": 1,
+      "chance": 0.85
+    },
+    {
+      "item": "wtbw_machines:iron_dust",
+      "count": 2,
+      "chance": 0.15
+    }
+  ],
+  "duration": 180,
+  "power_cost": 3000
+}

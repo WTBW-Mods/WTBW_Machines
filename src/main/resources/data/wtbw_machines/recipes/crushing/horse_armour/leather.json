@@ -1,0 +1,25 @@
+{
+  "type": "wtbw_machines:crushing",
+  "ingredient": {
+    "item": "minecraft:leather_horse_armor",
+    "count": 1
+  },
+  "result": [
+    {
+      "item": "minecraft:leather",
+      "count": 2
+    },
+    {
+      "item": "minecraft:leather",
+      "count": 1,
+      "chance": 0.85
+    },
+    {
+      "item": "minecraft:leather",
+      "count": 1,
+      "chance": 0.15
+    }
+  ],
+  "duration": 180,
+  "power_cost": 3000
+}

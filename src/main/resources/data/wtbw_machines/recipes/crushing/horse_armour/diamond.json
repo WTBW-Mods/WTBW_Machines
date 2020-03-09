@@ -1,0 +1,25 @@
+{
+  "type": "wtbw_machines:crushing",
+  "ingredient": {
+    "item": "minecraft:diamond_horse_armor",
+    "count": 1
+  },
+  "result": [
+    {
+      "item": "minecraft:diamond",
+      "count": 1
+    },
+    {
+      "item": "minecraft:diamond",
+      "count": 1,
+      "chance": 0.85
+    },
+    {
+      "item": "minecraft:diamond",
+      "count": 1,
+      "chance": 0.15
+    }
+  ],
+  "duration": 180,
+  "power_cost": 3000
+}
