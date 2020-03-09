@@ -29,7 +29,7 @@ public class BaseMachineBlock<TE extends TileEntity> extends BaseTileBlock<TE>
   protected boolean mirrorFacing;
   
   public BaseMachineBlock(Properties properties, TileEntityProvider<TE> tileEntityProvider)
-  {
+    {
     super(properties, tileEntityProvider);
     
     setDefaultState(stateContainer.getBaseState().with(FACING, Direction.NORTH).with(ON, false));
