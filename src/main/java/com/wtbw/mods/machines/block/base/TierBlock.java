@@ -30,7 +30,9 @@ public class TierBlock extends Block
   {
     CommonConfig config = CommonConfig.instance();
     String baseKey = WTBWMachines.MODID + ".tooltip.tier";
+    tooltip.add(TextComponentBuilder.createTranslated(baseKey + "_0").aqua().build());
 
+    baseKey = baseKey + "_1";
     switch (TIER){
       case 1:
         tooltip.add(TextComponentBuilder.createTranslated(baseKey, config.quarryTier1.get()).aqua().build());

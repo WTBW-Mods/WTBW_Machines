@@ -121,7 +121,8 @@ public class RedstoneEmitterBlock extends Block
   public void addInformation(ItemStack stack, @Nullable IBlockReader worldIn, List<ITextComponent> tooltip, ITooltipFlag flagIn)
   {
     String baseKey = WTBWMachines.MODID + ".tooltip.emitter";
-    tooltip.add(TextComponentBuilder.createTranslated(baseKey).aqua().build());
+    tooltip.add(TextComponentBuilder.createTranslated(baseKey + "_0").aqua().build());
+    tooltip.add(TextComponentBuilder.createTranslated(baseKey + "_1").aqua().build());
     
     super.addInformation(stack, worldIn, tooltip, flagIn);
   }
