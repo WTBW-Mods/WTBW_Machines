@@ -100,7 +100,6 @@ public class SolarPanelTileEntity extends Generator implements IWTBWNamedContain
   @Override
   public void handleGuiUpdateTag(CompoundNBT nbt)
   {
-    WTBWMachines.LOGGER.info("NBT Keys: {}", nbt.keySet());
     GuiUpdateHelper.updateEnergy(storage, nbt.getIntArray("energy"));
   }
 }
