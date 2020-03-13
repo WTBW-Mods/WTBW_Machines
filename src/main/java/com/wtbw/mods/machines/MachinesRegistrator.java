@@ -123,6 +123,8 @@ public class MachinesRegistrator extends Registrator
     register(new Item(baseProperties), "emerald_dust");
     register(new Item(baseProperties), "diamond_dust");
     register(new Item(baseProperties), "quartz_dust");
+    register(new Item(baseProperties), "copper_dust");
+    register(new Item(baseProperties), "cobalt_dust");
     
     register(new Item(baseProperties), "lapis_wafer");
     register(new Item(baseProperties), "glowstone_wafer");

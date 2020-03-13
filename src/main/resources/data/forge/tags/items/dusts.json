@@ -10,6 +10,8 @@
     "#forge:dusts/obsidian",
     "#forge:dusts/quartz",
     "#forge:dusts/ender_pearl",
+    "#forge:dusts/copper",
+    "#forge:dusts/cobalt",
     "minecraft:glowstone_dust",
     "minecraft:redstone"
   ]

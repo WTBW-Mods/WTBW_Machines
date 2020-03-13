@@ -1,0 +1,20 @@
+{
+  "type": "wtbw_machines:crushing",
+  "ingredient": {
+    "tag": "forge:ores/copper",
+    "count": 1
+  },
+  "result": [
+    {
+      "item": "wtbw_machines:copper_dust",
+      "count": 2
+    },
+    {
+      "item": "minecraft:cobblestone",
+      "count": 1,
+      "chance": 0.30
+    }
+  ],
+  "duration": 200,
+  "power_cost": 4000
+}

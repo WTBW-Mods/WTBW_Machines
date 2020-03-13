@@ -1,0 +1,15 @@
+{
+  "type": "wtbw_machines:crushing",
+  "ingredient": {
+    "tag": "forge:ingots/cobalt",
+    "count": 1
+  },
+  "result": [
+    {
+      "item": "wtbw_machines:cobalt_dust",
+      "count": 1
+    }
+  ],
+  "duration": 220,
+  "power_cost": 3000
+}

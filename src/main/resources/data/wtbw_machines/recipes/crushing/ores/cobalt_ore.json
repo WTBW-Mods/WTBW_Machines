@@ -1,0 +1,25 @@
+{
+  "type": "wtbw_machines:crushing",
+  "ingredient": {
+    "tag": "forge:ores/cobalt",
+    "count": 1
+  },
+  "result": [
+    {
+      "item": "wtbw_machines:cobalt_dust",
+      "count": 1
+    },
+    {
+      "item": "wtbw_machines:cobalt_dust",
+      "count": 1,
+      "chance": 0.75
+    },
+    {
+      "item": "minecraft:netherrack",
+      "count": 1,
+      "chance": 0.30
+    }
+  ],
+  "duration": 300,
+  "power_cost": 5000
+}
