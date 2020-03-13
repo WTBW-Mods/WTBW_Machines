@@ -105,6 +105,8 @@ public class MachinesRegistrator extends Registrator
     register(new EnergyCableBlock(getBlockProperties(Material.IRON, 4).func_226896_b_(), EnergyCableTier.MK5), "energy_cable_mk5");
     register(new EnergyCableBlock(getBlockProperties(Material.IRON, 4).func_226896_b_(), EnergyCableTier.MK6), "energy_cable_mk6");
     */
+    
+    register(new BaseTileBlock<TeleportInhibitorTile>(getBlockProperties(Material.IRON, 4), (world, state) -> new TeleportInhibitorTile()), "teleport_inhibitor");
   }
   
   @Override

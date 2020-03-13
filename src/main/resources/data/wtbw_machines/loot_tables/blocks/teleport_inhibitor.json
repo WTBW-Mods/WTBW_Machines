@@ -1,0 +1,19 @@
+{
+  "type": "wtbw_machines:teleport_inhibitor",
+  "pools": [
+    {
+      "rolls": 1,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "wtbw_machines:teleport_inhibitor"
+        }
+      ],
+      "conditions": [
+        {
+          "condition": "minecraft:survives_explosion"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " E ",
+    "IGI",
+    "GGG"
+  ],
+  "key": {
+    "E": {
+      "item": "minecraft:ender_pearl"
+    },
+    "G": {
+      "item": "wtbw_core:groundium"
+    },
+    "I": {
+      "tag": "forge:ingots/iron"
+    }
+  },
+  "result": {
+    "item": "wtbw_machines:teleport_inhibitor"
+  }
+}
