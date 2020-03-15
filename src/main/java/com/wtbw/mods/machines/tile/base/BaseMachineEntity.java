@@ -2,6 +2,7 @@ package com.wtbw.mods.machines.tile.base;
 
 import com.wtbw.mods.lib.tile.util.*;
 import com.wtbw.mods.lib.tile.util.energy.BaseEnergyStorage;
+import com.wtbw.mods.lib.upgrade.IUpgradeable;
 import com.wtbw.mods.lib.util.StackUtil;
 import com.wtbw.mods.lib.util.Utilities;
 import com.wtbw.mods.lib.util.nbt.NBTManager;
@@ -46,6 +47,11 @@ public abstract class BaseMachineEntity extends TileEntity implements ITickableT
   public void dropContents()
   {
     getInventories().forEach(handler -> Utilities.dropItems(world, handler, pos));
+    
+    if (this instanceof IUpgradeable)
+    {
+      ((IUpgradeable) this).getUpgradeManager().getUpgradeInventory().forEach(stack -> Utilities.dropItem(world, stack, pos));
+    }
   }
   
   protected abstract List<ItemStackHandler> getInventories();
