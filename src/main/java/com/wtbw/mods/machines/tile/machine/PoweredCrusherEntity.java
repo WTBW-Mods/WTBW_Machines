@@ -60,8 +60,6 @@ public class PoweredCrusherEntity extends BaseMachineEntity implements IUpgradea
   
   EnergyBar energyBar;
   
-
-  
   public PoweredCrusherEntity()
   {
     super(ModTiles.CRUSHER, 100000, 50000, RedstoneMode.IGNORE);
@@ -74,6 +72,8 @@ public class PoweredCrusherEntity extends BaseMachineEntity implements IUpgradea
       .register("inventory", getInventory())
       .registerInt("tick", () -> tick, i -> tick = i)
       .register("upgrades", upgradeManager);
+    
+    upgradeManager.setFilter(DEFAULT_MACHINE_FILTER);
   }
   
   @Override
@@ -336,6 +336,13 @@ public class PoweredCrusherEntity extends BaseMachineEntity implements IUpgradea
         setOn(false);
         dirty = true;
       }
+      
+      float capacityMod = 1;
+      if (upgradeManager.hasModifier(ModifierType.POWER_CAPACITY))
+      {
+        capacityMod = upgradeManager.getModifiedValue(ModifierType.POWER_CAPACITY);
+      }
+      storage.setCapacity((int) (100000f * capacityMod));
       
       if (dirty)
       {

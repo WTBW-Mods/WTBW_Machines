@@ -1,0 +1,11 @@
+{
+  "type": "wtbw_machines:compressing",
+  "ingredient": {
+    "item": "wtbw_core:groundium",
+    "count": 1
+  },
+  "result": "wtbw_machines:base_upgrade",
+  "count": 1,
+  "duration": 360,
+  "power_cost": 7200
+}

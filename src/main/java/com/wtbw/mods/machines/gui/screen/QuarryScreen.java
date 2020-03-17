@@ -1,8 +1,8 @@
 package com.wtbw.mods.machines.gui.screen;
 
-
-import com.wtbw.mods.lib.gui.screen.BaseContainerScreen;
-import com.wtbw.mods.lib.gui.util.*;
+import com.wtbw.mods.lib.gui.screen.BaseUpgradeScreen;
+import com.wtbw.mods.lib.gui.util.EnergyBar;
+import com.wtbw.mods.lib.gui.util.RedstoneButton;
 import com.wtbw.mods.lib.tile.util.energy.BaseEnergyStorage;
 import com.wtbw.mods.machines.WTBWMachines;
 import com.wtbw.mods.machines.gui.container.QuarryContainer;
@@ -15,7 +15,7 @@ import net.minecraft.util.text.TranslationTextComponent;
 /*
   @author: Sunekaer
 */
-public class QuarryScreen extends BaseContainerScreen<QuarryContainer>
+public class QuarryScreen extends BaseUpgradeScreen<QuarryContainer>
 {
   public static final ResourceLocation GUI = new ResourceLocation(WTBWMachines.MODID, "textures/gui/basic3x3with1butt.png");
   private EnergyBar energyBar;
@@ -30,7 +30,7 @@ public class QuarryScreen extends BaseContainerScreen<QuarryContainer>
   {
     super.init();
     final QuarryTileEntity tileEntity = container.tileEntity;
-    addButton(new RedstoneButton<>(guiLeft - 22, guiTop + 17, tileEntity));
+    addButton(new RedstoneButton<>(guiLeft - 22, guiTop, tileEntity));
   
     final BaseEnergyStorage storage = tileEntity.getStorage();
     energyBar = getDefaultBar(storage);
@@ -49,20 +49,20 @@ public class QuarryScreen extends BaseContainerScreen<QuarryContainer>
   }
   
   @Override
-  protected void drawGuiContainerBackgroundLayer(float partialTicks, int mouseX, int mouseY)
+  protected void drawGuiBackgroundLayer(float partialTicks, int mouseX, int mouseY)
   {
     int green = 0xff00B300;
     int textColor = 0xff404040;
-
+  
     String mining = new TranslationTextComponent("wtbw_machines.gui.quarry.current_block").getUnformattedComponentText();
-
+  
     defaultGui();
-    
+  
     energyBar.draw();
-    
+  
     int xp = guiLeft + 122;
     int yp = guiTop + 20;
-    
+  
     if (container.tileEntity.getCurrentPos() != null)
     {
       this.font.drawString(mining, xp, yp, textColor);

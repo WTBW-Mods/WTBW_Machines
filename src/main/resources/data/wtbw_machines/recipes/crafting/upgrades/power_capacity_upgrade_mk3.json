@@ -1,0 +1,26 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "DGD",
+    "BBB",
+    "DED"
+  ],
+  "key": {
+    "B": {
+      "item": "wtbw_machines:power_capacity_upgrade_mk2"
+    },
+    "D": {
+      "tag": "forge:storage_blocks/diamond"
+    },
+    "G": {
+      "item": "minecraft:glowstone"
+    },
+    "E": {
+      "item": "wtbw_core:ender_core"
+    }
+  },
+  "result": {
+    "item": "wtbw_machines:power_capacity_upgrade_mk3",
+    "count": 1
+  }
+}

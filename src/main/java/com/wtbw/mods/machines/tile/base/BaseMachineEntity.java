@@ -3,6 +3,8 @@ package com.wtbw.mods.machines.tile.base;
 import com.wtbw.mods.lib.tile.util.*;
 import com.wtbw.mods.lib.tile.util.energy.BaseEnergyStorage;
 import com.wtbw.mods.lib.upgrade.IUpgradeable;
+import com.wtbw.mods.lib.upgrade.ModifierType;
+import com.wtbw.mods.lib.upgrade.UpgradeManager;
 import com.wtbw.mods.lib.util.StackUtil;
 import com.wtbw.mods.lib.util.Utilities;
 import com.wtbw.mods.lib.util.nbt.NBTManager;
@@ -22,6 +24,10 @@ import java.util.List;
 */
 public abstract class BaseMachineEntity extends TileEntity implements ITickableTileEntity, IRedstoneControlled, IContentHolder, IWTBWNamedContainerProvider, IGuiUpdateHandler
 {
+  public static final UpgradeManager.Filter DEFAULT_MACHINE_FILTER = UpgradeManager.Filter.create(ModifierType.SPEED, ModifierType.POWER_USAGE, ModifierType.POWER_CAPACITY);
+  
+  public static final int DEFAULT_CAPACITY = 100000;
+  
   protected RedstoneControl control;
   protected BaseEnergyStorage storage;
   protected NBTManager manager;
@@ -50,7 +56,7 @@ public abstract class BaseMachineEntity extends TileEntity implements ITickableT
     
     if (this instanceof IUpgradeable)
     {
-      ((IUpgradeable) this).getUpgradeManager().getUpgradeInventory().forEach(stack -> Utilities.dropItem(world, stack, pos));
+      Utilities.dropItems(world, ((IUpgradeable) this).getUpgradeManager().getUpgradeInventory(), pos);
     }
   }
   

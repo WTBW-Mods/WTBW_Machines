@@ -1,6 +1,7 @@
 package com.wtbw.mods.machines.gui.screen;
 
 import com.wtbw.mods.lib.gui.screen.BaseContainerScreen;
+import com.wtbw.mods.lib.gui.screen.BaseUpgradeScreen;
 import com.wtbw.mods.lib.gui.util.EnergyBar;
 import com.wtbw.mods.lib.gui.util.ProgressBar;
 import com.wtbw.mods.lib.gui.util.RedstoneButton;
@@ -16,7 +17,7 @@ import net.minecraft.util.text.ITextComponent;
 /*
   @author: Sunekaer
 */
-public class CompressorScreen extends BaseContainerScreen<CompressorContainer>
+public class CompressorScreen extends BaseUpgradeScreen<CompressorContainer>
 {
   public static final Sprite PROGRESS_BACKGROUND_LEFT = ClientConstants.Gui.ICONS.getSprite(0, 20, 10, 10);
   public static final Sprite PROGRESS_BACKGROUND_RIGHT = PROGRESS_BACKGROUND_LEFT.getRight(10, 10);
@@ -70,10 +71,10 @@ public class CompressorScreen extends BaseContainerScreen<CompressorContainer>
   }
   
   @Override
-  protected void drawGuiContainerBackgroundLayer(float partialTicks, int mouseX, int mouseY)
+  protected void drawGuiBackgroundLayer(float partialTicks, int mouseX, int mouseY)
   {
     defaultGui();
-    
+  
     progressBarLeft.draw();
     progressBarRight.draw();
     energyBar.draw();

@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "rRr",
+    "rBr",
+    "rRr"
+  ],
+  "key": {
+    "B": {
+      "item": "wtbw_machines:base_upgrade"
+    },
+    "r": {
+      "tag": "forge:dusts/redstone"
+    },
+    "R": {
+      "tag": "forge:storage_blocks/redstone"
+    }
+  },
+  "result": {
+    "item": "wtbw_machines:speed_upgrade_mk1",
+    "count": 1
+  }
+}

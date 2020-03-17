@@ -21,6 +21,24 @@
 
   "item.wtbw_machines.wrench": "Wrench",
 
+  "item.wtbw_machines.speed_upgrade_mk1": "Speed Upgrade MK1",
+  "item.wtbw_machines.speed_upgrade_mk2": "Speed Upgrade MK2",
+  "item.wtbw_machines.speed_upgrade_mk3": "Speed Upgrade MK3",
+
+  "item.wtbw_machines.power_capacity_upgrade_mk1": "Capacity Upgrade MK1",
+  "item.wtbw_machines.power_capacity_upgrade_mk2": "Capacity Upgrade MK2",
+  "item.wtbw_machines.power_capacity_upgrade_mk3": "Capacity Upgrade MK3",
+
+  "item.wtbw_machines.power_usage_upgrade_mk1": "Power Usage Upgrade MK1",
+  "item.wtbw_machines.power_usage_upgrade_mk2": "Power Usage Upgrade MK2",
+  "item.wtbw_machines.power_usage_upgrade_mk3": "Power Usage Upgrade MK3",
+
+  "item.wtbw_machines.range_upgrade_mk1": "Range Upgrade MK1",
+  "item.wtbw_machines.range_upgrade_mk2": "Range Upgrade MK2",
+  "item.wtbw_machines.range_upgrade_mk3": "Range Upgrade MK3",
+
+  "item.wtbw_machines.base_upgrade": "Upgrade Base",
+
   "block.wtbw_machines.redstone_timer": "Redstone Timer",
   "block.wtbw_machines.redstone_emitter": "Redstone Emitter",
 

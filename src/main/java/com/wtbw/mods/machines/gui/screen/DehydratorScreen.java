@@ -1,6 +1,7 @@
 package com.wtbw.mods.machines.gui.screen;
 
 import com.wtbw.mods.lib.gui.screen.BaseContainerScreen;
+import com.wtbw.mods.lib.gui.screen.BaseUpgradeScreen;
 import com.wtbw.mods.lib.gui.util.EnergyBar;
 import com.wtbw.mods.lib.gui.util.ProgressBar;
 import com.wtbw.mods.lib.gui.util.RedstoneButton;
@@ -16,7 +17,7 @@ import net.minecraft.util.text.ITextComponent;
 /*
   @author: Naxanria
 */
-public class DehydratorScreen extends BaseContainerScreen<DehydratorContainer>
+public class DehydratorScreen extends BaseUpgradeScreen<DehydratorContainer>
 {
   public static final Sprite PROGRESS_BACKGROUND = ClientConstants.Gui.ICONS.getSprite(0, 0, 10, 10);
   public static final Sprite PROGRESS = PROGRESS_BACKGROUND.getBelow(10, 10);
@@ -61,10 +62,10 @@ public class DehydratorScreen extends BaseContainerScreen<DehydratorContainer>
   }
   
   @Override
-  protected void drawGuiContainerBackgroundLayer(float partialTicks, int mouseX, int mouseY)
+  protected void drawGuiBackgroundLayer(float partialTicks, int mouseX, int mouseY)
   {
     defaultGui();
-    
+  
     progressBar.draw();
     energyBar.draw();
   }

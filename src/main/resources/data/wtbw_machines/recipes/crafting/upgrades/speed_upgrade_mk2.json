@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "GRG",
+    "BRB",
+    "GRG"
+  ],
+  "key": {
+    "B": {
+      "item": "wtbw_machines:speed_upgrade_mk1"
+    },
+    "G": {
+      "tag": "forge:storage_blocks/gold"
+    },
+    "R": {
+      "tag": "forge:storage_blocks/redstone"
+    }
+  },
+  "result": {
+    "item": "wtbw_machines:speed_upgrade_mk2",
+    "count": 1
+  }
+}

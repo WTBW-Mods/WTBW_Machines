@@ -1,0 +1,26 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "DRD",
+    "BBB",
+    "DED"
+  ],
+  "key": {
+    "B": {
+      "item": "wtbw_machines:speed_upgrade_mk2"
+    },
+    "D": {
+      "tag": "forge:storage_blocks/diamond"
+    },
+    "R": {
+      "tag": "forge:storage_blocks/redstone"
+    },
+    "E": {
+      "item": "wtbw_core:ender_core"
+    }
+  },
+  "result": {
+    "item": "wtbw_machines:speed_upgrade_mk3",
+    "count": 1
+  }
+}

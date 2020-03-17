@@ -1,6 +1,6 @@
 package com.wtbw.mods.machines.gui.container;
 
-import com.wtbw.mods.lib.gui.container.BaseTileContainer;
+import com.wtbw.mods.lib.gui.container.BaseUpgradeContainer;
 import com.wtbw.mods.lib.util.nbt.NBTManager;
 import com.wtbw.mods.machines.tile.machine.PoweredCompressorEntity;
 import net.minecraft.entity.player.PlayerInventory;
@@ -11,7 +11,8 @@ import net.minecraftforge.items.ItemStackHandler;
 /*
   @author: Sunekaer
 */
-public class CompressorContainer extends BaseTileContainer<PoweredCompressorEntity> {
+public class CompressorContainer extends BaseUpgradeContainer<PoweredCompressorEntity>
+{
     public CompressorContainer(int id, World world, BlockPos pos, PlayerInventory inventory) {
         super(ModContainers.COMPRESSOR, id, world, pos, inventory);
 

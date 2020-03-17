@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "gGg",
+    "gBg",
+    "gGg"
+  ],
+  "key": {
+    "B": {
+      "item": "wtbw_machines:base_upgrade"
+    },
+    "g": {
+      "tag": "forge:dusts/glowstone"
+    },
+    "G": {
+      "item": "minecraft:glowstone"
+    }
+  },
+  "result": {
+    "item": "wtbw_machines:power_capacity_upgrade_mk1",
+    "count": 1
+  }
+}

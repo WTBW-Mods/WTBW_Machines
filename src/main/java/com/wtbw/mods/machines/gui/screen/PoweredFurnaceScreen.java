@@ -1,6 +1,7 @@
 package com.wtbw.mods.machines.gui.screen;
 
 import com.wtbw.mods.lib.gui.screen.BaseContainerScreen;
+import com.wtbw.mods.lib.gui.screen.BaseUpgradeScreen;
 import com.wtbw.mods.lib.gui.util.EnergyBar;
 import com.wtbw.mods.lib.gui.util.ProgressBar;
 import com.wtbw.mods.lib.gui.util.RedstoneButton;
@@ -18,7 +19,7 @@ import net.minecraft.util.text.ITextComponent;
 /*
   @author: Sunekaer
 */
-public class PoweredFurnaceScreen extends BaseContainerScreen<PoweredFurnaceContainer>
+public class PoweredFurnaceScreen extends BaseUpgradeScreen<PoweredFurnaceContainer>
 {
   public static final SpriteMap ICONS = new SpriteMap(256, new ResourceLocation(WTBWMachines.MODID, "textures/gui/icons.png"));
   public static final Sprite PROGRESS_BACKGROUND = ICONS.getSprite(20, 0, 14, 14);
@@ -62,12 +63,12 @@ public class PoweredFurnaceScreen extends BaseContainerScreen<PoweredFurnaceCont
       energyBar.update();
     }
   }
-  
+
   @Override
-  protected void drawGuiContainerBackgroundLayer(float partialTicks, int mouseX, int mouseY)
+  protected void drawGuiBackgroundLayer(float partialTicks, int mouseX, int mouseY)
   {
     defaultGui();
-    
+  
     progressBar.draw();
     energyBar.draw();
   }

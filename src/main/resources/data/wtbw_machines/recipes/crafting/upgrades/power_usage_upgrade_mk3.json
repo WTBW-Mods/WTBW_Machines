@@ -1,0 +1,26 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "DLD",
+    "BBB",
+    "DED"
+  ],
+  "key": {
+    "B": {
+      "item": "wtbw_machines:power_usage_upgrade_mk2"
+    },
+    "D": {
+      "tag": "forge:storage_blocks/diamond"
+    },
+    "L": {
+      "tag": "forge:storage_blocks/lapis"
+    },
+    "E": {
+      "item": "wtbw_core:ender_core"
+    }
+  },
+  "result": {
+    "item": "wtbw_machines:power_usage_upgrade_mk3",
+    "count": 1
+  }
+}
