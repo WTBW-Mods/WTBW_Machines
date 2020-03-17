@@ -30,12 +30,12 @@ Adds new machines
 [[dependencies.wtbw_machines]]
     modId="wtbw_lib"
     mandatory=true
-    versionRange="[1.0.12,)"
+    versionRange="[1.0.13,)"
     ordering="AFTER"
     side="BOTH"
 [[dependencies.wtbw_machines]]
     modId="wtbw_core"
     mandatory=true
-    versionRange="[1.0.10,)"
+    versionRange="[1.0.12,)"
     ordering="NONE"
     side="BOTH"
