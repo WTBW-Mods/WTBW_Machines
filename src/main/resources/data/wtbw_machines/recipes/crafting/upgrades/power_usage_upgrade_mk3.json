@@ -1,9 +1,9 @@
 {
   "type": "minecraft:crafting_shaped",
   "pattern": [
-    "DLD",
+    "PDP",
     "BBB",
-    "DED"
+    "PDP"
   ],
   "key": {
     "B": {
@@ -12,11 +12,8 @@
     "D": {
       "tag": "forge:storage_blocks/diamond"
     },
-    "L": {
-      "tag": "forge:storage_blocks/lapis"
-    },
-    "E": {
-      "item": "wtbw_core:ender_core"
+    "P": {
+      "item": "minecraft:purpur_block"
     }
   },
   "result": {
