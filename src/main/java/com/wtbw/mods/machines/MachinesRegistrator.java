@@ -142,35 +142,35 @@ public class MachinesRegistrator extends Registrator
     
     register(new BaseUpgradeItem(getItemProperties(), Util.make(new HashMap<>(), map ->
     {
-      map.put(ModifierType.SPEED, 1.1f);
-      map.put(ModifierType.POWER_USAGE, 1.25f);
+      map.put(ModifierType.SPEED, 1.25f);
+      map.put(ModifierType.POWER_USAGE, 1.15f);
     })), "speed_upgrade_mk1");
   
     register(new BaseUpgradeItem(getItemProperties(), Util.make(new HashMap<>(), map ->
     {
-      map.put(ModifierType.SPEED, 1.25f);
-      map.put(ModifierType.POWER_USAGE, 1.85f);
+      map.put(ModifierType.SPEED, 1.60f);
+      map.put(ModifierType.POWER_USAGE, 1.25f);
     })), "speed_upgrade_mk2");
   
     register(new BaseUpgradeItem(getItemProperties(), Util.make(new HashMap<>(), map ->
     {
-      map.put(ModifierType.SPEED, 1.40f);
-      map.put(ModifierType.POWER_USAGE, 3f);
+      map.put(ModifierType.SPEED, 2f);
+      map.put(ModifierType.POWER_USAGE, 1.7f);
     })), "speed_upgrade_mk3");
   
     register(new BaseUpgradeItem(getItemProperties(), Util.make(new HashMap<>(), map ->
     {
-      map.put(ModifierType.POWER_USAGE, 0.9f);
+      map.put(ModifierType.POWER_USAGE, 0.87f);
     })), "power_usage_upgrade_mk1");
   
     register(new BaseUpgradeItem(getItemProperties(), Util.make(new HashMap<>(), map ->
     {
-      map.put(ModifierType.POWER_USAGE, 0.8f);
+      map.put(ModifierType.POWER_USAGE, 0.79f);
     })), "power_usage_upgrade_mk2");
   
     register(new BaseUpgradeItem(getItemProperties(), Util.make(new HashMap<>(), map ->
     {
-      map.put(ModifierType.POWER_USAGE, 0.7f);
+      map.put(ModifierType.POWER_USAGE, 0.40f);
     })), "power_usage_upgrade_mk3");
   
     register(new BaseUpgradeItem(getItemProperties(), Util.make(new HashMap<>(), map ->
