@@ -175,6 +175,9 @@ public class FuelGeneratorEntity extends Generator implements IWTBWNamedContaine
   {
     CompoundNBT nbt = new CompoundNBT();
     nbt.putIntArray("storage", GuiUpdateHelper.getEnergyUpdateValues(storage, true));
+    nbt.putInt("genTime", genTime);
+    nbt.putInt("gentCounter", genCounter);
+    
     return nbt;
   }
   
@@ -182,5 +185,7 @@ public class FuelGeneratorEntity extends Generator implements IWTBWNamedContaine
   public void handleGuiUpdateTag(CompoundNBT nbt)
   {
     GuiUpdateHelper.updateEnergy(storage, nbt.getIntArray("storage"));
+    genTime = nbt.getInt("genTime");
+    genCounter = nbt.getInt("genCounter");
   }
 }

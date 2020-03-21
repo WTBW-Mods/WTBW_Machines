@@ -8,6 +8,7 @@ import com.wtbw.mods.lib.upgrade.IUpgradeable;
 import com.wtbw.mods.lib.upgrade.ModifierType;
 import com.wtbw.mods.lib.upgrade.UpgradeManager;
 import com.wtbw.mods.lib.util.Utilities;
+import com.wtbw.mods.lib.util.nbt.Manager;
 import com.wtbw.mods.lib.util.nbt.NBTManager;
 import com.wtbw.mods.machines.gui.container.DehydratorContainer;
 import com.wtbw.mods.machines.recipe.DehydratingRecipe;
@@ -19,6 +20,7 @@ import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.container.Container;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.util.Direction;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.util.LazyOptional;
@@ -51,7 +53,7 @@ public class DehydratorTileEntity extends BaseMachineEntity implements IUpgradea
   
   private DehydratingRecipe recipe;
   
-  private UpgradeManager upgradeManager = new UpgradeManager().setFilter(DEFAULT_MACHINE_FILTER);;
+  private UpgradeManager upgradeManager = new UpgradeManager().setFilter(DEFAULT_MACHINE_FILTER);
   
   public DehydratorTileEntity()
   {
@@ -293,6 +295,22 @@ public class DehydratorTileEntity extends BaseMachineEntity implements IUpgradea
   public NBTManager getManager()
   {
     return manager;
+  }
+  
+  @Override
+  protected void getExtraGuiUpdateTag(CompoundNBT nbt)
+  {
+    nbt.putInt("duration", duration);
+    nbt.putInt("progress", progress);
+    nbt.putInt("power_usage", powerUsage);
+  }
+  
+  @Override
+  protected void handleExtraGuiUpdateTag(CompoundNBT nbt)
+  {
+    duration = nbt.getInt("duration");
+    progress = nbt.getInt("progress");
+    powerUsage = nbt.getInt("power_usage");
   }
   
   public int getDuration()

@@ -15,6 +15,7 @@ import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.tileentity.ITickableTileEntity;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.tileentity.TileEntityType;
+import net.minecraftforge.common.util.Constants;
 import net.minecraftforge.items.ItemStackHandler;
 
 import java.util.List;
@@ -161,12 +162,23 @@ public abstract class BaseMachineEntity extends TileEntity implements ITickableT
   {
     CompoundNBT nbt = new CompoundNBT();
     nbt.putIntArray("storage", GuiUpdateHelper.getEnergyUpdateValues(storage, true));
+    CompoundNBT extra = new CompoundNBT();
+    getExtraGuiUpdateTag(extra);
+    nbt.put("extra", extra);
     return nbt;
   }
+  
+  protected abstract void getExtraGuiUpdateTag(CompoundNBT nbt);
   
   @Override
   public void handleGuiUpdateTag(CompoundNBT nbt)
   {
     GuiUpdateHelper.updateEnergy(storage, nbt.getIntArray("storage"));
+    if (nbt.contains("extra", Constants.NBT.TAG_COMPOUND))
+    {
+      handleExtraGuiUpdateTag(nbt.getCompound("extra"));
+    }
   }
+  
+  protected abstract void handleExtraGuiUpdateTag(CompoundNBT nbt);
 }

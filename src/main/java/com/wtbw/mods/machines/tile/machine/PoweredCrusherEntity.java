@@ -21,6 +21,7 @@ import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.container.Container;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.util.Direction;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.util.LazyOptional;
@@ -210,6 +211,22 @@ public class PoweredCrusherEntity extends BaseMachineEntity implements IUpgradea
   public NBTManager getManager()
   {
     return manager;
+  }
+  
+  @Override
+  protected void getExtraGuiUpdateTag(CompoundNBT nbt)
+  {
+    nbt.putInt("duration", duration);
+    nbt.putInt("progress", progress);
+    nbt.putInt("power_usage", powerCost);
+  }
+  
+  @Override
+  protected void handleExtraGuiUpdateTag(CompoundNBT nbt)
+  {
+    duration = nbt.getInt("duration");
+    progress = nbt.getInt("progress");
+    powerCost = nbt.getInt("power_usage");
   }
   
   public int getDuration()
