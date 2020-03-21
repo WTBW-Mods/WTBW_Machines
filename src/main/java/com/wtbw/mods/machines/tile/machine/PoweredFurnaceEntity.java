@@ -47,7 +47,7 @@ public class PoweredFurnaceEntity extends BaseMachineEntity implements IUpgradea
   private LazyOptional<ItemStackHandler> inventoryCap = LazyOptional.of(this::getInventory);
   
   private PoweredFurnaceRecipe poweredFurnaceRecipe;
-  private FurnaceRecipe FurnaceRecipe;
+  private FurnaceRecipe furnaceRecipe;
   private int tick;
   private int duration;
   private int progress;
@@ -275,14 +275,14 @@ public class PoweredFurnaceEntity extends BaseMachineEntity implements IUpgradea
       {
         if (!output.isEmpty())
         {
-          if (output.getItem() == FurnaceRecipe.getRecipeOutput().getItem())
+          if (output.getItem() == furnaceRecipe.getRecipeOutput().getItem())
           {
-            output.grow(FurnaceRecipe.getRecipeOutput().getCount());
+            output.grow(furnaceRecipe.getRecipeOutput().getCount());
           }
         }
         else
         {
-          output = FurnaceRecipe.getRecipeOutput().copy();
+          output = furnaceRecipe.getRecipeOutput().copy();
         }
       }
       inventory.setStackInSlot(OUTPUT_SLOT, output);
@@ -345,25 +345,25 @@ public class PoweredFurnaceEntity extends BaseMachineEntity implements IUpgradea
         else
         {
           getFakeInventory().setInventorySlotContents(0, inventory.getStackInSlot(INPUT_SLOT));
-          FurnaceRecipe = Utilities.getRecipe(world, IRecipeType.SMELTING, getFakeInventory());
-          net.minecraft.item.crafting.FurnaceRecipe oldFurnaceRecipe = FurnaceRecipe;
+          furnaceRecipe = Utilities.getRecipe(world, IRecipeType.SMELTING, getFakeInventory());
+          net.minecraft.item.crafting.FurnaceRecipe oldFurnaceRecipe = furnaceRecipe;
           
-          if (FurnaceRecipe == null)
+          if (furnaceRecipe == null)
           {
-            FurnaceRecipe = getFurnaceRecipe();
+            furnaceRecipe = getFurnaceRecipe();
           }
           else
           {
-            if (!FurnaceRecipe.matches(getInventoryWrapper(), world))
+            if (!furnaceRecipe.matches(getInventoryWrapper(), world))
             {
-              FurnaceRecipe = getFurnaceRecipe();
+              furnaceRecipe = getFurnaceRecipe();
               dirty = true;
             }
           }
           
-          if (FurnaceRecipe != null)
+          if (furnaceRecipe != null)
           {
-            duration = (int) (FurnaceRecipe.getCookTime() / upgradeManager.getValueOrDefault(ModifierType.SPEED));
+            duration = (int) (furnaceRecipe.getCookTime() / upgradeManager.getValueOrDefault(ModifierType.SPEED));
             if (duration < 1)
             {
               duration = 1;
@@ -377,7 +377,7 @@ public class PoweredFurnaceEntity extends BaseMachineEntity implements IUpgradea
               powerCost = 1;
             }
             
-            if (FurnaceRecipe != oldFurnaceRecipe)
+            if (furnaceRecipe != oldFurnaceRecipe)
             {
               progress = 0;
               dirty = true;
@@ -408,6 +408,14 @@ public class PoweredFurnaceEntity extends BaseMachineEntity implements IUpgradea
       
       storage.setCapacity((int) (DEFAULT_CAPACITY * upgradeManager.getValueOrDefault(ModifierType.POWER_CAPACITY)));
       
+      boolean on = (poweredFurnaceRecipe != null || furnaceRecipe != null) && !getInventory().getStackInSlot(INPUT_SLOT).isEmpty();
+      if (on != isOn())
+      {
+        setOn(on);
+      }
+      
+      
+      
       if (dirty)
       {
         markDirty();
@@ -417,7 +425,7 @@ public class PoweredFurnaceEntity extends BaseMachineEntity implements IUpgradea
   
   private boolean canOutputFurnace()
   {
-    return canOutput(OUTPUT_SLOT, inventory, FurnaceRecipe);
+    return canOutput(OUTPUT_SLOT, inventory, furnaceRecipe);
   }
   
   @Override

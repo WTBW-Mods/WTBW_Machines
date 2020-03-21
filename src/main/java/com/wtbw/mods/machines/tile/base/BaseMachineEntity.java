@@ -119,7 +119,7 @@ public abstract class BaseMachineEntity extends TileEntity implements ITickableT
   
   protected void setOn(boolean on)
   {
-    world.setBlockState(pos, getBlockState().with(BaseMachineBlock.ON, on), 3);
+    world.setBlockState(pos, getBlockState().with(BaseMachineBlock.ON, on), Constants.BlockFlags.DEFAULT_AND_RERENDER);
   }
   
   public NBTManager getManager()
