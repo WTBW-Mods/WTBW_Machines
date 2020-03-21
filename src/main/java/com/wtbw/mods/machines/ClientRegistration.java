@@ -50,7 +50,7 @@ public class ClientRegistration
 
   public static void registerRenderLayers()
   {
-    RenderType cutout = RenderType.cutoutMipped();
+    RenderType cutout = RenderType.getCutoutMipped();
     
     RenderTypeLookup.setRenderLayer(ModBlocks.QUARRY, cutout);
     //RenderTypeLookup.setRenderLayer(ModBlocks.QUARRY_MARKER, cutout);

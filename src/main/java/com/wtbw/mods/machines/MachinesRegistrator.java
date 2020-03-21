@@ -69,7 +69,7 @@ public class MachinesRegistrator extends Registrator
   
     register(new BaseTileBlock<>(getBlockProperties(Material.IRON, 4), (world, state) -> new VacuumChestTileEntity()), "vacuum_chest");
 
-    register(new QuarryBlock(getBlockProperties(Material.IRON, 4).func_226896_b_()), "quarry");
+    register(new QuarryBlock(getBlockProperties(Material.IRON, 4).variableOpacity()), "quarry");
   
     register(new PushBlock(getBlockProperties(Material.IRON, 1), EntityPusherTileEntity.PushMode.PUSH), "pusher");
     register(new PushBlock(getBlockProperties(Material.IRON, 1), EntityPusherTileEntity.PushMode.PULL), "puller");
@@ -102,7 +102,7 @@ public class MachinesRegistrator extends Registrator
     register(new BaseMachineBlock<>(getBlockProperties(Material.IRON, 4), (world, state) -> new FuelGeneratorEntity()).mirrored(), "fuel_generator",
       getItemProperties().addTooltip(TextComponentBuilder.createTranslated(WTBWMachines.MODID + ".tooltip.fuel_generator", 45).green().build()));
     
-    register(new EnergyCableBlock(getBlockProperties(Material.IRON, 4).func_226896_b_(), EnergyCableTier.MK1), "energy_cable_mk1");
+    register(new EnergyCableBlock(getBlockProperties(Material.IRON, 4).variableOpacity(), EnergyCableTier.MK1), "energy_cable_mk1");
     /*
     register(new EnergyCableBlock(getBlockProperties(Material.IRON, 4).func_226896_b_(), EnergyCableTier.MK2), "energy_cable_mk2");
     register(new EnergyCableBlock(getBlockProperties(Material.IRON, 4).func_226896_b_(), EnergyCableTier.MK3), "energy_cable_mk3");

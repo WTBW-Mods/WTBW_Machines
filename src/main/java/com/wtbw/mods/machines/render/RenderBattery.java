@@ -50,7 +50,7 @@ public class RenderBattery extends TileEntityRenderer<SimpleBatteryTileEntity> {
             matrixStackIn.rotate(Vector3f.YP.rotationDegrees(direction.rotateYCCW().getHorizontalAngle()));
             matrixStackIn.translate(-0.5F, -0.5F, -0.5F);
 
-            Matrix4f m = matrixStackIn.getLast().getPositionMatrix();
+            Matrix4f m = matrixStackIn.getLast().getMatrix();
 
             buffer.pos(m, 6F/16F, 3F/16F, -0.001F).color(red, green, 0, 150).endVertex();
             buffer.pos(m, 10F/16F, 3F/16F, -0.001F).color(red, green, 0, 150).endVertex();

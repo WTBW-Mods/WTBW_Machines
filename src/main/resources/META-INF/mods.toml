@@ -18,7 +18,7 @@ Adds new machines
 [[dependencies.wtbw_machines]]
     modId="forge"
     mandatory=true
-    versionRange="[31.0.0,)"
+    versionRange="[31.1.25,)"
     ordering="NONE"
     side="BOTH"
 [[dependencies.wtbw_machines]]
@@ -30,12 +30,12 @@ Adds new machines
 [[dependencies.wtbw_machines]]
     modId="wtbw_lib"
     mandatory=true
-    versionRange="[1.0.13,)"
+    versionRange="[1.0.15,)"
     ordering="AFTER"
     side="BOTH"
 [[dependencies.wtbw_machines]]
     modId="wtbw_core"
     mandatory=true
-    versionRange="[1.0.12,)"
+    versionRange="[1.0.13,)"
     ordering="NONE"
     side="BOTH"
