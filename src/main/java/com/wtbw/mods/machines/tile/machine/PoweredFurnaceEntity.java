@@ -197,13 +197,7 @@ public class PoweredFurnaceEntity extends BaseMachineEntity implements IUpgradea
   {
     return canOutput(OUTPUT_SLOT, inventory, poweredFurnaceRecipe);
   }
-  
-  @Override
-  public void dropContents()
-  {
-    Utilities.dropItems(world, inventory, pos);
-  }
-  
+
   public NBTManager getManager()
   {
     return manager;

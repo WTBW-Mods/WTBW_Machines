@@ -151,12 +151,6 @@ public class DehydratorTileEntity extends BaseMachineEntity implements IUpgradea
   }
   
   @Override
-  public void dropContents()
-  {
-    Utilities.dropItems(world, inventory, pos);
-  }
-  
-  @Override
   protected List<ItemStackHandler> getInventories()
   {
     return Utilities.listOf(inventory);
@@ -319,6 +313,6 @@ public class DehydratorTileEntity extends BaseMachineEntity implements IUpgradea
   @Override
   public UpgradeManager getUpgradeManager()
   {
-    return null;
+    return upgradeManager;
   }
 }
