@@ -1,6 +1,7 @@
 package com.wtbw.mods.machines.integration.jei.category;
 
 import com.wtbw.mods.lib.gui.util.EnergyBar;
+import com.wtbw.mods.lib.gui.util.GuiUtil;
 import com.wtbw.mods.lib.tile.util.energy.BaseEnergyStorage;
 import com.wtbw.mods.machines.ClientConstants;
 import com.wtbw.mods.machines.block.ModBlocks;
@@ -12,10 +13,15 @@ import mezz.jei.api.gui.IRecipeLayout;
 import mezz.jei.api.gui.drawable.IDrawableAnimated;
 import mezz.jei.api.gui.ingredient.IGuiItemStackGroup;
 import mezz.jei.api.helpers.IGuiHelper;
+import mezz.jei.api.ingredients.IIngredientType;
 import mezz.jei.api.ingredients.IIngredients;
+import net.minecraft.client.Minecraft;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.Util;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -55,7 +61,19 @@ public class CompressingCategory extends AbstractRecipeCategory<CompressingRecip
   @Override
   public void setIngredients(CompressingRecipe recipe, IIngredients ingredients)
   {
-    ingredients.setInputIngredients(recipe.getIngredients());
+    List<ItemStack> inputs = new ArrayList<>();
+    for (Ingredient ingredient : recipe.getIngredients())
+    {
+      for (ItemStack matchingStack : ingredient.getMatchingStacks())
+      {
+        ItemStack copy;
+        inputs.add(copy = matchingStack.copy());
+        copy.setCount(recipe.ingredientCost);
+      }
+    }
+    
+//    ingredients.setInputIngredients(recipe.getIngredients());
+    ingredients.setInputLists(VanillaTypes.ITEM, Util.make(new ArrayList<>(), l -> l.add(inputs)));
     ingredients.setOutput(VanillaTypes.ITEM, recipe.getRecipeOutput());
   }
   
@@ -80,10 +98,16 @@ public class CompressingCategory extends AbstractRecipeCategory<CompressingRecip
     energyBar.storage.setEnergy(recipe.powerCost);
     energyBar.update();
     energyBar.draw(0, 0);
+//
+//    if (recipe.ingredientCost > 1)
+//    {
+//      Minecraft.getInstance().fontRenderer.drawStringWithShadow(String.valueOf(recipe.ingredientCost), halfX + 9, 18 - 10, 0xffffffff);
+//    }
   }
 
   @Override
-  public List<String> getTooltipStrings(CompressingRecipe recipe, double mouseX, double mouseY) {
+  public List<String> getTooltipStrings(CompressingRecipe recipe, double mouseX, double mouseY)
+  {
     energyBar.storage.setEnergy(recipe.powerCost);
     energyBar.update();
     return energyBar.isHover((int) mouseX, (int) mouseY) ? energyBar.getTooltip() : Collections.emptyList();
