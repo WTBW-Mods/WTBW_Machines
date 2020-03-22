@@ -3,7 +3,7 @@
   "pattern": [
     "LLL",
     "ISI",
-    "PPP"
+    "ppp"
   ],
   "key": {
     "I": {
@@ -13,9 +13,9 @@
       "item": "wtbw_machines:lapis_wafer"
     },
     "S": {
-      "tag": "forge:storage_blocks/copper"
+      "item": "wtbw_machines:solar_panel_mk1"
     },
-    "P": {
+    "p": {
       "tag": "forge:plates/copper"
     }
   },

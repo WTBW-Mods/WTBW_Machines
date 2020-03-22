@@ -1,0 +1,11 @@
+{
+  "type": "wtbw_machines:compressing",
+  "ingredient": {
+    "item": "wtbw_machines:dark_crystal",
+    "count": 1
+  },
+  "result": "wtbw_machines:dark_crystal_plate",
+  "count": 1,
+  "duration": 180,
+  "power_cost": 3600
+}

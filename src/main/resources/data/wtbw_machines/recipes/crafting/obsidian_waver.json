@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "oo",
+    "qq",
+    "oo"
+  ],
+  "key": {
+    "o": {
+      "tag": "forge:dusts/obsidian"
+    },
+    "q": {
+      "item": "wtbw_machines:quartz_wafer"
+    }
+  },
+  "result": {
+    "item": "wtbw_machines:obsidian_wafer"
+  }
+}

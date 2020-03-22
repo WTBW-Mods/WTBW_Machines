@@ -1,0 +1,25 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "GGG",
+    "gSg",
+    "PPP"
+  ],
+  "key": {
+    "g": {
+      "item": "wtbw_machines:dark_crystal"
+    },
+    "G": {
+      "item": "wtbw_machines:dark_crystal_plate"
+    },
+    "S": {
+      "item": "wtbw_machines:solar_panel_mk4"
+    },
+    "P": {
+      "tag": "forge:plates/cobalt"
+    }
+  },
+  "result": {
+    "item": "wtbw_machines:solar_panel_mk5"
+  }
+}

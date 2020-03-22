@@ -1,0 +1,11 @@
+{
+  "type": "wtbw_machines:compressing",
+  "ingredient": {
+    "tag": "forge:ingots/cobalt",
+    "count": 1
+  },
+  "result": "wtbw_machines:cobalt_plate",
+  "count": 1,
+  "duration": 180,
+  "power_cost": 1800
+}

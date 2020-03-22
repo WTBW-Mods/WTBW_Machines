@@ -35,6 +35,8 @@ public class ModTiles
   public static final TileEntityType<SolarPanelTileEntity> SOLAR_PANEL_MK1 = null;
   public static final TileEntityType<SolarPanelTileEntity> SOLAR_PANEL_MK2 = null;
   public static final TileEntityType<SolarPanelTileEntity> SOLAR_PANEL_MK3 = null;
+  public static final TileEntityType<SolarPanelTileEntity> SOLAR_PANEL_MK4 = null;
+  public static final TileEntityType<SolarPanelTileEntity> SOLAR_PANEL_MK5 = null;
   
   public static final TileEntityType<FuelGeneratorEntity> FUEL_GENERATOR = null;
   

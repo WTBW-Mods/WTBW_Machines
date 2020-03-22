@@ -1,0 +1,28 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "odc",
+    "eCe",
+    "cdo"
+  ],
+  "key": {
+    "o": {
+      "tag": "forge:dusts/obsidian"
+    },
+    "d": {
+      "tag": "forge:dusts/diamond"
+    },
+    "c": {
+      "tag": "forge:dusts/coal"
+    },
+    "e": {
+      "tag": "forge:dusts/emerald"
+    },
+    "C": {
+      "tag": "forge:dusts/cobalt"
+    }
+  },
+  "result": {
+    "item": "wtbw_machines:dark_crystal_blend"
+  }
+}

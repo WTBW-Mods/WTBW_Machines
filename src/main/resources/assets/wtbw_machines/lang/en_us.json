@@ -3,6 +3,8 @@
 
   "item.wtbw_machines.iron_plate": "Iron Plate",
   "item.wtbw_machines.gold_plate": "Gold Plate",
+  "item.wtbw_machines.copper_plate": "Copper Plate",
+  "item.wtbw_machines.cobalt_plate": "Cobalt Plate",
 
   "item.wtbw_machines.iron_dust": "Iron Dust",
   "item.wtbw_machines.gold_dust": "Gold Dust",
@@ -18,6 +20,9 @@
 
   "item.wtbw_machines.lapis_wafer": "Lapis Wafer",
   "item.wtbw_machines.glowstone_wafer": "Glowstone Wafer",
+  "item.wtbw_machines.improved_glowstone_wafer": "Improved Glowstone Wafer",
+  "item.wtbw_machines.quartz_wafer": "Quartz Wafer",
+  "item.wtbw_machines.obsidian_wafer": "Obsidian Wafer",
 
   "item.wtbw_machines.wrench": "Wrench",
 
@@ -39,8 +44,13 @@
 
   "item.wtbw_machines.base_upgrade": "Upgrade Base",
 
+  "item.wtbw_machines.dark_crystal": "Dark Crystal",
+  "item.wtbw_machines.dark_crystal_blend": "Dark Crystal Blend",
+  "item.wtbw_machines.dark_crystal_plate": "Dark Crystal Plate",
+
   "block.wtbw_machines.redstone_timer": "Redstone Timer",
   "block.wtbw_machines.redstone_emitter": "Redstone Emitter",
+  "block.wtbw_machines.dark_crystal_block": "Dark Crystal Block",
 
   "block.wtbw_machines.iron_furnace": "Iron Furnace",
   "block.wtbw_machines.gold_furnace": "Gold Furnace",
@@ -64,6 +74,8 @@
   "block.wtbw_machines.solar_panel_mk1": "Solar Panel MK I",
   "block.wtbw_machines.solar_panel_mk2": "Solar Panel MK II",
   "block.wtbw_machines.solar_panel_mk3": "Solar Panel MK III",
+  "block.wtbw_machines.solar_panel_mk4": "Solar Panel MK IV",
+  "block.wtbw_machines.solar_panel_mk5": "Solar Panel MK V",
 
   "block.wtbw_machines.machine_block": "Machine Block",
   "block.wtbw_machines.tier1_upgrade": "Tier 1 Upgrade",
@@ -100,6 +112,7 @@
   "wtbw_machines.tooltip.fuel_generator": "Generates %s EF/t",
   "wtbw_machines.tooltip.burn_time": "Burn time left: %s ticks",
   "wtbw_machines.tooltip.energy_cable_transfer": "This cable can transfer up to",
+  "wtbw_machines.tooltip.wither_proof": "Wither Proof",
 
   "death.attack.spikes.wooden": "Wood spikes pierced %s",
   "death.attack.spikes.bamboo": "Bamboo spikes pierced %s",

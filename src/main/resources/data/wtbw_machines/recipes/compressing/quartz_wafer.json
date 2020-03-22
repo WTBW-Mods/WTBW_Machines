@@ -1,10 +1,9 @@
 {
   "type": "wtbw_machines:compressing",
   "ingredient": {
-    "item": "minecraft:glowstone",
-    "count": 4
+    "item": "minecraft:smooth_quartz"
   },
-  "result": "wtbw_machines:glowstone_wafer",
+  "result": "wtbw_machines:quartz_wafer",
   "count": 1,
   "duration": 360,
   "power_cost": 7200

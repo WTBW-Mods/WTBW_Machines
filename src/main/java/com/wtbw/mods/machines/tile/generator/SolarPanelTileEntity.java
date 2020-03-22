@@ -26,7 +26,9 @@ public class SolarPanelTileEntity extends Generator implements IWTBWNamedContain
   
   public static final Tier MK1 = new Tier(150000, 80, 10, () -> ModTiles.SOLAR_PANEL_MK1);
   public static final Tier MK2 = new Tier(250000, 240, 40, () -> ModTiles.SOLAR_PANEL_MK2);
-  public static final Tier MK3 = new Tier(500000, 720, 250, () -> ModTiles.SOLAR_PANEL_MK3);
+  public static final Tier MK3 = new Tier(500000, 850, 350, () -> ModTiles.SOLAR_PANEL_MK3);
+  public static final Tier MK4 = new Tier(1000000, 1500, 2500, () -> ModTiles.SOLAR_PANEL_MK4);
+  public static final Tier MK5 = new Tier(2000000, 15000, 8000, () -> ModTiles.SOLAR_PANEL_MK5);
   
   public static class Tier
   {

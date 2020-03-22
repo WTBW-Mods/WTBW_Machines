@@ -3,6 +3,7 @@ package com.wtbw.mods.machines;
 import com.wtbw.mods.lib.network.Networking;
 import com.wtbw.mods.machines.block.ModBlocks;
 import com.wtbw.mods.machines.config.CommonConfig;
+import com.wtbw.mods.machines.event.WitherEvents;
 import com.wtbw.mods.machines.network.SyncBatteryBlockBar;
 import com.wtbw.mods.machines.network.UpdateDetectorPacket;
 import com.wtbw.mods.machines.network.UpdateQuarryPacket;
@@ -52,6 +53,8 @@ public class WTBWMachines
   
     eventBus = MinecraftForge.EVENT_BUS;
     eventBus.addListener(TeleportInhibitorTile::onTeleport);
+    eventBus.addListener(WitherEvents::onWitherExplosion);
+    eventBus.addListener(WitherEvents::onExplosion);
   }
   
   private void setup(final FMLCommonSetupEvent event)

@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "ccc",
+    "ccc",
+    "ccc"
+  ],
+  "key": {
+    "c": {
+      "item": "wtbw_machines:dark_crystal"
+    }
+  },
+  "result": {
+    "item": "wtbw_machines:dark_crystal_block"
+  }
+}

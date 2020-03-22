@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:smelting",
+  "ingredient": {
+    "item": "wtbw_machines:dark_crystal_blend"
+  },
+  "result": "wtbw_machines:dark_crystal",
+  "experience": 0.15,
+  "cookingtime": 200
+}

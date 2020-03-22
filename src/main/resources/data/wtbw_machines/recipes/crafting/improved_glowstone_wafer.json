@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "o",
+    "g"
+  ],
+  "key": {
+    "o": {
+      "item": "wtbw_machines:obsidian_wafer"
+    },
+    "g": {
+      "item": "wtbw_machines:glowstone_wafer"
+    }
+  },
+  "result": {
+    "item": "wtbw_machines:improved_glowstone_wafer"
+  }
+}

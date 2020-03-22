@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "wtbw_machines:dark_crystal_block"
+    }
+  ],
+  "result": {
+    "item": "wtbw_machines:dark_crystal",
+    "count": 9
+  }
+}

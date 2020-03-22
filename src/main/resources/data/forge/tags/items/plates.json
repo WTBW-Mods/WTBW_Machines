@@ -2,6 +2,9 @@
   "replace": false,
   "values": [
     "#forge:plates/iron",
-    "#forge:plates/gold"
+    "#forge:plates/gold",
+    "#forge:plates/copper",
+    "#forge:plates/cobalt",
+    "wtbw_machines:dark_crystal_plate"
   ]
 }

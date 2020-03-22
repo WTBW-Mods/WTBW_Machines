@@ -30,10 +30,14 @@ import com.wtbw.mods.machines.tile.machine.PoweredCrusherEntity;
 import com.wtbw.mods.machines.tile.machine.PoweredFurnaceEntity;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
+import net.minecraft.block.material.MaterialColor;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroup;
+import net.minecraft.item.Rarity;
+import net.minecraft.item.TieredItem;
 import net.minecraft.item.crafting.IRecipeSerializer;
 import net.minecraft.util.Util;
+import net.minecraftforge.common.ToolType;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.registries.IForgeRegistry;
 
@@ -82,6 +86,8 @@ public class MachinesRegistrator extends Registrator
     register(new SolarPanelBlock(getBlockProperties(Material.IRON, 3), SolarPanelTileEntity.MK1).comparator(), "solar_panel_mk1");
     register(new SolarPanelBlock(getBlockProperties(Material.IRON, 5), SolarPanelTileEntity.MK2).comparator(), "solar_panel_mk2");
     register(new SolarPanelBlock(getBlockProperties(Material.IRON, 7), SolarPanelTileEntity.MK3).comparator(), "solar_panel_mk3");
+    register(new SolarPanelBlock(getBlockProperties(Material.IRON, 9), SolarPanelTileEntity.MK4).comparator(), "solar_panel_mk4");
+    register(new SolarPanelBlock(getBlockProperties(Material.IRON, 11), SolarPanelTileEntity.MK5).comparator(), "solar_panel_mk5");
     
     register(new BaseMachineBlock<>(getBlockProperties(Material.IRON, 3), (world, state) -> new SimpleBatteryTileEntity()).comparator(), "simple_battery");
     
@@ -110,7 +116,11 @@ public class MachinesRegistrator extends Registrator
     register(new EnergyCableBlock(getBlockProperties(Material.IRON, 4).func_226896_b_(), EnergyCableTier.MK6), "energy_cable_mk6");
     */
     
-    register(new BaseTileBlock<TeleportInhibitorTile>(getBlockProperties(Material.IRON, 4), (world, state) -> new TeleportInhibitorTile()), "teleport_inhibitor");
+    register(new DarkCrystalBlock(getBlockProperties(Material.IRON, 30, 3600000.0F, MaterialColor.CYAN_TERRACOTTA).harvestLevel(3).harvestTool(ToolType.PICKAXE)),
+      "dark_crystal_block",
+      getItemProperties().addTooltip(TextComponentBuilder.createTranslated(WTBWMachines.MODID + ".tooltip.wither_proof").gold().build()).rarity(Rarity.EPIC));
+    
+    register(new BaseTileBlock<>(getBlockProperties(Material.IRON, 4), (world, state) -> new TeleportInhibitorTile()), "teleport_inhibitor");
   }
   
   @Override
@@ -119,6 +129,9 @@ public class MachinesRegistrator extends Registrator
     BaseItemProperties baseProperties = getItemProperties();
     register(new Item(baseProperties), "iron_plate");
     register(new Item(baseProperties), "gold_plate");
+    register(new Item(baseProperties), "copper_plate");
+    register(new Item(baseProperties), "cobalt_plate");
+    register(new Item(baseProperties), "dark_crystal_plate");
     
     register(new Item(baseProperties), "gold_dust");
     register(new Item(baseProperties), "iron_dust");
@@ -134,6 +147,12 @@ public class MachinesRegistrator extends Registrator
     
     register(new Item(baseProperties), "lapis_wafer");
     register(new Item(baseProperties), "glowstone_wafer");
+    register(new Item(baseProperties), "improved_glowstone_wafer");
+    register(new Item(baseProperties), "obsidian_wafer");
+    register(new Item(baseProperties), "quartz_wafer");
+    
+    register(new Item(getItemProperties().rarity(Rarity.EPIC)), "dark_crystal");
+    register(new Item(baseProperties), "dark_crystal_blend");
     
     register(new WrenchItem(getItemProperties()), "wrench");
   

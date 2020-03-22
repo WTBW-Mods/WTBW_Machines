@@ -1,0 +1,25 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "GGG",
+    "gSg",
+    "PPP"
+  ],
+  "key": {
+    "g": {
+      "tag": "forge:ingots/gold"
+    },
+    "G": {
+      "item": "wtbw_machines:improved_glowstone_wafer"
+    },
+    "S": {
+      "tag": "forge:storage_blocks/gold"
+    },
+    "P": {
+      "tag": "forge:plates/gold"
+    }
+  },
+  "result": {
+    "item": "wtbw_machines:solar_panel_mk4"
+  }
+}

@@ -13,7 +13,7 @@
       "item": "wtbw_machines:glowstone_wafer"
     },
     "S": {
-      "tag": "forge:storage_blocks/iron"
+      "item": "wtbw_machines:solar_panel_mk2"
     },
     "P": {
       "tag": "forge:plates/iron"
