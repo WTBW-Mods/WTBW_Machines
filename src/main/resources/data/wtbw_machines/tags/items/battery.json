@@ -1,0 +1,10 @@
+{
+  "replace": false,
+  "values": [
+    "wtbw_machines:battery_mk1",
+    "wtbw_machines:battery_mk2",
+    "wtbw_machines:battery_mk3",
+    "wtbw_machines:battery_mk4",
+    "wtbw_machines:battery_mk5"
+  ]
+}

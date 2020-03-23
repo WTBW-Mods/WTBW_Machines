@@ -17,6 +17,7 @@ import com.wtbw.mods.machines.block.spikes.SpikesBlock;
 import com.wtbw.mods.machines.block.spikes.SpikesType;
 import com.wtbw.mods.machines.block.util.WrenchHelper;
 import com.wtbw.mods.machines.gui.container.*;
+import com.wtbw.mods.lib.item.BatteryItem;
 import com.wtbw.mods.machines.item.WrenchItem;
 import com.wtbw.mods.machines.recipe.*;
 import com.wtbw.mods.machines.tile.*;
@@ -24,17 +25,13 @@ import com.wtbw.mods.machines.tile.cables.EnergyCableTier;
 import com.wtbw.mods.machines.tile.furnace.FurnaceTier;
 import com.wtbw.mods.machines.tile.generator.FuelGeneratorEntity;
 import com.wtbw.mods.machines.tile.generator.SolarPanelTileEntity;
-import com.wtbw.mods.machines.tile.machine.DehydratorTileEntity;
-import com.wtbw.mods.machines.tile.machine.PoweredCompressorEntity;
-import com.wtbw.mods.machines.tile.machine.PoweredCrusherEntity;
-import com.wtbw.mods.machines.tile.machine.PoweredFurnaceEntity;
+import com.wtbw.mods.machines.tile.machine.*;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.material.MaterialColor;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.Rarity;
-import net.minecraft.item.TieredItem;
 import net.minecraft.item.crafting.IRecipeSerializer;
 import net.minecraft.util.Util;
 import net.minecraftforge.common.ToolType;
@@ -121,6 +118,8 @@ public class MachinesRegistrator extends Registrator
       getItemProperties().addTooltip(TextComponentBuilder.createTranslated(WTBWMachines.MODID + ".tooltip.wither_proof").gold().build()).rarity(Rarity.EPIC));
     
     register(new BaseTileBlock<>(getBlockProperties(Material.IRON, 4), (world, state) -> new TeleportInhibitorTile()), "teleport_inhibitor");
+    
+    register(new BaseMachineBlock<>(getBlockProperties(Material.IRON, 5), (world, state) -> new ChargerEntity()).mirrored(), "charger");
   }
   
   @Override
@@ -226,6 +225,12 @@ public class MachinesRegistrator extends Registrator
 //      map.put(ModifierType.POWER_USAGE, 2f);
 //      map.put(ModifierType.SPEED, 0.9f);
 //    })), "range_upgrade_mk3");
+    
+    register(new BatteryItem(getItemProperties(), 250000, 800), "battery_mk1");
+    register(new BatteryItem(getItemProperties(), 1000000, 2000), "battery_mk2");
+    register(new BatteryItem(getItemProperties(), 4000000, 6000), "battery_mk3");
+    register(new BatteryItem(getItemProperties(), 16000000, 20000), "battery_mk4");
+    register(new BatteryItem(getItemProperties(), 32000000, 64000), "battery_mk5");
   }
  
   @Override
@@ -244,6 +249,7 @@ public class MachinesRegistrator extends Registrator
     registerContainer(CrusherContainer::new, "crusher");
     registerContainer(PoweredFurnaceContainer::new, "powered_furnace");
     registerContainer(FuelGeneratorContainer::new, "fuel_generator");
+    registerContainer(ChargerContainer::new, "charger");
   }
   
   public void registerRecipes(final RegistryEvent.Register<IRecipeSerializer<?>> event)

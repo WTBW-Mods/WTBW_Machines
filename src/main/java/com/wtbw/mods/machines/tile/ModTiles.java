@@ -58,4 +58,5 @@ public class ModTiles
   public static final TileEntityType<EnergyCableEntity> ENERGY_CABLE_MK6 = null;
   
   public static final TileEntityType<TeleportInhibitorTile> TELEPORT_INHIBITOR = null;
+  public static final TileEntityType<ChargerEntity> CHARGER = null;
 }
