@@ -1,19 +1,19 @@
 {
   "type": "minecraft:crafting_shaped",
   "pattern": [
-    "gGg",
-    "gBg",
-    "gGg"
+    "rrr",
+    "bBb",
+    "rrr"
   ],
   "key": {
     "B": {
       "item": "wtbw_machines:base_upgrade"
     },
-    "g": {
-      "tag": "forge:dusts/glowstone"
+    "r": {
+      "tag": "forge:dusts/redstone"
     },
-    "G": {
-      "item": "minecraft:glowstone"
+    "b": {
+      "item": "wtbw_machines:battery_mk1"
     }
   },
   "result": {

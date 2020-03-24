@@ -1,0 +1,26 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "cRc",
+    "cbc",
+    "cpc"
+  ],
+  "key": {
+    "b": {
+      "item": "wtbw_machines:battery_mk4"
+    },
+    "p": {
+      "tag": "forge:plates/cobalt"
+    },
+    "R" : {
+      "tag": "forge:storage_blocks/redstone"
+    },
+    "c": {
+      "item": "wtbw_machines:dark_crystal"
+    }
+  },
+  "result": {
+    "item": "wtbw_machines:battery_mk5",
+    "count": 1
+  }
+}

@@ -1,6 +1,7 @@
 package com.wtbw.mods.machines.gui.screen;
 
 import com.wtbw.mods.lib.gui.screen.BaseContainerScreen;
+import com.wtbw.mods.lib.gui.screen.BaseUpgradeScreen;
 import com.wtbw.mods.lib.gui.util.EnergyBar;
 import com.wtbw.mods.machines.gui.container.ChargerContainer;
 import net.minecraft.entity.player.PlayerInventory;
@@ -9,7 +10,7 @@ import net.minecraft.util.text.ITextComponent;
 /*
   @author: Naxanria
 */
-public class ChargerScreen extends BaseContainerScreen<ChargerContainer>
+public class ChargerScreen extends BaseUpgradeScreen<ChargerContainer>
 {
   protected EnergyBar energyBar;
   
@@ -39,9 +40,8 @@ public class ChargerScreen extends BaseContainerScreen<ChargerContainer>
   }
   
   @Override
-  protected void drawGuiContainerBackgroundLayer(float partialTicks, int mouseX, int mouseY)
+  protected void drawGuiBackgroundLayer(float partialTicks, int mouseX, int mouseY)
   {
-    defaultGui();
     energyBar.draw();
   }
 }

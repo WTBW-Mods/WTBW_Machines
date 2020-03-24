@@ -1,0 +1,29 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "qGq",
+    "gbg",
+    "wGw"
+  ],
+  "key": {
+    "b": {
+      "item": "wtbw_machines:battery_mk3"
+    },
+    "q": {
+      "tag": "forge:dusts/quartz"
+    },
+    "G" : {
+      "tag": "forge:storage_blocks/gold"
+    },
+    "g" : {
+      "tag": "forge:ingots/gold"
+    },
+    "w": {
+      "item": "wtbw_machines:quartz_wafer"
+    }
+  },
+  "result": {
+    "item": "wtbw_machines:battery_mk4",
+    "count": 1
+  }
+}

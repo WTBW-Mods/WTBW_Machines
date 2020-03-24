@@ -1,0 +1,25 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "GbG",
+    "RMR",
+    "GbG"
+  ],
+  "key": {
+    "b": {
+      "item": "wtbw_machines:battery_mk2"
+    },
+    "G": {
+      "item": "wtbw_core:groundium"
+    },
+    "M": {
+      "item": "wtbw_machines:machine_block"
+    },
+    "R": {
+      "tag": "forge:storage_blocks/redstone"
+    }
+  },
+  "result": {
+    "item": "wtbw_machines:charger"
+  }
+}

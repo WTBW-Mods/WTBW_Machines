@@ -42,6 +42,12 @@
   "item.wtbw_machines.range_upgrade_mk2": "Range Upgrade MK2",
   "item.wtbw_machines.range_upgrade_mk3": "Range Upgrade MK3",
 
+  "item.wtbw_machines.battery_mk1": "Battery MK1",
+  "item.wtbw_machines.battery_mk2": "Battery MK2",
+  "item.wtbw_machines.battery_mk3": "Battery MK3",
+  "item.wtbw_machines.battery_mk4": "Battery MK4",
+  "item.wtbw_machines.battery_mk5": "Battery MK5",
+
   "item.wtbw_machines.base_upgrade": "Upgrade Base",
 
   "item.wtbw_machines.dark_crystal": "Dark Crystal",
@@ -84,6 +90,8 @@
   "block.wtbw_machines.tier4_upgrade": "Tier 4 Upgrade",
 
   "block.wtbw_machines.teleport_inhibitor": "Teleport Inhibitor",
+
+  "block.wtbw_machines.charger": "Charger",
 
   "block.wtbw_machines.dehydrator": "Dehydrator",
   "block.wtbw_machines.powered_furnace": "Powered Furnace",

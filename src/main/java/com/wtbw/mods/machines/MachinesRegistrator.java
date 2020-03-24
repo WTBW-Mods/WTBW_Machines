@@ -192,18 +192,33 @@ public class MachinesRegistrator extends Registrator
   
     register(new BaseUpgradeItem(getItemProperties(), Util.make(new HashMap<>(), map ->
     {
-      map.put(ModifierType.POWER_CAPACITY, 1.10f);
+      map.put(ModifierType.POWER_CAPACITY, 500000f);
     })), "power_capacity_upgrade_mk1");
   
     register(new BaseUpgradeItem(getItemProperties(), Util.make(new HashMap<>(), map ->
     {
-      map.put(ModifierType.POWER_CAPACITY, 1.25f);
+      map.put(ModifierType.POWER_CAPACITY, 2000000f);
     })), "power_capacity_upgrade_mk2");
   
     register(new BaseUpgradeItem(getItemProperties(), Util.make(new HashMap<>(), map ->
     {
-      map.put(ModifierType.POWER_CAPACITY, 1.5f);
+      map.put(ModifierType.POWER_CAPACITY, 5000000f);
     })), "power_capacity_upgrade_mk3");
+  
+//    register(new BaseUpgradeItem(getItemProperties(), Util.make(new HashMap<>(), map ->
+//    {
+//      map.put(ModifierType.TRANSFER, 1.5f);
+//    })), "transfer_upgrade_mk1");
+//
+//    register(new BaseUpgradeItem(getItemProperties(), Util.make(new HashMap<>(), map ->
+//    {
+//      map.put(ModifierType.TRANSFER, 2f);
+//    })), "transfer_upgrade_mk2");
+//
+//    register(new BaseUpgradeItem(getItemProperties(), Util.make(new HashMap<>(), map ->
+//    {
+//      map.put(ModifierType.TRANSFER, 2.5f);
+//    })), "transfer_upgrade_mk3");
   
 //    register(new BaseUpgradeItem(getItemProperties(), Util.make(new HashMap<>(), map ->
 //    {
@@ -226,11 +241,11 @@ public class MachinesRegistrator extends Registrator
 //      map.put(ModifierType.SPEED, 0.9f);
 //    })), "range_upgrade_mk3");
     
-    register(new BatteryItem(getItemProperties(), 250000, 800), "battery_mk1");
-    register(new BatteryItem(getItemProperties(), 1000000, 2000), "battery_mk2");
-    register(new BatteryItem(getItemProperties(), 4000000, 6000), "battery_mk3");
-    register(new BatteryItem(getItemProperties(), 16000000, 20000), "battery_mk4");
-    register(new BatteryItem(getItemProperties(), 32000000, 64000), "battery_mk5");
+    register(new BatteryItem(getItemProperties(), 250000, 1600), "battery_mk1");
+    register(new BatteryItem(getItemProperties(), 1000000, 4000), "battery_mk2");
+    register(new BatteryItem(getItemProperties(), 4000000, 12000), "battery_mk3");
+    register(new BatteryItem(getItemProperties(), 16000000, 40000), "battery_mk4");
+    register(new BatteryItem(getItemProperties(), 32000000, 128000), "battery_mk5");
   }
  
   @Override

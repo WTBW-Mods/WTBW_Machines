@@ -18,6 +18,7 @@ import net.minecraft.tileentity.TileEntityType;
 import net.minecraftforge.common.util.Constants;
 import net.minecraftforge.items.ItemStackHandler;
 
+import javax.annotation.Nonnull;
 import java.util.List;
 
 /*
@@ -127,6 +128,7 @@ public abstract class BaseMachineEntity extends TileEntity implements ITickableT
     return manager;
   }
   
+  @Nonnull
   public BaseEnergyStorage getStorage()
   {
     return storage;

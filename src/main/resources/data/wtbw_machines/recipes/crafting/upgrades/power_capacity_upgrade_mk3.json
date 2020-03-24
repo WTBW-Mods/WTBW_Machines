@@ -1,19 +1,22 @@
 {
   "type": "minecraft:crafting_shaped",
   "pattern": [
-    "PDP",
-    "BBB",
-    "PDP"
+    "PGP",
+    "bBb",
+    "PGP"
   ],
   "key": {
     "B": {
       "item": "wtbw_machines:power_capacity_upgrade_mk2"
     },
-    "D": {
-      "tag": "forge:storage_blocks/diamond"
+    "G": {
+      "tag": "forge:storage_blocks/gold"
     },
     "P": {
       "item": "minecraft:purpur_block"
+    },
+    "b": {
+      "item": "wtbw_machines:battery_mk3"
     }
   },
   "result": {

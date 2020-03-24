@@ -1,8 +1,10 @@
 package com.wtbw.mods.machines.tile.machine;
 
-import com.wtbw.mods.lib.tile.util.IGuiUpdateHandler;
 import com.wtbw.mods.lib.tile.util.RedstoneMode;
 import com.wtbw.mods.lib.tile.util.energy.BaseEnergyStorage;
+import com.wtbw.mods.lib.upgrade.IUpgradeable;
+import com.wtbw.mods.lib.upgrade.ModifierType;
+import com.wtbw.mods.lib.upgrade.UpgradeManager;
 import com.wtbw.mods.lib.util.Utilities;
 import com.wtbw.mods.machines.gui.container.ChargerContainer;
 import com.wtbw.mods.machines.tile.ModTiles;
@@ -27,18 +29,24 @@ import java.util.concurrent.atomic.AtomicBoolean;
 /*
   @author: Naxanria
 */
-public class ChargerEntity extends BaseMachineEntity implements IGuiUpdateHandler
+public class ChargerEntity extends BaseMachineEntity implements IUpgradeable
 {
-  protected int maxCharge = 250000;
+  public static final int DEFAULT_CAPACITY = 2000000;
+  public static final int DEFAULT_TRANSFER = 100000;
+  
+  protected int transfer = DEFAULT_TRANSFER;
   protected ItemStackHandler inventory;
+  protected UpgradeManager upgradeManager = new UpgradeManager().setFilter(ModifierType.POWER_CAPACITY, ModifierType.TRANSFER);
  
   private LazyOptional<ItemStackHandler> inventoryCap = LazyOptional.of(this::getInventory);
+  private LazyOptional<BaseEnergyStorage> storageCap = LazyOptional.of(this::getStorage);
   
   public ChargerEntity()
   {
-    super(ModTiles.CHARGER, 2000000, 250000, RedstoneMode.IGNORE);
+    super(ModTiles.CHARGER, DEFAULT_CAPACITY, DEFAULT_TRANSFER / 2, RedstoneMode.IGNORE);
     
     manager.register("inventory", getInventory());
+    manager.register("upgrades", upgradeManager);
   }
   
   @Nonnull
@@ -98,7 +106,7 @@ public class ChargerEntity extends BaseMachineEntity implements IGuiUpdateHandle
               if (energyStorage.getEnergyStored() < energyStorage.getMaxEnergyStored())
               {
                 charging.set(true);
-                int insert = Math.min(maxCharge, storage.getEnergyStored());
+                int insert = Math.min(transfer, storage.getEnergyStored());
                 insert = energyStorage.receiveEnergy(insert, false);
                 storage.extractInternal(insert, false);
               }
@@ -107,15 +115,33 @@ public class ChargerEntity extends BaseMachineEntity implements IGuiUpdateHandle
           {
             setOn(charging.get());
           }
+          markDirty();
         }
         else
         {
           if (isOn())
           {
             setOn(false);
+            markDirty();
           }
         }
-        
+      }
+      
+      float capacityMod = upgradeManager.getValueOrDefault(ModifierType.POWER_CAPACITY);
+      int capacity = DEFAULT_CAPACITY + (int) capacityMod;
+      if (getStorage().getMaxEnergyStored() != capacity)
+      {
+        getStorage().setCapacity(capacity);
+        markDirty();
+      }
+      
+      float transferMod = upgradeManager.getValueOrDefault(ModifierType.TRANSFER);
+      int newTransfer = (int)(transferMod * DEFAULT_TRANSFER);
+      if (newTransfer != transfer)
+      {
+        transfer = newTransfer;
+        getStorage().setReceive(transfer / 2);
+        markDirty();
       }
     }
   }
@@ -128,7 +154,17 @@ public class ChargerEntity extends BaseMachineEntity implements IGuiUpdateHandle
     {
       return inventoryCap.cast();
     }
+    if (cap == CapabilityEnergy.ENERGY)
+    {
+      return storageCap.cast();
+    }
     
     return super.getCapability(cap, side);
+  }
+  
+  @Override
+  public UpgradeManager getUpgradeManager()
+  {
+    return upgradeManager;
   }
 }

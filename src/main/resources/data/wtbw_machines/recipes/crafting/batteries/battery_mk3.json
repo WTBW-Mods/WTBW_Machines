@@ -1,0 +1,26 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "iri",
+    "ibi",
+    "iRi"
+  ],
+  "key": {
+    "i": {
+      "tag": "forge:ingots/gold"
+    },
+    "b": {
+      "item": "wtbw_machines:battery_mk2"
+    },
+    "r": {
+      "tag": "forge:dusts/redstone"
+    },
+    "R" : {
+      "tag": "forge:storage_blocks/redstone"
+    }
+  },
+  "result": {
+    "item": "wtbw_machines:battery_mk3",
+    "count": 1
+  }
+}
