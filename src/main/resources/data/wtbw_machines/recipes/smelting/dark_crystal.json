@@ -3,8 +3,10 @@
   "ingredient": {
     "item": "wtbw_machines:dark_crystal_blend"
   },
-  "result": "wtbw_machines:dark_crystal",
+  "result": {
+    "item": "wtbw_machines:dark_crystal",
+    "count": 3
+  },
   "experience": 0.15,
-  "cookingtime": 200,
-  "count": 3
+  "cookingtime": 200
 }
