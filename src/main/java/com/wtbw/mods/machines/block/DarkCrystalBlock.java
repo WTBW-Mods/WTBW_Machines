@@ -1,6 +1,6 @@
 package com.wtbw.mods.machines.block;
 
-import com.wtbw.mods.machines.block.util.IExplosionResistant;
+import com.wtbw.mods.lib.block.util.IExplosionResistant;
 import net.minecraft.block.Block;
 
 /*
