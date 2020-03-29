@@ -55,6 +55,7 @@ public class ClientRegistration
     RenderType cutout = RenderType.getCutoutMipped();
     
     RenderTypeLookup.setRenderLayer(ModBlocks.QUARRY, cutout);
+    RenderTypeLookup.setRenderLayer(ModBlocks.TELEPORT_INHIBITOR, cutout);
     //RenderTypeLookup.setRenderLayer(ModBlocks.QUARRY_MARKER, cutout);
   }
 

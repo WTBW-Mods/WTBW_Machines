@@ -54,4 +54,6 @@ public class ModBlocks
   public static final Block MACHINE_BLOCK = Blocks.AIR;
   public static final Block POWERED_FURNACE = Blocks.AIR;
   public static final Block DARK_CRYSTAL_BLOCK = Blocks.AIR;
+  
+  public static final Block TELEPORT_INHIBITOR = Blocks.AIR;
 }

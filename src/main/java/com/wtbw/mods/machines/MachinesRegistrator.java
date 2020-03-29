@@ -69,7 +69,7 @@ public class MachinesRegistrator extends Registrator
   
     register(new BaseTileBlock<>(getBlockProperties(Material.IRON, 4), (world, state) -> new VacuumChestTileEntity()), "vacuum_chest");
 
-    register(new QuarryBlock(getBlockProperties(Material.IRON, 4).variableOpacity()), "quarry");
+    register(new QuarryBlock(getBlockProperties(Material.IRON, 4).notSolid()), "quarry");
   
     register(new PushBlock(getBlockProperties(Material.IRON, 1), EntityPusherTileEntity.PushMode.PUSH), "pusher");
     register(new PushBlock(getBlockProperties(Material.IRON, 1), EntityPusherTileEntity.PushMode.PULL), "puller");
@@ -117,7 +117,7 @@ public class MachinesRegistrator extends Registrator
       "dark_crystal_block",
       getItemProperties().addTooltip(TextComponentBuilder.createTranslated(WTBWMachines.MODID + ".tooltip.wither_proof").gold().build()).rarity(Rarity.EPIC));
     
-    register(new BaseTileBlock<>(getBlockProperties(Material.IRON, 4), (world, state) -> new TeleportInhibitorTile()), "teleport_inhibitor");
+    register(new BaseTileBlock<>(getBlockProperties(Material.IRON, 4).notSolid(), (world, state) -> new TeleportInhibitorTile()), "teleport_inhibitor");
     
     register(new BaseMachineBlock<>(getBlockProperties(Material.IRON, 5), (world, state) -> new ChargerEntity()).mirrored(), "charger");
   }
