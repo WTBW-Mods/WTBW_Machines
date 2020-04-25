@@ -18,23 +18,23 @@ public class DehydratorContainer extends BaseUpgradeContainer<DehydratorTileEnti
   {
     super(ModContainers.DEHYDRATOR, id, world, pos, inventory);
   
-    NBTManager manager = tileEntity.getManager();
-    manager.referenceHolders().forEach(iIntReferenceHolder -> trackInt(iIntReferenceHolder.getReferenceHolder()));
-    
-    trackInt(new IntReferenceHolder()
-    {
-      @Override
-      public int get()
-      {
-        return tileEntity.getStorage().getEnergyStored();
-      }
-  
-      @Override
-      public void set(int value)
-      {
-        tileEntity.getStorage().setEnergy(value);
-      }
-    });
+//    NBTManager manager = tileEntity.getManager();
+//    manager.referenceHolders().forEach(iIntReferenceHolder -> trackInt(iIntReferenceHolder.getReferenceHolder()));
+//
+//    trackInt(new IntReferenceHolder()
+//    {
+//      @Override
+//      public int get()
+//      {
+//        return tileEntity.getStorage().getEnergyStored();
+//      }
+//
+//      @Override
+//      public void set(int value)
+//      {
+//        tileEntity.getStorage().setEnergy(value);
+//      }
+//    });
   
     ItemStackHandler handler = tileEntity.getInventory();
     

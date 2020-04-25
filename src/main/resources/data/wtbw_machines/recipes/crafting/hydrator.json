@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "GBG",
+    "GMG",
+    "GBG"
+  ],
+  "key": {
+    "G": {
+      "item": "wtbw_core:groundium"
+    },
+    "M": {
+      "item": "wtbw_machines:machine_block"
+    },
+    "B": {
+      "item": "minecraft:bucket"
+    }
+  },
+  "result": {
+    "item": "wtbw_machines:hydrator"
+  }
+}

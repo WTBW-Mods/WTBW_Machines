@@ -1,0 +1,11 @@
+{
+  "type": "wtbw_machines:hydrating",
+  "ingredient": {
+    "item": "minecraft:potato"
+  },
+  "result": "minecraft:slime_ball",
+  "count": 1,
+  "powerCost": 10000,
+  "duration": 180,
+  "water": 2500
+}

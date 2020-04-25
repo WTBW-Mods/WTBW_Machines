@@ -94,6 +94,7 @@
   "block.wtbw_machines.charger": "Charger",
 
   "block.wtbw_machines.dehydrator": "Dehydrator",
+  "block.wtbw_machines.hydrator": "Hydrator",
   "block.wtbw_machines.powered_furnace": "Powered Furnace",
   "block.wtbw_machines.crusher": "Crusher",
   "block.wtbw_machines.compressor": "Compressor",

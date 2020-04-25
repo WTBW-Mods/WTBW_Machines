@@ -38,6 +38,7 @@ public class ClientRegistration
 
     ScreenManager.registerFactory(ModContainers.QUARRY, QuarryScreen::new);
     ScreenManager.registerFactory(ModContainers.DEHYDRATOR, DehydratorScreen::new);
+    ScreenManager.registerFactory(ModContainers.HYDRATOR, HydratorScreen::new);
     
     ScreenManager.registerFactory(ModContainers.SOLAR_PANEL, SolarPanelScreen::new);
     ScreenManager.registerFactory(ModContainers.BATTERY, BatteryScreen::new);

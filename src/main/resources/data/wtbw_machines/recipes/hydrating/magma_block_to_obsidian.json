@@ -1,0 +1,11 @@
+{
+  "type": "wtbw_machines:hydrating",
+  "ingredient": {
+    "item": "minecraft:magma_block"
+  },
+  "result": "minecraft:obsidian",
+  "count": 1,
+  "powerCost": 1500,
+  "duration": 300,
+  "water": 2000
+}

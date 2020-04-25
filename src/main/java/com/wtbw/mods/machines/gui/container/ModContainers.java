@@ -24,4 +24,5 @@ public class ModContainers
   public static final ContainerType<PoweredFurnaceContainer> POWERED_FURNACE = null;
   public static final ContainerType<FuelGeneratorContainer> FUEL_GENERATOR = null;
   public static final ContainerType<ChargerContainer> CHARGER = null;
+  public static final ContainerType<HydratorContainer> HYDRATOR = null;
 }

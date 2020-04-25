@@ -12,6 +12,8 @@ import net.minecraft.util.registry.Registry;
 
 public class ModRecipes
 {
+  
+  
   public static void init()
   {}
   
@@ -19,6 +21,7 @@ public class ModRecipes
   public static final IRecipeType<CompressingRecipe> COMPRESSING = register("compressing");
   public static final IRecipeType<CrushingRecipe> CRUSHING = register("crushing");
   public static final IRecipeType<PoweredFurnaceRecipe> POWERED_FURNACE = register("powered_furnace");
+  public static final IRecipeType<HydratingRecipe> HYDRATING = register("hydrating");
 
   private static <T extends IRecipe<?>> IRecipeType<T> register(final String key)
   {

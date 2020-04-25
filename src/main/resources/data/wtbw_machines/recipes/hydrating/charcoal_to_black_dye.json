@@ -1,0 +1,11 @@
+{
+  "type": "wtbw_machines:hydrating",
+  "ingredient": {
+    "tag": "forge:dusts/charcoal"
+  },
+  "result": "minecraft:black_dye",
+  "count": 2,
+  "powerCost": 1000,
+  "duration": 180,
+  "water": 500
+}

@@ -89,6 +89,7 @@ public class MachinesRegistrator extends Registrator
     register(new BaseMachineBlock<>(getBlockProperties(Material.IRON, 3), (world, state) -> new SimpleBatteryTileEntity()).comparator(), "simple_battery");
     
     register(new BaseMachineBlock<>(getBlockProperties(Material.IRON, 5), (world, state) -> new DehydratorTileEntity()).mirrored(), "dehydrator");
+    register(new BaseMachineBlock<>(getBlockProperties(Material.IRON, 5), (world, state) -> new HydratorEntity()).mirrored(), "hydrator");
     
     register(new Block(getBlockProperties(Material.IRON, 3)), "machine_block");
     
@@ -265,6 +266,7 @@ public class MachinesRegistrator extends Registrator
     registerContainer(PoweredFurnaceContainer::new, "powered_furnace");
     registerContainer(FuelGeneratorContainer::new, "fuel_generator");
     registerContainer(ChargerContainer::new, "charger");
+    registerContainer(HydratorContainer::new, "hydrator");
   }
   
   public void registerRecipes(final RegistryEvent.Register<IRecipeSerializer<?>> event)
@@ -277,6 +279,7 @@ public class MachinesRegistrator extends Registrator
     registry.register(CompressingRecipe.SERIALIZER);
     registry.register(CrushingRecipe.SERIALIZER);
     registry.register(PoweredFurnaceRecipe.SERIALIZER);
+    registry.register(HydratingRecipe.SERIALIZER);
   }
   
   public void registerWrenchActions()
