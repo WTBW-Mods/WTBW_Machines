@@ -2,8 +2,8 @@
   "type": "minecraft:crafting_shaped",
   "pattern": [
     "GCG",
-    "GBG",
-    "GGG"
+    "IcI",
+    "GIG"
   ],
   "key": {
     "C": {
@@ -12,8 +12,11 @@
     "G": {
       "item": "wtbw_core:groundium"
     },
-    "B": {
-      "item": "wtbw_machines:iron_furnace"
+    "c": {
+      "item": "wtbw_machines:copper_coil"
+    },
+    "I": {
+      "tag": "forge:ingots/iron"
     }
   },
   "result": {

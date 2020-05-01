@@ -151,6 +151,8 @@ public class MachinesRegistrator extends Registrator
     register(new Item(baseProperties), "obsidian_wafer");
     register(new Item(baseProperties), "quartz_wafer");
     
+    register(new Item(baseProperties), "copper_coil");
+    
     register(new Item(getItemProperties().rarity(Rarity.EPIC)), "dark_crystal");
     register(new Item(baseProperties), "dark_crystal_blend");
     
