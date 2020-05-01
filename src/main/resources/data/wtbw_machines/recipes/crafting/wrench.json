@@ -11,9 +11,6 @@
     },
     "P": {
       "tag": "forge:plates/iron"
-    },
-    "B": {
-      "item": "minecraft:bucket"
     }
   },
   "result": {
