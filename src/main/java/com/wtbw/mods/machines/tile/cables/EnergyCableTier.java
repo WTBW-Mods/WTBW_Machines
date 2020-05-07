@@ -18,7 +18,7 @@ public class EnergyCableTier
   public static final EnergyCableTier MK5 = new EnergyCableTier(65536, () -> ModTiles.ENERGY_CABLE_MK5);
   public static final EnergyCableTier MK6 = new EnergyCableTier( 512000, () -> ModTiles.ENERGY_CABLE_MK6);
   
-  public final Supplier<TileEntityType> type;
+  public final Supplier<TileEntityType<?>> type;
   
   private static int nextID = 0;
   public final int id = nextID++;
@@ -26,12 +26,12 @@ public class EnergyCableTier
   public int capacity;
   public int transfer;
   
-  public EnergyCableTier(int transfer, @Nonnull Supplier<TileEntityType> type)
+  public EnergyCableTier(int transfer, @Nonnull Supplier<TileEntityType<?>> type)
   {
     this(4 * transfer, transfer, type);
   }
   
-  public EnergyCableTier(int capacity, int transfer, @Nonnull Supplier<TileEntityType> type)
+  public EnergyCableTier(int capacity, int transfer, @Nonnull Supplier<TileEntityType<?>> type)
   {
     this.type = type;
     this.capacity = capacity;

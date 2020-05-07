@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "CCC",
+    "ccc",
+    "CCC"
+  ],
+  "key": {
+    "c": {
+      "tag": "forge:plates/energetic_copper"
+    },
+    "C": {
+      "item": "wtbw_machines:energy_cable_mk2"
+    }
+  },
+  "result": {
+    "item": "wtbw_machines:energy_cable_mk3",
+    "count": 6
+  }
+}

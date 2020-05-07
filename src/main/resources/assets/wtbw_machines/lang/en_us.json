@@ -4,7 +4,10 @@
   "item.wtbw_machines.iron_plate": "Iron Plate",
   "item.wtbw_machines.gold_plate": "Gold Plate",
   "item.wtbw_machines.copper_plate": "Copper Plate",
+  "item.wtbw_machines.energetic_copper_plate": "Energetic Copper Plate",
   "item.wtbw_machines.cobalt_plate": "Cobalt Plate",
+
+  "item.wtbw_machines.energetic_copper_ingot": "Energetic Copper Ingot",
 
   "item.wtbw_machines.iron_dust": "Iron Dust",
   "item.wtbw_machines.gold_dust": "Gold Dust",
@@ -15,6 +18,7 @@
   "item.wtbw_machines.quartz_dust": "Quartz Dust",
   "item.wtbw_machines.obsidian_dust": "Obsidian Dust",
   "item.wtbw_machines.copper_dust": "Copper Dust",
+  "item.wtbw_machines.energetic_copper_dust": "Energetic Copper Dust",
   "item.wtbw_machines.cobalt_dust": "Cobalt Dust",
   "item.wtbw_machines.ender_pearl_dust": "Ender Pearl Dust",
 
@@ -105,6 +109,11 @@
   "block.wtbw_machines.fuel_generator": "Fuel Generator",
 
   "block.wtbw_machines.energy_cable_mk1": "Power Cable",
+  "block.wtbw_machines.energy_cable_mk2": "Power Cable MK II",
+  "block.wtbw_machines.energy_cable_mk3": "Power Cable MK III",
+  "block.wtbw_machines.energy_cable_mk4": "Power Cable MK IV",
+  "block.wtbw_machines.energy_cable_mk5": "Power Cable MK V",
+  "block.wtbw_machines.energy_cable_mk6": "Power Cable MK VI",
 
   "wtbw_machines.tooltip.shift_more_info": "Press SHIFT for more info...",
   "wtbw_machines.tooltip.ef_tick": "EF/t",

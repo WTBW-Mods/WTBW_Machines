@@ -106,9 +106,10 @@ public class MachinesRegistrator extends Registrator
       getItemProperties().addTooltip(TextComponentBuilder.createTranslated(WTBWMachines.MODID + ".tooltip.fuel_generator", 45).green().build()));
     
     register(new EnergyCableBlock(getBlockProperties(Material.IRON, 4).variableOpacity(), EnergyCableTier.MK1), "energy_cable_mk1");
+    register(new EnergyCableBlock(getBlockProperties(Material.IRON, 4).variableOpacity(), EnergyCableTier.MK2), "energy_cable_mk2");
+    register(new EnergyCableBlock(getBlockProperties(Material.IRON, 4).variableOpacity(), EnergyCableTier.MK3), "energy_cable_mk3");
+    
     /*
-    register(new EnergyCableBlock(getBlockProperties(Material.IRON, 4).func_226896_b_(), EnergyCableTier.MK2), "energy_cable_mk2");
-    register(new EnergyCableBlock(getBlockProperties(Material.IRON, 4).func_226896_b_(), EnergyCableTier.MK3), "energy_cable_mk3");
     register(new EnergyCableBlock(getBlockProperties(Material.IRON, 4).func_226896_b_(), EnergyCableTier.MK4), "energy_cable_mk4");
     register(new EnergyCableBlock(getBlockProperties(Material.IRON, 4).func_226896_b_(), EnergyCableTier.MK5), "energy_cable_mk5");
     register(new EnergyCableBlock(getBlockProperties(Material.IRON, 4).func_226896_b_(), EnergyCableTier.MK6), "energy_cable_mk6");
@@ -132,6 +133,7 @@ public class MachinesRegistrator extends Registrator
     register(new Item(baseProperties), "copper_plate");
     register(new Item(baseProperties), "cobalt_plate");
     register(new Item(baseProperties), "dark_crystal_plate");
+    register(new Item(baseProperties), "energetic_copper_plate");
     
     register(new Item(baseProperties), "gold_dust");
     register(new Item(baseProperties), "iron_dust");
@@ -143,6 +145,7 @@ public class MachinesRegistrator extends Registrator
     register(new Item(baseProperties), "diamond_dust");
     register(new Item(baseProperties), "quartz_dust");
     register(new Item(baseProperties), "copper_dust");
+    register(new Item(baseProperties), "energetic_copper_dust");
     register(new Item(baseProperties), "cobalt_dust");
     
     register(new Item(baseProperties), "lapis_wafer");
@@ -159,6 +162,8 @@ public class MachinesRegistrator extends Registrator
     register(new WrenchItem(getItemProperties()), "wrench");
   
     register(new Item(baseProperties), "base_upgrade");
+    
+    register(new Item(baseProperties), "energetic_copper_ingot");
     
     register(new BaseUpgradeItem(getItemProperties(), Util.make(new HashMap<>(), map ->
     {

@@ -1,0 +1,15 @@
+{
+  "type": "wtbw_machines:crushing",
+  "ingredient": {
+    "tag": "forge:ingots/energetic_copper",
+    "count": 1
+  },
+  "result": [
+    {
+      "item": "wtbw_machines:energetic_copper_dust",
+      "count": 1
+    }
+  ],
+  "duration": 180,
+  "power_cost": 2500
+}

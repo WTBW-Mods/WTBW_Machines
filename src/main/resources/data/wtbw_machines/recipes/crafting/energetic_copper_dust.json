@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "CRR",
+    "RR "
+  ],
+  "key": {
+    "C": {
+      "tag": "forge:dusts/copper"
+    },
+    "R": {
+      "item": "minecraft:redstone"
+    }
+  },
+  "result": {
+    "item": "wtbw_machines:energetic_copper_dust"
+  }
+}

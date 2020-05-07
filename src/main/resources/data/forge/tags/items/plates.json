@@ -5,6 +5,7 @@
     "#forge:plates/gold",
     "#forge:plates/copper",
     "#forge:plates/cobalt",
+    "#forge:plates/energetic_copper",
     "wtbw_machines:dark_crystal_plate"
   ]
 }
