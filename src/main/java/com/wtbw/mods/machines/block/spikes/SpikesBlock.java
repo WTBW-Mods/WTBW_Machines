@@ -1,6 +1,8 @@
 package com.wtbw.mods.machines.block.spikes;
 
 import com.wtbw.mods.lib.util.TextComponentBuilder;
+import com.wtbw.mods.lib.util.Utilities;
+import com.wtbw.mods.machines.WTBWFakePlayer;
 import com.wtbw.mods.machines.WTBWMachines;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
@@ -14,6 +16,7 @@ import net.minecraft.util.math.shapes.VoxelShape;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.world.IBlockReader;
 import net.minecraft.world.World;
+import net.minecraft.world.server.ServerWorld;
 
 import javax.annotation.Nullable;
 import java.util.List;
@@ -36,13 +39,43 @@ public class SpikesBlock extends Block
   @Override
   public void onEntityWalk(World worldIn, BlockPos pos, Entity entityIn)
   {
-    if (entityIn instanceof LivingEntity)
+    if (!worldIn.isRemote)
     {
-      LivingEntity livingEntity = (LivingEntity) entityIn;
-      if (type.lethal || livingEntity.getHealth() > 1f)
+      if (entityIn instanceof LivingEntity)
       {
-//        livingEntity.attackEntityFrom(DamageSource.HOT_FLOOR, 1f);
-        livingEntity.attackEntityFrom(new SpikesDamageSource(type), type.damage);
+        LivingEntity livingEntity = (LivingEntity) entityIn;
+        if (type.lethal || livingEntity.getHealth() > 1f)
+        {
+          SpikesDamageSource spikeDmgSource = new SpikesDamageSource(type);
+          if (type.isPlayer)
+          {
+            WTBWFakePlayer fakePlayer = WTBWFakePlayer.getInstance((ServerWorld) worldIn).get();
+        
+            if (fakePlayer != null)
+            {
+              spikeDmgSource.setSource(fakePlayer);
+            }
+          }
+      
+          livingEntity.attackEntityFrom(spikeDmgSource, type.damage);
+          // being a player already drops xp, dont want to have it drop double
+//          if (type.dropXP && !type.isPlayer)
+//          {
+//            if (livingEntity.getHealth() <= 0)
+//            {
+//              WTBWFakePlayer fakePlayer = WTBWFakePlayer.getInstance((ServerWorld) worldIn).get();
+//              if (fakePlayer != null)
+//              {
+//                int xp = livingEntity.getExperiencePoints(fakePlayer);
+//                int xp = 1;
+//                if (xp > 0)
+//                {
+//                  Utilities.spawnExp(worldIn, entityIn.getPosition(), xp);
+//                }
+//              }
+//            }
+//          }
+        }
       }
     }
   }
@@ -68,6 +101,11 @@ public class SpikesBlock extends Block
     String lethal = baseKey + "_lethal";
     String nonLethal = baseKey + "_non_lethal";
     tooltip.add(TextComponentBuilder.createTranslated(type.lethal ? lethal : nonLethal).yellow().build());
+    
+    if (type.isPlayer)
+    {
+      tooltip.add(TextComponentBuilder.createTranslated(baseKey + "_player_drops").gold().build());
+    }
     
     super.addInformation(stack, worldIn, tooltip, flagIn);
   }

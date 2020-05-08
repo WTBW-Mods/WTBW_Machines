@@ -123,6 +123,7 @@
   "wtbw_machines.tooltip.spikes": "Damages entities standing on top",
   "wtbw_machines.tooltip.spikes_lethal": "This spike kills entities",
   "wtbw_machines.tooltip.spikes_non_lethal": "This spike leaves entities at 1 health",
+  "wtbw_machines.tooltip.spikes_player_drops": "This spike has entities drop player drops",
   "wtbw_machines.tooltip.pusher_range": "This block pushes entities in a %s block radius",
   "wtbw_machines.tooltip.puller_range": "This block pulls entities in a %s block radius",
   "wtbw_machines.tooltip.generating": "Generating: ",

@@ -1,6 +1,9 @@
 package com.wtbw.mods.machines.block.spikes;
 
+import net.minecraft.entity.Entity;
 import net.minecraft.util.DamageSource;
+
+import javax.annotation.Nullable;
 
 /*
   @author: Naxanria
@@ -8,6 +11,7 @@ import net.minecraft.util.DamageSource;
 public class SpikesDamageSource extends DamageSource
 {
   private SpikesType type;
+  private Entity source = null;
   // todo: have an option for fakeplayer kills
   public SpikesDamageSource(SpikesType type)
   {
@@ -16,5 +20,18 @@ public class SpikesDamageSource extends DamageSource
   
     setDamageBypassesArmor();
     setDamageIsAbsolute();
+  }
+  
+  @Nullable
+  @Override
+  public Entity getTrueSource()
+  {
+    return source;
+  }
+  
+  public SpikesDamageSource setSource(Entity source)
+  {
+    this.source = source;
+    return this;
   }
 }
