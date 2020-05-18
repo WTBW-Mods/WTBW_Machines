@@ -147,6 +147,7 @@
 
   "wtbw_machines.jei.crushing": "Crushing",
   "wtbw_machines.jei.dehydrating": "Dehydrating",
+  "wtbw_machines.jei.hydrating": "Hydrating",
   "wtbw_machines.jei.powered_furnace": "Smelting",
   "wtbw_machines.jei.compressing": "Compressing"
 }

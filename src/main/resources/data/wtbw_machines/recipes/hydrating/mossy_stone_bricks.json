@@ -1,0 +1,11 @@
+{
+  "type": "wtbw_machines:hydrating",
+  "ingredient": {
+    "tag": "minecraft:stone_bricks"
+  },
+  "result": "minecraft:mossy_stone_bricks",
+  "count": 1,
+  "powerCost": 1000,
+  "duration": 180,
+  "water": 500
+}

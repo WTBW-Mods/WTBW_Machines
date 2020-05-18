@@ -56,4 +56,5 @@ public class ModBlocks
   public static final Block DARK_CRYSTAL_BLOCK = Blocks.AIR;
   
   public static final Block TELEPORT_INHIBITOR = Blocks.AIR;
+  public static final Block HYDRATOR = Blocks.AIR;
 }

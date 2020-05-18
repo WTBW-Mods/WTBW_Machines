@@ -1,0 +1,11 @@
+{
+  "type": "wtbw_machines:hydrating",
+  "ingredient": {
+    "tag": "forge:cobblestone"
+  },
+  "result": "minecraft:mossy_cobblestone",
+  "count": 1,
+  "powerCost": 1000,
+  "duration": 180,
+  "water": 500
+}
