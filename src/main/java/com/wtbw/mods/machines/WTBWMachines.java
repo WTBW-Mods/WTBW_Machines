@@ -5,6 +5,7 @@ import com.wtbw.mods.machines.block.ModBlocks;
 import com.wtbw.mods.machines.config.CommonConfig;
 import com.wtbw.mods.lib.event.common.WitherEvents;
 import com.wtbw.mods.machines.network.SyncBatteryBlockBar;
+import com.wtbw.mods.machines.network.TransferXpPacket;
 import com.wtbw.mods.machines.network.UpdateDetectorPacket;
 import com.wtbw.mods.machines.network.UpdateQuarryPacket;
 import com.wtbw.mods.machines.tile.TeleportInhibitorTile;
@@ -60,6 +61,7 @@ public class WTBWMachines
     Networking.registerMessage(UpdateDetectorPacket.class, UpdateDetectorPacket::toBytes, UpdateDetectorPacket::new, UpdateDetectorPacket::handle);
     Networking.registerMessage(UpdateQuarryPacket.class, UpdateQuarryPacket::toBytes, UpdateQuarryPacket::new, UpdateQuarryPacket::handle);
     Networking.registerMessage(SyncBatteryBlockBar.class, SyncBatteryBlockBar::toBytes, SyncBatteryBlockBar::new, SyncBatteryBlockBar::handle);
+    Networking.registerMessage(TransferXpPacket.class, TransferXpPacket::toBytes, TransferXpPacket::new, TransferXpPacket::handle);
     
     machinesRegistrator.registerWrenchActions();
     

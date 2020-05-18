@@ -49,6 +49,8 @@ public class ClientRegistration
     ScreenManager.registerFactory(ModContainers.FUEL_GENERATOR, FuelGeneratorScreen::new);
     
     ScreenManager.registerFactory(ModContainers.CHARGER, ChargerScreen::new);
+    
+    ScreenManager.registerFactory(ModContainers.XP_PYLON, XpPylonScreen::new);
   }
 
   public static void registerRenderLayers()

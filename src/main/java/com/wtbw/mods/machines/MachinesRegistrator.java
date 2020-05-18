@@ -122,6 +122,8 @@ public class MachinesRegistrator extends Registrator
     register(new BaseTileBlock<>(getBlockProperties(Material.IRON, 4).notSolid(), (world, state) -> new TeleportInhibitorTile()), "teleport_inhibitor");
     
     register(new BaseMachineBlock<>(getBlockProperties(Material.IRON, 5), (world, state) -> new ChargerEntity()).mirrored(), "charger");
+    
+//    register(new XpPylonBlock(getBlockProperties(Material.IRON, 5)), "xp_pylon");
   }
   
   @Override
@@ -274,6 +276,7 @@ public class MachinesRegistrator extends Registrator
     registerContainer(FuelGeneratorContainer::new, "fuel_generator");
     registerContainer(ChargerContainer::new, "charger");
     registerContainer(HydratorContainer::new, "hydrator");
+    registerContainer(XpPylonContainer::new, "xp_pylon");
   }
   
   public void registerRecipes(final RegistryEvent.Register<IRecipeSerializer<?>> event)

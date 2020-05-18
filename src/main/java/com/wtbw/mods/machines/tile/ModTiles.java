@@ -60,4 +60,5 @@ public class ModTiles
   
   public static final TileEntityType<TeleportInhibitorTile> TELEPORT_INHIBITOR = null;
   public static final TileEntityType<ChargerEntity> CHARGER = null;
+  public static final TileEntityType<XpPylonTile> XP_PYLON = null;
 }
