@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "PBP",
+    "PIP",
+    " P "
+  ],
+  "key": {
+    "P": {
+      "tag": "forge:plates/iron"
+    },
+    "B": {
+      "tag": "forge:storage_blocks/iron"
+    },
+    "I": {
+      "tag": "forge:ingots/iron"
+    }
+  },
+  "result": {
+    "item": "wtbw_machines:iron_drill"
+  }
+}

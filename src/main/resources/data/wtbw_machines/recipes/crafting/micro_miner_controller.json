@@ -1,0 +1,28 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "GRG",
+    "CPC",
+    "GDG"
+  ],
+  "key": {
+    "C": {
+      "item": "wtbw_machines:copper_coil"
+    },
+    "G": {
+      "item": "wtbw_core:groundium"
+    },
+    "R": {
+      "tag": "forge:dusts/redstone"
+    },
+    "P": {
+      "tag": "forge:glass_panes"
+    },
+    "D": {
+      "item": "wtbw_machines:dark_crystal"
+    }
+  },
+  "result": {
+    "item": "wtbw_machines:micro_miner"
+  }
+}

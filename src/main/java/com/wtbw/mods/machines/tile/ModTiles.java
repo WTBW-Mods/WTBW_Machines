@@ -6,6 +6,11 @@ import com.wtbw.mods.machines.tile.furnace.BaseFurnaceTileEntity;
 import com.wtbw.mods.machines.tile.generator.FuelGeneratorEntity;
 import com.wtbw.mods.machines.tile.generator.SolarPanelTileEntity;
 import com.wtbw.mods.machines.tile.machine.*;
+import com.wtbw.mods.machines.tile.micro_miner.MicroMinerTile;
+import com.wtbw.mods.machines.tile.multi.EnergyInputHatchTile;
+import com.wtbw.mods.machines.tile.multi.FluidInputHatchTile;
+import com.wtbw.mods.machines.tile.multi.ItemInputHatchTile;
+import com.wtbw.mods.machines.tile.multi.ItemOutputHatchTile;
 import com.wtbw.mods.machines.tile.redstone.RedstoneTimerTileEntity;
 
 import net.minecraft.tileentity.TileEntityType;
@@ -61,4 +66,10 @@ public class ModTiles
   public static final TileEntityType<TeleportInhibitorTile> TELEPORT_INHIBITOR = null;
   public static final TileEntityType<ChargerEntity> CHARGER = null;
   public static final TileEntityType<XpPylonTile> XP_PYLON = null;
+  public static final TileEntityType<MicroMinerTile> MICRO_MINER = null;
+  
+  public static final TileEntityType<FluidInputHatchTile> FLUID_INPUT_HATCH = null;
+  public static final TileEntityType<EnergyInputHatchTile> ENERGY_INPUT_HATCH = null;
+  public static final TileEntityType<ItemOutputHatchTile> ITEM_OUTPUT_HATCH = null;
+  public static final TileEntityType<ItemInputHatchTile> ITEM_INPUT_HATCH = null;
 }

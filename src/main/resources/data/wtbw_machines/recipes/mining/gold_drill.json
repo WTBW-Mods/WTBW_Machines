@@ -1,0 +1,28 @@
+{
+  "type": "wtbw_machines:mining",
+  "miner":
+  {
+    "item": "wtbw_machines:gold_drill"
+  },
+  "result": [
+    {
+      "item": "minecraft:gold_ore",
+      "count": 8
+    },
+    {
+      "item": "minecraft:redstone_ore",
+      "count": 12
+    },
+    {
+      "item": "minecraft:diamond_ore",
+      "count": 1
+    },
+    {
+      "item": "minecraft:lapis_ore",
+      "count": 6
+    }
+  ],
+  "power_cost": 320000,
+  "coolant_cost": 2200,
+  "duration": 400
+}

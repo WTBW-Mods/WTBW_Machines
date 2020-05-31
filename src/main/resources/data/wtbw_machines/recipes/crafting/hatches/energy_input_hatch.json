@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "GGG",
+    "BRB",
+    "GGG"
+  ],
+  "key": {
+    "R": {
+      "tag": "forge:storage_blocks/redstone"
+    },
+    "G": {
+      "item": "wtbw_core:groundium"
+    },
+    "B": {
+      "item": "wtbw_machines:battery_mk3"
+    }
+  },
+  "result": {
+    "item": "wtbw_machines:energy_input_hatch"
+  }
+}

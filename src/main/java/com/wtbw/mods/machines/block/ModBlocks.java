@@ -57,4 +57,11 @@ public class ModBlocks
   
   public static final Block TELEPORT_INHIBITOR = Blocks.AIR;
   public static final Block HYDRATOR = Blocks.AIR;
+  
+  public static final Block MICRO_MINER = Blocks.AIR;
+  
+  public static final Block ITEM_OUTPUT_HATCH = Blocks.AIR;
+  public static final Block FLUID_INPUT_HATCH = Blocks.AIR;
+  public static final Block ENERGY_INPUT_HATCH = Blocks.AIR;
+  
 }

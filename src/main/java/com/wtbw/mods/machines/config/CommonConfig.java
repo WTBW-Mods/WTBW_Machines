@@ -63,6 +63,12 @@ public class CommonConfig extends BaseConfig
   public ForgeConfigSpec.IntValue quarryTier3;
   public ForgeConfigSpec.IntValue quarryTier4;
   
+  public ForgeConfigSpec.IntValue itemOutputHatchAutoEjectAmount;
+  public ForgeConfigSpec.IntValue itemOutputHatchAutoEjectDelay;
+  
+  public ForgeConfigSpec.BooleanValue microMinerUseDurability;
+  public ForgeConfigSpec.BooleanValue microMinerConsume;
+  
   // general blacklist for breaking blocks //
   public ForgeConfigSpec.ConfigValue<List<? extends String>> blockBreakBlacklist;
   
@@ -101,6 +107,44 @@ public class CommonConfig extends BaseConfig
     vacuumChest();
     puller();
     quarry();
+    
+    multiBlock();
+    
+    pop();
+  }
+  
+  private void multiBlock()
+  {
+    push("multi").comment("Multi block configuration");
+    
+    itemOutputHatchAutoEjectAmount = builder
+      .comment("The amount to eject automatically per cycle.", "Default: 16")
+      .translation(key("blocks.multi.item_eject_amount"))
+      .defineInRange("item_eject_amount", 16, 1, 128);
+    
+    itemOutputHatchAutoEjectDelay = builder
+      .comment("The delay in ticks between trying to auto eject", "Default: 8")
+      .translation(key("blocks.multi.item_eject_delay"))
+      .defineInRange("item_eject_delay", 8, 1, 60);
+    
+    miner();
+    
+    pop();
+  }
+  
+  private void miner()
+  {
+    push("miner").comment("Micro miner config");
+    
+    microMinerUseDurability = builder
+      .comment("Should the miner attempt to damage the drill item?", "Default: true")
+      .translation(key("blocks.multi.miner.durability"))
+      .define("durability", true);
+    
+    microMinerConsume = builder
+      .comment("Should the miner consume the item if it has no durability, or not set to using durability?", "Default: true")
+      .translation(key("blocks.multi.miner.consume"))
+      .define("consume", true);
     
     pop();
   }

@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "GGG",
+    "GGC",
+    "GGG"
+  ],
+  "key": {
+    "C": {
+      "tag": "forge:chests"
+    },
+    "G": {
+      "item": "wtbw_core:groundium"
+    }
+  },
+  "result": {
+    "item": "wtbw_machines:item_output_hatch"
+  }
+}

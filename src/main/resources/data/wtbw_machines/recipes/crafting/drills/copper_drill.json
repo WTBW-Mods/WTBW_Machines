@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "PBP",
+    "PIP",
+    " P "
+  ],
+  "key": {
+    "P": {
+      "tag": "forge:plates/copper"
+    },
+    "B": {
+      "tag": "forge:storage_blocks/copper"
+    },
+    "I": {
+      "tag": "forge:ingots/copper"
+    }
+  },
+  "result": {
+    "item": "wtbw_machines:copper_drill"
+  }
+}

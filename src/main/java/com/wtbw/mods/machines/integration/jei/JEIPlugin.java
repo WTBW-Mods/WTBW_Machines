@@ -49,6 +49,8 @@ public class JEIPlugin implements IModPlugin
     registration.addRecipeCatalyst(new ItemStack(ModBlocks.DEHYDRATOR), DehydratingCategory.UID);
     registration.addRecipeCatalyst(new ItemStack(ModBlocks.COMPRESSOR), CompressingCategory.UID);
     registration.addRecipeCatalyst(new ItemStack(ModBlocks.HYDRATOR), HydratingCategory.UID);
+    
+    registration.addRecipeCatalyst(new ItemStack(ModBlocks.MICRO_MINER), MiningCategory.UID);
   }
   
   @Override
@@ -62,6 +64,7 @@ public class JEIPlugin implements IModPlugin
     registration.addRecipeCategories(new HydratingCategory(guiHelper));
     registration.addRecipeCategories(new CompressingCategory(guiHelper));
     registration.addRecipeCategories(new PoweredFurnaceCategory(guiHelper));
+    registration.addRecipeCategories(new MiningCategory(guiHelper));
   }
   
   @Override
@@ -76,6 +79,7 @@ public class JEIPlugin implements IModPlugin
     registration.addRecipes(Utilities.getRecipes(recipeManager, ModRecipes.HYDRATING), HydratingCategory.UID);
     registration.addRecipes(Utilities.getRecipes(recipeManager, ModRecipes.COMPRESSING), CompressingCategory.UID);
     registration.addRecipes(Utilities.getRecipes(recipeManager, ModRecipes.POWERED_FURNACE), PoweredFurnaceCategory.UID);
+    registration.addRecipes(Utilities.getRecipes(recipeManager, ModRecipes.MINING), MiningCategory.UID);
     
     sw.stop();
     WTBWMachines.LOGGER.info("Loaded jei recipe integration in {}", sw);

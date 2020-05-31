@@ -1,0 +1,28 @@
+{
+  "type": "wtbw_machines:mining",
+  "miner":
+  {
+    "item": "wtbw_machines:iron_drill"
+  },
+  "result": [
+    {
+      "item": "minecraft:iron_ore",
+      "count": 16
+    },
+    {
+      "item": "minecraft:redstone_ore",
+      "count": 4
+    },
+    {
+      "item": "minecraft:coal_ore",
+      "count": 2
+    },
+    {
+      "item": "wtbw_core:copper_ore",
+      "count": 5
+    }
+  ],
+  "power_cost": 250000,
+  "coolant_cost": 2000,
+  "duration": 400
+}

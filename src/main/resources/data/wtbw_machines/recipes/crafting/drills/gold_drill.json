@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "PBP",
+    "PIP",
+    " P "
+  ],
+  "key": {
+    "P": {
+      "tag": "forge:plates/gold"
+    },
+    "B": {
+      "tag": "forge:storage_blocks/gold"
+    },
+    "I": {
+      "tag": "forge:ingots/gold"
+    }
+  },
+  "result": {
+    "item": "wtbw_machines:gold_drill"
+  }
+}

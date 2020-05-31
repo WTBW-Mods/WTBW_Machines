@@ -51,6 +51,12 @@ public class ClientRegistration
     ScreenManager.registerFactory(ModContainers.CHARGER, ChargerScreen::new);
     
     ScreenManager.registerFactory(ModContainers.XP_PYLON, XpPylonScreen::new);
+    
+    ScreenManager.registerFactory(ModContainers.ENERGY_INPUT_HATCH, EnergyInputHatchScreen::new);
+    ScreenManager.registerFactory(ModContainers.FLUID_INPUT_HATCH, FluidInputHatchScreen::new);
+    ScreenManager.registerFactory(ModContainers.ITEM_OUTPUT_HATCH, ItemOutputHatchScreen::new);
+    
+    ScreenManager.registerFactory(ModContainers.MICRO_MINER, MicroMinerScreen::new);
   }
 
   public static void registerRenderLayers()

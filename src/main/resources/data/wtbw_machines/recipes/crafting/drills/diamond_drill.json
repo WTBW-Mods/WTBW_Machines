@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "IBI",
+    "III",
+    " I "
+  ],
+  "key": {
+    "B": {
+      "tag": "forge:storage_blocks/diamond"
+    },
+    "I": {
+      "tag": "forge:gems/diamond"
+    }
+  },
+  "result": {
+    "item": "wtbw_machines:diamond_drill"
+  }
+}

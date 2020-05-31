@@ -26,6 +26,10 @@ import com.wtbw.mods.machines.tile.furnace.FurnaceTier;
 import com.wtbw.mods.machines.tile.generator.FuelGeneratorEntity;
 import com.wtbw.mods.machines.tile.generator.SolarPanelTileEntity;
 import com.wtbw.mods.machines.tile.machine.*;
+import com.wtbw.mods.machines.tile.micro_miner.MicroMinerTile;
+import com.wtbw.mods.machines.tile.multi.EnergyInputHatchTile;
+import com.wtbw.mods.machines.tile.multi.FluidInputHatchTile;
+import com.wtbw.mods.machines.tile.multi.ItemOutputHatchTile;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.material.MaterialColor;
@@ -122,6 +126,11 @@ public class MachinesRegistrator extends Registrator
     register(new BaseTileBlock<>(getBlockProperties(Material.IRON, 4).notSolid(), (world, state) -> new TeleportInhibitorTile()), "teleport_inhibitor");
     
     register(new BaseMachineBlock<>(getBlockProperties(Material.IRON, 5), (world, state) -> new ChargerEntity()).mirrored(), "charger");
+    
+    register(new BaseMachineBlock<>(getBlockProperties(Material.IRON, 4), (world, state) -> new MicroMinerTile()).mirrored(), "micro_miner");
+    register(new BaseTileBlock<>(getBlockProperties(Material.IRON, 4), (world, state) -> new EnergyInputHatchTile()), "energy_input_hatch");
+    register(new BaseTileBlock<>(getBlockProperties(Material.IRON, 4), (world, state) -> new FluidInputHatchTile()), "fluid_input_hatch");
+    register(new BaseTileBlock<>(getBlockProperties(Material.IRON, 4), (world, state) -> new ItemOutputHatchTile()), "item_output_hatch");
     
 //    register(new XpPylonBlock(getBlockProperties(Material.IRON, 5)), "xp_pylon");
   }
@@ -256,6 +265,13 @@ public class MachinesRegistrator extends Registrator
     register(new BatteryItem(getItemProperties(), 4000000, 12000), "battery_mk3");
     register(new BatteryItem(getItemProperties(), 16000000, 40000), "battery_mk4");
     register(new BatteryItem(getItemProperties(), 32000000, 128000), "battery_mk5");
+    
+    int drillUsages = 65;
+    register(new Item(getItemProperties().maxDamage(drillUsages)), "copper_drill");
+    register(new Item(getItemProperties().maxDamage(drillUsages)), "iron_drill");
+    register(new Item(getItemProperties().maxDamage(drillUsages)), "gold_drill");
+    register(new Item(getItemProperties().maxDamage(drillUsages)), "diamond_drill");
+    register(new Item(getItemProperties().maxDamage(drillUsages)), "cobalt_drill");
   }
  
   @Override
@@ -277,6 +293,12 @@ public class MachinesRegistrator extends Registrator
     registerContainer(ChargerContainer::new, "charger");
     registerContainer(HydratorContainer::new, "hydrator");
     registerContainer(XpPylonContainer::new, "xp_pylon");
+    
+    registerContainer(EnergyInputHatchContainer::new, "energy_input_hatch");
+    registerContainer(FluidInputHatchContainer::new, "fluid_input_hatch");
+    registerContainer(ItemOutputHatchContainer::new, "item_output_hatch");
+    
+    registerContainer(MicroMinerContainer::new, "micro_miner");
   }
   
   public void registerRecipes(final RegistryEvent.Register<IRecipeSerializer<?>> event)
@@ -290,6 +312,7 @@ public class MachinesRegistrator extends Registrator
     registry.register(CrushingRecipe.SERIALIZER);
     registry.register(PoweredFurnaceRecipe.SERIALIZER);
     registry.register(HydratingRecipe.SERIALIZER);
+    registry.register(MiningRecipe.SERIALIZER);
   }
   
   public void registerWrenchActions()

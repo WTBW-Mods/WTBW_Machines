@@ -48,6 +48,11 @@ public class ClientConstants
   public static class Gui
   {
     public static final SpriteMap ICONS = new SpriteMap(256, getGuiLocation("icons.png"));
+    
+    public static String getKey(String key)
+    {
+      return ClientConstants.getKey("gui." + key);
+    }
   }
   
   public static class Jei

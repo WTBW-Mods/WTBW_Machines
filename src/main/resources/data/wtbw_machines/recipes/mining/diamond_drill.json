@@ -1,0 +1,32 @@
+{
+  "type": "wtbw_machines:mining",
+  "miner":
+  {
+    "item": "wtbw_machines:diamond_drill"
+  },
+  "result": [
+    {
+      "item": "minecraft:diamond_ore",
+      "count": 3
+    },
+    {
+      "item": "minecraft:lapis_ore",
+      "count": 10
+    },
+    {
+      "item": "minecraft:emerald_ore",
+      "count": 2
+    },
+    {
+      "item": "minecraft:nether_quartz_ore",
+      "count": 7
+    },
+    {
+      "item": "wtbw_core:cobalt_ore",
+      "count": 1
+    }
+  ],
+  "power_cost": 750000,
+  "coolant_cost": 4000,
+  "duration": 400
+}

@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "GGG",
+    "BGG",
+    "GGG"
+  ],
+  "key": {
+    "B": {
+      "item": "minecraft:bucket"
+    },
+    "G": {
+      "item": "wtbw_core:groundium"
+    }
+  },
+  "result": {
+    "item": "wtbw_machines:fluid_input_hatch"
+  }
+}

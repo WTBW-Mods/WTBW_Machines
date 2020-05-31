@@ -1,0 +1,19 @@
+{
+  "type": "wtbw_machines:fluid_input_hatch",
+  "pools": [
+    {
+      "rolls": 1,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "wtbw_machines:fluid_input_hatch"
+        }
+      ],
+      "conditions": [
+        {
+          "condition": "minecraft:survives_explosion"
+        }
+      ]
+    }
+  ]
+}

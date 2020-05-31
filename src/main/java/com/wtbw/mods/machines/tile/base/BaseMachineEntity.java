@@ -15,6 +15,7 @@ import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.tileentity.ITickableTileEntity;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.tileentity.TileEntityType;
+import net.minecraft.util.Direction;
 import net.minecraftforge.common.util.Constants;
 import net.minecraftforge.items.ItemStackHandler;
 
@@ -121,6 +122,11 @@ public abstract class BaseMachineEntity extends TileEntity implements ITickableT
   protected void setOn(boolean on)
   {
     world.setBlockState(pos, getBlockState().with(BaseMachineBlock.ON, on), Constants.BlockFlags.DEFAULT_AND_RERENDER);
+  }
+  
+  protected Direction getFacing()
+  {
+    return getBlockState().get(BaseMachineBlock.FACING);
   }
   
   public NBTManager getManager()
