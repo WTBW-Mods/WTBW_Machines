@@ -3,15 +3,13 @@ package com.wtbw.mods.machines.tile;
 import com.wtbw.mods.lib.tile.util.IGuiUpdateHandler;
 import com.wtbw.mods.lib.tile.util.IWTBWNamedContainerProvider;
 import com.wtbw.mods.lib.util.Utilities;
-import com.wtbw.mods.machines.WTBWFakePlayer;
 import com.wtbw.mods.machines.gui.container.XpPylonContainer;
-import net.minecraft.entity.ai.attributes.IAttribute;
+import net.minecraft.block.BlockState;
 import net.minecraft.entity.item.ExperienceOrbEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.container.Container;
 import net.minecraft.nbt.CompoundNBT;
-import net.minecraft.potion.HealthBoostEffect;
 import net.minecraft.tileentity.ITickableTileEntity;
 import net.minecraft.tileentity.TileEntity;
 
@@ -32,11 +30,11 @@ public class XpPylonTile extends TileEntity implements ITickableTileEntity, IWTB
   }
   
   @Override
-  public void read(CompoundNBT compound)
+  public void read(BlockState state, CompoundNBT compound)
   {
     xp = compound.getInt("xp");
     radius = compound.getInt("radius");
-    super.read(compound);
+    super.read(state, compound);
   }
   
   @Override
@@ -201,6 +199,6 @@ public class XpPylonTile extends TileEntity implements ITickableTileEntity, IWTB
   @Override
   public void handleGuiUpdateTag(CompoundNBT nbt)
   {
-    read(nbt);
+    read(getBlockState(), nbt);
   }
 }

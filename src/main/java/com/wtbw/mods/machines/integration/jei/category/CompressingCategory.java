@@ -1,8 +1,11 @@
 package com.wtbw.mods.machines.integration.jei.category;
 
+import com.mojang.blaze3d.matrix.MatrixStack;
 import com.wtbw.mods.lib.gui.util.EnergyBar;
 import com.wtbw.mods.lib.gui.util.GuiUtil;
 import com.wtbw.mods.lib.tile.util.energy.BaseEnergyStorage;
+import com.wtbw.mods.lib.util.TextComponentBuilder;
+import com.wtbw.mods.lib.util.Utilities;
 import com.wtbw.mods.machines.ClientConstants;
 import com.wtbw.mods.machines.block.ModBlocks;
 import com.wtbw.mods.machines.gui.screen.CompressorScreen;
@@ -20,6 +23,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.Util;
+import net.minecraft.util.text.ITextComponent;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -89,15 +93,15 @@ public class CompressingCategory extends AbstractRecipeCategory<CompressingRecip
   }
   
   @Override
-  public void draw(CompressingRecipe recipe, double mouseX, double mouseY)
+  public void draw(CompressingRecipe recipe, MatrixStack stack, double mouseX, double mouseY)
   {
-    CompressorScreen.PROGRESS_BACKGROUND_LEFT.render(halfX - 10, halfY - 5);
-    CompressorScreen.PROGRESS_BACKGROUND_RIGHT.render(halfX, halfY - 5);
-    progressLeft.draw(halfX - 10, halfY - 5);
-    progressRight.draw(halfX, halfY - 5);
+    CompressorScreen.PROGRESS_BACKGROUND_LEFT.render(stack, halfX - 10, halfY - 5);
+    CompressorScreen.PROGRESS_BACKGROUND_RIGHT.render(stack, halfX, halfY - 5);
+    progressLeft.draw(stack, halfX - 10, halfY - 5);
+    progressRight.draw(stack, halfX, halfY - 5);
     energyBar.storage.setEnergy(recipe.powerCost);
     energyBar.update();
-    energyBar.draw(0, 0);
+    energyBar.draw(stack, 0, 0);
 //
 //    if (recipe.ingredientCost > 1)
 //    {
@@ -106,10 +110,10 @@ public class CompressingCategory extends AbstractRecipeCategory<CompressingRecip
   }
 
   @Override
-  public List<String> getTooltipStrings(CompressingRecipe recipe, double mouseX, double mouseY)
+  public List<ITextComponent> getTooltipStrings(CompressingRecipe recipe, double mouseX, double mouseY)
   {
     energyBar.storage.setEnergy(recipe.powerCost);
     energyBar.update();
-    return energyBar.isHover((int) mouseX, (int) mouseY) ? energyBar.getTooltip() : Collections.emptyList();
+    return energyBar.isHover((int) mouseX, (int) mouseY) ? TextComponentBuilder.strings(energyBar.getTooltip()) : Collections.emptyList();
   }
 }

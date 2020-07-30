@@ -1,8 +1,10 @@
 package com.wtbw.mods.machines.integration.jei.category;
 
+import com.mojang.blaze3d.matrix.MatrixStack;
 import com.wtbw.mods.lib.gui.util.EnergyBar;
 import com.wtbw.mods.lib.gui.util.FluidBar;
 import com.wtbw.mods.lib.tile.util.energy.BaseEnergyStorage;
+import com.wtbw.mods.lib.util.TextComponentBuilder;
 import com.wtbw.mods.machines.ClientConstants;
 import com.wtbw.mods.machines.block.ModBlocks;
 import com.wtbw.mods.machines.gui.screen.DehydratorScreen;
@@ -20,6 +22,7 @@ import mezz.jei.api.ingredients.IIngredients;
 import net.minecraft.fluid.Fluids;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.text.ITextComponent;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.capability.templates.FluidTank;
 
@@ -75,24 +78,24 @@ public class HydratingCategory extends AbstractRecipeCategory<HydratingRecipe>
   }
   
   @Override
-  public void draw(HydratingRecipe recipe, double mouseX, double mouseY)
+  public void draw(HydratingRecipe recipe, MatrixStack stack, double mouseX, double mouseY)
   {
     int x = halfX - 8;
     int y = halfY - 8;
-    HydratorScreen.PROGRESS.render(x, y);
-    progress.draw(x, y);
+    HydratorScreen.PROGRESS.render(stack, x, y);
+    progress.draw(stack, x, y);
     energyBar.storage.setEnergy(recipe.powerCost);
     energyBar.update();
-    energyBar.draw(0, 0);
+    energyBar.draw(stack, 0, 0);
   
     setFluidAmount(recipe.waterCost);
     fluidBar.update();
     fluidBar.setLocation(background.get().getWidth() - fluidBar.getWidth() - 2, 0);
-    fluidBar.draw(0, 0);
+    fluidBar.draw(stack, 0, 0);
   }
   
   @Override
-  public List<String> getTooltipStrings(HydratingRecipe recipe, double mouseX, double mouseY)
+  public List<ITextComponent> getTooltipStrings(HydratingRecipe recipe, double mouseX, double mouseY)
   {
     energyBar.storage.setEnergy(recipe.powerCost);
     energyBar.update();
@@ -102,11 +105,11 @@ public class HydratingCategory extends AbstractRecipeCategory<HydratingRecipe>
   
     if (energyBar.isHover((int) mouseX, (int) mouseY))
     {
-      return energyBar.getTooltip();
+      return TextComponentBuilder.strings(energyBar.getTooltip());
     }
     else if (fluidBar.isHover((int) mouseX, (int) mouseY))
     {
-      return fluidBar.getTooltip();
+      return TextComponentBuilder.strings(fluidBar.getTooltip());
     }
     
     return Collections.emptyList();

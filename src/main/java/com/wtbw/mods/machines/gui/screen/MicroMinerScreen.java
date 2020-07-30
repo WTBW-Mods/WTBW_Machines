@@ -1,6 +1,7 @@
 package com.wtbw.mods.machines.gui.screen;
 
 import com.google.common.base.Strings;
+import com.mojang.blaze3d.matrix.MatrixStack;
 import com.wtbw.mods.lib.gui.screen.BaseContainerScreen;
 import com.wtbw.mods.machines.gui.container.MicroMinerContainer;
 import com.wtbw.mods.machines.tile.micro_miner.MicroMinerTile;
@@ -41,9 +42,9 @@ public class MicroMinerScreen extends BaseContainerScreen<MicroMinerContainer>
   }
   
   @Override
-  protected void drawGuiContainerBackgroundLayer(float partialTicks, int mouseX, int mouseY)
+  protected void drawGuiContainerBackgroundLayer(MatrixStack stack, float partialTicks, int mouseX, int mouseY)
   {
-    defaultGui();
+    defaultGui(stack);
     
     int screenX = guiLeft + 10;
     int screenY = guiTop + 15;
@@ -52,12 +53,12 @@ public class MicroMinerScreen extends BaseContainerScreen<MicroMinerContainer>
     int screenR = screenX + screenW;
     int screenB = screenY + screenH;
     
-    drawRect(screenX, screenY, screenW, screenH, 0xff000000);
+    drawRect(stack, screenX, screenY, screenW, screenH, 0xff000000);
   
     
     if (info.size() == 0)
     {
-      drawStringNoShadow("Loading" + Strings.repeat(".", (tick / 10) % 4), screenX + 2, screenY + 2, 0xff00cc00);
+      drawStringNoShadow(stack,"Loading" + Strings.repeat(".", (tick / 10) % 4), screenX + 2, screenY + 2, 0xff00cc00);
     }
     else
     {
@@ -66,7 +67,7 @@ public class MicroMinerScreen extends BaseContainerScreen<MicroMinerContainer>
       int ySpacing = font.FONT_HEIGHT + 2;
       for (String line : info)
       {
-        drawStringNoShadow(line, x, y, 0xff00cc00);
+        drawStringNoShadow(stack, line, x, y, 0xff00cc00);
         y += ySpacing;
       }
     }

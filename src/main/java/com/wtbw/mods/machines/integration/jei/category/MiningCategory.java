@@ -1,8 +1,10 @@
 package com.wtbw.mods.machines.integration.jei.category;
 
+import com.mojang.blaze3d.matrix.MatrixStack;
 import com.wtbw.mods.lib.gui.util.EnergyBar;
 import com.wtbw.mods.lib.gui.util.FluidBar;
 import com.wtbw.mods.lib.tile.util.energy.BaseEnergyStorage;
+import com.wtbw.mods.lib.util.TextComponentBuilder;
 import com.wtbw.mods.machines.ClientConstants;
 import com.wtbw.mods.machines.block.ModBlocks;
 import com.wtbw.mods.machines.recipe.MiningRecipe;
@@ -14,6 +16,7 @@ import mezz.jei.api.ingredients.IIngredients;
 import net.minecraft.fluid.Fluids;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.text.ITextComponent;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.capability.templates.FluidTank;
 
@@ -68,29 +71,29 @@ public class MiningCategory extends AbstractRecipeCategory<MiningRecipe>
   }
   
   @Override
-  public void draw(MiningRecipe recipe, double mouseX, double mouseY)
+  public void draw(MiningRecipe recipe, MatrixStack stack, double mouseX, double mouseY)
   {
     updateEnergy(recipe);
-    energyBar.draw();
+    energyBar.draw(stack);
   
     updateCoolant(recipe);
     fluidBar.setLocation(energyBar.getWidth() + 2, 0);
-    fluidBar.draw();
+    fluidBar.draw(stack);
   }
   
   @Override
-  public List<String> getTooltipStrings(MiningRecipe recipe, double mouseX, double mouseY)
+  public List<ITextComponent> getTooltipStrings(MiningRecipe recipe, double mouseX, double mouseY)
   {
     if (energyBar.isHover((int) mouseX, (int) mouseY))
     {
       updateEnergy(recipe);
-      return energyBar.getTooltip();
+      return TextComponentBuilder.strings(energyBar.getTooltip());
     }
     
     if (fluidBar.isHover((int) mouseX, (int) mouseY))
     {
       updateCoolant(recipe);
-      return fluidBar.getTooltip();
+      return TextComponentBuilder.strings(fluidBar.getTooltip());
     }
     
     return Collections.emptyList();

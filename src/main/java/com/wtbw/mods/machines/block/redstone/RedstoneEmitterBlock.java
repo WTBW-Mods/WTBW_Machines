@@ -72,11 +72,13 @@ public class RedstoneEmitterBlock extends Block
           }
           else
           {
-            newState = state.cycle(POWER);
+            newState = state.func_235896_a_(POWER);
+//            newState = state.cycle(POWER);
           }
         
           world.setBlockState(pos, newState, 4);
-          world.notifyNeighbors(pos, this);
+          world.notifyNeighborsOfStateChange(pos, this);
+          
           return ActionResultType.SUCCESS;
         }
       }

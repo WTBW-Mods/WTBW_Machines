@@ -290,11 +290,11 @@ public class QuarryTileEntity extends TileEntity implements ITickableTileEntity,
   
   
   @Override
-  public void read(CompoundNBT compound)
+  public void read(BlockState state, CompoundNBT compound)
   {
     nbtManager.read(compound);
     
-    super.read(compound);
+    super.read(state, compound);
   }
   
   @Override

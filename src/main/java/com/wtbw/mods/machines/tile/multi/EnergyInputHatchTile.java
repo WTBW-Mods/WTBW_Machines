@@ -6,6 +6,7 @@ import com.wtbw.mods.lib.tile.util.energy.BaseEnergyStorage;
 import com.wtbw.mods.lib.util.nbt.NBTManager;
 import com.wtbw.mods.machines.gui.container.EnergyInputHatchContainer;
 import com.wtbw.mods.machines.tile.ModTiles;
+import net.minecraft.block.BlockState;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.container.Container;
@@ -50,10 +51,10 @@ public class EnergyInputHatchTile extends TileEntity implements IWTBWNamedContai
   }
   
   @Override
-  public void read(CompoundNBT compound)
+  public void read(BlockState state, CompoundNBT compound)
   {
     manager.read(compound);
-    super.read(compound);
+    super.read(state, compound);
   }
   
   @Override

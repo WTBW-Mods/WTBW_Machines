@@ -2,6 +2,7 @@ package com.wtbw.mods.machines.tile.base.multi;
 
 import net.minecraft.block.Block;
 import net.minecraft.tags.BlockTags;
+import net.minecraft.tags.ITag;
 import net.minecraft.tags.Tag;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.registry.Registry;
@@ -12,7 +13,7 @@ import net.minecraft.util.registry.Registry;
 public class BlockValidator
 {
   private Block block;
-  private Tag<Block> tag;
+  private ITag<Block> tag;
   private ResourceLocation tagLocation;
   
   public BlockValidator(Block block)
@@ -20,7 +21,7 @@ public class BlockValidator
     this.block = block;
   }
   
-  public BlockValidator(Tag<Block> tag)
+  public BlockValidator(ITag<Block> tag)
   {
     this.tag = tag;
   }
@@ -48,7 +49,7 @@ public class BlockValidator
     return block;
   }
   
-  public Tag<Block> getTag()
+  public ITag<Block> getTag()
   {
     return tag;
   }

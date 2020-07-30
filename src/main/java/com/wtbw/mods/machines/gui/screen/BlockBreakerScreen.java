@@ -1,6 +1,7 @@
 package com.wtbw.mods.machines.gui.screen;
 
 
+import com.mojang.blaze3d.matrix.MatrixStack;
 import com.wtbw.mods.lib.gui.screen.BaseContainerScreen;
 import com.wtbw.mods.lib.gui.util.GuiUtil;
 import com.wtbw.mods.lib.gui.util.RedstoneButton;
@@ -31,9 +32,9 @@ public class BlockBreakerScreen extends BaseContainerScreen<BlockBreakerContaine
   }
   
   @Override
-  protected void drawGuiContainerBackgroundLayer(float partialTicks, int mouseX, int mouseY)
+  protected void drawGuiContainerBackgroundLayer(MatrixStack stack, float partialTicks, int mouseX, int mouseY)
   {
-    defaultGui();
+    defaultGui(stack);
 //    GuiUtil.renderTexture(guiLeft - 21, guiTop, xSize + 21, ySize, 0, 0, 256, 256, GUI);
 //    String blockName = new TranslationTextComponent("block.wtbw_machines.block_breaker").getUnformattedComponentText();
 //    this.font.drawString(blockName, guiLeft + 8, guiTop + 6, 0xff404040);

@@ -1,7 +1,9 @@
 package com.wtbw.mods.machines.integration.jei.category;
 
+import com.mojang.blaze3d.matrix.MatrixStack;
 import com.wtbw.mods.lib.gui.util.EnergyBar;
 import com.wtbw.mods.lib.tile.util.energy.BaseEnergyStorage;
+import com.wtbw.mods.lib.util.TextComponentBuilder;
 import com.wtbw.mods.machines.ClientConstants;
 import com.wtbw.mods.machines.WTBWMachines;
 import com.wtbw.mods.machines.block.ModBlocks;
@@ -16,6 +18,7 @@ import mezz.jei.api.helpers.IGuiHelper;
 import mezz.jei.api.ingredients.IIngredients;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.text.ITextComponent;
 
 import java.util.Collections;
 import java.util.List;
@@ -71,19 +74,19 @@ public class PoweredFurnaceCategory extends AbstractRecipeCategory<PoweredFurnac
   }
   
   @Override
-  public void draw(PoweredFurnaceRecipe recipe, double mouseX, double mouseY)
+  public void draw(PoweredFurnaceRecipe recipe, MatrixStack stack, double mouseX, double mouseY)
   {
-    PoweredFurnaceScreen.ICONS.getSprite(34, 0, 14, 14).render(halfX - 7, halfY - 7);
-    progress.draw(halfX - 7, halfY - 7);
+    PoweredFurnaceScreen.ICONS.getSprite(34, 0, 14, 14).render(stack, halfX - 7, halfY - 7);
+    progress.draw(stack, halfX - 7, halfY - 7);
     energyBar.storage.setEnergy(recipe.powerCost);
     energyBar.update();
-    energyBar.draw(0, 0);
+    energyBar.draw(stack, 0, 0);
   }
 
   @Override
-  public List<String> getTooltipStrings(PoweredFurnaceRecipe recipe, double mouseX, double mouseY) {
+  public List<ITextComponent> getTooltipStrings(PoweredFurnaceRecipe recipe, double mouseX, double mouseY) {
     energyBar.storage.setEnergy(recipe.powerCost);
     energyBar.update();
-    return energyBar.isHover((int) mouseX, (int) mouseY) ? energyBar.getTooltip() : Collections.emptyList();
+    return energyBar.isHover((int) mouseX, (int) mouseY) ? TextComponentBuilder.strings(energyBar.getTooltip()) : Collections.emptyList();
   }
 }

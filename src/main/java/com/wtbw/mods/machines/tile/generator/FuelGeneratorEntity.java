@@ -8,6 +8,7 @@ import com.wtbw.mods.lib.util.Utilities;
 import com.wtbw.mods.machines.gui.container.FuelGeneratorContainer;
 import com.wtbw.mods.machines.tile.ModTiles;
 import com.wtbw.mods.machines.tile.base.Generator;
+import net.minecraft.block.BlockState;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.container.Container;
@@ -142,9 +143,9 @@ public class FuelGeneratorEntity extends Generator implements IWTBWNamedContaine
   }
   
   @Override
-  public void read(CompoundNBT compound)
+  public void read(BlockState state, CompoundNBT compound)
   {
-    super.read(compound);
+    super.read(state, compound);
   }
   
   @Override

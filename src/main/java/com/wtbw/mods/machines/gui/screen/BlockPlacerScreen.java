@@ -1,6 +1,7 @@
 package com.wtbw.mods.machines.gui.screen;
 
 
+import com.mojang.blaze3d.matrix.MatrixStack;
 import com.wtbw.mods.lib.gui.screen.BaseContainerScreen;
 import com.wtbw.mods.lib.gui.util.GuiUtil;
 import com.wtbw.mods.lib.gui.util.RedstoneButton;
@@ -31,8 +32,8 @@ public class BlockPlacerScreen extends BaseContainerScreen<BlockPlacerContainer>
   }
   
   @Override
-  protected void drawGuiContainerBackgroundLayer(float partialTicks, int mouseX, int mouseY)
+  protected void drawGuiContainerBackgroundLayer(MatrixStack stack, float partialTicks, int mouseX, int mouseY)
   {
-    defaultGui();
+    defaultGui(stack);
   }
 }

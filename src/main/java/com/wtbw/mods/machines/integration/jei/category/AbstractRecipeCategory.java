@@ -1,5 +1,6 @@
 package com.wtbw.mods.machines.integration.jei.category;
 
+import com.mojang.blaze3d.matrix.MatrixStack;
 import com.wtbw.mods.lib.util.Cache;
 import com.wtbw.mods.machines.WTBWMachines;
 import mezz.jei.api.gui.IRecipeLayout;
@@ -88,6 +89,6 @@ public abstract class AbstractRecipeCategory<T> implements IRecipeCategory<T>
   public abstract void setRecipe(IRecipeLayout recipeLayout, T recipe, IIngredients ingredients);
   
   @Override
-  public abstract void draw(T recipe, double mouseX, double mouseY);
+  public abstract void draw(T recipe, MatrixStack stack, double mouseX, double mouseY);
   
 }

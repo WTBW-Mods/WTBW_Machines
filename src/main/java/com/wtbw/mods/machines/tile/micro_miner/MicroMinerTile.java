@@ -19,6 +19,7 @@ import com.wtbw.mods.machines.tile.base.multi.MultiBlockPattern;
 import com.wtbw.mods.machines.tile.multi.EnergyInputHatchTile;
 import com.wtbw.mods.machines.tile.multi.FluidInputHatchTile;
 import com.wtbw.mods.machines.tile.multi.ItemOutputHatchTile;
+import net.minecraft.block.BlockState;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
@@ -310,10 +311,10 @@ public class MicroMinerTile extends BaseMachineEntity
   }
   
   @Override
-  public void read(CompoundNBT compound)
+  public void read(BlockState state, CompoundNBT compound)
   {
     manager.read(compound);
-    super.read(compound);
+    super.read(state, compound);
   }
   
   @Override

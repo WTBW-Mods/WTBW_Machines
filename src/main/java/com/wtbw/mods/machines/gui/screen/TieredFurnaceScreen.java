@@ -1,6 +1,7 @@
 package com.wtbw.mods.machines.gui.screen;
 
 
+import com.mojang.blaze3d.matrix.MatrixStack;
 import com.wtbw.mods.lib.gui.screen.BaseContainerScreen;
 import com.wtbw.mods.lib.gui.util.GuiUtil;
 import com.wtbw.mods.machines.gui.container.TieredFurnaceContainer;
@@ -29,7 +30,7 @@ public class TieredFurnaceScreen extends BaseContainerScreen<TieredFurnaceContai
   }
   
   @Override
-  protected void drawGuiContainerBackgroundLayer(float partialTicks, int mouseX, int mouseY)
+  protected void drawGuiContainerBackgroundLayer(MatrixStack stack, float partialTicks, int mouseX, int mouseY)
   {
 //    GlStateManager.color4f(1, 1, 1, 1);
 //    minecraft.getTextureManager().bindTexture(GUI);
@@ -37,21 +38,22 @@ public class TieredFurnaceScreen extends BaseContainerScreen<TieredFurnaceContai
     int yp = guiTop;
     
 //    blit(xp, yp, 0, 0, xSize, ySize);
-    GuiUtil.renderTexture(xp, yp, xSize, ySize, 0, 0, 256, 256, GUI);
+    GuiUtil.renderTexture(stack, xp, yp, xSize, ySize, 0, 0, 256, 256, GUI);
     if (furnace.isBurning())
     {
       float progress = furnace.getBurnTime() / (float) furnace.getBurnTimeTotal();
       int l = (int) (progress * 14);
-      GuiUtil.renderTexture(xp + 56, yp + 36 + 12 - l, 14, l + 1, 176, 12 - l, 256, 256, GUI);
+      GuiUtil.renderTexture(stack, xp + 56, yp + 36 + 12 - l, 14, l + 1, 176, 12 - l, 256, 256, GUI);
 //      blit(xp + 56, yp + 36 + 12 - l, 176, 12 - l, 14, l + 1);
     }
     
     float progress = furnace.getCookTime() / (float) furnace.getCookTimeTotal();
     int l = (int) (progress * 24);
-    GuiUtil.renderTexture(xp + 79, yp + 34, l + 1, 16, 176, 14, 256, 256, GUI);
+    GuiUtil.renderTexture(stack, xp + 79, yp + 34, l + 1, 16, 176, 14, 256, 256, GUI);
 //    this.blit(xp + 79, yp + 34, 176, 14, l + 1, 16);
-    String blockName = new TranslationTextComponent("block.wtbw_machines." + this.furnace.getDisplayName().getFormattedText()).getUnformattedComponentText();
-    this.font.drawString(blockName, guiLeft + 8, guiTop + 6, 0xff404040);
-    this.font.drawString(this.playerInventory.getDisplayName().getFormattedText(), guiLeft + 8, guiTop + 73, 0xff404040);
+    // todo: check if correct
+    String blockName = new TranslationTextComponent("block.wtbw_machines." + this.furnace.getDisplayName().getUnformattedComponentText()).getUnformattedComponentText();
+    this.font.drawString(stack, blockName, guiLeft + 8, guiTop + 6, 0xff404040);
+    this.font.drawString(stack, this.playerInventory.getDisplayName().getUnformattedComponentText(), guiLeft + 8, guiTop + 73, 0xff404040);
   }
 }

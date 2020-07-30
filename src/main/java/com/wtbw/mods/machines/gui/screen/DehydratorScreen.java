@@ -1,5 +1,6 @@
 package com.wtbw.mods.machines.gui.screen;
 
+import com.mojang.blaze3d.matrix.MatrixStack;
 import com.wtbw.mods.lib.gui.screen.BaseContainerScreen;
 import com.wtbw.mods.lib.gui.screen.BaseUpgradeScreen;
 import com.wtbw.mods.lib.gui.util.EnergyBar;
@@ -62,11 +63,11 @@ public class DehydratorScreen extends BaseUpgradeScreen<DehydratorContainer>
   }
   
   @Override
-  protected void drawGuiBackgroundLayer(float partialTicks, int mouseX, int mouseY)
+  protected void drawGuiBackgroundLayer(MatrixStack stack, float partialTicks, int mouseX, int mouseY)
   {
-    defaultGui();
+    defaultGui(stack);
   
-    progressBar.draw();
-    energyBar.draw();
+    progressBar.draw(stack);
+    energyBar.draw(stack);
   }
 }

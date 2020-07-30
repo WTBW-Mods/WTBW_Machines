@@ -1,5 +1,6 @@
 package com.wtbw.mods.machines.gui.screen;
 
+import com.mojang.blaze3d.matrix.MatrixStack;
 import com.wtbw.mods.lib.gui.screen.BaseContainerScreen;
 import com.wtbw.mods.lib.gui.util.EnergyBar;
 import com.wtbw.mods.machines.gui.container.SolarPanelContainer;
@@ -38,10 +39,10 @@ public class SolarPanelScreen extends BaseContainerScreen<SolarPanelContainer>
   }
   
   @Override
-  protected void drawGuiContainerBackgroundLayer(float partialTicks, int mouseX, int mouseY)
+  protected void drawGuiContainerBackgroundLayer(MatrixStack stack, float partialTicks, int mouseX, int mouseY)
   {
-    defaultGui();
-    energyBar.draw();
+    defaultGui(stack);
+    energyBar.draw(stack);
     
     int gen = container.tileEntity.getGenerate();
     if (!container.tileEntity.canGenerate())
@@ -49,6 +50,6 @@ public class SolarPanelScreen extends BaseContainerScreen<SolarPanelContainer>
       gen = 0;
     }
     
-    drawString(font, "Producing: " + gen, guiLeft + 50, guiTop + 20, 0xffffffff);
+    drawString(stack, font, "Producing: " + gen, guiLeft + 50, guiTop + 20, 0xffffffff);
   }
 }

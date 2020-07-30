@@ -410,7 +410,7 @@ public class BaseFurnaceTileEntity extends TileEntity implements ITickableTileEn
 //  cookTime;
 //  cookTimeTotal
   @Override
-  public void read(CompoundNBT compound)
+  public void read(BlockState state, CompoundNBT compound)
   {
     burnTime = NBTHelper.getInt(compound, "burnTime");
     burnTimeTotal = NBTHelper.getInt(compound, "burnTimeTotal");
@@ -426,7 +426,7 @@ public class BaseFurnaceTileEntity extends TileEntity implements ITickableTileEn
     fuelHandler.ifPresent(handler -> handler.deserializeNBT(NBTHelper.getCompound(compound, "fuel")));
     outputHandler.ifPresent(handler -> handler.deserializeNBT(NBTHelper.getCompound(compound, "chanceMap")));
 
-    super.read(compound);
+    super.read(state, compound);
   }
 
   @Override

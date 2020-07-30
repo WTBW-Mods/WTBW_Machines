@@ -9,6 +9,7 @@ import com.wtbw.mods.lib.util.StackUtil;
 import com.wtbw.mods.lib.util.Utilities;
 import com.wtbw.mods.lib.util.nbt.NBTManager;
 import com.wtbw.mods.machines.block.base.BaseMachineBlock;
+import net.minecraft.block.BlockState;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.IRecipe;
 import net.minecraft.nbt.CompoundNBT;
@@ -72,10 +73,10 @@ public abstract class BaseMachineEntity extends TileEntity implements ITickableT
   }
   
   @Override
-  public void read(CompoundNBT compound)
+  public void read(BlockState state, CompoundNBT compound)
   {
     manager.read(compound);
-    super.read(compound);
+    super.read(state, compound);
   }
   
   @Override

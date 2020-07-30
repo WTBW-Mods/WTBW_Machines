@@ -3,13 +3,15 @@ package com.wtbw.mods.machines.tile;
 import com.wtbw.mods.machines.config.CommonConfig;
 import com.wtbw.mods.lib.util.nbt.NBTHelper;
 import com.wtbw.mods.lib.util.Utilities;
+import net.minecraft.block.BlockState;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.tileentity.ITickableTileEntity;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.math.AxisAlignedBB;
-import net.minecraft.util.math.Vec3d;
+import net.minecraft.util.math.vector.Vector3d;
+
 
 import java.util.List;
 
@@ -36,7 +38,7 @@ public class EntityPusherTileEntity extends TileEntity implements ITickableTileE
   
   public final PushMode pushMode;
   private AxisAlignedBB bbox;
-  private Vec3d vecPos;
+  private Vector3d vecPos;
   
   private int tickCount = 0;
   
@@ -61,7 +63,7 @@ public class EntityPusherTileEntity extends TileEntity implements ITickableTileE
       
       if (vecPos == null)
       {
-        vecPos = Utilities.getVec3d(pos).add(.5, .5, .5);
+        vecPos = Utilities.getVector3d(pos).add(.5, .5, .5);
       }
       
       if (tickCount % config.pusherTickRate.get() == 0)
@@ -85,17 +87,17 @@ public class EntityPusherTileEntity extends TileEntity implements ITickableTileE
   }
   
   
-  private Vec3d getMoveVector(Entity entity)
+  private Vector3d getMoveVector(Entity entity)
   {
     double strength = config.pusherStrength.get() * pushMode.multiplier;
     return vecPos.subtract(entity.getPositionVec()).normalize().mul(strength, strength, strength);
   }
   
   @Override
-  public void read(CompoundNBT compound)
+  public void read(BlockState state, CompoundNBT compound)
   {
     tickCount = NBTHelper.getInt(compound, "ticks");
-    super.read(compound);
+    super.read(state, compound);
   }
   
   @Override

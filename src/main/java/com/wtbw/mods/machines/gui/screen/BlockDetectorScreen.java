@@ -1,6 +1,8 @@
 package com.wtbw.mods.machines.gui.screen;
 
+
 import com.google.common.collect.ImmutableMap;
+import com.mojang.blaze3d.matrix.MatrixStack;
 import com.wtbw.mods.lib.gui.screen.BaseContainerScreen;
 import com.wtbw.mods.lib.gui.util.ClickType;
 import com.wtbw.mods.lib.gui.util.GuiUtil;
@@ -12,7 +14,8 @@ import net.minecraft.block.BlockState;
 import net.minecraft.client.gui.widget.button.Button;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.entity.player.PlayerInventory;
-import net.minecraft.state.IProperty;
+
+import net.minecraft.state.Property;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TranslationTextComponent;
@@ -39,9 +42,9 @@ public class BlockDetectorScreen extends BaseContainerScreen<BlockDetectorContai
   {
     super.init();
   
-    currentButton = addButton(new Button(guiLeft + 80, guiTop + 4, 50, 22, I18n.format("wtbw_machines.gui.current"),
+    currentButton = addButton(new Button(guiLeft + 80, guiTop + 4, 50, 22, new TranslationTextComponent("wtbw_machines.gui.current"),
       button -> GuiUtil.sendButton(BlockDetectorTileEntity.BUTTON_CURRENT, container.tileEntity.getPos(), ClickType.LEFT)));
-    matchButton = addButton(new Button(guiLeft + 80 + 50 + 1, guiTop + 4, 40, 22, I18n.format("wtbw_machines.gui.exact"),
+    matchButton = addButton(new Button(guiLeft + 80 + 50 + 1, guiTop + 4, 40, 22, new TranslationTextComponent("wtbw_machines.gui.exact"),
       button -> GuiUtil.sendButton(BlockDetectorTileEntity.BUTTON_MATCH, container.tileEntity.getPos(), ClickType.LEFT)));
     matchButton.setFGColor(container.tileEntity.isExactMatch() ? 0xff00ff00 : 0xffff0000);
   }
@@ -57,32 +60,34 @@ public class BlockDetectorScreen extends BaseContainerScreen<BlockDetectorContai
   }
   
   @Override
-  protected void drawGuiContainerBackgroundLayer(float partialTicks, int mouseX, int mouseY)
+  protected void drawGuiContainerBackgroundLayer(MatrixStack stack, float partialTicks, int mouseX, int mouseY)
   {
 //    GuiUtil.renderTexture();
 //    fill(guiLeft, guiTop, guiLeft + xSize, guiTop + ySize, 0xff888888);
 //    drawString(font, "Target: " + container.tileEntity.getTarget().toString(), guiLeft + 10, guiTop + 10 + 22 + 1, 0xffffffff);
-    GuiUtil.renderTexture(guiLeft, guiTop, xSize, xSize, 0, 0, 256, 256, GUI);
-    drawBlockState(guiLeft + 10, guiTop + 35, container.tileEntity.getTarget());
+    GuiUtil.renderTexture(stack, guiLeft, guiTop, xSize, xSize, 0, 0, 256, 256, GUI);
+    drawBlockState(stack, guiLeft + 10, guiTop + 35, container.tileEntity.getTarget());
     String blockName = new TranslationTextComponent("block.wtbw_machines.block_detector").getUnformattedComponentText();
-    this.font.drawString(blockName, guiLeft + 5, guiTop + 6, 0xff404040);
+    this.font.drawString(stack, blockName, guiLeft + 5, guiTop + 6, 0xff404040);
 //    drawString(font, container.tileEntity.getPower() + "", guiLeft + 10, guiTop + ySize - 10, 0xff8888FF);
   }
   
-  private void drawBlockState(int x, int y, BlockState state)
+  private void drawBlockState(MatrixStack stack, int x, int y, BlockState state)
   {
     Block block = state.getBlock();
-    drawString(font, I18n.format(block.getTranslationKey()), x, y, 0xffffffff);
-    ImmutableMap<IProperty<?>, Comparable<?>> values = state.getValues();
+    drawString(stack, font, I18n.format(block.getTranslationKey()), x, y, 0xffffffff);
+    
+    
+    ImmutableMap<Property<?>, Comparable<?>> values = state.getValues();
     int yp = y + 10;
     int xp = x + 10;
-    for(Map.Entry<IProperty<?>, Comparable<?>> entry : values.entrySet())
+    for(Map.Entry<Property<?>, Comparable<?>> entry : values.entrySet())
     {
-      IProperty<?> property = entry.getKey();
+      Property<?> property = entry.getKey();
       String name = property.getName();
       String value = BufferHelper.getName(property, entry.getValue());
       
-      drawString(font, name + "=" + value, xp, yp, 0xffffffff);
+      drawString(stack, font, name + "=" + value, xp, yp, 0xffffffff);
       yp += 10;
     }
   }

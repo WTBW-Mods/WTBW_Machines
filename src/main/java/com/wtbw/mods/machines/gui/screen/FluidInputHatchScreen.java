@@ -1,5 +1,6 @@
 package com.wtbw.mods.machines.gui.screen;
 
+import com.mojang.blaze3d.matrix.MatrixStack;
 import com.wtbw.mods.lib.gui.screen.BaseContainerScreen;
 import com.wtbw.mods.lib.gui.util.ClickType;
 import com.wtbw.mods.lib.gui.util.FluidBar;
@@ -12,6 +13,7 @@ import net.minecraft.client.gui.widget.button.Button;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.util.text.ITextComponent;
+import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraftforge.fml.client.gui.GuiUtils;
 
 /*
@@ -44,7 +46,7 @@ public class FluidInputHatchScreen extends BaseContainerScreen<FluidInputHatchCo
     
     String clearString = I18n.format(ClientConstants.Gui.getKey("clear_fluids"));
     int w = font.getStringWidth(clearString) + 4;
-    clearButton = new Button(guiLeft + xSize - w - 4, guiTop + 60, w, 20, clearString,
+    clearButton = new Button(guiLeft + xSize - w - 4, guiTop + 60, w, 20, new TranslationTextComponent(clearString),
       p -> GuiUtil.sendButton(FluidInputHatchTile.BUTTON_CLEAR_FLUID, container.tileEntity.getPos(), ClickType.LEFT));
     
     addButton(clearButton);
@@ -62,14 +64,14 @@ public class FluidInputHatchScreen extends BaseContainerScreen<FluidInputHatchCo
   }
   
   @Override
-  protected void drawGuiContainerBackgroundLayer(float partialTicks, int mouseX, int mouseY)
+  protected void drawGuiContainerBackgroundLayer(MatrixStack stack, float partialTicks, int mouseX, int mouseY)
   {
-    defaultGui();
+    defaultGui(stack);
     if (fluidBar != null)
     {
-      fluidBar.draw();
+      fluidBar.draw(stack);
     }
 
-    BUCKET_FILL_ICON.render(guiLeft + 40 + 2, guiTop + 17 + 18);
+    BUCKET_FILL_ICON.render(stack, guiLeft + 40 + 2, guiTop + 17 + 18);
   }
 }

@@ -1,5 +1,6 @@
 package com.wtbw.mods.machines.gui.screen;
 
+import com.mojang.blaze3d.matrix.MatrixStack;
 import com.wtbw.mods.lib.gui.screen.BaseContainerScreen;
 import com.wtbw.mods.lib.network.Networking;
 import com.wtbw.mods.machines.gui.container.XpPylonContainer;
@@ -9,6 +10,7 @@ import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.gui.widget.button.Button;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.util.text.ITextComponent;
+import net.minecraft.util.text.StringTextComponent;
 
 /*
   @author: Naxanria
@@ -34,8 +36,8 @@ public class XpPylonScreen extends BaseContainerScreen<XpPylonContainer>
   {
     super.init();
     
-    addButton(insert = new Button(guiLeft + 10, guiTop + 50, 24, 20, "/\\", press -> insert()));
-    addButton(extract = new Button(guiLeft + xSize - 10 - 24, guiTop + 50, 24, 20, "\\/", press -> extract()));
+    addButton(insert = new Button(guiLeft + 10, guiTop + 50, 24, 20, new StringTextComponent("/\\"), press -> insert()));
+    addButton(extract = new Button(guiLeft + xSize - 10 - 24, guiTop + 50, 24, 20, new StringTextComponent("\\/"), press -> extract()));
   }
   
   private int amount()
@@ -76,10 +78,10 @@ public class XpPylonScreen extends BaseContainerScreen<XpPylonContainer>
   }
   
   @Override
-  protected void drawGuiContainerBackgroundLayer(float partialTicks, int mouseX, int mouseY)
+  protected void drawGuiContainerBackgroundLayer(MatrixStack stack, float partialTicks, int mouseX, int mouseY)
   {
-    defaultGui();
+    defaultGui(stack);
     
-    drawString(font, "XP: " + xp + " levels: " + levels + " xpLeft: " + xpLeftOver, guiLeft + 20, guiTop + ySize - 20, 0xff808080);
+    drawString(stack, font, "XP: " + xp + " levels: " + levels + " xpLeft: " + xpLeftOver, guiLeft + 20, guiTop + ySize - 20, 0xff808080);
   }
 }

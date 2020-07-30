@@ -1,5 +1,6 @@
 package com.wtbw.mods.machines.gui.screen;
 
+import com.mojang.blaze3d.matrix.MatrixStack;
 import com.wtbw.mods.lib.gui.screen.BaseContainerScreen;
 import com.wtbw.mods.lib.gui.util.EnergyBar;
 import com.wtbw.mods.machines.gui.container.BatteryContainer;
@@ -39,9 +40,9 @@ public class BatteryScreen extends BaseContainerScreen<BatteryContainer>
   }
   
   @Override
-  protected void drawGuiContainerBackgroundLayer(float partialTicks, int mouseX, int mouseY)
+  protected void drawGuiContainerBackgroundLayer(MatrixStack stack, float partialTicks, int mouseX, int mouseY)
   {
-    defaultGui();
-    energyBar.draw();
+    defaultGui(stack);
+    energyBar.draw(stack);
   }
 }

@@ -19,11 +19,10 @@ import net.minecraft.util.*;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.BlockRayTraceResult;
 import net.minecraft.world.World;
-import net.minecraft.world.storage.loot.LootContext;
+
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
-import java.util.List;
 import java.util.Random;
 
 /*
@@ -59,19 +58,12 @@ public class BaseFurnaceBlock<TE extends TileEntity> extends BaseTileBlock<TE>
     return state.rotate(mirrorIn.toRotation(state.get(FACING)));
   }
 
-  @Override
-  public List<ItemStack> getDrops(BlockState state, LootContext.Builder builder)
-  {
-    return super.getDrops(state, builder);
-  }
-
   protected void fillStateContainer(StateContainer.Builder<Block, BlockState> builder)
   {
     builder.add(FACING, LIT);
   }
-
-  @Override
-  public int getLightValue(BlockState state)
+  
+  public static int getLightValue(BlockState state)
   {
     return state.get(LIT) ? 13 : 0;
   }

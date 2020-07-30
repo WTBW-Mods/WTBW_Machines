@@ -1,5 +1,6 @@
 package com.wtbw.mods.machines.gui.screen;
 
+import com.mojang.blaze3d.matrix.MatrixStack;
 import com.wtbw.mods.lib.gui.screen.BaseContainerScreen;
 import com.wtbw.mods.machines.WTBWMachines;
 import com.wtbw.mods.machines.gui.container.VacuumChestContainer;
@@ -30,11 +31,11 @@ public class VacuumChestScreen extends BaseContainerScreen<VacuumChestContainer>
   }
   
   @Override
-  protected void drawGuiContainerBackgroundLayer(float partialTicks, int mouseX, int mouseY)
+  protected void drawGuiContainerBackgroundLayer(MatrixStack stack, float partialTicks, int mouseX, int mouseY)
   {
-    GuiUtil.renderTexture(guiLeft - 22, guiTop, xSize + 22, ySize, 0, 0, 256, 256, GUI);
+    GuiUtil.renderTexture(stack, guiLeft - 22, guiTop, xSize + 22, ySize, 0, 0, 256, 256, GUI);
     String blockName = new TranslationTextComponent("block.wtbw_machines.vacuum_chest").getUnformattedComponentText();
-    this.font.drawString(blockName, guiLeft + 8, guiTop + 6, 0xff404040);
-    this.font.drawString(this.playerInventory.getDisplayName().getFormattedText(), guiLeft + 8, guiTop + 73, 0xff404040);
+    this.font.drawString(stack, blockName, guiLeft + 8, guiTop + 6, 0xff404040);
+    this.font.drawString(stack, this.playerInventory.getDisplayName().getUnformattedComponentText(), guiLeft + 8, guiTop + 73, 0xff404040);
   }
 }

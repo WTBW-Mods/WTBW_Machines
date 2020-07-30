@@ -9,6 +9,7 @@ import com.wtbw.mods.lib.util.Utilities;
 import com.wtbw.mods.lib.util.nbt.NBTManager;
 import com.wtbw.mods.machines.gui.container.FluidInputHatchContainer;
 import com.wtbw.mods.machines.tile.ModTiles;
+import net.minecraft.block.BlockState;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.fluid.Fluid;
@@ -204,10 +205,10 @@ public class FluidInputHatchTile extends TileEntity implements IWTBWNamedContain
   }
   
   @Override
-  public void read(CompoundNBT compound)
+  public void read(BlockState state, CompoundNBT compound)
   {
     manager.read(compound);
-    super.read(compound);
+    super.read(state, compound);
   }
   
   @Override

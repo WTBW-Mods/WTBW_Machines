@@ -69,7 +69,7 @@ public class RedstoneTimerTileEntity extends TileEntity implements ITickableTile
     if (newPower != sendPower)
     {
       sendPower = newPower;
-      world.notifyNeighbors(pos, world.getBlockState(pos).getBlock());
+      world.notifyNeighborsOfStateChange(pos, world.getBlockState(pos).getBlock());
       world.setBlockState(pos, world.getBlockState(pos).with(RedstoneTimerBlock.ACTIVE, newPower > 0), 3);
       if (newPower > 0)
       {

@@ -58,13 +58,13 @@ public class BlockDetectorTileEntity extends TileEntity implements ITickableTile
   }
   
   @Override
-  public void read(CompoundNBT compound)
+  public void read(BlockState state, CompoundNBT compound)
   {
     target = NBTUtil.readBlockState(compound.getCompound("target"));
     power = compound.getInt("power");
     exactMatch = compound.getBoolean("exact");
     
-    super.read(compound);
+    super.read(state, compound);
   }
   
   @Override

@@ -12,6 +12,7 @@ import com.wtbw.mods.lib.util.nbt.NBTManager;
 import com.wtbw.mods.machines.config.CommonConfig;
 import com.wtbw.mods.machines.gui.container.ItemOutputHatchContainer;
 import com.wtbw.mods.machines.tile.ModTiles;
+import net.minecraft.block.BlockState;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.container.Container;
@@ -95,10 +96,10 @@ public class ItemOutputHatchTile extends TileEntity implements IContentHolder, I
   }
   
   @Override
-  public void read(CompoundNBT compound)
+  public void read(BlockState state, CompoundNBT compound)
   {
     manager.read(compound);
-    super.read(compound);
+    super.read(state, compound);
   }
   
   @Override

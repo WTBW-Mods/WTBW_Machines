@@ -1,5 +1,6 @@
 package com.wtbw.mods.machines.gui.screen;
 
+import com.mojang.blaze3d.matrix.MatrixStack;
 import com.wtbw.mods.lib.gui.screen.BaseContainerScreen;
 import com.wtbw.mods.lib.gui.util.EnergyBar;
 import com.wtbw.mods.lib.gui.util.ITooltipProvider;
@@ -56,20 +57,22 @@ public class FuelGeneratorScreen extends BaseContainerScreen<FuelGeneratorContai
     energyBar = getDefaultBar(tileEntity.getStorage());
     progressBar = new SpriteProgressBar(81, guiTop + 30, progressSprite, progressBackgroundSprite, tileEntity::getGenTime, tileEntity::getGenCounter);
     addTooltipProvider(energyBar);
-    addTooltipProvider(new TooltipRegion(guiLeft + 81, guiTop + 30, 14,14) {
+    addTooltipProvider(new TooltipRegion(guiLeft + 81, guiTop + 30, 14,14)
+    {
       @Override
-      public List<String> getTooltip() {
-        return Utilities.listOf( TextComponentBuilder.createTranslated("wtbw_machines.tooltip.burn_time", String.valueOf(tileEntity.getGenCounter())).build().getFormattedText());
+      public List<String> getTooltip()
+      {
+        return Utilities.listOf( TextComponentBuilder.createTranslated("wtbw_machines.tooltip.burn_time", String.valueOf(tileEntity.getGenCounter())).build().getUnformattedComponentText());
       }
     });
   }
   
   @Override
-  protected void drawGuiContainerBackgroundLayer(float partialTicks, int mouseX, int mouseY)
+  protected void drawGuiContainerBackgroundLayer(MatrixStack stack, float partialTicks, int mouseX, int mouseY)
   {
-    defaultGui();
-    energyBar.draw();
-    progressBackgroundSprite.render(guiLeft + 81, guiTop + 30);
-    progressBar.draw(guiLeft, 0);
+    defaultGui(stack);
+    energyBar.draw(stack);
+    progressBackgroundSprite.render(stack, guiLeft + 81, guiTop + 30);
+    progressBar.draw(stack, guiLeft, 0);
   }
 }

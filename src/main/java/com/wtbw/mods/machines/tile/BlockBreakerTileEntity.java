@@ -132,12 +132,12 @@ public class BlockBreakerTileEntity extends TileEntity implements ITickableTileE
   }
   
   @Override
-  public void read(CompoundNBT compound)
+  public void read(BlockState state, CompoundNBT compound)
   {
     control.deserializeNBT(compound.getCompound("control"));
     inventory.ifPresent(handler -> handler.deserializeNBT(compound.getCompound("inventory")));
     
-    super.read(compound);
+    super.read(state, compound);
   }
   
   @Override

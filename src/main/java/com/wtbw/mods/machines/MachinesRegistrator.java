@@ -57,10 +57,10 @@ public class MachinesRegistrator extends Registrator
   @Override
   protected void registerAllBlocks()
   {
-    register(new TieredFurnaceBlock(getBlockProperties(Material.IRON, 7), FurnaceTier.IRON), "iron_furnace");
-    register(new TieredFurnaceBlock(getBlockProperties(Material.IRON, 7), FurnaceTier.GOLD), "gold_furnace");
-    register(new TieredFurnaceBlock(getBlockProperties(Material.IRON, 7), FurnaceTier.DIAMOND), "diamond_furnace");
-    register(new TieredFurnaceBlock(getBlockProperties(Material.IRON, 7), FurnaceTier.END), "end_furnace");
+    register(new TieredFurnaceBlock(getBlockProperties(Material.IRON, 7).setLightLevel(BaseFurnaceBlock::getLightValue), FurnaceTier.IRON), "iron_furnace");
+    register(new TieredFurnaceBlock(getBlockProperties(Material.IRON, 7).setLightLevel(BaseFurnaceBlock::getLightValue), FurnaceTier.GOLD), "gold_furnace");
+    register(new TieredFurnaceBlock(getBlockProperties(Material.IRON, 7).setLightLevel(BaseFurnaceBlock::getLightValue), FurnaceTier.DIAMOND), "diamond_furnace");
+    register(new TieredFurnaceBlock(getBlockProperties(Material.IRON, 7).setLightLevel(BaseFurnaceBlock::getLightValue), FurnaceTier.END), "end_furnace");
   
     register(new RedstoneTimerBlock(getBlockProperties(Material.IRON, 4)), "redstone_timer");
     register(new RedstoneEmitterBlock(getBlockProperties(Material.IRON, 4)), "redstone_emitter");

@@ -1,5 +1,6 @@
 package com.wtbw.mods.machines.gui.screen;
 
+import com.mojang.blaze3d.matrix.MatrixStack;
 import com.wtbw.mods.lib.gui.screen.BaseContainerScreen;
 import com.wtbw.mods.lib.gui.util.ClickType;
 import com.wtbw.mods.lib.gui.util.GuiUtil;
@@ -11,6 +12,7 @@ import net.minecraft.client.gui.widget.button.Button;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.util.text.ITextComponent;
+import net.minecraft.util.text.StringTextComponent;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -39,7 +41,7 @@ public class ItemOutputHatchScreen extends BaseContainerScreen<ItemOutputHatchCo
   protected void init()
   {
     super.init();
-    autoEjectButton = new Button(guiLeft + 3, guiTop + 23, 20, 20, "E",
+    autoEjectButton = new Button(guiLeft + 3, guiTop + 23, 20, 20, new StringTextComponent("E"),
       p -> GuiUtil.sendButton(ItemOutputHatchTile.EJECT_TOGGLE_BUTTON, container.tileEntity.getPos(), ClickType.LEFT));
     setAutoEjectButtonColor();
     addButton(autoEjectButton);
@@ -70,8 +72,8 @@ public class ItemOutputHatchScreen extends BaseContainerScreen<ItemOutputHatchCo
   }
   
   @Override
-  protected void drawGuiContainerBackgroundLayer(float partialTicks, int mouseX, int mouseY)
+  protected void drawGuiContainerBackgroundLayer(MatrixStack stack, float partialTicks, int mouseX, int mouseY)
   {
-    defaultGui();
+    defaultGui(stack);
   }
 }

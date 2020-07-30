@@ -4,6 +4,7 @@ import com.wtbw.mods.lib.tile.util.energy.BaseEnergyStorage;
 import com.wtbw.mods.lib.util.nbt.Manager;
 import com.wtbw.mods.lib.util.nbt.NBTManager;
 import com.wtbw.mods.machines.tile.ModTiles;
+import net.minecraft.block.BlockState;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.tileentity.ITickableTileEntity;
 import net.minecraft.tileentity.TileEntity;
@@ -125,7 +126,7 @@ public class EnergyCableEntity extends TileEntity implements ITickableTileEntity
   }
   
   @Override
-  public void read(CompoundNBT compound)
+  public void read(BlockState state, CompoundNBT compound)
   {
     manager.read(compound);
     
@@ -136,7 +137,7 @@ public class EnergyCableEntity extends TileEntity implements ITickableTileEntity
       storage.setReceive(tier.transfer);
     }
     
-    super.read(compound);
+    super.read(state, compound);
   }
   
   @Override

@@ -1,5 +1,6 @@
 package com.wtbw.mods.machines.gui.screen;
 
+import com.mojang.blaze3d.matrix.MatrixStack;
 import com.wtbw.mods.lib.gui.screen.BaseContainerScreen;
 import com.wtbw.mods.lib.gui.screen.BaseUpgradeScreen;
 import com.wtbw.mods.lib.gui.util.EnergyBar;
@@ -71,12 +72,12 @@ public class CompressorScreen extends BaseUpgradeScreen<CompressorContainer>
   }
   
   @Override
-  protected void drawGuiBackgroundLayer(float partialTicks, int mouseX, int mouseY)
+  protected void drawGuiBackgroundLayer(MatrixStack stack, float partialTicks, int mouseX, int mouseY)
   {
-    defaultGui();
+    defaultGui(stack);
   
-    progressBarLeft.draw();
-    progressBarRight.draw();
-    energyBar.draw();
+    progressBarLeft.draw(stack);
+    progressBarRight.draw(stack);
+    energyBar.draw(stack);
   }
 }

@@ -1,5 +1,6 @@
 package com.wtbw.mods.machines.gui.screen;
 
+import com.mojang.blaze3d.matrix.MatrixStack;
 import com.wtbw.mods.lib.gui.screen.BaseUpgradeScreen;
 import com.wtbw.mods.lib.gui.util.EnergyBar;
 import com.wtbw.mods.lib.gui.util.RedstoneButton;
@@ -49,32 +50,32 @@ public class QuarryScreen extends BaseUpgradeScreen<QuarryContainer>
   }
   
   @Override
-  protected void drawGuiBackgroundLayer(float partialTicks, int mouseX, int mouseY)
+  protected void drawGuiBackgroundLayer(MatrixStack stack, float partialTicks, int mouseX, int mouseY)
   {
     int green = 0xff00B300;
     int textColor = 0xff404040;
   
     String mining = new TranslationTextComponent("wtbw_machines.gui.quarry.current_block").getUnformattedComponentText();
   
-    defaultGui();
+    defaultGui(stack);
   
-    energyBar.draw();
+    energyBar.draw(stack);
   
     int xp = guiLeft + 122;
     int yp = guiTop + 20;
   
     if (container.tileEntity.getCurrentPos() != null)
     {
-      this.font.drawString(mining, xp, yp, textColor);
+      this.font.drawString(stack, mining, xp, yp, textColor);
       if (container.tileEntity.getDone())
       {
-        this.font.drawString("Done", xp, yp + 9, green);
+        this.font.drawString(stack, "Done", xp, yp + 9, green);
       }
       else
       {
-        this.font.drawString("X: " + this.container.tileEntity.getCurrentPos().getX(), xp, yp + 9, textColor);
-        this.font.drawString("Y: " + this.container.tileEntity.getCurrentPos().getY(), xp, yp + 18, textColor);
-        this.font.drawString("Z: " + this.container.tileEntity.getCurrentPos().getZ(), xp, yp + 27, textColor);
+        this.font.drawString(stack, "X: " + this.container.tileEntity.getCurrentPos().getX(), xp, yp + 9, textColor);
+        this.font.drawString(stack, "Y: " + this.container.tileEntity.getCurrentPos().getY(), xp, yp + 18, textColor);
+        this.font.drawString(stack, "Z: " + this.container.tileEntity.getCurrentPos().getZ(), xp, yp + 27, textColor);
       }
     }
   }

@@ -11,6 +11,7 @@ import com.wtbw.mods.lib.util.nbt.NBTHelper;
 import com.wtbw.mods.lib.util.PlayEvent;
 import com.wtbw.mods.lib.util.StackUtil;
 import com.wtbw.mods.lib.util.Utilities;
+import net.minecraft.block.BlockState;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.item.ItemEntity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -24,7 +25,7 @@ import net.minecraft.tileentity.ITickableTileEntity;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.Direction;
 import net.minecraft.util.math.AxisAlignedBB;
-import net.minecraft.util.math.Vec3d;
+import net.minecraft.util.math.vector.Vector3d;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
 import net.minecraftforge.common.capabilities.Capability;
@@ -123,7 +124,7 @@ public class VacuumChestTileEntity extends TileEntity implements ITickableTileEn
                 if (stack == ItemStack.EMPTY)
                 {
                   entity.remove();
-                  PlayEvent.redstoneParticle(world, entity.getPositionVec(), new Vec3d(0, .1 * world.rand.nextDouble(), 0), 0xffffffff);
+                  PlayEvent.redstoneParticle(world, entity.getPositionVec(), new Vector3d(0, .1 * world.rand.nextDouble(), 0), 0xffffffff);
                 }
                 else
                 {
@@ -157,7 +158,7 @@ public class VacuumChestTileEntity extends TileEntity implements ITickableTileEn
   }
   
   @Override
-  public void read(CompoundNBT compound)
+  public void read(BlockState state, CompoundNBT compound)
   {
 //    tick = NBTHelper.getInt(compound, "tick");
 //
@@ -178,7 +179,7 @@ public class VacuumChestTileEntity extends TileEntity implements ITickableTileEn
     
     manager.read(compound);
     
-    super.read(compound);
+    super.read(state, compound);
   }
   
   @Override

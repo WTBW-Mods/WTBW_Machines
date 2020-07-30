@@ -1,5 +1,6 @@
 package com.wtbw.mods.machines.gui.screen;
 
+import com.mojang.blaze3d.matrix.MatrixStack;
 import com.wtbw.mods.lib.gui.screen.BaseUpgradeScreen;
 import com.wtbw.mods.lib.gui.util.EnergyBar;
 import com.wtbw.mods.lib.gui.util.FluidBar;
@@ -30,13 +31,13 @@ public class HydratorScreen extends BaseUpgradeScreen<HydratorContainer>
   }
   
   @Override
-  protected void drawGuiBackgroundLayer(float partialTicks, int mouseX, int mouseY)
+  protected void drawGuiBackgroundLayer(MatrixStack stack, float partialTicks, int mouseX, int mouseY)
   {
-    defaultGui();
+    defaultGui(stack);
     
-    progressBar.draw();
-    energyBar.draw();
-    waterBar.draw();
+    progressBar.draw(stack);
+    energyBar.draw(stack);
+    waterBar.draw(stack);
   }
   
   @Override
