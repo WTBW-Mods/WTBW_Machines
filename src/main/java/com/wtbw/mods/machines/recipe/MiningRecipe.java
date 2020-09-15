@@ -116,7 +116,7 @@ public class MiningRecipe implements IRecipe<IInventory>
         String item = JSONUtils.getString(obj, "item");
         int count = JSONUtils.getInt(obj, "count", 1);
         ResourceLocation resultLocation = new ResourceLocation(item);
-        ItemStack stack = new ItemStack(Registry.ITEM.getValue(resultLocation)
+        ItemStack stack = new ItemStack(Registry.ITEM.func_241873_b(resultLocation)
           .orElseThrow(() -> new IllegalArgumentException("Item " + item + " does not exist")), count);
         
         builder.add(stack);

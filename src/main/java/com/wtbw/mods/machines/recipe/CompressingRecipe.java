@@ -117,7 +117,7 @@ public class CompressingRecipe implements IRecipe<IInventory>
       
       ResourceLocation resultLocation = new ResourceLocation(result);
       
-      ItemStack resultStack = new ItemStack(Registry.ITEM.getValue(resultLocation)
+      ItemStack resultStack = new ItemStack(Registry.ITEM.func_241873_b(resultLocation)
         .orElseThrow(() -> new IllegalArgumentException("Item " + result + " does not exist")), count);
       
       int duration = JSONUtils.getInt(json, "duration", 1200);

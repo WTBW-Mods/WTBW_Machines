@@ -144,7 +144,7 @@ public class CrushingRecipe implements IRecipe<IInventory>
         float chance = JSONUtils.getFloat(obj, "chance", 1);
         
         ResourceLocation resultLocation = new ResourceLocation(item);
-        ItemStack aStack = new ItemStack(Registry.ITEM.getValue(resultLocation)
+        ItemStack aStack = new ItemStack(Registry.ITEM.func_241873_b(resultLocation)
           .orElseThrow(() -> new IllegalArgumentException("Item " + item + " does not exist")), count);
         
         map.add(chance, count, aStack);

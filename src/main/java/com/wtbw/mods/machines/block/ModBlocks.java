@@ -64,4 +64,6 @@ public class ModBlocks
   public static final Block FLUID_INPUT_HATCH = Blocks.AIR;
   public static final Block ENERGY_INPUT_HATCH = Blocks.AIR;
   
+  public static final Block ALUMINIUM_ORE = Blocks.AIR;
+  
 }

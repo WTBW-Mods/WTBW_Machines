@@ -114,7 +114,7 @@ public class HydratingRecipe implements IRecipe<IInventory>
       int count = JSONUtils.getInt(json, "count", 1);
       ResourceLocation resultLocation = new ResourceLocation(result);
       
-      ItemStack resultStack = new ItemStack(Registry.ITEM.getValue(resultLocation)
+      ItemStack resultStack = new ItemStack(Registry.ITEM.func_241873_b(resultLocation)
         .orElseThrow(() -> new IllegalArgumentException("Item " + result + " does not exist")), count);
   
       int powerCost = JSONUtils.getInt(json, "powerCost", 500);

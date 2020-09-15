@@ -3,8 +3,7 @@ package com.wtbw.mods.machines;
 import com.wtbw.mods.lib.Registrator;
 import com.wtbw.mods.lib.block.BaseTileBlock;
 import com.wtbw.mods.lib.item.BaseItemProperties;
-import com.wtbw.mods.lib.item.upgrade.BaseUpgradeItem;
-import com.wtbw.mods.lib.upgrade.ModifierType;
+import com.wtbw.mods.lib.item.BatteryItem;
 import com.wtbw.mods.lib.util.TextComponentBuilder;
 import com.wtbw.mods.machines.block.*;
 import com.wtbw.mods.machines.block.base.BaseMachineBlock;
@@ -17,7 +16,6 @@ import com.wtbw.mods.machines.block.spikes.SpikesBlock;
 import com.wtbw.mods.machines.block.spikes.SpikesType;
 import com.wtbw.mods.machines.block.util.WrenchHelper;
 import com.wtbw.mods.machines.gui.container.*;
-import com.wtbw.mods.lib.item.BatteryItem;
 import com.wtbw.mods.machines.item.WrenchItem;
 import com.wtbw.mods.machines.recipe.*;
 import com.wtbw.mods.machines.tile.*;
@@ -37,12 +35,9 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.Rarity;
 import net.minecraft.item.crafting.IRecipeSerializer;
-import net.minecraft.util.Util;
 import net.minecraftforge.common.ToolType;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.registries.IForgeRegistry;
-
-import java.util.HashMap;
 
 /*
   @author: Naxanria
@@ -132,6 +127,8 @@ public class MachinesRegistrator extends Registrator
     register(new BaseTileBlock<>(getBlockProperties(Material.IRON, 4), (world, state) -> new FluidInputHatchTile()), "fluid_input_hatch");
     register(new BaseTileBlock<>(getBlockProperties(Material.IRON, 4), (world, state) -> new ItemOutputHatchTile()), "item_output_hatch");
     
+    register(new Block(getBlockProperties(Material.ROCK, 6)), "aluminium_ore");
+    
 //    register(new XpPylonBlock(getBlockProperties(Material.IRON, 5)), "xp_pylon");
   }
   
@@ -139,12 +136,25 @@ public class MachinesRegistrator extends Registrator
   protected void registerAllItems()
   {
     BaseItemProperties baseProperties = getItemProperties();
+    
+    register(new Item(baseProperties), "aluminium_dust_pile");
+    register(new Item(baseProperties), "aluminium_dust");
+    register(new Item(baseProperties), "aluminium_ingot");
+    
     register(new Item(baseProperties), "iron_plate");
     register(new Item(baseProperties), "gold_plate");
     register(new Item(baseProperties), "copper_plate");
     register(new Item(baseProperties), "cobalt_plate");
     register(new Item(baseProperties), "dark_crystal_plate");
     register(new Item(baseProperties), "energetic_copper_plate");
+    
+    register(new Item(baseProperties), "iron_beam");
+    register(new Item(baseProperties), "steel_beam");
+    register(new Item(baseProperties), "aluminium_beam");
+    
+    register(new Item(baseProperties), "iron_frame");
+    register(new Item(baseProperties), "steel_frame");
+    register(new Item(baseProperties), "aluminium_frame");
     
     register(new Item(baseProperties), "gold_dust");
     register(new Item(baseProperties), "iron_dust");
@@ -176,54 +186,54 @@ public class MachinesRegistrator extends Registrator
     
     register(new Item(baseProperties), "energetic_copper_ingot");
     
-    register(new BaseUpgradeItem(getItemProperties(), Util.make(new HashMap<>(), map ->
-    {
-      map.put(ModifierType.SPEED, 1.15f);
-      map.put(ModifierType.POWER_USAGE, 1.25f);
-    })), "speed_upgrade_mk1");
-  
-    register(new BaseUpgradeItem(getItemProperties(), Util.make(new HashMap<>(), map ->
-    {
-      map.put(ModifierType.SPEED, 1.25f);
-      map.put(ModifierType.POWER_USAGE, 1.60f);
-    })), "speed_upgrade_mk2");
-  
-    register(new BaseUpgradeItem(getItemProperties(), Util.make(new HashMap<>(), map ->
-    {
-      map.put(ModifierType.SPEED, 1.7f);
-      map.put(ModifierType.POWER_USAGE, 2f);
-    })), "speed_upgrade_mk3");
-  
-    register(new BaseUpgradeItem(getItemProperties(), Util.make(new HashMap<>(), map ->
-    {
-      map.put(ModifierType.POWER_USAGE, 0.87f);
-    })), "power_usage_upgrade_mk1");
-  
-    register(new BaseUpgradeItem(getItemProperties(), Util.make(new HashMap<>(), map ->
-    {
-      map.put(ModifierType.POWER_USAGE, 0.79f);
-    })), "power_usage_upgrade_mk2");
-  
-    register(new BaseUpgradeItem(getItemProperties(), Util.make(new HashMap<>(), map ->
-    {
-      map.put(ModifierType.POWER_USAGE, 0.40f);
-    })), "power_usage_upgrade_mk3");
-  
-    register(new BaseUpgradeItem(getItemProperties(), Util.make(new HashMap<>(), map ->
-    {
-      map.put(ModifierType.POWER_CAPACITY, 500000f);
-    })), "power_capacity_upgrade_mk1");
-  
-    register(new BaseUpgradeItem(getItemProperties(), Util.make(new HashMap<>(), map ->
-    {
-      map.put(ModifierType.POWER_CAPACITY, 2000000f);
-    })), "power_capacity_upgrade_mk2");
-  
-    register(new BaseUpgradeItem(getItemProperties(), Util.make(new HashMap<>(), map ->
-    {
-      map.put(ModifierType.POWER_CAPACITY, 5000000f);
-    })), "power_capacity_upgrade_mk3");
-  
+//    register(new BaseUpgradeItem(getItemProperties(), Util.make(new HashMap<>(), map ->
+//    {
+//      map.put(ModifierType.SPEED, 1.15f);
+//      map.put(ModifierType.POWER_USAGE, 1.25f);
+//    })), "speed_upgrade_mk1");
+//
+//    register(new BaseUpgradeItem(getItemProperties(), Util.make(new HashMap<>(), map ->
+//    {
+//      map.put(ModifierType.SPEED, 1.25f);
+//      map.put(ModifierType.POWER_USAGE, 1.60f);
+//    })), "speed_upgrade_mk2");
+//
+//    register(new BaseUpgradeItem(getItemProperties(), Util.make(new HashMap<>(), map ->
+//    {
+//      map.put(ModifierType.SPEED, 1.7f);
+//      map.put(ModifierType.POWER_USAGE, 2f);
+//    })), "speed_upgrade_mk3");
+//
+//    register(new BaseUpgradeItem(getItemProperties(), Util.make(new HashMap<>(), map ->
+//    {
+//      map.put(ModifierType.POWER_USAGE, 0.87f);
+//    })), "power_usage_upgrade_mk1");
+//
+//    register(new BaseUpgradeItem(getItemProperties(), Util.make(new HashMap<>(), map ->
+//    {
+//      map.put(ModifierType.POWER_USAGE, 0.79f);
+//    })), "power_usage_upgrade_mk2");
+//
+//    register(new BaseUpgradeItem(getItemProperties(), Util.make(new HashMap<>(), map ->
+//    {
+//      map.put(ModifierType.POWER_USAGE, 0.40f);
+//    })), "power_usage_upgrade_mk3");
+//
+//    register(new BaseUpgradeItem(getItemProperties(), Util.make(new HashMap<>(), map ->
+//    {
+//      map.put(ModifierType.POWER_CAPACITY, 500000f);
+//    })), "power_capacity_upgrade_mk1");
+//
+//    register(new BaseUpgradeItem(getItemProperties(), Util.make(new HashMap<>(), map ->
+//    {
+//      map.put(ModifierType.POWER_CAPACITY, 2000000f);
+//    })), "power_capacity_upgrade_mk2");
+//
+//    register(new BaseUpgradeItem(getItemProperties(), Util.make(new HashMap<>(), map ->
+//    {
+//      map.put(ModifierType.POWER_CAPACITY, 5000000f);
+//    })), "power_capacity_upgrade_mk3");
+//
 //    register(new BaseUpgradeItem(getItemProperties(), Util.make(new HashMap<>(), map ->
 //    {
 //      map.put(ModifierType.TRANSFER, 1.5f);

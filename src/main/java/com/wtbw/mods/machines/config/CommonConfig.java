@@ -3,9 +3,18 @@ package com.wtbw.mods.machines.config;
 import com.wtbw.mods.lib.config.BaseConfig;
 import com.wtbw.mods.lib.config.SubConfig;
 import com.wtbw.mods.lib.util.Utilities;
+import com.wtbw.mods.lib.world.generation.OreBlockProvider;
+import com.wtbw.mods.lib.world.generation.OreConfig;
+import com.wtbw.mods.lib.world.generation.WorldGenManager;
 import com.wtbw.mods.machines.WTBWMachines;
+import com.wtbw.mods.machines.block.ModBlocks;
 import com.wtbw.mods.machines.tile.furnace.FurnaceTier;
 import net.minecraft.block.Block;
+import net.minecraft.block.Blocks;
+import net.minecraft.tags.BlockTags;
+import net.minecraft.world.gen.feature.OreFeatureConfig;
+import net.minecraft.world.gen.feature.template.BlockMatchRuleTest;
+import net.minecraft.world.gen.feature.template.TagMatchRuleTest;
 import net.minecraftforge.common.ForgeConfigSpec;
 import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.config.ModConfig;
@@ -47,6 +56,9 @@ public class CommonConfig extends BaseConfig
   public FurnaceConfig diamondFurnace;
   public FurnaceConfig endFurnace;
   
+  // ores
+  public OreConfig aluminiumOre;
+  
   // redstone //
   public ForgeConfigSpec.IntValue redstoneClockRepeat;
   public ForgeConfigSpec.IntValue redstoneClockDuration;
@@ -78,6 +90,7 @@ public class CommonConfig extends BaseConfig
     builder.comment("WTBW common config");
     instance = this;
 
+    ores();
     blocks();
   }
   
@@ -278,6 +291,18 @@ public class CommonConfig extends BaseConfig
     pop();
   }
   
+  private void ores()
+  {
+    push("oregen");
+    
+    aluminiumOre = new OreConfig(builder, "aluminium", OreConfig.ALUMINIUM_ORE, 12, 3, 0, 72, "oregen");
+  
+  
+    WorldGenManager.registerOregen(() -> aluminiumOre);
+    
+    pop();
+  }
+  
   public static boolean isInBlacklist(@Nonnull Block block)
   {
     String id = block.getRegistryName().toString();
@@ -317,6 +342,18 @@ public class CommonConfig extends BaseConfig
     public void reload()
     {
       tier.setCookTime(speed.get());
+    }
+  }
+  
+  
+  
+  public static class OreConfig extends com.wtbw.mods.lib.world.generation.OreConfig
+  {
+    public static final OreBlockProvider ALUMINIUM_ORE = new OreBlockProvider(() -> ModBlocks.ALUMINIUM_ORE, new BlockMatchRuleTest(Blocks.END_STONE), OreBlockProvider.Validators.THE_END);
+    
+    public OreConfig(ForgeConfigSpec.Builder builder, String name, OreBlockProvider provider, int maxVein, int perChunk, int start, int end, String langPath)
+    {
+      super(builder, name, provider, maxVein, perChunk, start, end, langPath);
     }
   }
 }
