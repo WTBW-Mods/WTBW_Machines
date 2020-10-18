@@ -64,6 +64,7 @@ public abstract class BaseMachineEntity extends TileEntity implements ITickableT
     }
   }
   
+  @Nonnull
   protected abstract List<ItemStackHandler> getInventories();
   
   @Override

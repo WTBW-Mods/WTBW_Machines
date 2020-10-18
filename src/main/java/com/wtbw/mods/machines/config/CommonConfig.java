@@ -4,24 +4,19 @@ import com.wtbw.mods.lib.config.BaseConfig;
 import com.wtbw.mods.lib.config.SubConfig;
 import com.wtbw.mods.lib.util.Utilities;
 import com.wtbw.mods.lib.world.generation.OreBlockProvider;
-import com.wtbw.mods.lib.world.generation.OreConfig;
 import com.wtbw.mods.lib.world.generation.WorldGenManager;
 import com.wtbw.mods.machines.WTBWMachines;
 import com.wtbw.mods.machines.block.ModBlocks;
 import com.wtbw.mods.machines.tile.furnace.FurnaceTier;
 import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
-import net.minecraft.tags.BlockTags;
-import net.minecraft.world.gen.feature.OreFeatureConfig;
 import net.minecraft.world.gen.feature.template.BlockMatchRuleTest;
-import net.minecraft.world.gen.feature.template.TagMatchRuleTest;
 import net.minecraftforge.common.ForgeConfigSpec;
 import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.config.ModConfig;
 import org.apache.commons.lang3.tuple.Pair;
 
 import javax.annotation.Nonnull;
-import java.util.ArrayList;
 import java.util.List;
 
 /*
@@ -57,7 +52,7 @@ public class CommonConfig extends BaseConfig
   public FurnaceConfig endFurnace;
   
   // ores
-  public OreConfig aluminiumOre;
+  public OreConfig kiriniumOre;
   
   // redstone //
   public ForgeConfigSpec.IntValue redstoneClockRepeat;
@@ -295,10 +290,10 @@ public class CommonConfig extends BaseConfig
   {
     push("oregen");
     
-    aluminiumOre = new OreConfig(builder, "aluminium", OreConfig.ALUMINIUM_ORE, 12, 3, 0, 72, "oregen");
+    kiriniumOre = new OreConfig(builder, "kirinium", OreConfig.KIRINIUM_ORE, 12, 3, 0, 72, "oregen");
   
   
-    WorldGenManager.registerOregen(() -> aluminiumOre);
+    WorldGenManager.registerOregen(() -> kiriniumOre);
     
     pop();
   }
@@ -349,7 +344,7 @@ public class CommonConfig extends BaseConfig
   
   public static class OreConfig extends com.wtbw.mods.lib.world.generation.OreConfig
   {
-    public static final OreBlockProvider ALUMINIUM_ORE = new OreBlockProvider(() -> ModBlocks.ALUMINIUM_ORE, new BlockMatchRuleTest(Blocks.END_STONE), OreBlockProvider.Validators.THE_END);
+    public static final OreBlockProvider KIRINIUM_ORE = new OreBlockProvider(() -> ModBlocks.KIRINIUM_ORE, new BlockMatchRuleTest(Blocks.END_STONE), OreBlockProvider.Validators.THE_END);
     
     public OreConfig(ForgeConfigSpec.Builder builder, String name, OreBlockProvider provider, int maxVein, int perChunk, int start, int end, String langPath)
     {

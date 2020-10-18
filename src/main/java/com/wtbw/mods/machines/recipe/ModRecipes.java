@@ -21,6 +21,7 @@ public class ModRecipes
   public static final IRecipeType<PoweredFurnaceRecipe> POWERED_FURNACE = register("powered_furnace");
   public static final IRecipeType<HydratingRecipe> HYDRATING = register("hydrating");
   public static final IRecipeType<MiningRecipe> MINING = register("mining");
+  public static final IRecipeType<ChemicalRecipe> CHEMICAL = register("chemical");
 
   private static <T extends IRecipe<?>> IRecipeType<T> register(final String key)
   {

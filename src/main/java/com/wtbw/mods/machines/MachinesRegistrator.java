@@ -127,7 +127,7 @@ public class MachinesRegistrator extends Registrator
     register(new BaseTileBlock<>(getBlockProperties(Material.IRON, 4), (world, state) -> new FluidInputHatchTile()), "fluid_input_hatch");
     register(new BaseTileBlock<>(getBlockProperties(Material.IRON, 4), (world, state) -> new ItemOutputHatchTile()), "item_output_hatch");
     
-    register(new Block(getBlockProperties(Material.ROCK, 6)), "aluminium_ore");
+    register(new Block(getBlockProperties(Material.ROCK, 6)), "kirinium_ore");
     
 //    register(new XpPylonBlock(getBlockProperties(Material.IRON, 5)), "xp_pylon");
   }
@@ -137,9 +137,12 @@ public class MachinesRegistrator extends Registrator
   {
     BaseItemProperties baseProperties = getItemProperties();
     
-    register(new Item(baseProperties), "aluminium_dust_pile");
-    register(new Item(baseProperties), "aluminium_dust");
-    register(new Item(baseProperties), "aluminium_ingot");
+    register(new Item(baseProperties), "kirinium_dust_pile");
+    register(new Item(baseProperties), "kirinium_dust");
+    register(new Item(baseProperties), "kirinium_ingot");
+    
+    register(new Item(baseProperties), "sulfur");
+    
     
     register(new Item(baseProperties), "iron_plate");
     register(new Item(baseProperties), "gold_plate");
