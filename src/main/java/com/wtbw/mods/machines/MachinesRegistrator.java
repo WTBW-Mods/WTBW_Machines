@@ -98,8 +98,8 @@ public class MachinesRegistrator extends Registrator
     register(new TierBlock(getBlockProperties(Material.IRON, 3), 4), "tier4_upgrade");
 
     register(new BaseMachineBlock<>(getBlockProperties(Material.IRON, 4), (world, state) -> new PoweredFurnaceEntity()).mirrored(), "powered_furnace");
-    register(new BaseMachineBlock<>(getBlockProperties(Material.IRON, 4), (world, state) -> new PoweredCrusherEntity()).mirrored(), "crusher");
-    register(new BaseMachineBlock<>(getBlockProperties(Material.IRON, 4), (world, state) -> new PoweredCompressorEntity()).mirrored(), "compressor");
+    register(new BaseMachineBlock<>(getBlockProperties(Material.IRON, 4), (world, state) -> new CrusherEntity()).mirrored(), "crusher");
+    register(new BaseMachineBlock<>(getBlockProperties(Material.IRON, 4), (world, state) -> new CompressorEntity()).mirrored(), "compressor");
     
     register(new BaseMachineBlock<>(getBlockProperties(Material.IRON, 4), (world, state) -> new FuelGeneratorEntity()).mirrored(), "fuel_generator",
       getItemProperties().addTooltip(TextComponentBuilder.createTranslated(WTBWMachines.MODID + ".tooltip.fuel_generator", 45).green().build()));

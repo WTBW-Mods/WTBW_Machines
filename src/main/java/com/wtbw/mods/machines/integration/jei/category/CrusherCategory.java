@@ -11,7 +11,7 @@ import com.wtbw.mods.machines.WTBWMachines;
 import com.wtbw.mods.machines.block.ModBlocks;
 import com.wtbw.mods.machines.gui.screen.CrusherScreen;
 import com.wtbw.mods.machines.recipe.CrushingRecipe;
-import com.wtbw.mods.machines.tile.machine.PoweredCrusherEntity;
+import com.wtbw.mods.machines.tile.machine.CrusherEntity;
 import mezz.jei.api.constants.VanillaTypes;
 import mezz.jei.api.gui.IRecipeLayout;
 import mezz.jei.api.gui.drawable.IDrawableAnimated;
@@ -34,7 +34,7 @@ import java.util.List;
 */
 public class CrusherCategory extends AbstractRecipeCategory<CrushingRecipe>
 {
-  protected static final int inputSlot = PoweredCrusherEntity.INPUT_SLOT;
+  protected static final int inputSlot = CrusherEntity.INPUT_SLOT;
   
   public static final ResourceLocation UID = new ResourceLocation(WTBWMachines.MODID, "crusher_category");
   

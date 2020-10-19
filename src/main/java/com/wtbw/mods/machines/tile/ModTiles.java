@@ -52,8 +52,8 @@ public class ModTiles
   public static final TileEntityType<HydratorEntity> HYDRATOR = null;
 
   public static final TileEntityType<PoweredFurnaceEntity> POWERED_FURNACE = null;
-  public static final TileEntityType<PoweredCrusherEntity> CRUSHER = null;
-  public static final TileEntityType<PoweredCompressorEntity> COMPRESSOR = null;
+  public static final TileEntityType<CrusherEntity> CRUSHER = null;
+  public static final TileEntityType<CompressorEntity> COMPRESSOR = null;
   
   
   public static final TileEntityType<EnergyCableEntity> ENERGY_CABLE_MK1 = null;

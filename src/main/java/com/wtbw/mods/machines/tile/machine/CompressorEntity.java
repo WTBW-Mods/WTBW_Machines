@@ -33,7 +33,7 @@ import java.util.List;
 /*
   @author: Sunekaer
 */
-public class PoweredCompressorEntity extends BaseMachineEntity implements IUpgradeable
+public class CompressorEntity extends BaseMachineEntity implements IUpgradeable
 {
   public static final int INPUT_SLOT = 0;
   public static final int OUTPUT_SLOT = 1;
@@ -53,7 +53,7 @@ public class PoweredCompressorEntity extends BaseMachineEntity implements IUpgra
   
   private UpgradeManager upgradeManager = new UpgradeManager().setFilter(DEFAULT_MACHINE_FILTER);
   
-  public PoweredCompressorEntity()
+  public CompressorEntity()
   {
     super(ModTiles.COMPRESSOR, DEFAULT_CAPACITY, 50000, RedstoneMode.IGNORE);
     

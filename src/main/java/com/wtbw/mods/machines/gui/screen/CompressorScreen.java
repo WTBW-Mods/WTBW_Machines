@@ -1,7 +1,6 @@
 package com.wtbw.mods.machines.gui.screen;
 
 import com.mojang.blaze3d.matrix.MatrixStack;
-import com.wtbw.mods.lib.gui.screen.BaseContainerScreen;
 import com.wtbw.mods.lib.gui.screen.BaseUpgradeScreen;
 import com.wtbw.mods.lib.gui.util.EnergyBar;
 import com.wtbw.mods.lib.gui.util.ProgressBar;
@@ -11,7 +10,7 @@ import com.wtbw.mods.lib.gui.util.sprite.Sprite;
 import com.wtbw.mods.lib.tile.util.energy.BaseEnergyStorage;
 import com.wtbw.mods.machines.ClientConstants;
 import com.wtbw.mods.machines.gui.container.CompressorContainer;
-import com.wtbw.mods.machines.tile.machine.PoweredCompressorEntity;
+import com.wtbw.mods.machines.tile.machine.CompressorEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.util.text.ITextComponent;
 
@@ -29,7 +28,7 @@ public class CompressorScreen extends BaseUpgradeScreen<CompressorContainer>
   private ProgressBar progressBarRight;
   private EnergyBar energyBar;
 
-  private RedstoneButton<PoweredCompressorEntity> redstoneButton;
+  private RedstoneButton<CompressorEntity> redstoneButton;
 
   public CompressorScreen(CompressorContainer container, PlayerInventory inventory, ITextComponent title)
   {
@@ -40,7 +39,7 @@ public class CompressorScreen extends BaseUpgradeScreen<CompressorContainer>
   protected void init()
   {
     super.init();
-    PoweredCompressorEntity tileEntity = container.tileEntity;
+    CompressorEntity tileEntity = container.tileEntity;
     BaseEnergyStorage storage = tileEntity.getStorage();
     progressBarLeft = new SpriteProgressBar(guiLeft + 175 / 2 - 8 , guiTop + 39, PROGRESS_LEFT, PROGRESS_BACKGROUND_LEFT, tileEntity::getDuration, tileEntity::getProgress)
             .setFillDirection(ProgressBar.FillDirection.LEFT_RIGHT).cast();

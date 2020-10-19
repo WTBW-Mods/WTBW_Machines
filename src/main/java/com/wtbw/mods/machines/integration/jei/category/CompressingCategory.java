@@ -2,23 +2,19 @@ package com.wtbw.mods.machines.integration.jei.category;
 
 import com.mojang.blaze3d.matrix.MatrixStack;
 import com.wtbw.mods.lib.gui.util.EnergyBar;
-import com.wtbw.mods.lib.gui.util.GuiUtil;
 import com.wtbw.mods.lib.tile.util.energy.BaseEnergyStorage;
 import com.wtbw.mods.lib.util.TextComponentBuilder;
-import com.wtbw.mods.lib.util.Utilities;
 import com.wtbw.mods.machines.ClientConstants;
 import com.wtbw.mods.machines.block.ModBlocks;
 import com.wtbw.mods.machines.gui.screen.CompressorScreen;
 import com.wtbw.mods.machines.recipe.CompressingRecipe;
-import com.wtbw.mods.machines.tile.machine.PoweredCompressorEntity;
+import com.wtbw.mods.machines.tile.machine.CompressorEntity;
 import mezz.jei.api.constants.VanillaTypes;
 import mezz.jei.api.gui.IRecipeLayout;
 import mezz.jei.api.gui.drawable.IDrawableAnimated;
 import mezz.jei.api.gui.ingredient.IGuiItemStackGroup;
 import mezz.jei.api.helpers.IGuiHelper;
-import mezz.jei.api.ingredients.IIngredientType;
 import mezz.jei.api.ingredients.IIngredients;
-import net.minecraft.client.Minecraft;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.util.ResourceLocation;
@@ -34,8 +30,8 @@ import java.util.List;
 */
 public class CompressingCategory extends AbstractRecipeCategory<CompressingRecipe>
 {
-  public static final int INPUT_SLOT = PoweredCompressorEntity.INPUT_SLOT;
-  public static final int OUTPUT_SLOT = PoweredCompressorEntity.OUTPUT_SLOT;
+  public static final int INPUT_SLOT = CompressorEntity.INPUT_SLOT;
+  public static final int OUTPUT_SLOT = CompressorEntity.OUTPUT_SLOT;
   
   public static final ResourceLocation UID = ClientConstants.getLocation("compressing_category");
 

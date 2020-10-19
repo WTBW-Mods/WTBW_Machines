@@ -1,9 +1,7 @@
 package com.wtbw.mods.machines.gui.container;
 
-import com.wtbw.mods.lib.gui.container.BaseTileContainer;
 import com.wtbw.mods.lib.gui.container.BaseUpgradeContainer;
 import com.wtbw.mods.lib.util.nbt.NBTManager;
-import com.wtbw.mods.machines.tile.machine.PoweredCrusherEntity;
 import com.wtbw.mods.machines.tile.machine.PoweredFurnaceEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.util.math.BlockPos;

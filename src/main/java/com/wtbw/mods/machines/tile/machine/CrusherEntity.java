@@ -36,7 +36,7 @@ import java.util.List;
 /*
   @author: Sunekaer
 */
-public class PoweredCrusherEntity extends BaseMachineEntity implements IUpgradeable
+public class CrusherEntity extends BaseMachineEntity implements IUpgradeable
 {
   public static final int INPUT_SLOT = 0;
   public static final int OUTPUT_SLOT = 1;
@@ -61,7 +61,7 @@ public class PoweredCrusherEntity extends BaseMachineEntity implements IUpgradea
   
   EnergyBar energyBar;
   
-  public PoweredCrusherEntity()
+  public CrusherEntity()
   {
     super(ModTiles.CRUSHER, 100000, 50000, RedstoneMode.IGNORE);
     

@@ -10,8 +10,7 @@ import com.wtbw.mods.lib.gui.util.sprite.Sprite;
 import com.wtbw.mods.lib.tile.util.energy.BaseEnergyStorage;
 import com.wtbw.mods.machines.ClientConstants;
 import com.wtbw.mods.machines.gui.container.CrusherContainer;
-import com.wtbw.mods.machines.tile.machine.PoweredCrusherEntity;
-import net.minecraft.client.gui.widget.button.Button;
+import com.wtbw.mods.machines.tile.machine.CrusherEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.util.text.ITextComponent;
 
@@ -26,7 +25,7 @@ public class CrusherScreen extends BaseUpgradeScreen<CrusherContainer>
   private SpriteProgressBar progressBar;
   private EnergyBar energyBar;
 
-  private RedstoneButton<PoweredCrusherEntity> redstoneButton;
+  private RedstoneButton<CrusherEntity> redstoneButton;
   
   public CrusherScreen(CrusherContainer container, PlayerInventory inventory, ITextComponent title)
   {
@@ -38,7 +37,7 @@ public class CrusherScreen extends BaseUpgradeScreen<CrusherContainer>
   {
     super.init();
   
-    PoweredCrusherEntity tileEntity = container.tileEntity;
+    CrusherEntity tileEntity = container.tileEntity;
     BaseEnergyStorage storage = tileEntity.getStorage();
     progressBar = new SpriteProgressBar(guiLeft + 175 / 2 - 3 , guiTop + 39, PROGRESS, PROGRESS_BACKGROUND, tileEntity::getDuration, tileEntity::getProgress)
       .setFillDirection(ProgressBar.FillDirection.TOP_BOTTOM).cast();
