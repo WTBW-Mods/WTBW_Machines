@@ -35,7 +35,7 @@ import java.util.List;
 /*
   @author: Sunekaer
 */
-public class PoweredFurnaceEntity extends BaseMachineEntity implements IUpgradeable
+public class PoweredFurnaceEntity extends BaseMachineEntity
 {
   public static final int INPUT_SLOT = 0;
   public static final int OUTPUT_SLOT = 1;
@@ -54,8 +54,6 @@ public class PoweredFurnaceEntity extends BaseMachineEntity implements IUpgradea
   private int powerCost;
   private int ingredientCost;
   
-  private UpgradeManager upgradeManager = new UpgradeManager().setFilter(DEFAULT_MACHINE_FILTER);
-  
   public PoweredFurnaceEntity()
   {
     super(ModTiles.POWERED_FURNACE, DEFAULT_CAPACITY, 50000, RedstoneMode.IGNORE);
@@ -66,8 +64,7 @@ public class PoweredFurnaceEntity extends BaseMachineEntity implements IUpgradea
       .registerInt("powerCost", () -> powerCost, i -> powerCost = i)
       .registerInt("ingredientCost", () -> ingredientCost, i -> ingredientCost = i)
       .register("inventory", getInventory())
-      .registerInt("tick", () -> tick, i -> tick = i)
-      .register("upgrades", upgradeManager);
+      .registerInt("tick", () -> tick, i -> tick = i);
   }
   
   @Override
@@ -316,12 +313,12 @@ public class PoweredFurnaceEntity extends BaseMachineEntity implements IUpgradea
         
         if (poweredFurnaceRecipe != null)
         {
-          duration = (int) (poweredFurnaceRecipe.duration / upgradeManager.getValueOrDefault(ModifierType.SPEED));
+          duration = poweredFurnaceRecipe.duration;
           if (duration < 0)
           {
             duration = 1;
           }
-          powerCost = (int) (poweredFurnaceRecipe.powerCost * upgradeManager.getValueOrDefault(ModifierType.POWER_USAGE));
+          powerCost = poweredFurnaceRecipe.powerCost;
           ingredientCost = poweredFurnaceRecipe.ingredientCost;
           
           if (poweredFurnaceRecipe != oldPoweredRecipe)
@@ -363,7 +360,7 @@ public class PoweredFurnaceEntity extends BaseMachineEntity implements IUpgradea
           
           if (furnaceRecipe != null)
           {
-            duration = (int) (furnaceRecipe.getCookTime() / upgradeManager.getValueOrDefault(ModifierType.SPEED));
+            duration = furnaceRecipe.getCookTime();
             if (duration < 1)
             {
               duration = 1;
@@ -371,11 +368,7 @@ public class PoweredFurnaceEntity extends BaseMachineEntity implements IUpgradea
             
             ingredientCost = 1;
             
-            powerCost = (int) (40 * upgradeManager.getValueOrDefault(ModifierType.POWER_USAGE));
-            if (powerCost < 1)
-            {
-              powerCost = 1;
-            }
+            powerCost = 40;
             
             if (furnaceRecipe != oldFurnaceRecipe)
             {
@@ -406,15 +399,11 @@ public class PoweredFurnaceEntity extends BaseMachineEntity implements IUpgradea
         }
       }
       
-      storage.setCapacity((int) (DEFAULT_CAPACITY * upgradeManager.getValueOrDefault(ModifierType.POWER_CAPACITY)));
-      
       boolean on = (poweredFurnaceRecipe != null || furnaceRecipe != null) && !getInventory().getStackInSlot(INPUT_SLOT).isEmpty();
       if (on != isOn())
       {
         setOn(on);
       }
-      
-      
       
       if (dirty)
       {
@@ -426,11 +415,5 @@ public class PoweredFurnaceEntity extends BaseMachineEntity implements IUpgradea
   private boolean canOutputFurnace()
   {
     return canOutput(OUTPUT_SLOT, inventory, furnaceRecipe);
-  }
-  
-  @Override
-  public UpgradeManager getUpgradeManager()
-  {
-    return upgradeManager;
   }
 }

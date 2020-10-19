@@ -20,7 +20,7 @@ import net.minecraft.util.text.ITextComponent;
 /*
   @author: Sunekaer
 */
-public class PoweredFurnaceScreen extends BaseUpgradeScreen<PoweredFurnaceContainer>
+public class PoweredFurnaceScreen extends BaseContainerScreen<PoweredFurnaceContainer>
 {
   public static final SpriteMap ICONS = new SpriteMap(256, new ResourceLocation(WTBWMachines.MODID, "textures/gui/icons.png"));
   public static final Sprite PROGRESS_BACKGROUND = ICONS.getSprite(20, 0, 14, 14);
@@ -51,6 +51,15 @@ public class PoweredFurnaceScreen extends BaseUpgradeScreen<PoweredFurnaceContai
   }
   
   @Override
+  protected void drawGuiContainerBackgroundLayer(MatrixStack stack, float partialTicks, int x, int y)
+  {
+    defaultGui(stack);
+  
+    progressBar.draw(stack);
+    energyBar.draw(stack);
+  }
+  
+  @Override
   public void tick()
   {
     super.tick();
@@ -65,12 +74,4 @@ public class PoweredFurnaceScreen extends BaseUpgradeScreen<PoweredFurnaceContai
     }
   }
 
-  @Override
-  protected void drawGuiBackgroundLayer(MatrixStack stack, float partialTicks, int mouseX, int mouseY)
-  {
-    defaultGui(stack);
-  
-    progressBar.draw(stack);
-    energyBar.draw(stack);
-  }
 }

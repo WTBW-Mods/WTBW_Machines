@@ -1,6 +1,7 @@
 package com.wtbw.mods.machines.gui.screen;
 
 import com.mojang.blaze3d.matrix.MatrixStack;
+import com.wtbw.mods.lib.gui.screen.BaseContainerScreen;
 import com.wtbw.mods.lib.gui.screen.BaseUpgradeScreen;
 import com.wtbw.mods.lib.gui.util.EnergyBar;
 import com.wtbw.mods.lib.gui.util.ProgressBar;
@@ -17,7 +18,7 @@ import net.minecraft.util.text.ITextComponent;
 /*
   @author: Sunekaer, Naxanria
 */
-public class CrusherScreen extends BaseUpgradeScreen<CrusherContainer>
+public class CrusherScreen extends BaseContainerScreen<CrusherContainer>
 {
   public static final Sprite PROGRESS_BACKGROUND = ClientConstants.Gui.ICONS.getSprite(10, 0, 10, 10);
   public static final Sprite PROGRESS = PROGRESS_BACKGROUND.getBelow(10, 10);
@@ -47,7 +48,7 @@ public class CrusherScreen extends BaseUpgradeScreen<CrusherContainer>
   }
   
   @Override
-  protected void drawGuiBackgroundLayer(MatrixStack stack, float partialTicks, int mouseX, int mouseY)
+  protected void drawGuiContainerBackgroundLayer(MatrixStack stack, float partialTicks, int x, int y)
   {
     defaultGui(stack);
     progressBar.draw(stack);

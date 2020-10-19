@@ -18,7 +18,7 @@ import net.minecraft.util.text.ITextComponent;
 /*
   @author: Naxanria
 */
-public class DehydratorScreen extends BaseUpgradeScreen<DehydratorContainer>
+public class DehydratorScreen extends BaseContainerScreen<DehydratorContainer>
 {
   public static final Sprite PROGRESS_BACKGROUND = ClientConstants.Gui.ICONS.getSprite(0, 0, 10, 10);
   public static final Sprite PROGRESS = PROGRESS_BACKGROUND.getBelow(10, 10);
@@ -48,6 +48,15 @@ public class DehydratorScreen extends BaseUpgradeScreen<DehydratorContainer>
   }
   
   @Override
+  protected void drawGuiContainerBackgroundLayer(MatrixStack stack, float partialTicks, int x, int y)
+  {
+    defaultGui(stack);
+  
+    progressBar.draw(stack);
+    energyBar.draw(stack);
+  }
+  
+  @Override
   public void tick()
   {
     super.tick();
@@ -60,14 +69,5 @@ public class DehydratorScreen extends BaseUpgradeScreen<DehydratorContainer>
     {
       energyBar.update();
     }
-  }
-  
-  @Override
-  protected void drawGuiBackgroundLayer(MatrixStack stack, float partialTicks, int mouseX, int mouseY)
-  {
-    defaultGui(stack);
-  
-    progressBar.draw(stack);
-    energyBar.draw(stack);
   }
 }

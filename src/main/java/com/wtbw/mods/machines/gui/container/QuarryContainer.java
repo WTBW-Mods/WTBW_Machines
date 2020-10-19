@@ -1,7 +1,6 @@
 package com.wtbw.mods.machines.gui.container;
 
 import com.wtbw.mods.lib.gui.container.BaseTileContainer;
-import com.wtbw.mods.lib.gui.container.BaseUpgradeContainer;
 import com.wtbw.mods.lib.tile.util.RedstoneMode;
 import com.wtbw.mods.machines.tile.machine.QuarryTileEntity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -13,7 +12,7 @@ import net.minecraft.world.World;
 /*
   @author: Sunekaer
 */
-public class QuarryContainer extends BaseUpgradeContainer<QuarryTileEntity>
+public class QuarryContainer extends BaseTileContainer<QuarryTileEntity>
 {
   public QuarryContainer(int id, World world, BlockPos pos, PlayerInventory playerInventory)
   {

@@ -2,9 +2,6 @@ package com.wtbw.mods.machines.tile.machine;
 
 import com.wtbw.mods.lib.tile.util.RedstoneMode;
 import com.wtbw.mods.lib.tile.util.energy.BaseEnergyStorage;
-import com.wtbw.mods.lib.upgrade.IUpgradeable;
-import com.wtbw.mods.lib.upgrade.ModifierType;
-import com.wtbw.mods.lib.upgrade.UpgradeManager;
 import com.wtbw.mods.lib.util.Utilities;
 import com.wtbw.mods.machines.gui.container.ChargerContainer;
 import com.wtbw.mods.machines.tile.ModTiles;
@@ -29,15 +26,14 @@ import java.util.concurrent.atomic.AtomicBoolean;
 /*
   @author: Naxanria
 */
-public class ChargerEntity extends BaseMachineEntity implements IUpgradeable
+public class ChargerEntity extends BaseMachineEntity
 {
   public static final int DEFAULT_CAPACITY = 2000000;
   public static final int DEFAULT_TRANSFER = 100000;
   
   protected int transfer = DEFAULT_TRANSFER;
   protected ItemStackHandler inventory;
-  protected UpgradeManager upgradeManager = new UpgradeManager().setFilter(ModifierType.POWER_CAPACITY, ModifierType.TRANSFER);
- 
+  
   private LazyOptional<ItemStackHandler> inventoryCap = LazyOptional.of(this::getInventory);
   private LazyOptional<BaseEnergyStorage> storageCap = LazyOptional.of(this::getStorage);
   
@@ -46,7 +42,6 @@ public class ChargerEntity extends BaseMachineEntity implements IUpgradeable
     super(ModTiles.CHARGER, DEFAULT_CAPACITY, DEFAULT_TRANSFER / 2, RedstoneMode.IGNORE);
     
     manager.register("inventory", getInventory());
-    manager.register("upgrades", upgradeManager);
   }
   
   @Nonnull
@@ -126,23 +121,6 @@ public class ChargerEntity extends BaseMachineEntity implements IUpgradeable
           }
         }
       }
-      
-      float capacityMod = upgradeManager.getValueOrDefault(ModifierType.POWER_CAPACITY);
-      int capacity = DEFAULT_CAPACITY + (int) capacityMod;
-      if (getStorage().getMaxEnergyStored() != capacity)
-      {
-        getStorage().setCapacity(capacity);
-        markDirty();
-      }
-      
-      float transferMod = upgradeManager.getValueOrDefault(ModifierType.TRANSFER);
-      int newTransfer = (int)(transferMod * DEFAULT_TRANSFER);
-      if (newTransfer != transfer)
-      {
-        transfer = newTransfer;
-        getStorage().setReceive(transfer / 2);
-        markDirty();
-      }
     }
   }
   
@@ -160,11 +138,5 @@ public class ChargerEntity extends BaseMachineEntity implements IUpgradeable
     }
     
     return super.getCapability(cap, side);
-  }
-  
-  @Override
-  public UpgradeManager getUpgradeManager()
-  {
-    return upgradeManager;
   }
 }

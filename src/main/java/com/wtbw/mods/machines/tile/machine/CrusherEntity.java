@@ -36,7 +36,7 @@ import java.util.List;
 /*
   @author: Sunekaer
 */
-public class CrusherEntity extends BaseMachineEntity implements IUpgradeable
+public class CrusherEntity extends BaseMachineEntity
 {
   public static final int INPUT_SLOT = 0;
   public static final int OUTPUT_SLOT = 1;
@@ -49,7 +49,6 @@ public class CrusherEntity extends BaseMachineEntity implements IUpgradeable
   private InventoryWrapper fakeInventory;
   private LazyOptional<BaseEnergyStorage> storageCap = LazyOptional.of(this::getStorage);
   private LazyOptional<ItemStackHandler> inventoryCap = LazyOptional.of(this::getInventory);
-  protected UpgradeManager upgradeManager = new UpgradeManager();
   
   private CrushingRecipe recipe;
   private int tick;
@@ -71,10 +70,7 @@ public class CrusherEntity extends BaseMachineEntity implements IUpgradeable
       .registerInt("powerCost", () -> powerCost, i -> powerCost = i)
       .registerInt("ingredientCost", () -> ingredientCost, i -> ingredientCost = i)
       .register("inventory", getInventory())
-      .registerInt("tick", () -> tick, i -> tick = i)
-      .register("upgrades", upgradeManager);
-    
-    upgradeManager.setFilter(DEFAULT_MACHINE_FILTER);
+      .registerInt("tick", () -> tick, i -> tick = i);
   }
   
   @Override
@@ -294,24 +290,13 @@ public class CrusherEntity extends BaseMachineEntity implements IUpgradeable
         }
         if (recipe != null)
         {
-          float speedModifier = 1;
-          if (upgradeManager.hasModifier(ModifierType.SPEED))
-          {
-            speedModifier = upgradeManager.getModifiedValue(ModifierType.SPEED);
-          }
-          
-          duration = (int) (recipe.duration / speedModifier);
+          duration = recipe.duration;
           if (duration < 1)
           {
             duration = 1;
           }
           
-          float powerModifier = 1;
-          if (upgradeManager.hasModifier(ModifierType.POWER_USAGE))
-          {
-            powerModifier = upgradeManager.getModifiedValue(ModifierType.POWER_USAGE);
-          }
-          powerCost = (int) (recipe.powerCost * powerModifier);
+          powerCost = recipe.powerCost;
           
           ingredientCost = recipe.ingredientCost;
           maxRolls = recipe.getRecipeOutputMaxList();
@@ -343,34 +328,15 @@ public class CrusherEntity extends BaseMachineEntity implements IUpgradeable
         }
       }
       
-      if (on)
+      if (isOn() != on)
       {
-        setOn(true);
-        dirty = true;
+        setOn(on);
       }
-      else
-      {
-        setOn(false);
-        dirty = true;
-      }
-      
-      float capacityMod = 1;
-      if (upgradeManager.hasModifier(ModifierType.POWER_CAPACITY))
-      {
-        capacityMod = upgradeManager.getModifiedValue(ModifierType.POWER_CAPACITY);
-      }
-      storage.setCapacity((int) (100000f * capacityMod));
       
       if (dirty)
       {
         markDirty();
       }
     }
-  }
-  
-  @Override
-  public UpgradeManager getUpgradeManager()
-  {
-    return upgradeManager;
   }
 }

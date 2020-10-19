@@ -1,6 +1,7 @@
 package com.wtbw.mods.machines.gui.screen;
 
 import com.mojang.blaze3d.matrix.MatrixStack;
+import com.wtbw.mods.lib.gui.screen.BaseContainerScreen;
 import com.wtbw.mods.lib.gui.screen.BaseUpgradeScreen;
 import com.wtbw.mods.lib.gui.util.EnergyBar;
 import com.wtbw.mods.lib.gui.util.RedstoneButton;
@@ -16,7 +17,7 @@ import net.minecraft.util.text.TranslationTextComponent;
 /*
   @author: Sunekaer
 */
-public class QuarryScreen extends BaseUpgradeScreen<QuarryContainer>
+public class QuarryScreen extends BaseContainerScreen<QuarryContainer>
 {
   public static final ResourceLocation GUI = new ResourceLocation(WTBWMachines.MODID, "textures/gui/basic3x3with1butt.png");
   private EnergyBar energyBar;
@@ -39,18 +40,7 @@ public class QuarryScreen extends BaseUpgradeScreen<QuarryContainer>
   }
   
   @Override
-  public void tick()
-  {
-    if (energyBar != null)
-    {
-      energyBar.update();
-    }
-    
-    super.tick();
-  }
-  
-  @Override
-  protected void drawGuiBackgroundLayer(MatrixStack stack, float partialTicks, int mouseX, int mouseY)
+  protected void drawGuiContainerBackgroundLayer(MatrixStack stack, float partialTicks, int x, int y)
   {
     int green = 0xff00B300;
     int textColor = 0xff404040;
@@ -78,5 +68,16 @@ public class QuarryScreen extends BaseUpgradeScreen<QuarryContainer>
         this.font.drawString(stack, "Z: " + this.container.tileEntity.getCurrentPos().getZ(), xp, yp + 27, textColor);
       }
     }
+  }
+  
+  @Override
+  public void tick()
+  {
+    if (energyBar != null)
+    {
+      energyBar.update();
+    }
+    
+    super.tick();
   }
 }

@@ -4,9 +4,6 @@ import com.wtbw.mods.lib.gui.util.ClickType;
 import com.wtbw.mods.lib.network.Networking;
 import com.wtbw.mods.lib.tile.util.*;
 import com.wtbw.mods.lib.tile.util.energy.BaseEnergyStorage;
-import com.wtbw.mods.lib.upgrade.IUpgradeable;
-import com.wtbw.mods.lib.upgrade.ModifierType;
-import com.wtbw.mods.lib.upgrade.UpgradeManager;
 import com.wtbw.mods.lib.util.Area;
 import com.wtbw.mods.lib.util.StackUtil;
 import com.wtbw.mods.lib.util.Utilities;
@@ -44,7 +41,7 @@ import java.util.List;
   @author: Sunekaer
 */
 @SuppressWarnings("ConstantConditions")
-public class QuarryTileEntity extends TileEntity implements ITickableTileEntity, IWTBWNamedContainerProvider, IRedstoneControlled, IContentHolder, IGuiUpdateHandler, IUpgradeable
+public class QuarryTileEntity extends TileEntity implements ITickableTileEntity, IWTBWNamedContainerProvider, IRedstoneControlled, IContentHolder, IGuiUpdateHandler
 {
   //TODO Make Bounding border
   
@@ -62,7 +59,6 @@ public class QuarryTileEntity extends TileEntity implements ITickableTileEntity,
   private Direction facing = null;
   
   private NBTManager nbtManager;
-  private UpgradeManager upgradeManager = new UpgradeManager(3).setFilter(ModifierType.POWER_CAPACITY, ModifierType.SPEED, ModifierType.POWER_USAGE);
   
   private int work = 0;
   private int workTotal = 0;
@@ -81,7 +77,6 @@ public class QuarryTileEntity extends TileEntity implements ITickableTileEntity,
       .register("storage", getStorage(), false)
       .register("inventory", inventory.orElseGet(ItemStackHandler::new))
       .register("control", control)
-      .register("upgrades", upgradeManager)
       .registerInt("work", () -> work, i -> work = i)
       .registerInt("workTotal", () -> workTotal, i -> workTotal = i);
     
@@ -184,21 +179,20 @@ public class QuarryTileEntity extends TileEntity implements ITickableTileEntity,
       }
   
       CommonConfig config = CommonConfig.instance();
-      storage.setCapacity((int) (config.quarryCapacity.get() * upgradeManager.getValueOrDefault(ModifierType.POWER_CAPACITY)));
       
       if (area != null)
       {
         if (control.update())
         {
           
-          workTotal = ((int) (config.quarrySpeed.get() / upgradeManager.getValueOrDefault(ModifierType.SPEED)));
+          workTotal = config.quarrySpeed.get();
           
           if (work++ >= workTotal)
           {
             work = 0;
             if (area.isInside(currentPos))
             {
-              int powerUsage = (int) (config.quarryPowerUsage.get() * upgradeManager.getValueOrDefault(ModifierType.POWER_USAGE));
+              int powerUsage = config.quarryPowerUsage.get();
               if (getStorage().getEnergyStored() >= powerUsage)
               {
                 if (breakBlock())
@@ -343,7 +337,6 @@ public class QuarryTileEntity extends TileEntity implements ITickableTileEntity,
   public void dropContents()
   {
     inventory.ifPresent(handler -> Utilities.dropItems(world, handler, pos));
-    Utilities.dropItems(world, upgradeManager.getUpgradeInventory(), pos);
   }
   
   @Override
@@ -390,10 +383,5 @@ public class QuarryTileEntity extends TileEntity implements ITickableTileEntity,
   {
     GuiUpdateHelper.updateEnergy(storage, nbt.getIntArray("storage"));
   }
-  
-  @Override
-  public UpgradeManager getUpgradeManager()
-  {
-    return upgradeManager;
-  }
+
 }

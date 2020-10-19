@@ -1,6 +1,6 @@
 package com.wtbw.mods.machines.gui.container;
 
-import com.wtbw.mods.lib.gui.container.BaseUpgradeContainer;
+import com.wtbw.mods.lib.gui.container.BaseTileContainer;
 import com.wtbw.mods.machines.tile.machine.HydratorEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.util.math.BlockPos;
@@ -10,7 +10,7 @@ import net.minecraftforge.items.ItemStackHandler;
 /*
   @author: Naxanria
 */
-public class HydratorContainer extends BaseUpgradeContainer<HydratorEntity>
+public class HydratorContainer extends BaseTileContainer<HydratorEntity>
 {
   public HydratorContainer(int id, World world, BlockPos pos, PlayerInventory playerInventory)
   {

@@ -1,6 +1,7 @@
 package com.wtbw.mods.machines.gui.screen;
 
 import com.mojang.blaze3d.matrix.MatrixStack;
+import com.wtbw.mods.lib.gui.screen.BaseContainerScreen;
 import com.wtbw.mods.lib.gui.screen.BaseUpgradeScreen;
 import com.wtbw.mods.lib.gui.util.EnergyBar;
 import com.wtbw.mods.lib.gui.util.ProgressBar;
@@ -17,7 +18,7 @@ import net.minecraft.util.text.ITextComponent;
 /*
   @author: Sunekaer
 */
-public class CompressorScreen extends BaseUpgradeScreen<CompressorContainer>
+public class CompressorScreen extends BaseContainerScreen<CompressorContainer>
 {
   public static final Sprite PROGRESS_BACKGROUND_LEFT = ClientConstants.Gui.ICONS.getSprite(0, 20, 10, 10);
   public static final Sprite PROGRESS_BACKGROUND_RIGHT = PROGRESS_BACKGROUND_LEFT.getRight(10, 10);
@@ -51,6 +52,16 @@ public class CompressorScreen extends BaseUpgradeScreen<CompressorContainer>
   }
   
   @Override
+  protected void drawGuiContainerBackgroundLayer(MatrixStack stack, float partialTicks, int x, int y)
+  {
+    defaultGui(stack);
+  
+    progressBarLeft.draw(stack);
+    progressBarRight.draw(stack);
+    energyBar.draw(stack);
+  }
+  
+  @Override
   public void tick()
   {
     super.tick();
@@ -68,15 +79,5 @@ public class CompressorScreen extends BaseUpgradeScreen<CompressorContainer>
     {
       energyBar.update();
     }
-  }
-  
-  @Override
-  protected void drawGuiBackgroundLayer(MatrixStack stack, float partialTicks, int mouseX, int mouseY)
-  {
-    defaultGui(stack);
-  
-    progressBarLeft.draw(stack);
-    progressBarRight.draw(stack);
-    energyBar.draw(stack);
   }
 }

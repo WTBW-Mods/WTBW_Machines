@@ -3,8 +3,6 @@ package com.wtbw.mods.machines.tile.machine;
 import com.wtbw.mods.lib.tile.util.InventoryWrapper;
 import com.wtbw.mods.lib.tile.util.RedstoneMode;
 import com.wtbw.mods.lib.tile.util.energy.BaseEnergyStorage;
-import com.wtbw.mods.lib.upgrade.IUpgradeable;
-import com.wtbw.mods.lib.upgrade.ModifierType;
 import com.wtbw.mods.lib.upgrade.UpgradeManager;
 import com.wtbw.mods.lib.util.Utilities;
 import com.wtbw.mods.machines.gui.container.HydratorContainer;
@@ -12,7 +10,6 @@ import com.wtbw.mods.machines.recipe.HydratingRecipe;
 import com.wtbw.mods.machines.recipe.ModRecipes;
 import com.wtbw.mods.machines.tile.ModTiles;
 import com.wtbw.mods.machines.tile.base.BaseMachineEntity;
-import net.minecraft.block.IBucketPickupHandler;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.fluid.Fluids;
@@ -20,12 +17,10 @@ import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.container.Container;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundNBT;
-import net.minecraft.tileentity.TileEntityType;
 import net.minecraft.util.Direction;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.energy.CapabilityEnergy;
-import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.capability.CapabilityFluidHandler;
 import net.minecraftforge.fluids.capability.IFluidHandler;
 import net.minecraftforge.fluids.capability.templates.FluidTank;
@@ -39,7 +34,7 @@ import java.util.List;
 /*
   @author: Naxanria
 */
-public class HydratorEntity extends BaseMachineEntity implements IUpgradeable
+public class HydratorEntity extends BaseMachineEntity
 {
   public static final int INPUT_SLOT = 0;
   public static final int OUTPUT_SLOT = 1;
@@ -72,7 +67,6 @@ public class HydratorEntity extends BaseMachineEntity implements IUpgradeable
       .registerInt("waterUsage", () -> waterUsage, integer -> waterUsage = integer)
       .registerInt("powerUsage", () -> powerUsage, integer -> powerUsage = integer)
       .register("inventory", getInventory())
-      .register("upgrades", upgradeManager)
       .register("tank", getWaterTank());
   }
   
@@ -238,18 +232,13 @@ public class HydratorEntity extends BaseMachineEntity implements IUpgradeable
         
         if (recipe != null)
         {
-          float durationMod = getUpgradeManager().getValueOrDefault(ModifierType.SPEED);
-  
-          duration = (int) (recipe.duration / durationMod);
+          duration = recipe.duration;
           if (duration < 1)
           {
             duration = 1;
           }
   
-          float powerMod = getUpgradeManager().getValueOrDefault(ModifierType.POWER_USAGE);
-  
           powerUsage = recipe.powerCost / duration;
-          powerUsage *= powerMod;
   
           waterUsage = recipe.waterCost / duration;
   
@@ -278,8 +267,6 @@ public class HydratorEntity extends BaseMachineEntity implements IUpgradeable
       {
         setOn(on);
       }
-  
-      getStorage().setCapacity((int) (DEFAULT_CAPACITY * getUpgradeManager().getValueOrDefault(ModifierType.POWER_CAPACITY)));
     }
   }
   
@@ -311,12 +298,7 @@ public class HydratorEntity extends BaseMachineEntity implements IUpgradeable
       inventory.setStackInSlot(OUTPUT_SLOT, output);
     }
   }
-  
-  @Override
-  public UpgradeManager getUpgradeManager()
-  {
-    return upgradeManager;
-  }
+
   
   public int getDuration()
   {

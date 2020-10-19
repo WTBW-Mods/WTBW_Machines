@@ -3,9 +3,6 @@ package com.wtbw.mods.machines.tile.machine;
 import com.wtbw.mods.lib.tile.util.InventoryWrapper;
 import com.wtbw.mods.lib.tile.util.RedstoneMode;
 import com.wtbw.mods.lib.tile.util.energy.BaseEnergyStorage;
-import com.wtbw.mods.lib.upgrade.IUpgradeable;
-import com.wtbw.mods.lib.upgrade.ModifierType;
-import com.wtbw.mods.lib.upgrade.UpgradeManager;
 import com.wtbw.mods.lib.util.Utilities;
 import com.wtbw.mods.lib.util.nbt.NBTManager;
 import com.wtbw.mods.machines.gui.container.CompressorContainer;
@@ -33,7 +30,7 @@ import java.util.List;
 /*
   @author: Sunekaer
 */
-public class CompressorEntity extends BaseMachineEntity implements IUpgradeable
+public class CompressorEntity extends BaseMachineEntity
 {
   public static final int INPUT_SLOT = 0;
   public static final int OUTPUT_SLOT = 1;
@@ -51,8 +48,6 @@ public class CompressorEntity extends BaseMachineEntity implements IUpgradeable
   private int powerCost;
   private int ingredientCost;
   
-  private UpgradeManager upgradeManager = new UpgradeManager().setFilter(DEFAULT_MACHINE_FILTER);
-  
   public CompressorEntity()
   {
     super(ModTiles.COMPRESSOR, DEFAULT_CAPACITY, 50000, RedstoneMode.IGNORE);
@@ -63,8 +58,7 @@ public class CompressorEntity extends BaseMachineEntity implements IUpgradeable
       .registerInt("powerCost", () -> powerCost, i -> powerCost = i)
       .registerInt("ingredientCost", () -> ingredientCost, i -> ingredientCost = i)
       .register("inventory", getInventory())
-      .registerInt("tick", () -> tick, i -> tick = i)
-      .register("upgrades", upgradeManager);
+      .registerInt("tick", () -> tick, i -> tick = i);
   }
   
   @Override
@@ -291,13 +285,13 @@ public class CompressorEntity extends BaseMachineEntity implements IUpgradeable
         }
         if (recipe != null)
         {
-          duration = (int) (recipe.duration / upgradeManager.getValueOrDefault(ModifierType.SPEED));
+          duration = recipe.duration;
           if (duration < 1)
           {
             duration = 1;
           }
           
-          powerCost = (int) (recipe.powerCost * upgradeManager.getValueOrDefault(ModifierType.POWER_USAGE));
+          powerCost = recipe.powerCost;
           ingredientCost = recipe.ingredientCost;
           if (recipe != old)
           {
@@ -326,18 +320,12 @@ public class CompressorEntity extends BaseMachineEntity implements IUpgradeable
         }
       }
       
-      storage.setCapacity((int) (DEFAULT_CAPACITY * upgradeManager.getValueOrDefault(ModifierType.POWER_CAPACITY)));
+      
       
       if (dirty)
       {
         markDirty();
       }
     }
-  }
-  
-  @Override
-  public UpgradeManager getUpgradeManager()
-  {
-    return upgradeManager;
   }
 }

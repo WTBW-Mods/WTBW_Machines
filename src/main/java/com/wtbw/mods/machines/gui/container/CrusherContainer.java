@@ -1,6 +1,6 @@
 package com.wtbw.mods.machines.gui.container;
 
-import com.wtbw.mods.lib.gui.container.BaseUpgradeContainer;
+import com.wtbw.mods.lib.gui.container.BaseTileContainer;
 import com.wtbw.mods.lib.util.nbt.NBTManager;
 import com.wtbw.mods.machines.tile.machine.CrusherEntity;
 import net.minecraft.entity.player.PlayerInventory;
@@ -11,7 +11,7 @@ import net.minecraftforge.items.ItemStackHandler;
 /*
   @author: Sunekaer
 */
-public class CrusherContainer extends BaseUpgradeContainer<CrusherEntity>
+public class CrusherContainer extends BaseTileContainer<CrusherEntity>
 {
   public CrusherContainer(int id, World world, BlockPos pos, PlayerInventory inventory)
   {

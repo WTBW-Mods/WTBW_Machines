@@ -1,6 +1,7 @@
 package com.wtbw.mods.machines.gui.screen;
 
 import com.mojang.blaze3d.matrix.MatrixStack;
+import com.wtbw.mods.lib.gui.screen.BaseContainerScreen;
 import com.wtbw.mods.lib.gui.screen.BaseUpgradeScreen;
 import com.wtbw.mods.lib.gui.util.EnergyBar;
 import com.wtbw.mods.lib.gui.util.FluidBar;
@@ -16,7 +17,7 @@ import net.minecraft.util.text.ITextComponent;
 /*
   @author: Naxanria
 */
-public class HydratorScreen extends BaseUpgradeScreen<HydratorContainer>
+public class HydratorScreen extends BaseContainerScreen<HydratorContainer>
 {
   public static final Sprite PROGRESS = ClientConstants.Gui.ICONS.getSprite(48, 0, 16);
   public static final Sprite PROGRESS_BACKGROUND = ClientConstants.Gui.ICONS.getSprite(48, 18, 16);
@@ -28,16 +29,6 @@ public class HydratorScreen extends BaseUpgradeScreen<HydratorContainer>
   public HydratorScreen(HydratorContainer container, PlayerInventory inventory, ITextComponent title)
   {
     super(container, inventory, title);
-  }
-  
-  @Override
-  protected void drawGuiBackgroundLayer(MatrixStack stack, float partialTicks, int mouseX, int mouseY)
-  {
-    defaultGui(stack);
-    
-    progressBar.draw(stack);
-    energyBar.draw(stack);
-    waterBar.draw(stack);
   }
   
   @Override
@@ -76,5 +67,15 @@ public class HydratorScreen extends BaseUpgradeScreen<HydratorContainer>
       .setFillDirection(ProgressBar.FillDirection.TOP_BOTTOM);
 //      new ProgressBar(guiLeft + xSize / 2 - 3, guiTop + 39, 5, 15, tileEntity::getDuration, tileEntity::getProgress)
 //      .setFillDirection(ProgressBar.FillDirection.TOP_BOTTOM);
+  }
+  
+  @Override
+  protected void drawGuiContainerBackgroundLayer(MatrixStack stack, float partialTicks, int x, int y)
+  {
+    defaultGui(stack);
+  
+    progressBar.draw(stack);
+    energyBar.draw(stack);
+    waterBar.draw(stack);
   }
 }

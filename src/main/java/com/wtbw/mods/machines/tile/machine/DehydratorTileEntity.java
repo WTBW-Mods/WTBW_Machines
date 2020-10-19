@@ -4,11 +4,7 @@ import com.wtbw.mods.lib.tile.util.InventoryWrapper;
 import com.wtbw.mods.lib.tile.util.RedstoneControl;
 import com.wtbw.mods.lib.tile.util.RedstoneMode;
 import com.wtbw.mods.lib.tile.util.energy.BaseEnergyStorage;
-import com.wtbw.mods.lib.upgrade.IUpgradeable;
-import com.wtbw.mods.lib.upgrade.ModifierType;
-import com.wtbw.mods.lib.upgrade.UpgradeManager;
 import com.wtbw.mods.lib.util.Utilities;
-import com.wtbw.mods.lib.util.nbt.Manager;
 import com.wtbw.mods.lib.util.nbt.NBTManager;
 import com.wtbw.mods.machines.gui.container.DehydratorContainer;
 import com.wtbw.mods.machines.recipe.DehydratingRecipe;
@@ -36,7 +32,7 @@ import java.util.List;
   @author: Naxanria
 */
 @SuppressWarnings("ConstantConditions")
-public class DehydratorTileEntity extends BaseMachineEntity implements IUpgradeable
+public class DehydratorTileEntity extends BaseMachineEntity
 {
   public static final int INPUT_SLOT = 0;
   public static final int OUTPUT_SLOT = 1;
@@ -53,8 +49,6 @@ public class DehydratorTileEntity extends BaseMachineEntity implements IUpgradea
   
   private DehydratingRecipe recipe;
   
-  private UpgradeManager upgradeManager = new UpgradeManager().setFilter(DEFAULT_MACHINE_FILTER);
-  
   public DehydratorTileEntity()
   {
     super(ModTiles.DEHYDRATOR, DEFAULT_CAPACITY, 5000, RedstoneMode.IGNORE);
@@ -63,8 +57,7 @@ public class DehydratorTileEntity extends BaseMachineEntity implements IUpgradea
       .registerInt("duration",() -> duration, i -> duration = i)
       .registerInt("PROGRESS", () -> progress, i -> progress = i)
       .registerInt("powerUsage", () -> powerUsage, i -> powerUsage = i)
-      .register("inventory", getInventory())
-      .register("upgrades", upgradeManager);
+      .register("inventory", getInventory());
   }
   
   @Nonnull
@@ -205,18 +198,18 @@ public class DehydratorTileEntity extends BaseMachineEntity implements IUpgradea
   
         if (recipe != null)
         {
-          float durationMod = upgradeManager.getValueOrDefault(ModifierType.SPEED);
-          
-          duration = (int) (recipe.duration / durationMod);
+          duration = recipe.duration;
           if (duration < 1)
           {
             duration = 1;
           }
           
-          float powerMod = upgradeManager.getValueOrDefault(ModifierType.POWER_USAGE);
-          
           powerUsage = recipe.powerCost / duration;
-          powerUsage *= powerMod;
+          
+          if (powerUsage <= 0)
+          {
+            powerUsage = 1;
+          }
   
           if (recipe != old)
           {
@@ -241,12 +234,9 @@ public class DehydratorTileEntity extends BaseMachineEntity implements IUpgradea
         setOn(on);
       }
       
-      storage.setCapacity((int) (DEFAULT_CAPACITY * upgradeManager.getValueOrDefault(ModifierType.POWER_CAPACITY)));
-  
       markDirty();
     }
   }
-  
   
   private boolean canOutput()
   {
@@ -326,11 +316,5 @@ public class DehydratorTileEntity extends BaseMachineEntity implements IUpgradea
   public int getPowerUsage()
   {
     return powerUsage;
-  }
-  
-  @Override
-  public UpgradeManager getUpgradeManager()
-  {
-    return upgradeManager;
   }
 }
