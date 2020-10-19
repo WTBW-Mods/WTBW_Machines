@@ -87,8 +87,8 @@ public class MachinesRegistrator extends Registrator
     
     register(new BaseMachineBlock<>(getBlockProperties(Material.IRON, 3), (world, state) -> new SimpleBatteryTileEntity()).comparator(), "simple_battery");
     
-    register(new BaseMachineBlock<>(getBlockProperties(Material.IRON, 5), (world, state) -> new DehydratorTileEntity()).mirrored(), "dehydrator");
-    register(new BaseMachineBlock<>(getBlockProperties(Material.IRON, 5), (world, state) -> new HydratorEntity()).mirrored(), "hydrator");
+    register(new BaseMachineBlock<>(getBlockProperties(Material.IRON, 5), (world, state) -> new DehydratorEntity(DehydratorEntity.BASIC)).mirrored(), "dehydrator_basic");
+    register(new BaseMachineBlock<>(getBlockProperties(Material.IRON, 5), (world, state) -> new HydratorEntity(HydratorEntity.BASIC)).mirrored(), "hydrator_basic");
     
     register(new Block(getBlockProperties(Material.IRON, 3)), "machine_block");
     
@@ -97,11 +97,11 @@ public class MachinesRegistrator extends Registrator
     register(new TierBlock(getBlockProperties(Material.IRON, 3), 3), "tier3_upgrade");
     register(new TierBlock(getBlockProperties(Material.IRON, 3), 4), "tier4_upgrade");
 
-    register(new BaseMachineBlock<>(getBlockProperties(Material.IRON, 4), (world, state) -> new PoweredFurnaceEntity()).mirrored(), "powered_furnace");
-    register(new BaseMachineBlock<>(getBlockProperties(Material.IRON, 4), (world, state) -> new CrusherEntity()).mirrored(), "crusher");
-    register(new BaseMachineBlock<>(getBlockProperties(Material.IRON, 4), (world, state) -> new CompressorEntity()).mirrored(), "compressor");
+    register(new BaseMachineBlock<>(getBlockProperties(Material.IRON, 4), (world, state) -> new PoweredFurnaceEntity(PoweredFurnaceEntity.BASIC)).mirrored(), "powered_furnace_basic");
+    register(new BaseMachineBlock<>(getBlockProperties(Material.IRON, 4), (world, state) -> new CrusherEntity(CrusherEntity.BASIC)).mirrored(), "crusher_basic");
+    register(new BaseMachineBlock<>(getBlockProperties(Material.IRON, 4), (world, state) -> new CompressorEntity(CompressorEntity.BASIC)).mirrored(), "compressor_basic");
     
-    register(new BaseMachineBlock<>(getBlockProperties(Material.IRON, 4), (world, state) -> new FuelGeneratorEntity()).mirrored(), "fuel_generator",
+    register(new BaseMachineBlock<>(getBlockProperties(Material.IRON, 4), (world, state) -> new FuelGeneratorEntity(FuelGeneratorEntity.BASIC)).mirrored(), "fuel_generator_basic",
       getItemProperties().addTooltip(TextComponentBuilder.createTranslated(WTBWMachines.MODID + ".tooltip.fuel_generator", 45).green().build()));
     
     register(new EnergyCableBlock(getBlockProperties(Material.IRON, 4).variableOpacity(), EnergyCableTier.MK1), "energy_cable_mk1");

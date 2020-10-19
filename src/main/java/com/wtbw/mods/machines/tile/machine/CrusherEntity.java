@@ -4,9 +4,6 @@ import com.wtbw.mods.lib.gui.util.EnergyBar;
 import com.wtbw.mods.lib.tile.util.InventoryWrapper;
 import com.wtbw.mods.lib.tile.util.RedstoneMode;
 import com.wtbw.mods.lib.tile.util.energy.BaseEnergyStorage;
-import com.wtbw.mods.lib.upgrade.IUpgradeable;
-import com.wtbw.mods.lib.upgrade.ModifierType;
-import com.wtbw.mods.lib.upgrade.UpgradeManager;
 import com.wtbw.mods.lib.util.StackUtil;
 import com.wtbw.mods.lib.util.Utilities;
 import com.wtbw.mods.lib.util.nbt.NBTManager;
@@ -38,11 +35,12 @@ import java.util.List;
 */
 public class CrusherEntity extends BaseMachineEntity
 {
+  public static final MachineTier BASIC = new MachineTier(ModTiles.CRUSHER_BASIC, MachineTier.BASIC);
+  
   public static final int INPUT_SLOT = 0;
   public static final int OUTPUT_SLOT = 1;
   public static final int OUTPUT_SLOT2 = 2;
   public static final int OUTPUT_SLOT3 = 3;
-  
   
   private ItemStackHandler inventory;
   private InventoryWrapper inventoryWrapper;
@@ -58,11 +56,13 @@ public class CrusherEntity extends BaseMachineEntity
   private int ingredientCost;
   private List<ItemStack> maxRolls;
   
-  EnergyBar energyBar;
+  public final MachineTier tier;
   
-  public CrusherEntity()
+  public CrusherEntity(MachineTier tier)
   {
-    super(ModTiles.CRUSHER, 100000, 50000, RedstoneMode.IGNORE);
+    super(tier.tileEntityType, 100000, 50000, RedstoneMode.IGNORE);
+    
+    this.tier = tier;
     
     manager
       .registerInt("duration", () -> duration, i -> duration = i)

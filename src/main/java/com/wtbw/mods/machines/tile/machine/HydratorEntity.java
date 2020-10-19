@@ -36,6 +36,8 @@ import java.util.List;
 */
 public class HydratorEntity extends BaseMachineEntity
 {
+  public static final MachineTier BASIC = new MachineTier(ModTiles.HYDRATOR_BASIC, MachineTier.BASIC);
+  
   public static final int INPUT_SLOT = 0;
   public static final int OUTPUT_SLOT = 1;
   
@@ -57,10 +59,13 @@ public class HydratorEntity extends BaseMachineEntity
   
   private UpgradeManager upgradeManager = new UpgradeManager().setFilter(DEFAULT_MACHINE_FILTER);
   
-  public HydratorEntity()
+  public final MachineTier tier;
+  
+  public HydratorEntity(MachineTier tier)
   {
-    super(ModTiles.HYDRATOR, DEFAULT_CAPACITY, 2000, RedstoneMode.IGNORE);
-    
+    super(tier.tileEntityType, DEFAULT_CAPACITY, 2000, RedstoneMode.IGNORE);
+    this.tier = tier;
+  
     manager
       .registerInt("duration", () -> duration, integer -> duration = integer)
       .registerInt("progress", () -> progress, integer -> progress = integer)

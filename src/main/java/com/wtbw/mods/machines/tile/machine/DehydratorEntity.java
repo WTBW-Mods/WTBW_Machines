@@ -32,8 +32,10 @@ import java.util.List;
   @author: Naxanria
 */
 @SuppressWarnings("ConstantConditions")
-public class DehydratorTileEntity extends BaseMachineEntity
+public class DehydratorEntity extends BaseMachineEntity
 {
+  public static final MachineTier BASIC = new MachineTier(ModTiles.DEHYDRATOR_BASIC, MachineTier.BASIC);
+  
   public static final int INPUT_SLOT = 0;
   public static final int OUTPUT_SLOT = 1;
   
@@ -49,9 +51,13 @@ public class DehydratorTileEntity extends BaseMachineEntity
   
   private DehydratingRecipe recipe;
   
-  public DehydratorTileEntity()
+  public final MachineTier tier;
+  
+  public DehydratorEntity(MachineTier tier)
   {
-    super(ModTiles.DEHYDRATOR, DEFAULT_CAPACITY, 5000, RedstoneMode.IGNORE);
+    super(tier.tileEntityType, DEFAULT_CAPACITY, 5000, RedstoneMode.IGNORE);
+    
+    this.tier = tier;
     
     manager
       .registerInt("duration",() -> duration, i -> duration = i)

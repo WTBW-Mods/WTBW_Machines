@@ -43,17 +43,33 @@ public class ModTiles
   public static final TileEntityType<SolarPanelTileEntity> SOLAR_PANEL_MK4 = null;
   public static final TileEntityType<SolarPanelTileEntity> SOLAR_PANEL_MK5 = null;
   
-  public static final TileEntityType<FuelGeneratorEntity> FUEL_GENERATOR = null;
+  public static final TileEntityType<FuelGeneratorEntity> FUEL_GENERATOR_BASIC = null;
+  public static final TileEntityType<FuelGeneratorEntity> FUEL_GENERATOR_ADVANCED = null;
+  public static final TileEntityType<FuelGeneratorEntity> FUEL_GENERATOR_EXPERT = null;
   
   public static final TileEntityType<SimpleBatteryTileEntity> SIMPLE_BATTERY = null;
 
   public static final TileEntityType<QuarryTileEntity> QUARRY = null;
-  public static final TileEntityType<DehydratorTileEntity> DEHYDRATOR = null;
-  public static final TileEntityType<HydratorEntity> HYDRATOR = null;
+  
+  public static final TileEntityType<DehydratorEntity> DEHYDRATOR_BASIC = null;
+  public static final TileEntityType<DehydratorEntity> DEHYDRATOR_ADVANCED = null;
+  public static final TileEntityType<DehydratorEntity> DEHYDRATOR_EXPERT = null;
+  
+  public static final TileEntityType<HydratorEntity> HYDRATOR_BASIC = null;
+  public static final TileEntityType<HydratorEntity> HYDRATOR_ADVANCED = null;
+  public static final TileEntityType<HydratorEntity> HYDRATOR_EXPERT = null;
 
-  public static final TileEntityType<PoweredFurnaceEntity> POWERED_FURNACE = null;
-  public static final TileEntityType<CrusherEntity> CRUSHER = null;
-  public static final TileEntityType<CompressorEntity> COMPRESSOR = null;
+  public static final TileEntityType<PoweredFurnaceEntity> POWERED_FURNACE_BASIC = null;
+  public static final TileEntityType<PoweredFurnaceEntity> POWERED_FURNACE_ADVANCED = null;
+  public static final TileEntityType<PoweredFurnaceEntity> POWERED_FURNACE_EXPERT = null;
+  
+  public static final TileEntityType<CrusherEntity> CRUSHER_BASIC = null;
+  public static final TileEntityType<CrusherEntity> CRUSHER_ADVANCED = null;
+  public static final TileEntityType<CrusherEntity> CRUSHER_EXPERT = null;
+  
+  public static final TileEntityType<CompressorEntity> COMPRESSOR_BASIC = null;
+  public static final TileEntityType<CompressorEntity> COMPRESSOR_ADVANCED = null;
+  public static final TileEntityType<CompressorEntity> COMPRESSOR_EXPERT = null;
   
   
   public static final TileEntityType<EnergyCableEntity> ENERGY_CABLE_MK1 = null;

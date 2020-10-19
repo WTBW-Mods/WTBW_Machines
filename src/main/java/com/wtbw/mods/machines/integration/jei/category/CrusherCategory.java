@@ -51,7 +51,7 @@ public class CrusherCategory extends AbstractRecipeCategory<CrushingRecipe>
         "crushing",
         guiHelper,
         () -> guiHelper.createDrawable(ClientConstants.Jei.BACKGROUND, 0, 0, 162, 54),
-        () -> guiHelper.createDrawableIngredient(new ItemStack(ModBlocks.CRUSHER))
+        () -> guiHelper.createDrawableIngredient(new ItemStack(ModBlocks.CRUSHER_BASIC))
       );
     
     this.progress = guiHelper.drawableBuilder(ClientConstants.ICONS, 10, 10, 10, 10).buildAnimated(300, IDrawableAnimated.StartDirection.TOP, false);

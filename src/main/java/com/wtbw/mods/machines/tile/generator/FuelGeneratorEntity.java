@@ -8,6 +8,7 @@ import com.wtbw.mods.lib.util.Utilities;
 import com.wtbw.mods.machines.gui.container.FuelGeneratorContainer;
 import com.wtbw.mods.machines.tile.ModTiles;
 import com.wtbw.mods.machines.tile.base.Generator;
+import com.wtbw.mods.machines.tile.machine.MachineTier;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
@@ -29,15 +30,20 @@ import javax.annotation.Nullable;
 */
 public class FuelGeneratorEntity extends Generator implements IWTBWNamedContainerProvider, IContentHolder, IGuiUpdateHandler
 {
+  public static final MachineTier BASIC = new MachineTier(ModTiles.FUEL_GENERATOR_BASIC, MachineTier.BASIC);
+  
   private ItemStackHandler inventory;
   private LazyOptional<ItemStackHandler> inventoryCap = LazyOptional.of(this::getInventory);
   private int genTime = 400;
   private int genCounter = 0;
   
-  public FuelGeneratorEntity()
+  public final MachineTier tier;
+  
+  public FuelGeneratorEntity(MachineTier tier)
   {
-    super(ModTiles.FUEL_GENERATOR, 150000, 1000, 45);
-    
+    super(tier.tileEntityType, 150000, 1000, 45);
+    this.tier = tier;
+  
     manager
       .registerInt("genTime", () -> genTime, (i) -> genTime = i)
       .registerInt("genCounter", () -> genCounter, (i) -> genCounter = i)

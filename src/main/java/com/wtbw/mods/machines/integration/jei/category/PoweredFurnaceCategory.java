@@ -47,7 +47,7 @@ public class PoweredFurnaceCategory extends AbstractRecipeCategory<PoweredFurnac
         "powered_furnace",
         guiHelper,
         () -> guiHelper.createDrawable(ClientConstants.Jei.BACKGROUND, 0, 54, 90, 54),
-        () -> guiHelper.createDrawableIngredient(new ItemStack(ModBlocks.POWERED_FURNACE))
+        () -> guiHelper.createDrawableIngredient(new ItemStack(ModBlocks.POWERED_FURNACE_BASIC))
       );
     
     WTBWMachines.LOGGER.info("Created!");

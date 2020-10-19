@@ -7,11 +7,8 @@ import com.wtbw.mods.lib.tile.util.energy.BaseEnergyStorage;
 import com.wtbw.mods.lib.util.TextComponentBuilder;
 import com.wtbw.mods.machines.ClientConstants;
 import com.wtbw.mods.machines.block.ModBlocks;
-import com.wtbw.mods.machines.gui.screen.DehydratorScreen;
 import com.wtbw.mods.machines.gui.screen.HydratorScreen;
-import com.wtbw.mods.machines.recipe.DehydratingRecipe;
 import com.wtbw.mods.machines.recipe.HydratingRecipe;
-import com.wtbw.mods.machines.tile.machine.DehydratorTileEntity;
 import com.wtbw.mods.machines.tile.machine.HydratorEntity;
 import mezz.jei.api.constants.VanillaTypes;
 import mezz.jei.api.gui.IRecipeLayout;
@@ -53,7 +50,7 @@ public class HydratingCategory extends AbstractRecipeCategory<HydratingRecipe>
         "hydrating",
         guiHelper,
         () -> guiHelper.createDrawable(ClientConstants.Jei.BACKGROUND, 0, 54, 90, 54),
-        () -> guiHelper.createDrawableIngredient(new ItemStack(ModBlocks.HYDRATOR))
+        () -> guiHelper.createDrawableIngredient(new ItemStack(ModBlocks.HYDRATOR_BASIC))
       );
     
     progress = guiHelper.drawableBuilder(ClientConstants.ICONS, 48, 18, 16, 16).buildAnimated(200, IDrawableAnimated.StartDirection.TOP, false);

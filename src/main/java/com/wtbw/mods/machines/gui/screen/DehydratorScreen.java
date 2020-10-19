@@ -2,7 +2,6 @@ package com.wtbw.mods.machines.gui.screen;
 
 import com.mojang.blaze3d.matrix.MatrixStack;
 import com.wtbw.mods.lib.gui.screen.BaseContainerScreen;
-import com.wtbw.mods.lib.gui.screen.BaseUpgradeScreen;
 import com.wtbw.mods.lib.gui.util.EnergyBar;
 import com.wtbw.mods.lib.gui.util.ProgressBar;
 import com.wtbw.mods.lib.gui.util.RedstoneButton;
@@ -11,7 +10,7 @@ import com.wtbw.mods.lib.gui.util.sprite.Sprite;
 import com.wtbw.mods.lib.tile.util.energy.BaseEnergyStorage;
 import com.wtbw.mods.machines.ClientConstants;
 import com.wtbw.mods.machines.gui.container.DehydratorContainer;
-import com.wtbw.mods.machines.tile.machine.DehydratorTileEntity;
+import com.wtbw.mods.machines.tile.machine.DehydratorEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.util.text.ITextComponent;
 
@@ -26,7 +25,7 @@ public class DehydratorScreen extends BaseContainerScreen<DehydratorContainer>
   private ProgressBar progressBar;
   private EnergyBar energyBar;
 
-  private RedstoneButton<DehydratorTileEntity> redstoneButton;
+  private RedstoneButton<DehydratorEntity> redstoneButton;
   
   public DehydratorScreen(DehydratorContainer container, PlayerInventory inventory, ITextComponent title)
   {
@@ -37,7 +36,7 @@ public class DehydratorScreen extends BaseContainerScreen<DehydratorContainer>
   protected void init()
   {
     super.init();
-    DehydratorTileEntity tileEntity = container.tileEntity;
+    DehydratorEntity tileEntity = container.tileEntity;
     BaseEnergyStorage storage = tileEntity.getStorage();
     
     progressBar = new SpriteProgressBar(guiLeft + 175 / 2 -3, guiTop + 39, PROGRESS, PROGRESS_BACKGROUND, tileEntity::getDuration, tileEntity::getProgress)

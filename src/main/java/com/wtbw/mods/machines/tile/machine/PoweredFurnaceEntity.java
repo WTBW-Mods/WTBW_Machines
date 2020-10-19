@@ -3,9 +3,6 @@ package com.wtbw.mods.machines.tile.machine;
 import com.wtbw.mods.lib.tile.util.InventoryWrapper;
 import com.wtbw.mods.lib.tile.util.RedstoneMode;
 import com.wtbw.mods.lib.tile.util.energy.BaseEnergyStorage;
-import com.wtbw.mods.lib.upgrade.IUpgradeable;
-import com.wtbw.mods.lib.upgrade.ModifierType;
-import com.wtbw.mods.lib.upgrade.UpgradeManager;
 import com.wtbw.mods.lib.util.Utilities;
 import com.wtbw.mods.lib.util.nbt.NBTManager;
 import com.wtbw.mods.machines.gui.container.PoweredFurnaceContainer;
@@ -37,6 +34,8 @@ import java.util.List;
 */
 public class PoweredFurnaceEntity extends BaseMachineEntity
 {
+  public static final MachineTier BASIC = new MachineTier(ModTiles.POWERED_FURNACE_BASIC, MachineTier.BASIC);
+  
   public static final int INPUT_SLOT = 0;
   public static final int OUTPUT_SLOT = 1;
   
@@ -54,10 +53,13 @@ public class PoweredFurnaceEntity extends BaseMachineEntity
   private int powerCost;
   private int ingredientCost;
   
-  public PoweredFurnaceEntity()
+  public final MachineTier tier;
+  
+  public PoweredFurnaceEntity(MachineTier tier)
   {
-    super(ModTiles.POWERED_FURNACE, DEFAULT_CAPACITY, 50000, RedstoneMode.IGNORE);
-    
+    super(tier.tileEntityType, DEFAULT_CAPACITY, 50000, RedstoneMode.IGNORE);
+    this.tier = tier;
+  
     manager
       .registerInt("duration", () -> duration, i -> duration = i)
       .registerInt("PROGRESS", () -> progress, i -> progress = i)

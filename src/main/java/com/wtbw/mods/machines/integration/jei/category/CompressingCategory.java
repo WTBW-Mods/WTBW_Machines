@@ -49,7 +49,7 @@ public class CompressingCategory extends AbstractRecipeCategory<CompressingRecip
       "compressing",
       guiHelper,
       () -> guiHelper.createDrawable(ClientConstants.Jei.BACKGROUND,0, 54, 90, 54),
-      () -> guiHelper.createDrawableIngredient(new ItemStack(ModBlocks.COMPRESSOR))
+      () -> guiHelper.createDrawableIngredient(new ItemStack(ModBlocks.COMPRESSOR_BASIC))
     );
     
     progressLeft = guiHelper.drawableBuilder(ClientConstants.ICONS, 0, 30, 10, 10)

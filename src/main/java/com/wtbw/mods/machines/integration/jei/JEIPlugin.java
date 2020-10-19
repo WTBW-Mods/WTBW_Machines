@@ -42,13 +42,13 @@ public class JEIPlugin implements IModPlugin
     registration.addRecipeCatalyst(new ItemStack(ModBlocks.DIAMOND_FURNACE), VanillaRecipeCategoryUid.FURNACE);
     registration.addRecipeCatalyst(new ItemStack(ModBlocks.END_FURNACE), VanillaRecipeCategoryUid.FURNACE);
     
-    registration.addRecipeCatalyst(new ItemStack(ModBlocks.POWERED_FURNACE), VanillaRecipeCategoryUid.FURNACE);
-    registration.addRecipeCatalyst(new ItemStack(ModBlocks.POWERED_FURNACE), PoweredFurnaceCategory.UID);
+    registration.addRecipeCatalyst(new ItemStack(ModBlocks.POWERED_FURNACE_BASIC), VanillaRecipeCategoryUid.FURNACE);
+    registration.addRecipeCatalyst(new ItemStack(ModBlocks.POWERED_FURNACE_BASIC), PoweredFurnaceCategory.UID);
     
-    registration.addRecipeCatalyst(new ItemStack(ModBlocks.CRUSHER), CrusherCategory.UID);
-    registration.addRecipeCatalyst(new ItemStack(ModBlocks.DEHYDRATOR), DehydratingCategory.UID);
-    registration.addRecipeCatalyst(new ItemStack(ModBlocks.COMPRESSOR), CompressingCategory.UID);
-    registration.addRecipeCatalyst(new ItemStack(ModBlocks.HYDRATOR), HydratingCategory.UID);
+    registration.addRecipeCatalyst(new ItemStack(ModBlocks.CRUSHER_BASIC), CrusherCategory.UID);
+    registration.addRecipeCatalyst(new ItemStack(ModBlocks.DEHYDRATOR_BASIC), DehydratingCategory.UID);
+    registration.addRecipeCatalyst(new ItemStack(ModBlocks.COMPRESSOR_BASIC), CompressingCategory.UID);
+    registration.addRecipeCatalyst(new ItemStack(ModBlocks.HYDRATOR_BASIC), HydratingCategory.UID);
     
     registration.addRecipeCatalyst(new ItemStack(ModBlocks.MICRO_MINER), MiningCategory.UID);
   }

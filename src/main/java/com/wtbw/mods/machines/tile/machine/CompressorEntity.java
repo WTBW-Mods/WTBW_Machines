@@ -32,6 +32,8 @@ import java.util.List;
 */
 public class CompressorEntity extends BaseMachineEntity
 {
+  public static final MachineTier BASIC = new MachineTier(ModTiles.COMPRESSOR_BASIC, MachineTier.BASIC);
+  
   public static final int INPUT_SLOT = 0;
   public static final int OUTPUT_SLOT = 1;
   
@@ -48,9 +50,13 @@ public class CompressorEntity extends BaseMachineEntity
   private int powerCost;
   private int ingredientCost;
   
-  public CompressorEntity()
+  public final MachineTier tier;
+  
+  public CompressorEntity(MachineTier tier)
   {
-    super(ModTiles.COMPRESSOR, DEFAULT_CAPACITY, 50000, RedstoneMode.IGNORE);
+    super(tier.tileEntityType, DEFAULT_CAPACITY, 50000, RedstoneMode.IGNORE);
+    
+    this.tier = tier;
     
     manager
       .registerInt("duration", () -> duration, i -> duration = i)

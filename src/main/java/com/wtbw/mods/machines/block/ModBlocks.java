@@ -46,17 +46,31 @@ public class ModBlocks
   public static final Block TIER3_UPGRADE = Blocks.AIR;
   public static final Block TIER4_UPGRADE = Blocks.AIR;
 
-  public static final Block CRUSHER = Blocks.AIR;
-  public static final Block COMPRESSOR = Blocks.AIR;
+  public static final Block CRUSHER_BASIC = Blocks.AIR;
+  public static final Block CRUSHER_ADVANCED = Blocks.AIR;
+  public static final Block CRUSHER_EXPERT = Blocks.AIR;
   
-  public static final Block DEHYDRATOR = Blocks.AIR;
+  public static final Block COMPRESSOR_BASIC = Blocks.AIR;
+  public static final Block COMPRESSOR_ADVANCED = Blocks.AIR;
+  public static final Block COMPRESSOR_EXPERT = Blocks.AIR;
+  
+  public static final Block DEHYDRATOR_BASIC = Blocks.AIR;
+  public static final Block DEHYDRATOR_ADVANCED = Blocks.AIR;
+  public static final Block DEHYDRATOR_EXPERT = Blocks.AIR;
   
   public static final Block MACHINE_BLOCK = Blocks.AIR;
-  public static final Block POWERED_FURNACE = Blocks.AIR;
+  
+  public static final Block POWERED_FURNACE_BASIC = Blocks.AIR;
+  public static final Block POWERED_FURNACE_ADVANCED = Blocks.AIR;
+  public static final Block POWERED_FURNACE_EXPERT = Blocks.AIR;
+  
   public static final Block DARK_CRYSTAL_BLOCK = Blocks.AIR;
   
   public static final Block TELEPORT_INHIBITOR = Blocks.AIR;
-  public static final Block HYDRATOR = Blocks.AIR;
+  
+  public static final Block HYDRATOR_BASIC = Blocks.AIR;
+  public static final Block HYDRATOR_ADVANCED = Blocks.AIR;
+  public static final Block HYDRATOR_EXPERT = Blocks.AIR;
   
   public static final Block MICRO_MINER = Blocks.AIR;
   

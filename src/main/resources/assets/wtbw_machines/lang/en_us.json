@@ -105,14 +105,14 @@
 
   "block.wtbw_machines.charger": "Charger",
 
-  "block.wtbw_machines.dehydrator": "Dehydrator",
-  "block.wtbw_machines.hydrator": "Hydrator",
-  "block.wtbw_machines.powered_furnace": "Powered Furnace",
-  "block.wtbw_machines.crusher": "Crusher",
-  "block.wtbw_machines.compressor": "Compressor",
+  "block.wtbw_machines.dehydrator_basic": "Basic Dehydrator",
+  "block.wtbw_machines.hydrator_basic": "Basic Hydrator",
+  "block.wtbw_machines.powered_furnace_basic": "Basic Powered Furnace",
+  "block.wtbw_machines.crusher_basic": "Basic Crusher",
+  "block.wtbw_machines.compressor_basic": "Basic Compressor",
   "block.wtbw_machines.simple_battery": "Simple Battery",
   "block.wtbw_machines.quarry": "Quarry",
-  "block.wtbw_machines.fuel_generator": "Fuel Generator",
+  "block.wtbw_machines.fuel_generator_basic": "Basic Fuel Generator",
 
   "block.wtbw_machines.energy_cable_mk1": "Power Cable",
   "block.wtbw_machines.energy_cable_mk2": "Power Cable MK II",
