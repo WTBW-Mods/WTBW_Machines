@@ -25,6 +25,7 @@ public class ModContainers
   public static final ContainerType<FuelGeneratorContainer> FUEL_GENERATOR = null;
   public static final ContainerType<ChargerContainer> CHARGER = null;
   public static final ContainerType<HydratorContainer> HYDRATOR = null;
+  public static final ContainerType<ChemicalPlantContainer> CHEMICAL_PLANT = null;
   public static final ContainerType<XpPylonContainer> XP_PYLON = null;
   
   public static final ContainerType<EnergyInputHatchContainer> ENERGY_INPUT_HATCH = null;

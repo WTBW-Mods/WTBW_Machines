@@ -129,6 +129,7 @@ public class MachinesRegistrator extends Registrator
     
     register(new Block(getBlockProperties(Material.ROCK, 6)), "kirinium_ore");
     
+    register(new BaseMachineBlock<>(getBlockProperties(Material.IRON, 4), (world, state) -> new ChemicalPlantEntity()), "chemical_plant");
 //    register(new XpPylonBlock(getBlockProperties(Material.IRON, 5)), "xp_pylon");
   }
   
@@ -189,89 +190,6 @@ public class MachinesRegistrator extends Registrator
     
     register(new Item(baseProperties), "energetic_copper_ingot");
     
-//    register(new BaseUpgradeItem(getItemProperties(), Util.make(new HashMap<>(), map ->
-//    {
-//      map.put(ModifierType.SPEED, 1.15f);
-//      map.put(ModifierType.POWER_USAGE, 1.25f);
-//    })), "speed_upgrade_mk1");
-//
-//    register(new BaseUpgradeItem(getItemProperties(), Util.make(new HashMap<>(), map ->
-//    {
-//      map.put(ModifierType.SPEED, 1.25f);
-//      map.put(ModifierType.POWER_USAGE, 1.60f);
-//    })), "speed_upgrade_mk2");
-//
-//    register(new BaseUpgradeItem(getItemProperties(), Util.make(new HashMap<>(), map ->
-//    {
-//      map.put(ModifierType.SPEED, 1.7f);
-//      map.put(ModifierType.POWER_USAGE, 2f);
-//    })), "speed_upgrade_mk3");
-//
-//    register(new BaseUpgradeItem(getItemProperties(), Util.make(new HashMap<>(), map ->
-//    {
-//      map.put(ModifierType.POWER_USAGE, 0.87f);
-//    })), "power_usage_upgrade_mk1");
-//
-//    register(new BaseUpgradeItem(getItemProperties(), Util.make(new HashMap<>(), map ->
-//    {
-//      map.put(ModifierType.POWER_USAGE, 0.79f);
-//    })), "power_usage_upgrade_mk2");
-//
-//    register(new BaseUpgradeItem(getItemProperties(), Util.make(new HashMap<>(), map ->
-//    {
-//      map.put(ModifierType.POWER_USAGE, 0.40f);
-//    })), "power_usage_upgrade_mk3");
-//
-//    register(new BaseUpgradeItem(getItemProperties(), Util.make(new HashMap<>(), map ->
-//    {
-//      map.put(ModifierType.POWER_CAPACITY, 500000f);
-//    })), "power_capacity_upgrade_mk1");
-//
-//    register(new BaseUpgradeItem(getItemProperties(), Util.make(new HashMap<>(), map ->
-//    {
-//      map.put(ModifierType.POWER_CAPACITY, 2000000f);
-//    })), "power_capacity_upgrade_mk2");
-//
-//    register(new BaseUpgradeItem(getItemProperties(), Util.make(new HashMap<>(), map ->
-//    {
-//      map.put(ModifierType.POWER_CAPACITY, 5000000f);
-//    })), "power_capacity_upgrade_mk3");
-//
-//    register(new BaseUpgradeItem(getItemProperties(), Util.make(new HashMap<>(), map ->
-//    {
-//      map.put(ModifierType.TRANSFER, 1.5f);
-//    })), "transfer_upgrade_mk1");
-//
-//    register(new BaseUpgradeItem(getItemProperties(), Util.make(new HashMap<>(), map ->
-//    {
-//      map.put(ModifierType.TRANSFER, 2f);
-//    })), "transfer_upgrade_mk2");
-//
-//    register(new BaseUpgradeItem(getItemProperties(), Util.make(new HashMap<>(), map ->
-//    {
-//      map.put(ModifierType.TRANSFER, 2.5f);
-//    })), "transfer_upgrade_mk3");
-  
-//    register(new BaseUpgradeItem(getItemProperties(), Util.make(new HashMap<>(), map ->
-//    {
-//      map.put(ModifierType.RANGE, 3f);
-//      map.put(ModifierType.POWER_USAGE, 1.1f);
-//      map.put(ModifierType.SPEED, 0.9f);
-//    })), "range_upgrade_mk1");
-//
-//    register(new BaseUpgradeItem(getItemProperties(), Util.make(new HashMap<>(), map ->
-//    {
-//      map.put(ModifierType.RANGE, 6f);
-//      map.put(ModifierType.POWER_USAGE, 1.5f);
-//      map.put(ModifierType.SPEED, 0.9f);
-//    })), "range_upgrade_mk2");
-//
-//    register(new BaseUpgradeItem(getItemProperties(), Util.make(new HashMap<>(), map ->
-//    {
-//      map.put(ModifierType.RANGE, 10f);
-//      map.put(ModifierType.POWER_USAGE, 2f);
-//      map.put(ModifierType.SPEED, 0.9f);
-//    })), "range_upgrade_mk3");
     
     register(new BatteryItem(getItemProperties(), 250000, 1600), "battery_mk1");
     register(new BatteryItem(getItemProperties(), 1000000, 4000), "battery_mk2");
@@ -297,6 +215,7 @@ public class MachinesRegistrator extends Registrator
     registerContainer(BlockDetectorContainer::new, "block_detector");
     registerContainer(QuarryContainer::new, "quarry");
     registerContainer(DehydratorContainer::new, "dehydrator");
+    registerContainer(ChemicalPlantContainer::new, "chemical_plant");
     registerContainer(SolarPanelContainer::new, "solar_panel");
     registerContainer(BatteryContainer::new, "battery");
     registerContainer(CompressorContainer::new, "compressor");
@@ -326,6 +245,7 @@ public class MachinesRegistrator extends Registrator
     registry.register(PoweredFurnaceRecipe.SERIALIZER);
     registry.register(HydratingRecipe.SERIALIZER);
     registry.register(MiningRecipe.SERIALIZER);
+    registry.register(ChemicalRecipe.SERIALIZER);
   }
   
   public void registerWrenchActions()

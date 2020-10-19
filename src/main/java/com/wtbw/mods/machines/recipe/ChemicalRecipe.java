@@ -17,6 +17,7 @@ import net.minecraft.item.crafting.IRecipeSerializer;
 import net.minecraft.item.crafting.IRecipeType;
 import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.network.PacketBuffer;
+import net.minecraft.util.JSONUtils;
 import net.minecraft.util.NonNullList;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
@@ -114,7 +115,6 @@ public class ChemicalRecipe implements IRecipe<IFluidInventory>
     @Override
     public ChemicalRecipe read(ResourceLocation recipeId, JsonObject json)
     {
-  
       Ingredient ingredient = null;
       int ingredientCount = 1;
       FluidIngredient fluidIngredient = null;
@@ -149,6 +149,11 @@ public class ChemicalRecipe implements IRecipe<IFluidInventory>
           {
             ingredientCount = object.get("amount").getAsInt();
           }
+          
+          WTBWMachines.LOGGER.info("{}: input item {} ({})",
+            recipeId.toString(),
+            JSONUtils.getString(object, "item", "#" + JSONUtils.getString(object,"tag")),
+            ingredientCount);
         }
     
         if (fluidInput != null && !fluidInput.isJsonNull())
@@ -184,6 +189,11 @@ public class ChemicalRecipe implements IRecipe<IFluidInventory>
           }
       
           fluidInputAmount = object.get("amount").getAsInt();
+          
+          WTBWMachines.LOGGER.info("{}: input fluid {} ({})",
+            recipeId,
+            (tag ? "#" : "") + location,
+            fluidInputAmount);
         }
     
         if (ingredient == null && fluidIngredient == null)
@@ -225,6 +235,11 @@ public class ChemicalRecipe implements IRecipe<IFluidInventory>
             throw new JsonParseException("Could not find item \"" + location + "\"");
           }
           outputItem = new ItemStack(item, outputItemCount);
+          
+          WTBWMachines.LOGGER.info("{}: item output {} ({})",
+            recipeId,
+            location,
+            outputItemCount);
         }
     
         if (fluidOutput != null && !fluidOutput.isJsonNull())
@@ -258,6 +273,12 @@ public class ChemicalRecipe implements IRecipe<IFluidInventory>
           }
           
           outputFluid = new FluidStack(fluid, fluidOutputAmount);
+          
+          WTBWMachines.LOGGER.info("{}: fluid output {} ({})",
+            recipeId,
+            location,
+            fluidOutputAmount
+          );
         }
     
         if (itemOutput == null && outputFluid == null)

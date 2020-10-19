@@ -72,4 +72,5 @@ public class ModTiles
   public static final TileEntityType<EnergyInputHatchTile> ENERGY_INPUT_HATCH = null;
   public static final TileEntityType<ItemOutputHatchTile> ITEM_OUTPUT_HATCH = null;
   public static final TileEntityType<ItemInputHatchTile> ITEM_INPUT_HATCH = null;
+  public static final TileEntityType<ChemicalPlantEntity> CHEMICAL_PLANT = null;
 }

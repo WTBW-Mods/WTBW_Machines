@@ -2,16 +2,16 @@
   "type": "wtbw_machines:chemical",
   "input": {
     "fluid": {
-      "tag": "minecraft:water",
+      "tag": "minecraft:lava",
       "amount": 250
     }
   },
   "output": {
     "item" : {
-      "item": "wtbw_machines:sulfur",
-      "amount": 2
+      "item": "minecraft:cobblestone",
+      "amount": 1
     }
   },
-  "duration": 200,
-  "power": 3000
+  "duration": 5,
+  "power": 1000
 }

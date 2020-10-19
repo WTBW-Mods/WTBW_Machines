@@ -250,25 +250,26 @@ public class HydratorEntity extends BaseMachineEntity implements IUpgradeable
   
           powerUsage = recipe.powerCost / duration;
           powerUsage *= powerMod;
-          
+  
           waterUsage = recipe.waterCost / duration;
   
           if (recipe != old)
           {
             progress = 0;
           }
-        }
-        
-        if (canOutput(OUTPUT_SLOT, inventory, recipe))
-        {
-          if (getStorage().getEnergyStored() >= powerUsage && getWaterTank().getFluidAmount() >= waterUsage)
+  
+  
+          if (canOutput(OUTPUT_SLOT, inventory, recipe))
           {
-            getStorage().extractInternal(powerUsage, false);
-            getWaterTank().drain(waterUsage, IFluidHandler.FluidAction.EXECUTE);
-            
-            doProgress();
-            
-            on = true;
+            if (getStorage().getEnergyStored() >= powerUsage && getWaterTank().getFluidAmount() >= waterUsage)
+            {
+              getStorage().extractInternal(powerUsage, false);
+              getWaterTank().drain(waterUsage, IFluidHandler.FluidAction.EXECUTE);
+      
+              doProgress();
+      
+              on = true;
+            }
           }
         }
       }
