@@ -146,8 +146,8 @@ if (ENV.WTBW_CF_KEY) {
         apiKey = ENV.WTBW_CF_KEY
         project {
             id = "357095"
-            releaseType = "beta"
-            addGameVersion "1.15.2"
+            releaseType = "${release_type}"
+            addGameVersion "${minecraft_version}"
             relations {
                 requiredDependency 'wtbw_lib'
                 requiredDependency 'wtbw_core'
