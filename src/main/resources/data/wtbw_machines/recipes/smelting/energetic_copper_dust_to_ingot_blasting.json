@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:blasting",
+  "ingredient": {
+    "tag": "forge:dusts/energetic_copper"
+  },
+  "result": "wtbw_machines:energetic_copper_ingot",
+  "experience": 0.15,
+  "cookingtime": 100
+}
